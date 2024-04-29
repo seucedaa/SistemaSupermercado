@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "SistemaSupermercado.DataAccess/1.0.0": {
+        "dependencies": {
+          "SistemaSupermercado.Entities": "1.0.0"
+        },
+        "runtime": {
+          "SistemaSupermercado.DataAccess.dll": {}
+        }
+      },
+      "SistemaSupermercado.Entities/1.0.0": {
+        "runtime": {
+          "SistemaSupermercado.Entities.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SistemaSupermercado.DataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SistemaSupermercado.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
