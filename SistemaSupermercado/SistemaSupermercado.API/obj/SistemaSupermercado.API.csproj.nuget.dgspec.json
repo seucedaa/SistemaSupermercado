@@ -1,0 +1,353 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.API\\SistemaSupermercado.API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.API\\SistemaSupermercado.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.API\\SistemaSupermercado.API.csproj",
+        "projectName": "SistemaSupermercado.API",
+        "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.API\\SistemaSupermercado.API.csproj",
+        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj": {
+                "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj"
+              },
+              "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj": {
+                "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj"
+              },
+              "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj",
+        "projectName": "SistemaSupermercado.BusinessLogic",
+        "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj",
+        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj",
+        "projectName": "SistemaSupermercado.Common",
+        "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj",
+        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj",
+        "projectName": "SistemaSupermercado.DataAccess",
+        "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj": {
+                "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.90, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj",
+        "projectName": "SistemaSupermercado.Entities",
+        "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj",
+        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Entities\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\bin\Debug\net5.0\SistemaSupermercado.DataAccess.deps.json
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\bin\Debug\net5.0\SistemaSupermercado.DataAccess.dll
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\bin\Debug\net5.0\ref\SistemaSupermercado.DataAccess.dll
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\bin\Debug\net5.0\SistemaSupermercado.DataAccess.pdb
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\bin\Debug\net5.0\SistemaSupermercado.Entities.dll
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\bin\Debug\net5.0\SistemaSupermercado.Entities.pdb
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Debug\net5.0\SistemaSupermercado.DataAccess.csproj.AssemblyReference.cache
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Debug\net5.0\SistemaSupermercado.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Debug\net5.0\SistemaSupermercado.DataAccess.AssemblyInfoInputs.cache
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Debug\net5.0\SistemaSupermercado.DataAccess.AssemblyInfo.cs
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Debug\net5.0\SistemaSupermercado.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Debug\net5.0\SistemaSupermercado.DataAccess.csproj.CopyComplete
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Debug\net5.0\SistemaSupermercado.DataAccess.dll
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Debug\net5.0\ref\SistemaSupermercado.DataAccess.dll
+C:\Users\LAB1\source\repos\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Debug\net5.0\SistemaSupermercado.DataAccess.pdb
