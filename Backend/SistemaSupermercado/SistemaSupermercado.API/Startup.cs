@@ -29,7 +29,7 @@ namespace SistemaSupermercado.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.DataAcces(Configuration.GetConnectionString("SistemaBusquedaConn"));
+            services.DataAcces(Configuration.GetConnectionString("SupermercadoLaColoniaConn"));
             services.BussinesLogic();
             services.AddAutoMapper(typeof(Startup));
             services.AddHttpContextAccessor();
