@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.API\\SistemaSupermercado.API.csproj": {}
+    "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.API\\SistemaSupermercado.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.API\\SistemaSupermercado.API.csproj": {
+    "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.API\\SistemaSupermercado.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.API\\SistemaSupermercado.API.csproj",
+        "projectUniqueName": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.API\\SistemaSupermercado.API.csproj",
         "projectName": "SistemaSupermercado.API",
-        "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.API\\SistemaSupermercado.API.csproj",
-        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.API\\obj\\",
+        "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.API\\SistemaSupermercado.API.csproj",
+        "packagesPath": "C:\\Users\\LAB2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,14 +28,14 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj": {
-                "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj"
+              "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj": {
+                "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj"
               },
-              "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj": {
-                "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj"
+              "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj": {
+                "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj"
               },
-              "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj": {
-                "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj"
+              "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj"
               }
             }
           }
@@ -111,17 +111,17 @@
         }
       }
     },
-    "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj": {
+    "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj",
+        "projectUniqueName": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj",
         "projectName": "SistemaSupermercado.BusinessLogic",
-        "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj",
-        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\obj\\",
+        "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj",
+        "packagesPath": "C:\\Users\\LAB2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -135,8 +135,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj": {
-                "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj"
+              "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj"
               }
             }
           }
@@ -169,17 +169,17 @@
         }
       }
     },
-    "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj": {
+    "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj",
+        "projectUniqueName": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj",
         "projectName": "SistemaSupermercado.Common",
-        "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj",
-        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\obj\\",
+        "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj",
+        "packagesPath": "C:\\Users\\LAB2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -223,17 +223,17 @@
         }
       }
     },
-    "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj": {
+    "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj",
         "projectName": "SistemaSupermercado.DataAccess",
-        "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj",
-        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\LAB2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -247,8 +247,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj": {
-                "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj"
+              "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj": {
+                "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj"
               }
             }
           }
@@ -295,17 +295,17 @@
         }
       }
     },
-    "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj": {
+    "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj",
         "projectName": "SistemaSupermercado.Entities",
-        "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj",
-        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Entities\\obj\\",
+        "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj",
+        "packagesPath": "C:\\Users\\LAB2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
