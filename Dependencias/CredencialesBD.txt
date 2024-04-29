@@ -1,0 +1,3 @@
+domain: dbSupermercadoLaColonia.mssql.somee.com
+user: Pace_SQLLogin_1
+pass: bqkc2irz6p
