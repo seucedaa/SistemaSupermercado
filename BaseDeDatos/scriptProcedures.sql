@@ -1980,18 +1980,9 @@ CREATE PROCEDURE Supr.SP_Empleado_Desactivar
     @Emple_FechaModificacion DATETIME
 AS
 BEGIN
-    DECLARE @NumeroDeRelaciones INT = 0
-
-    -- Contar relaciones para determinar si se puede desactivar
-    SET @NumeroDeRelaciones = (
-        SELECT COUNT(*)
-        FROM OtraTabla -- Cambiar por la tabla que tiene referencias a Emple_Id
-        WHERE Emple_Id = @Emple_Id
-    )
 
     BEGIN TRY
-        IF @NumeroDeRelaciones = 0
-        BEGIN
+       
             -- Si no hay relaciones, desactivar el empleado
             UPDATE Supr.tbEmpleados
             SET
@@ -2002,15 +1993,10 @@ BEGIN
                 Emple_Id = @Emple_Id
 
             SELECT 1  -- Indicar éxito
-        END
-        ELSE
-        BEGIN
-            -- Si hay relaciones, no desactivar
-            SELECT 0  -- Indicar que no se puede desactivar
-        END
+        
     END TRY
     BEGIN CATCH
-        SELECT -1  -- Indicar error inesperado
+        SELECT 0  -- Indicar error inesperado
     END CATCH
 END
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2143,18 +2129,9 @@ CREATE PROCEDURE Supr.SP_Promocion_Desactivar
     @Promo_FechaModificacion DATETIME
 AS
 BEGIN
-    DECLARE @NumeroDeRelaciones INT = 0
-
-    -- Contar relaciones para determinar si se puede desactivar
-    SET @NumeroDeRelaciones = (
-        SELECT COUNT(*)
-        FROM OtraTabla -- Reemplazar con la tabla que tiene referencias a Promo_Id
-        WHERE Promo_Id = @Promo_Id
-    )
 
     BEGIN TRY
-        IF @NumeroDeRelaciones = 0
-        BEGIN
+        
             -- Si no hay relaciones, desactivar la promoción
             UPDATE Supr.tbPromociones
             SET
@@ -2165,15 +2142,10 @@ BEGIN
                 Promo_Id = @Promo_Id
 
             SELECT 1  -- Indicar éxito
-        END
-        ELSE
-        BEGIN
-            -- Si hay relaciones, no desactivar
-            SELECT 0  -- Indicar que no se puede desactivar
-        END
+       
     END TRY
     BEGIN CATCH
-        SELECT -1  -- Indicar error inesperado
+        SELECT 0  -- Indicar error inesperado
     END CATCH
 END
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2328,24 +2300,15 @@ END
 GO
 
 -- Procedimiento para desactivar un cliente
-CREATE PROCEDURE Venta.SP_Cliente_Desactivar
+ALTER PROCEDURE Venta.SP_Cliente_Desactivar
     @Clien_Id INT,
     @Clien_UsuarioModificacion INT,
     @Clien_FechaModificacion DATETIME
 AS
 BEGIN
-    DECLARE @NumeroDeRelaciones INT = 0
-
-    -- Contar referencias para determinar si se puede desactivar
-    SET @NumeroDeRelaciones = (
-        SELECT COUNT(*)
-        FROM OtraTabla -- Cambiar por la tabla que tiene referencias a Clien_Id
-        WHERE Clien_Id = @Clien_Id
-    )
-
+ 
     BEGIN TRY
-        IF @NumeroDeRelaciones = 0
-        BEGIN
+     
             -- Si no hay relaciones, desactivar al cliente
             UPDATE Venta.tbClientes
             SET
@@ -2356,14 +2319,9 @@ BEGIN
                 Clien_Id = @Clien_Id
 
             SELECT 1  -- Indicar éxito
-        END
-        ELSE
-        BEGIN
-            -- Si hay relaciones, no desactivar
-            SELECT 0  -- Indicar que no se puede desactivar por referencias
-        END
+       
     END TRY
     BEGIN CATCH
-        SELECT -1  -- Indicar error inesperado
+        SELECT 0  -- Indicar error inesperado
     END CATCH
 END
