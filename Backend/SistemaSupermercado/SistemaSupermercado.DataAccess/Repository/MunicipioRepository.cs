@@ -24,7 +24,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public IEnumerable<tbMunicipios> Buscars(string id)
+        public IEnumerable<tbMunicipios> Buscar(string id)
         {
             List<tbMunicipios> result = new List<tbMunicipios>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))

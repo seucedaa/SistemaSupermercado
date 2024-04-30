@@ -14,7 +14,7 @@ namespace SistemaSupermercado.DataAccess.Repository
     public class ProveedorRepository : IRepository<tbProveedores>
     {
 
-        public IEnumerable<tbProveedores> Buscars(int id)
+        public IEnumerable<tbProveedores> Buscar(int id)
         {
             List<tbProveedores> result = new List<tbProveedores>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))

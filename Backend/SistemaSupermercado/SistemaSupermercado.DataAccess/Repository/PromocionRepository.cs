@@ -24,7 +24,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public IEnumerable<tbPromociones> Buscars(int id)
+        public IEnumerable<tbPromociones> Buscar(int id)
         {
             List<tbPromociones> result = new List<tbPromociones>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))

@@ -14,7 +14,7 @@ namespace SistemaSupermercado.DataAccess.Repository
     public class VentaDetalleRepository : IRepository<tbVentasDetalle>
     {
 
-        public IEnumerable<tbVentasDetalle> Buscars(int id)
+        public IEnumerable<tbVentasDetalle> Buscar(int id)
         {
             List<tbVentasDetalle> result = new List<tbVentasDetalle>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))

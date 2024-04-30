@@ -15,7 +15,7 @@ namespace SistemaSupermercado.DataAccess.Repository
     {
         
 
-        public IEnumerable<tbClientes> Buscars(int id)
+        public IEnumerable<tbClientes> Buscar(int id)
         {
             List<tbClientes> result = new List<tbClientes>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))

@@ -13,7 +13,7 @@ namespace SistemaSupermercado.DataAccess.Repository
 {
     public class RolRepository : IRepository<tbRoles>
     {
-        public IEnumerable<tbRoles> Buscars(int id)
+        public IEnumerable<tbRoles> Buscar(int id)
         {
             List<tbRoles> result = new List<tbRoles>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))

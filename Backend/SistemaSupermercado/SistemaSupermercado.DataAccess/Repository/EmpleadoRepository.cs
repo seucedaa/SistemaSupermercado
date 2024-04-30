@@ -14,7 +14,7 @@ namespace SistemaSupermercado.DataAccess.Repository
     public class EmpleadoRepository : IRepository<tbEmpleados>
     {
 
-        public IEnumerable<tbEmpleados> Buscars(int id)
+        public IEnumerable<tbEmpleados> Buscar(int id)
         {
             List<tbEmpleados> result = new List<tbEmpleados>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))

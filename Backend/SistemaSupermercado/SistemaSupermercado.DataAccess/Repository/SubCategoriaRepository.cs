@@ -24,7 +24,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public IEnumerable<tbSubcategorias> Buscars(int id)
+        public IEnumerable<tbSubcategorias> Buscar(int id)
         {
             List<tbSubcategorias> result = new List<tbSubcategorias>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
