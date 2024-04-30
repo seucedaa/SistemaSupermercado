@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
@@ -18,23 +19,23 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Munic_Id = id };
-                result = db.Query<tbMunicipios>(ScriptBaseDeDatos.Municipio_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbMunicipios>(ScriptBaseDeDatos.Municipio_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public IEnumerable<tbMunicipios> Detalless(string id)
+        public IEnumerable<tbMunicipios> Buscars(string id)
         {
             List<tbMunicipios> result = new List<tbMunicipios>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Munic_Id = id };
-                result = db.Query<tbMunicipios>(ScriptBaseDeDatos.Municipio_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbMunicipios>(ScriptBaseDeDatos.Municipio_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbMunicipios item)
+        public RequestStatus Modificar(tbMunicipios item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -45,7 +46,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Munic_UsuarioModificacion", item.Munic_UsuarioModificacion);
                 parametro.Add("Munic_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.Municipio_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Municipio_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -104,12 +105,12 @@ namespace SistemaSupermercado.DataAccess.Repository
 
         public IEnumerable<tbMunicipios> List()
         {
-            const string sql = "Gral.SP_Municipios_Mostrar";
+            const string sql = "Gral.SP_Municipios_Lista";
 
             List<tbMunicipios> result = new List<tbMunicipios>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbMunicipios>(sql, commandType: CommandType.Text).ToList();
+                result = db.Query<tbMunicipios>(sql, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -119,8 +120,8 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbMunicipios> result = new List<tbMunicipios>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Munic_Id = id };
-                result = db.Query<tbMunicipios>(ScriptBaseDeDatos.MunicipiosporDepa, parameters, commandType: CommandType.StoredProcedure).ToList();
+                var parameters = new { Depar_Id = id };
+                result = db.Query<tbMunicipios>(ScriptBaseDeDatos.Municipio_DropDownList, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }

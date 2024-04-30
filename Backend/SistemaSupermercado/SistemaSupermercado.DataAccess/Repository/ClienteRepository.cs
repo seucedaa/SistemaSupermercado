@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
@@ -14,18 +15,18 @@ namespace SistemaSupermercado.DataAccess.Repository
     {
         
 
-        public IEnumerable<tbClientes> Detalless(int id)
+        public IEnumerable<tbClientes> Buscars(int id)
         {
             List<tbClientes> result = new List<tbClientes>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Clien_Id = id };
-                result = db.Query<tbClientes>(ScriptBaseDeDatos.Cliente_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbClientes>(ScriptBaseDeDatos.Cliente_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbClientes item)
+        public RequestStatus Modificar(tbClientes item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -43,7 +44,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Clien_UsuarioModificacion", item.Clien_UsuarioModificacion);
                 parametro.Add("Clien_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.Cliente_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Cliente_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -62,7 +63,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Clien_Id", id);
 
-                var result = db.Execute(ScriptBaseDeDatos.Cliente_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Cliente_Desactivar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -121,7 +122,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbClientes> result = new List<tbClientes>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbClientes>(ScriptBaseDeDatos.Cliente_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbClientes>(ScriptBaseDeDatos.Cliente_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 

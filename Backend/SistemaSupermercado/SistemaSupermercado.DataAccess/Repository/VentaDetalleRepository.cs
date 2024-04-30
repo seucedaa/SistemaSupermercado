@@ -7,24 +7,25 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
     public class VentaDetalleRepository : IRepository<tbVentasDetalle>
     {
 
-        public IEnumerable<tbVentasDetalle> Detalless(int id)
+        public IEnumerable<tbVentasDetalle> Buscars(int id)
         {
             List<tbVentasDetalle> result = new List<tbVentasDetalle>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Vende_Id = id };
-                result = db.Query<tbVentasDetalle>(ScriptBaseDeDatos.VentaDetalle_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbVentasDetalle>(ScriptBaseDeDatos.VentaDetalle_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbVentasDetalle item)
+        public RequestStatus Modificar(tbVentasDetalle item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -36,7 +37,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Vende_UsuarioModificacion", item.Vende_UsuarioModificacion);
                 parametro.Add("Vende_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.VentaDetalle_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.VentaDetalle_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -55,7 +56,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Vende_Id", id);
 
-                var result = db.Execute(ScriptBaseDeDatos.VentaDetalle_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.VentaDetalle_Desactivar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -99,7 +100,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbVentasDetalle> result = new List<tbVentasDetalle>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbVentasDetalle>(ScriptBaseDeDatos.VentaDetalle_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbVentasDetalle>(ScriptBaseDeDatos.VentaDetalle_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 

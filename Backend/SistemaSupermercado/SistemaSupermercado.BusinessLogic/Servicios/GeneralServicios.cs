@@ -16,9 +16,9 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         private readonly EstadoCivilRepository _estadocivilRepositorio;
         private readonly ImpuestoRepository _impuestoRepository;
         private readonly MunicipioRepository _municipiosRepositorio;
-        private readonly SubCategoriaRepository _subCategoriaRepository;
+        private readonly SubcategoriaRepository _subCategoriaRepository;
 
-        public GeneralServicios(CargoRepository cargoRepository, CategoriaRepository categoriaRepository, DepartamentoRepository departamentoRepository, EstadoCivilRepository estadoCivilRepository, MunicipioRepository municipioRepository, ImpuestoRepository impuestoRepository, SubCategoriaRepository subCategoriaRepository)
+        public GeneralServicios(CargoRepository cargoRepository, CategoriaRepository categoriaRepository, DepartamentoRepository departamentoRepository, EstadoCivilRepository estadoCivilRepository, MunicipioRepository municipioRepository, ImpuestoRepository impuestoRepository, SubcategoriaRepository subCategoriaRepository)
         {
             _cargoRepository = cargoRepository;
             _categoriaRepository = categoriaRepository;
@@ -79,15 +79,15 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         public IEnumerable<tbCargos> DetallesCargo(int id)
         {
-            return _cargoRepository.Detalless(id);
+            return _cargoRepository.Buscar(id);
         }
 
-        public ServiceResult ActualizarCargo(tbCargos item)
+        public ServiceResult ModificarCargo(tbCargos item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _cargoRepository.Actualizar(item);
+                var lost = _cargoRepository.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
@@ -183,15 +183,15 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         public IEnumerable<tbCategorias> DetallesCate(int id)
         {
-            return _categoriaRepository.Detalless(id);
+            return _categoriaRepository.Buscar(id);
         }
 
-        public ServiceResult ActualizarCate(tbCategorias item)
+        public ServiceResult ModificarCate(tbCategorias item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _categoriaRepository.Actualizar(item);
+                var lost = _categoriaRepository.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
@@ -287,15 +287,15 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         public IEnumerable<tbDepartamentos> DetallesDepto(int id)
         {
-            return _departamentoRepositorio.Detalless(id);
+            return _departamentoRepositorio.Buscar(id);
         }
 
-        public ServiceResult ActualizarDepto(tbDepartamentos item)
+        public ServiceResult ModificarDepto(tbDepartamentos item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _departamentoRepositorio.Actualizar(item);
+                var lost = _departamentoRepositorio.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
@@ -392,15 +392,15 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         public IEnumerable<tbEstadosCiviles> Detalles(int id)
         {
-            return _estadocivilRepositorio.Detalless(id);
+            return _estadocivilRepositorio.Buscar(id);
         }
 
-        public ServiceResult ActualizarCivil(tbEstadosCiviles item)
+        public ServiceResult ModificarCivil(tbEstadosCiviles item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _estadocivilRepositorio.Actualizar(item);
+                var lost = _estadocivilRepositorio.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
@@ -497,15 +497,15 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         public IEnumerable<tbImpuestos> DetallesImpue(int id)
         {
-            return _impuestoRepository.Detalless(id);
+            return _impuestoRepository.Buscar(id);
         }
 
-        public ServiceResult ActualizarImpue(tbImpuestos item)
+        public ServiceResult ModificarImpue(tbImpuestos item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _impuestoRepository.Actualizar(item);
+                var lost = _impuestoRepository.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
@@ -617,15 +617,15 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         public IEnumerable<tbMunicipios> DetallesMuni(string id)
         {
-            return _municipiosRepositorio.Detalless(id);
+            return _municipiosRepositorio.Buscar(id);
         }
 
-        public ServiceResult ActualizarMuni(tbMunicipios item)
+        public ServiceResult ModificarMuni(tbMunicipios item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _municipiosRepositorio.Actualizar(item);
+                var lost = _municipiosRepositorio.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
@@ -734,17 +734,17 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             return _subCategoriaRepository.ObtenerID(id);
         }
 
-        public IEnumerable<tbSubcategorias> DetallesSubCate(int id)
+        public IEnumerable<tbSubcategorias> BuscarubCate(int id)
         {
-            return _subCategoriaRepository.Detalless(id);
+            return _subCategoriaRepository.Buscar(id);
         }
 
-        public ServiceResult ActualizarSubCate(tbSubcategorias item)
+        public ServiceResult ModificarSubCate(tbSubcategorias item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _subCategoriaRepository.Actualizar(item);
+                var lost = _subCategoriaRepository.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {

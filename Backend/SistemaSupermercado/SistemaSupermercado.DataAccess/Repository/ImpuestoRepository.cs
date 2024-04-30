@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
@@ -18,23 +19,23 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Impue_Id = id };
-                result = db.Query<tbImpuestos>(ScriptBaseDeDatos.Impuesto_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbImpuestos>(ScriptBaseDeDatos.Impuesto_Lista, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public IEnumerable<tbImpuestos> Detalless(int id)
+        public IEnumerable<tbImpuestos> Buscars(int id)
         {
             List<tbImpuestos> result = new List<tbImpuestos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Impue_Id = id };
-                result = db.Query<tbImpuestos>(ScriptBaseDeDatos.Impuesto_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbImpuestos>(ScriptBaseDeDatos.Impuesto_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbImpuestos item)
+        public RequestStatus Modificar(tbImpuestos item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -44,7 +45,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Impue_UsuarioModificacion", item.Impue_UsuarioModificacion);
                 parametro.Add("Impue_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.Impuesto_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Impuesto_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -63,7 +64,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Impue_Id", id);
 
-                var result = db.Execute(ScriptBaseDeDatos.Impuesto_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Impuesto_Desactivar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -105,7 +106,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbImpuestos> result = new List<tbImpuestos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbImpuestos>(ScriptBaseDeDatos.Impuesto_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbImpuestos>(ScriptBaseDeDatos.Impuesto_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 

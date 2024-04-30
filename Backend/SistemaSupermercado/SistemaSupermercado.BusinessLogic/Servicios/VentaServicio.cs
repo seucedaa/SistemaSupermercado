@@ -11,16 +11,16 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
     public class VentaServicio
     {
         private readonly ClienteRepository _clienteRepository;
-        private readonly VentaEncabezadoRepository _ventaEncabezadoRepository;
-        private readonly VentaDetalleRepository _ventaDetalleRepository;
+        //private readonly VentaEncabezadoRepository _ventaEncabezadoRepository;
+        //private readonly VentaDetalleRepository _ventaDetalleRepository;
         private readonly UsuarioRepository _usuarioRepository;
         private readonly AccesoServicios _accesoServicios;
 
-        public VentaServicio(UsuarioRepository usuarioRepository, AccesoServicios accesoServicios,ClienteRepository clienteRepository, VentaEncabezadoRepository ventaEncabezadoRepository, VentaDetalleRepository ventaDetalleRepository)
+        public VentaServicio(UsuarioRepository usuarioRepository, AccesoServicios accesoServicios,ClienteRepository clienteRepository, /*VentaEncabezadoRepository ventaEncabezadoRepository, VentaDetalleRepository ventaDetalleRepository*/)
         {
             _clienteRepository = clienteRepository;
-            _ventaEncabezadoRepository = ventaEncabezadoRepository;
-            _ventaDetalleRepository = ventaDetalleRepository;
+            //_ventaEncabezadoRepository = ventaEncabezadoRepository;
+            //_ventaDetalleRepository = ventaDetalleRepository;
             _usuarioRepository = usuarioRepository;
             _accesoServicios = accesoServicios;
         }
@@ -123,15 +123,15 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         public IEnumerable<tbClientes> DetallesClien(int id)
         {
-            return _clienteRepository.Detalless(id);
+            return _clienteRepository.Buscar(id);
         }
 
-        public ServiceResult ActualizarClien(tbClientes item)
+        public ServiceResult ModificarClien(tbClientes item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _clienteRepository.Actualizar(item);
+                var lost = _clienteRepository.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
@@ -177,98 +177,98 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         }
         #endregion
 
-        #region Venta Detalle
-        public ServiceResult ListarVeDe()
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var lost = _ventaDetalleRepository.List();
+        //#region Venta Detalle
+        //public ServiceResult ListarVeDe()
+        //{
+        //    var result = new ServiceResult();
+        //    try
+        //    {
+        //        var lost = _ventaDetalleRepository.List();
 
-                return result.Ok(lost);
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
+        //        return result.Ok(lost);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return result.Error(ex.Message);
+        //    }
+        //}
 
-        public IEnumerable<tbVentasDetalle> DetallesVeDe(int id)
-        {
-            return _ventaDetalleRepository.Detalless(id);
-        }
+        //public IEnumerable<tbVentasDetalle> DetallesVeDe(int id)
+        //{
+        //    return _ventaDetalleRepository.Buscar(id);
+        //}
 
-        public ServiceResult EliminarVeDe(int? id)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var lost = _ventaDetalleRepository.Eliminar(id);
+        //public ServiceResult EliminarVeDe(int? id)
+        //{
+        //    var result = new ServiceResult();
+        //    try
+        //    {
+        //        var lost = _ventaDetalleRepository.Eliminar(id);
 
-                if (lost.CodeStatus > 0)
-                {
-                    return result.Ok(lost);
-                }
-                else
-                {
-                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
-                    return result.Error(lost);
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
-        #endregion
-
-        #region Venta Encabezado
-        public ServiceResult ListarVeEn()
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var lost = _ventaEncabezadoRepository.List();
-
-                return result.Ok(lost);
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
-
-        public IEnumerable<tbVentasEncabezado> DetallesVeEn(int id)
-        {
-            return _ventaEncabezadoRepository.Detalless(id);
-        }
-
-        public ServiceResult EliminarVeEn(int? id)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var lost = _ventaEncabezadoRepository.Eliminar(id);
-
-                if (lost.CodeStatus > 0)
-                {
-                    return result.Ok(lost);
-                }
-                else
-                {
-                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
-                    return result.Error(lost);
-                }
+        //        if (lost.CodeStatus > 0)
+        //        {
+        //            return result.Ok(lost);
+        //        }
+        //        else
+        //        {
+        //            lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
+        //            return result.Error(lost);
+        //        }
 
 
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
-        #endregion
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return result.Error(ex.Message);
+        //    }
+        //}
+        //#endregion
+
+        //#region Venta Encabezado
+        //public ServiceResult ListarVeEn()
+        //{
+        //    var result = new ServiceResult();
+        //    try
+        //    {
+        //        var lost = _ventaEncabezadoRepository.List();
+
+        //        return result.Ok(lost);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return result.Error(ex.Message);
+        //    }
+        //}
+
+        //public IEnumerable<tbVentasEncabezado> DetallesVeEn(int id)
+        //{
+        //    return _ventaEncabezadoRepository.Buscar(id);
+        //}
+
+        //public ServiceResult EliminarVeEn(int? id)
+        //{
+        //    var result = new ServiceResult();
+        //    try
+        //    {
+        //        var lost = _ventaEncabezadoRepository.Eliminar(id);
+
+        //        if (lost.CodeStatus > 0)
+        //        {
+        //            return result.Ok(lost);
+        //        }
+        //        else
+        //        {
+        //            lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
+        //            return result.Error(lost);
+        //        }
+
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return result.Error(ex.Message);
+        //    }
+        //}
+        //#endregion
     }
 }

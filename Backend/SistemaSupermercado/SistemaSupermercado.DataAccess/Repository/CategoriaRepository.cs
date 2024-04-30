@@ -7,7 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
@@ -19,23 +19,23 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Categ_Id = id };
-                result = db.Query<tbCategorias>(ScriptBaseDeDatos.Categoria_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbCategorias>(ScriptBaseDeDatos.Categoria_Lista, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public IEnumerable<tbCategorias> Detalless(int id)
+        public IEnumerable<tbCategorias> Buscars(int id)
         {
             List<tbCategorias> result = new List<tbCategorias>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Categ_Id = id };
-                result = db.Query<tbCategorias>(ScriptBaseDeDatos.Categoria_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbCategorias>(ScriptBaseDeDatos.Categoria_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbCategorias item)
+        public RequestStatus Modificar(tbCategorias item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -45,7 +45,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Categ_UsuarioModificacion", item.Categ_UsuarioModificacion);
                 parametro.Add("Categ_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.Categoria_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Categoria_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -106,7 +106,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbCategorias> result = new List<tbCategorias>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbCategorias>(ScriptBaseDeDatos.Categoria_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbCategorias>(ScriptBaseDeDatos.Categoria_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 

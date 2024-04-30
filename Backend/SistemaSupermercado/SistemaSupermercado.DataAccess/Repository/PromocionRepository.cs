@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
@@ -18,23 +19,23 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Promo_Id = id };
-                result = db.Query<tbPromociones>(ScriptBaseDeDatos.Promocion_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbPromociones>(ScriptBaseDeDatos.Promocion_Lista, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public IEnumerable<tbPromociones> Detalless(int id)
+        public IEnumerable<tbPromociones> Buscars(int id)
         {
             List<tbPromociones> result = new List<tbPromociones>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Promo_Id = id };
-                result = db.Query<tbPromociones>(ScriptBaseDeDatos.Promocion_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbPromociones>(ScriptBaseDeDatos.Promocion_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbPromociones item)
+        public RequestStatus Modificar(tbPromociones item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -48,7 +49,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Promo_UsuarioModificacion", item.Promo_UsuarioModificacion);
                 parametro.Add("Promo_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.Promocion_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Promocion_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -67,7 +68,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Promo_Id", id);
 
-                var result = db.Execute(ScriptBaseDeDatos.Promocion_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Promocion_Desactivar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -113,7 +114,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbPromociones> result = new List<tbPromociones>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbPromociones>(ScriptBaseDeDatos.Promocion_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbPromociones>(ScriptBaseDeDatos.Promocion_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 

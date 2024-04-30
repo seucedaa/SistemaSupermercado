@@ -7,10 +7,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
-    public class SubCategoriaRepository : IRepository<tbSubcategorias>
+    public class SubcategoriaRepository : IRepository<tbSubcategorias>
     {
         public IEnumerable<tbSubcategorias> ObtenerID(int id)
         {
@@ -18,23 +19,23 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Subca_Id = id };
-                result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.SubCategoria_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.Subcategoria_Lista, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public IEnumerable<tbSubcategorias> Detalless(int id)
+        public IEnumerable<tbSubcategorias> Buscars(int id)
         {
             List<tbSubcategorias> result = new List<tbSubcategorias>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Subca_Id = id };
-                result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.SubCategoria_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.Subcategoria_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbSubcategorias item)
+        public RequestStatus Modificar(tbSubcategorias item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -45,7 +46,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Subca_UsuarioModificacion", item.Subca_UsuarioModificacion);
                 parametro.Add("Subca_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.SubCategoria_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Subcategoria_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -64,7 +65,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Subca_Id", id);
 
-                var result = db.Execute(ScriptBaseDeDatos.SubCategoria_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Subcategoria_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -90,7 +91,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Subca_UsuarioCreacion", item.Subca_UsuarioCreacion);
                 parametro.Add("Subca_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.SubCategoria_Insertar,
+                var result = db.Execute(ScriptBaseDeDatos.Subcategoria_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -107,7 +108,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbSubcategorias> result = new List<tbSubcategorias>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.SubCategoria_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.Subcategoria_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 
@@ -118,8 +119,8 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbSubcategorias> result = new List<tbSubcategorias>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Subca_Id = id };
-                result = db.Query<tbMunicipios>(ScriptBaseDeDatos.SubcategoriasporCate, parameters, commandType: CommandType.StoredProcedure).ToList();
+                var parameters = new { Categ_Id = id };
+                result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.Subcategoria_DropDownList, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }

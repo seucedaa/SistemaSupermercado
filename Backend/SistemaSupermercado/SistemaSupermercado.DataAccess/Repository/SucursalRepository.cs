@@ -7,6 +7,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaSupermercado.DataAcceess.Repository;
+
 namespace SistemaSupermercado.DataAccess.Repository
 {
     public class SucursalRepository : IRepository<tbSucursales>
@@ -17,23 +19,23 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Sucur_Id = id };
-                result = db.Query<tbSucursales>(ScriptBaseDeDatos.Sucursal_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbSucursales>(ScriptBaseDeDatos.Sucursal_Lista, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public IEnumerable<tbSucursales> Detalless(int id)
+        public IEnumerable<tbSucursales> Buscars(int id)
         {
             List<tbSucursales> result = new List<tbSucursales>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Sucur_Id = id };
-                result = db.Query<tbSucursales>(ScriptBaseDeDatos.Sucursal_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbSucursales>(ScriptBaseDeDatos.Sucursal_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbSucursales item)
+        public RequestStatus Modificar(tbSucursales item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -46,7 +48,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Sucur_UsuarioModificacion", item.Sucur_UsuarioModificacion);
                 parametro.Add("Sucur_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.Sucursal_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Sucursal_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -65,7 +67,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Sucur_Id", id);
 
-                var result = db.Execute(ScriptBaseDeDatos.Sucursal_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Sucursal_Desactivar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -111,7 +113,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbSucursales> result = new List<tbSucursales>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbSucursales>(ScriptBaseDeDatos.Sucursal_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbSucursales>(ScriptBaseDeDatos.Sucursal_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 

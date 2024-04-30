@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
@@ -18,23 +19,23 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Depar_Id = id };
-                result = db.Query<tbDepartamentos>(ScriptBaseDeDatos.Departamento_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbDepartamentos>(ScriptBaseDeDatos.Departamento_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public IEnumerable<tbDepartamentos> Detalless(int id)
+        public IEnumerable<tbDepartamentos> Buscar(int id)
         {
             List<tbDepartamentos> result = new List<tbDepartamentos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Depar_Id = id };
-                result = db.Query<tbDepartamentos>(ScriptBaseDeDatos.Departamento_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbDepartamentos>(ScriptBaseDeDatos.Departamento_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbDepartamentos item)
+        public RequestStatus Modificar(tbDepartamentos item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -44,7 +45,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Depar_UsuarioModificacion", item.Depar_UsuarioModificacion);
                 parametro.Add("Depar_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.Departamento_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Departamento_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -102,12 +103,12 @@ namespace SistemaSupermercado.DataAccess.Repository
 
         public IEnumerable<tbDepartamentos> List()
         {
-            const string sql = "Gral.SP_Departamentos_Mostrar";
+            const string sql = "Gral.SP_Departamentos_Lista";
 
             List<tbDepartamentos> result = new List<tbDepartamentos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbDepartamentos>(sql, commandType: CommandType.Text).ToList();
+                result = db.Query<tbDepartamentos>(sql, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 
@@ -115,7 +116,7 @@ namespace SistemaSupermercado.DataAccess.Repository
 
         public IEnumerable<tbMunicipios> ListaMunicipiosID(string id)
         {
-            const string sql = "Gral.SP_MunicipiosMostrarID";
+            const string sql = "Gral.SP_MunicipiosListaID";
 
             List<tbMunicipios> result = new List<tbMunicipios>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
@@ -127,7 +128,7 @@ namespace SistemaSupermercado.DataAccess.Repository
         }
 
 
-        RequestStatus IRepository<tbDepartamentos>.Actualizar(tbDepartamentos item)
+        RequestStatus IRepository<tbDepartamentos>.Modificar(tbDepartamentos item)
         {
             throw new NotImplementedException();
         }

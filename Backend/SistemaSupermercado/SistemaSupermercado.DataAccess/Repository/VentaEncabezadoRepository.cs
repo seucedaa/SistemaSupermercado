@@ -7,24 +7,25 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
     public class VentaEncabezadoRepository : IRepository<tbVentasEncabezado>
     {
 
-        public IEnumerable<tbVentasEncabezado> Detalless(int id)
+        public IEnumerable<tbVentasEncabezado> Buscars(int id)
         {
             List<tbVentasEncabezado> result = new List<tbVentasEncabezado>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Venen_Id = id };
-                result = db.Query<tbVentasEncabezado>(ScriptBaseDeDatos.VentaEncabezado_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbVentasEncabezado>(ScriptBaseDeDatos.VentaEncabezado_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbVentasEncabezado item)
+        public RequestStatus Modificar(tbVentasEncabezado item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -35,7 +36,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Venen_UsuarioModificacion", item.Venen_UsuarioModificacion);
                 parametro.Add("Venen_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.VentaEncabezado_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.VentaEncabezado_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -54,7 +55,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Venen_Id", id);
 
-                var result = db.Execute(ScriptBaseDeDatos.VentaEncabezado_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.VentaEncabezado_Desactivar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -97,7 +98,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbVentasEncabezado> result = new List<tbVentasEncabezado>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbVentasEncabezado>(ScriptBaseDeDatos.VentaEncabezado_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbVentasEncabezado>(ScriptBaseDeDatos.VentaEncabezado_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 

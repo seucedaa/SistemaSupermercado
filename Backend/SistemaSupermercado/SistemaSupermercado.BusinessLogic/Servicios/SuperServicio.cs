@@ -74,15 +74,15 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         public IEnumerable<tbEmpleados> DetallesEmple(int id)
         {
-            return _empleadoRepository.Detalless(id);
+            return _empleadoRepository.Buscar(id);
         }
 
-        public ServiceResult ActualizarEmple(tbEmpleados item)
+        public ServiceResult ModificarEmple(tbEmpleados item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _empleadoRepository.Actualizar(item);
+                var lost = _empleadoRepository.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
@@ -178,15 +178,15 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         public IEnumerable<tbLotes> DetallesLote(int id)
         {
-            return _loteRepository.Detalless(id);
+            return _loteRepository.Buscar(id);
         }
 
-        public ServiceResult ActualizarLote(tbLotes item)
+        public ServiceResult ModificarLote(tbLotes item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _loteRepository.Actualizar(item);
+                var lost = _loteRepository.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
@@ -279,15 +279,15 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         public IEnumerable<tbProductos> DetallesProdu(int id)
         {
-            return _productoRepository.Detalless(id);
+            return _productoRepository.Buscar(id);
         }
 
-        public ServiceResult ActualizarProdu(tbProductos item)
+        public ServiceResult ModificarProdu(tbProductos item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _productoRepository.Actualizar(item);
+                var lost = _productoRepository.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
@@ -378,15 +378,15 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         public IEnumerable<tbPromociones> DetallesProm(int id)
         {
-            return _promocionRepository.Detalless(id);
+            return _promocionRepository.Buscar(id);
         }
 
-        public ServiceResult ActualizarProm(tbPromociones item)
+        public ServiceResult ModificarProm(tbPromociones item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _promocionRepository.Actualizar(item);
+                var lost = _promocionRepository.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
@@ -479,7 +479,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         public IEnumerable<tbProveedores> DetallesProve(int id)
         {
-            return _proveedorRepository.Detalless(id);
+            return _proveedorRepository.Buscar(id);
         }
 
         public ServiceResult ActualizaProve(tbProveedores item)
@@ -487,7 +487,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             var result = new ServiceResult();
             try
             {
-                var lost = _proveedorRepository.Actualizar(item);
+                var lost = _proveedorRepository.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
@@ -581,17 +581,17 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             return _sucursalRepository.ObtenerID(id);
         }
 
-        public IEnumerable<tbSucursales> DetallesSucur(int id)
+        public IEnumerable<tbSucursales> Buscarucur(int id)
         {
-            return _sucursalRepository.Detalless(id);
+            return _sucursalRepository.Buscar(id);
         }
 
-        public ServiceResult ActualizarSucur(tbSucursales item)
+        public ServiceResult ModificarSucur(tbSucursales item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _sucursalRepository.Actualizar(item);
+                var lost = _sucursalRepository.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {

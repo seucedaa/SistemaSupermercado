@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
@@ -18,23 +19,23 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Estad_Id = id };
-                result = db.Query<tbEstadosCiviles>(ScriptBaseDeDatos.EstadoCivil_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbEstadosCiviles>(ScriptBaseDeDatos.EstadoCivil_Lista, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public IEnumerable<tbEstadosCiviles> Detalless(int id)
+        public IEnumerable<tbEstadosCiviles> Buscars(int id)
         {
             List<tbEstadosCiviles> result = new List<tbEstadosCiviles>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Estad_Id = id };
-                result = db.Query<tbEstadosCiviles>(ScriptBaseDeDatos.EstadoCivil_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbEstadosCiviles>(ScriptBaseDeDatos.EstadoCivil_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbEstadosCiviles item)
+        public RequestStatus Modificar(tbEstadosCiviles item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -44,7 +45,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Estad_UsuarioModificacion", item.Estad_UsuarioModificacion);
                 parametro.Add("Estad_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.EstadoCivil_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.EstadoCivil_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -105,7 +106,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbEstadosCiviles> result = new List<tbEstadosCiviles>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbEstadosCiviles>(ScriptBaseDeDatos.EstadoCivil_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbEstadosCiviles>(ScriptBaseDeDatos.EstadoCivil_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 
