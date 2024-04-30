@@ -15,6 +15,21 @@ namespace SistemaSupermercado.API.Extensions
             CreateMap<UsuarioViewModel, tbUsuarios>().ReverseMap();
             CreateMap<CargoViewModel, tbCargos>().ReverseMap();
             CreateMap<RolViewModel, tbRoles>().ReverseMap();
+            CreateMap<CategoriaViewModel, tbCargos>().ReverseMap();
+            CreateMap<ClienteViewModel, tbClientes>().ReverseMap();
+            CreateMap<DepartamentoViewModel, tbDepartamentos>().ReverseMap();
+            CreateMap<EmpleadoViewModel, tbEmpleados>().ReverseMap();
+            CreateMap<EstadoCivilViewModel, tbEstadosCiviles>().ReverseMap();
+            CreateMap<ImpuestoViewModel, tbImpuestos>().ReverseMap();
+            CreateMap<LoteViewModel, tbLotes>().ReverseMap();
+            CreateMap<MunicipioViewModel, tbMunicipios>().ReverseMap();
+            CreateMap<ProductoViewModel, tbProductos>().ReverseMap();
+            CreateMap<PromocionViewModel, tbPromociones>().ReverseMap();
+            CreateMap<ProveedorViewModel, tbProveedores>().ReverseMap();
+            CreateMap<SubCategoriaViewModel, tbSubcategorias>().ReverseMap();
+            CreateMap<SucursalViewModel, tbSucursales>().ReverseMap();
+            CreateMap<VentasDetalleViewModel, tbVentasDetalle>().ReverseMap();
+            CreateMap<tbVentasEncabezado, tbVentasEncabezado>().ReverseMap();
 
         }
     }

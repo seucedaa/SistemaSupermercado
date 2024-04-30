@@ -21,6 +21,9 @@ namespace SistemaSupermercado.Common.Models
         public int Perso_Id { get; set; }
         public bool Perso_Tipo { get; set; }
         public int Roles_Id { get; set; }
+
+        [NotMapped]
+        public string Roles_Descripcion { get; set; }
         [Display(Name = "Administrador")]
         public bool Usuar_Admin { get; set; }
         public DateTime? Usuar_UltimaSesion { get; set; }

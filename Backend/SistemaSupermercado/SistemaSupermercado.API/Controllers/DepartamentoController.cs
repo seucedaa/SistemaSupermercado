@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SistemaSupermercado.BussinesLogic.Servicios;
+using SistemaSupermercado.BusinessLogic.Servicios;
 using SistemaSupermercado.Common.Models;
 using SistemaSupermercado.Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +14,10 @@ namespace SistemaSupermercado.Controllers
     [Route("Api/[controller]")]
     public class DepartamentoController : Controller
     {
-        private readonly ServiciosGenerales _ServiciosGenerales;
+        private readonly GeneralServicios _ServiciosGenerales;
         private readonly IMapper _mapper;
 
-        public DepartamentoController(ServiciosGenerales ServiciosGenerales, IMapper mapper)
+        public DepartamentoController(GeneralServicios ServiciosGenerales, IMapper mapper)
         {
 
             _mapper = mapper;
@@ -39,9 +39,9 @@ namespace SistemaSupermercado.Controllers
             var model = _mapper.Map<tbDepartamentos>(item);
             var modelo = new tbDepartamentos()
             {
-                Dept_Id = item.Dept_Id,
-                Dept_Departamento = item.Dept_Departamento,
-                Dept_UsuarioCreacion = item.Usua_Id
+                Depar_Id = item.Depar_Id,
+                Depar_Descripcion = item.Depar_Descripcion,
+                Depar_UsuarioCreacion = item.Depar_UsuarioCreacion
             };
 
             var list = _ServiciosGenerales.CrearDepto(modelo);
@@ -74,9 +74,9 @@ namespace SistemaSupermercado.Controllers
             var model = _mapper.Map<tbDepartamentos>(item);
             var modelo = new tbDepartamentos()
             {
-                Dept_Id = item.Dept_Id,
-                Dept_Departamento = item.Dept_Departamento,
-                Dept_UsuarioModificacion = item.Usua_Id
+                Depar_Id = item.Depar_Id,
+                Depar_Descripcion = item.Depar_Descripcion,
+                Depar_UsuarioModificacion = item.Depar_UsuarioModificacion
             };
 
             var list = _ServiciosGenerales.ActualizarDepto(modelo);
@@ -95,15 +95,9 @@ namespace SistemaSupermercado.Controllers
         [HttpGet("Municipios/{id}")]
         public IActionResult Municipios(string id)
         {
-            var list = _ServiciosGenerales.ListaMunicipiosID(id);
+            var list = _ServiciosGenerales.ListarMuniporDepa(id);
             return Ok(list);
         }
 
-        [HttpGet("Colonias/{id}")]
-        public IActionResult Colonias(string id)
-        {
-            var list = _ServiciosGenerales.ListaColoniasID(id);
-            return Ok(list);
-        }
     }
 }
