@@ -25,7 +25,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             _accesoServicios = accesoServicios;
         }
 
-        #region Usuarios
+        #region Clientes
         public ServiceResult ListarClien()
         {
             var result = new ServiceResult();
@@ -76,7 +76,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             {
                 var nuevocliente = new tbClientes()
                 {
-                    Clien_DNI = item.Clien_DNI,
+                    Clien_Dni = item.Clien_Dni,
                     Clien_PrimerNombre = item.Clien_PrimerNombre,
                     Clien_SegundoNombre = item.Clien_SegundoNombre,
                     Clien_PrimerApellido = item.Clien_PrimerApellido,

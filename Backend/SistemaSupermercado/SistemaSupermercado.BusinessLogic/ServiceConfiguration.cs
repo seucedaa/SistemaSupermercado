@@ -15,7 +15,24 @@ namespace SistemaSupermercado.BusinessLogic
         public static void DataAcces(this IServiceCollection service, string conn)
         {
 
-            //service.AddScoped<UsuarioRepository>();
+            service.AddScoped<CargoRepository>();
+            service.AddScoped<CategoriaRepository>();
+            service.AddScoped<ClienteRepository>();
+            service.AddScoped<DepartamentoRepository>();
+            service.AddScoped<EmpleadoRepository>();
+            service.AddScoped<EstadoCivilRepository>();
+            service.AddScoped<ImpuestoRepository>();
+            service.AddScoped<LoteRepository>();
+            service.AddScoped<MunicipioRepository>();
+            service.AddScoped<ProductoRepository>();
+            service.AddScoped<PromocionRepository>();
+            service.AddScoped<ProveedorRepository>();
+            service.AddScoped<RolRepository>();
+            service.AddScoped<SubCategoriaRepository>();
+            service.AddScoped<SucursalRepository>();
+            service.AddScoped<UsuarioRepository>();
+            service.AddScoped<VentaDetalleRepository>();
+            service.AddScoped<VentaEncabezadoRepository>();
 
 
             SistemaSupermercadoContext.BuildConnectionString(conn);
@@ -23,7 +40,10 @@ namespace SistemaSupermercado.BusinessLogic
 
         public static void BussinesLogic(this IServiceCollection service)
         {
-            //service.AddScoped<AccesoServicios>();
+            service.AddScoped<AccesoServicios>();
+            service.AddScoped<GeneralServicios>();
+            service.AddScoped<SuperServicio>();
+            service.AddScoped<VentaServicio>();
 
         }
     }

@@ -114,6 +114,16 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
+        public IEnumerable<tbMunicipios> ListarMuniporDepa(string id)
+        {
+            List<tbMunicipios> result = new List<tbMunicipios>();
+            using (var db = new SqlConnection(GestionGastosContext.ConnectionString))
+            {
+                var parameters = new { Munic_Id = id };
+                result = db.Query<tbMunicipios>(ScriptBaseDeDatos.MunicipiosporDepa, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
         public RequestStatus Eliminar(int? id)
         {
             throw new NotImplementedException();

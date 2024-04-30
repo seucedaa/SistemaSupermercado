@@ -107,10 +107,21 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbSubcategorias> result = new List<tbSubcategorias>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.SubCategoria_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbSubcategorias>(ScriptsBaseDeDatos.SubCategoria_Mostrar, commandType: CommandType.Text).ToList();
                 return result;
             }
 
+        }
+
+        public IEnumerable<tbSubcategorias> ListarSubcateporCate(int id)
+        {
+            List<tbSubcategorias> result = new List<tbSubcategorias>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { Subca_Id = id };
+                result = db.Query<tbMunicipios>(ScriptsBaseDeDatos.SubcategoriasporCate, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
         }
     }
 }

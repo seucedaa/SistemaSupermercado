@@ -12,7 +12,9 @@ namespace SistemaSupermercado.API.Extensions
     {
         public MappingProfileExtensions()
         {
-            //CreateMap<UsuarioViewModel, tbUsuarios>().ReverseMap();
+            CreateMap<UsuarioViewModel, tbUsuarios>().ReverseMap();
+            CreateMap<CargoViewModel, tbCargos>().ReverseMap();
+            CreateMap<RolViewModel, tbRoles>().ReverseMap();
 
         }
     }

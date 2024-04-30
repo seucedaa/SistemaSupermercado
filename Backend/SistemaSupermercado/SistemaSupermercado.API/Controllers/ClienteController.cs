@@ -38,7 +38,7 @@ namespace SistemaSupermercado.API.Controllers
             var model = _mapper.Map<tbClientes>(item);
             var modelo = new tbClientes()
             {
-                Clien_DNI = item.Clien_DNI,
+                Clien_Dni = item.Clien_Dni,
                 Clien_PrimerNombre = item.Clien_PrimerNombre,
                 Clien_SegundoNombre = item.Clien_SegundoNombre,
                 Clien_PrimerApellido = item.Clien_PrimerApellido,

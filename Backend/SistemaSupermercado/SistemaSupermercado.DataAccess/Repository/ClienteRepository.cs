@@ -83,6 +83,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
+                parametro.Add("Clien_Dni", item.Clien_Dni);
                 parametro.Add("Clien_PrimerNombre", item.Clien_PrimerNombre);
                 parametro.Add("Clien_SegundoNombre", item.Clien_SegundoNombre);
                 parametro.Add("Clien_PrimerApellido", item.Clien_PrimerApellido);
