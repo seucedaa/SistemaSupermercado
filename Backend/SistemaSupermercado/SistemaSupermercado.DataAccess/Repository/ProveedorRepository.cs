@@ -7,24 +7,25 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
     public class ProveedorRepository : IRepository<tbProveedores>
     {
 
-        public IEnumerable<tbProveedores> Detalless(int id)
+        public IEnumerable<tbProveedores> Buscars(int id)
         {
             List<tbProveedores> result = new List<tbProveedores>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Prove_Id = id };
-                result = db.Query<tbProveedores>(ScriptBaseDeDatos.Proveedor_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbProveedores>(ScriptBaseDeDatos.Proveedor_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbProveedores item)
+        public RequestStatus Modificar(tbProveedores item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -43,7 +44,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Prove_UsuarioModificacion", item.Prove_UsuarioModificacion);
                 parametro.Add("Prove_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.Proveedor_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Proveedor_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -62,7 +63,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Prove_Id", id);
 
-                var result = db.Execute(ScriptBaseDeDatos.Proveedor_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Proveedor_Desactivar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -113,7 +114,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbProveedores> result = new List<tbProveedores>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbProveedores>(ScriptBaseDeDatos.Proveedor_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbProveedores>(ScriptBaseDeDatos.Proveedor_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 

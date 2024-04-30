@@ -418,6 +418,22 @@ BEGIN
         munic.Munic_Id = @Munic_Id
 END
 GO
+CREATE PROCEDURE Gral.SP_Municipio_DropDownList
+    @Depar_Id CHAR(2)
+AS
+BEGIN
+    SELECT
+        munic.*,
+        depar.Depar_Descripcion AS Departamento
+    FROM
+        Gral.tbMunicipios munic
+    LEFT JOIN
+        Gral.tbDepartamentos depar
+        ON munic.Depar_Id = depar.Depar_Id
+    WHERE
+        munic.Depar_Id = @Depar_Id
+END
+GO
 CREATE PROCEDURE Gral.SP_Municipio_Insertar
     @Munic_Id CHAR(4),
     @Munic_Descripcion NVARCHAR(50),
@@ -770,6 +786,22 @@ BEGIN
         ON subca.Subca_UsuarioModificacion = modificacion.Usuar_Id
     WHERE
         subca.Subca_Id = @Subca_Id
+END
+GO
+CREATE PROCEDURE Gral.SP_Subcategoria_DropDownList
+    @Categ_Id INT
+AS
+BEGIN
+    SELECT
+        subca.*,
+        categ.Categ_Descripcion AS Categoria
+    FROM
+        Gral.tbSubcategorias subca
+    LEFT JOIN
+        Gral.tbCategorias categ
+        ON subca.Categ_Id = categ.Categ_Id
+    WHERE
+        subca.Categ_Id = @Categ_Id
 END
 GO
 CREATE PROCEDURE Gral.SP_Subcategoria_Insertar

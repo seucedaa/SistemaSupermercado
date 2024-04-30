@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SistemaSupermercado.BusinessLogic
 {
-    public class ServiceConfiguration
+    public static class ServiceConfiguration
     {
         public static void DataAcces(this IServiceCollection service, string conn)
         {
@@ -28,7 +28,7 @@ namespace SistemaSupermercado.BusinessLogic
             service.AddScoped<PromocionRepository>();
             service.AddScoped<ProveedorRepository>();
             service.AddScoped<RolRepository>();
-            service.AddScoped<SubCategoriaRepository>();
+            service.AddScoped<SubcategoriaRepository>();
             service.AddScoped<SucursalRepository>();
             service.AddScoped<UsuarioRepository>();
             service.AddScoped<VentaDetalleRepository>();

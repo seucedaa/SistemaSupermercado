@@ -7,7 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
@@ -19,23 +19,23 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Lotes_Id = id };
-                result = db.Query<tbLotes>(ScriptBaseDeDatos.Lote_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbLotes>(ScriptBaseDeDatos.Lote_Lista, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public IEnumerable<tbLotes> Detalless(int id)
+        public IEnumerable<tbLotes> Buscars(int id)
         {
             List<tbLotes> result = new List<tbLotes>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Lotes_Id = id };
-                result = db.Query<tbLotes>(ScriptBaseDeDatos.Lote_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbLotes>(ScriptBaseDeDatos.Lote_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbLotes item)
+        public RequestStatus Modificar(tbLotes item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -48,7 +48,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Lotes_UsuarioModificacion", item.Lotes_UsuarioModificacion);
                 parametro.Add("Lotes_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.Lote_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Lote_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -67,7 +67,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Lotes_Id", id);
 
-                var result = db.Execute(ScriptBaseDeDatos.Lote_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Lote_Desactivar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -112,7 +112,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbLotes> result = new List<tbLotes>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbLotes>(ScriptBaseDeDatos.Lote_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbLotes>(ScriptBaseDeDatos.Lote_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 

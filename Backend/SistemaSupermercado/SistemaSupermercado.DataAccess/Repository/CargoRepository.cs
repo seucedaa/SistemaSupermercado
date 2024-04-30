@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
@@ -18,23 +19,23 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Cargo_Id = id };
-                result = db.Query<tbCargos>(ScriptBaseDeDatos.Cargo_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbCargos>(ScriptBaseDeDatos.Cargo_Lista, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public IEnumerable<tbCargos> Detalless(int id)
+        public IEnumerable<tbCargos> Buscars(int id)
         {
             List<tbCargos> result = new List<tbCargos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Cargo_Id = id };
-                result = db.Query<tbCargos>(ScriptBaseDeDatos.Cargo_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbCargos>(ScriptBaseDeDatos.Cargo_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbCargos item)
+        public RequestStatus Modificar(tbCargos item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -44,7 +45,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Cargo_UsuarioModificacion", item.Cargo_UsuarioModificacion);
                 parametro.Add("Cargo_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.Cargo_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Cargo_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -105,7 +106,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbCargos> result = new List<tbCargos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbCargos>(ScriptBaseDeDatos.Cargo_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbCargos>(ScriptBaseDeDatos.Cargo_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 

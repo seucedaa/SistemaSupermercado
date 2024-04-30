@@ -12,7 +12,7 @@ namespace SistemaSupermercado.DataAccess.Repository
 
         public RequestStatus Insertar(T item);
 
-        public RequestStatus Actualizar(T item);
+        public RequestStatus Modificar(T item);
 
         public RequestStatus Eliminar(int? id);
         public T find(int? id);

@@ -7,23 +7,24 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
     public class RolRepository : IRepository<tbRoles>
     {
-        public IEnumerable<tbRoles> Detalless(int id)
+        public IEnumerable<tbRoles> Buscars(int id)
         {
             List<tbRoles> result = new List<tbRoles>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Roles_Id = id };
-                result = db.Query<tbRoles>(ScriptBaseDeDatos.Roles_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbRoles>(ScriptBaseDeDatos.Roles_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbRoles item)
+        public RequestStatus Modificar(tbRoles item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -33,7 +34,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Roles_UsuarioModificacion", 1);
                 parametro.Add("Roles_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.Roles_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Roles_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -111,12 +112,12 @@ namespace SistemaSupermercado.DataAccess.Repository
 
         public IEnumerable<tbRoles> List()
         {
-            const string sql = "Acce.SP_Roles_Mostrar";
+            const string sql = "Acce.SP_Roles_Lista";
 
             List<tbRoles> result = new List<tbRoles>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbRoles>(sql, commandType: CommandType.Text).ToList();
+                result = db.Query<tbRoles>(sql, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 
@@ -168,12 +169,12 @@ namespace SistemaSupermercado.DataAccess.Repository
 
         public IEnumerable<tbPantallas> ListPant()
         {
-            const string sql = "[Acce].[SP_Pantallas_Mostrar]";
+            const string sql = "[Acce].[SP_Pantallas_Lista]";
 
             List<tbPantallas> result = new List<tbPantallas>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbPantallas>(sql, commandType: CommandType.Text).ToList();
+                result = db.Query<tbPantallas>(sql, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 
@@ -181,12 +182,12 @@ namespace SistemaSupermercado.DataAccess.Repository
 
         public IEnumerable<tbPantallasPorRoles> ListPaRol()
         {
-            const string sql = "Acce.SP_PantallasPorRoles_Mostrar";
+            const string sql = "Acce.SP_PantallasPorRoles_Lista";
 
             List<tbPantallasPorRoles> result = new List<tbPantallasPorRoles>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbPantallasPorRoles>(sql, commandType: CommandType.Text).ToList();
+                result = db.Query<tbPantallasPorRoles>(sql, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 
@@ -199,7 +200,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Roles_Id = id };
-                result = db.Query<tbPantallasPorRoles>(ScriptBaseDeDatos.PantallasRoles_MostrarPorRol, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbPantallasPorRoles>(ScriptBaseDeDatos.PantallasRoles_ListaPorRol, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 

@@ -7,25 +7,25 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
     public class EmpleadoRepository : IRepository<tbEmpleados>
     {
 
-        public IEnumerable<tbEmpleados> Detalless(int id)
+        public IEnumerable<tbEmpleados> Buscars(int id)
         {
             List<tbEmpleados> result = new List<tbEmpleados>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Emple_Id = id };
-                result = db.Query<tbEmpleados>(ScriptBaseDeDatos.Empleado_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbEmpleados>(ScriptBaseDeDatos.Empleado_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbEmpleados item)
+        public RequestStatus Modificar(tbEmpleados item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -46,7 +46,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Emple_UsuarioModificacion", item.Emple_UsuarioModificacion);
                 parametro.Add("Emple_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.Empleado_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Empleado_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -118,7 +118,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbEmpleados> result = new List<tbEmpleados>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbEmpleados>(ScriptBaseDeDatos.Empleado_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbEmpleados>(ScriptBaseDeDatos.Empleado_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 

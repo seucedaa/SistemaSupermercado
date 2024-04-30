@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
@@ -19,8 +20,8 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbUsuarios> result = new List<tbUsuarios>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Usuario = usuario, Contraseña = contra };
-                result = db.Query<tbUsuarios>(ScriptBaseDeDatos.UsuarioLogin, parameters, commandType: CommandType.StoredProcedure).ToList();
+                var parameters = new { Usuario = usuario, Contrasena = contra };
+                result = db.Query<tbUsuarios>(ScriptBaseDeDatos.Usuario_Login, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -31,23 +32,23 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Usuar_Id = id };
-                result = db.Query<tbUsuarios>(ScriptBaseDeDatos.Usuario_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbUsuarios>(ScriptBaseDeDatos.Usuario_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public IEnumerable<tbUsuarios> Detalless(int id)
+        public IEnumerable<tbUsuarios> Buscar(int id)
         {
             List<tbUsuarios> result = new List<tbUsuarios>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Usuar_Id = id };
-                result = db.Query<tbUsuarios>(ScriptBaseDeDatos.Usuario_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbUsuarios>(ScriptBaseDeDatos.Usuario_Buscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbUsuarios item)
+        public RequestStatus Modificar(tbUsuarios item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
@@ -64,7 +65,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Usuar_UsuarioModificacion", item.Usuar_UsuarioModificacion);
                 parametro.Add("Usuar_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptBaseDeDatos.Usuario_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Usuario_Modificar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -84,7 +85,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Usuar_Id", id);
 
-                var result = db.Execute(ScriptBaseDeDatos.Usuario_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Usuario_Desactivar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -158,7 +159,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbUsuarios> result = new List<tbUsuarios>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbUsuarios>(ScriptBaseDeDatos.Usuario_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbUsuarios>(ScriptBaseDeDatos.Usuario_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 
