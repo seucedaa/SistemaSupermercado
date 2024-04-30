@@ -27,9 +27,79 @@ namespace SistemaSupermercado.API.Controllers
             _ventaServicio = ventaServicio;
         }
 
-        public IActionResult Index()
+        [HttpGet("List")]
+        public IActionResult List()
         {
-            return View();
+            var list = _ventaServicio.ListarClien();
+            return Ok(list);
+        }
+
+        [HttpPost("Insertar")]
+        public IActionResult Insertar(ClienteViewModel item)
+        {
+            var model = _mapper.Map<tbClientes>(item);
+            var modelo = new tbClientes()
+            {
+                Clien_Dni = item.Clien_Dni,
+                Clien_PrimerNombre = item.Clien_PrimerNombre,
+                Clien_SegundoNombre = item.Clien_SegundoNombre,
+                Clien_PrimerApellido = item.Clien_PrimerApellido,
+                Clien_SegundoApellido = item.Clien_SegundoApellido,
+                Clien_Sexo = item.Clien_Sexo,
+                Estad_Id = item.Estad_Id,
+                Clien_Telefono = item.Clien_Telefono,
+                Munic_Id = item.Munic_Id,
+                Clien_Direccion = item.Clien_Direccion,
+                Clien_UsuarioCreacion = item.Clien_UsuarioCreacion,
+            };
+
+            var list = _ventaServicio.InsertarClien(modelo);
+            return Ok(list);
+        }
+
+
+
+        [HttpGet("Detalle/{id}")]
+        public IActionResult Detalle(int id)
+        {
+            var details = _ventaServicio.DetallesClien(id);
+
+            var detail = details.First();
+            return Ok(detail);
+
+        }
+
+
+        [HttpPut("Actualizar/{id}")]
+        public IActionResult Actualizar(ClienteViewModel item)
+        {
+            var model = _mapper.Map<tbClientes>(item);
+            var modelo = new tbClientes()
+            {
+                Clien_Dni = item.Clien_Dni,
+                Clien_PrimerNombre = item.Clien_PrimerNombre,
+                Clien_SegundoNombre = item.Clien_SegundoNombre,
+                Clien_PrimerApellido = item.Clien_PrimerApellido,
+                Clien_SegundoApellido = item.Clien_SegundoApellido,
+                Clien_Sexo = item.Clien_Sexo,
+                Estad_Id = item.Estad_Id,
+                Clien_Telefono = item.Clien_Telefono,
+                Munic_Id = item.Munic_Id,
+                Clien_Direccion = item.Clien_Direccion,
+                Clien_UsuarioModificacion = item.Clien_UsuarioModificacion
+            };
+
+            var list = _ventaServicio.ActualizarClien(modelo);
+            return Ok(list);
+        }
+
+        [HttpDelete("Eliminar/{id}")]
+        public IActionResult Eliminar(int id)
+        {
+            var result = _ventaServicio.EliminarClien(id);
+
+            return Ok(result);
+
         }
 
         [HttpPost("Registrarse")]

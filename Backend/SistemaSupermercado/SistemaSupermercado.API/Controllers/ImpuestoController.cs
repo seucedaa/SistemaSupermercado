@@ -39,7 +39,6 @@ namespace SistemaSupermercado.API.Controllers
             var model = _mapper.Map<tbImpuestos>(item);
             var modelo = new tbImpuestos()
             {
-                Impue_Id = item.Impue_Id,
                 Impue_Descripcion = item.Impue_Descripcion,
                 Impue_UsuarioCreacion = item.Impue_UsuarioCreacion
             };

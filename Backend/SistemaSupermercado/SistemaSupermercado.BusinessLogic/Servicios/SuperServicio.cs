@@ -77,7 +77,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             return _empleadoRepository.Detalless(id);
         }
 
-        public ServiceResult ActualizarClien(tbEmpleados item)
+        public ServiceResult ActualizarEmple(tbEmpleados item)
         {
             var result = new ServiceResult();
             try

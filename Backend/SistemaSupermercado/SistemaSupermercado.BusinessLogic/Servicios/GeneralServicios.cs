@@ -671,7 +671,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         }
         #endregion
 
-        #region Categorias
+        #region SubCategorias
         public ServiceResult ListarSubCate()
         {
             var result = new ServiceResult();
@@ -688,7 +688,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
 
-        public ServiceResult ListarSubcateporCate(string id)
+        public ServiceResult ListarSubcateporCate(int id)
         {
             var result = new ServiceResult();
             try

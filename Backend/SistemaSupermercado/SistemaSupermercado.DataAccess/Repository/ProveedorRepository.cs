@@ -19,7 +19,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Prove_Id = id };
-                result = db.Query<tbProveedores>(ScriptsBaseDeDatos.Proveedor_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbProveedores>(ScriptBaseDeDatos.Proveedor_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -43,7 +43,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Prove_UsuarioModificacion", item.Prove_UsuarioModificacion);
                 parametro.Add("Prove_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Proveedor_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Proveedor_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -62,7 +62,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Prove_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Proveedor_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Proveedor_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -96,7 +96,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Prove_UsuarioCreacion", item.Prove_UsuarioCreacion);
                 parametro.Add("Prove_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Proveedor_Insertar,
+                var result = db.Execute(ScriptBaseDeDatos.Proveedor_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );

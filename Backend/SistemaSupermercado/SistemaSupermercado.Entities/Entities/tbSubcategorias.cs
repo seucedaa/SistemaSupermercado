@@ -19,9 +19,9 @@ namespace SistemaSupermercado.Entities.Entities
         public int Categ_Id { get; set; }
         [NotMapped]
         public string Categ_Descripcion { get; set; }
-        public int Subca_UsuarioCreacion { get; set; }
+        public string Subca_UsuarioCreacion { get; set; }
         public DateTime Subca_FechaCreacion { get; set; }
-        public int? Subca_UsuarioModificacion { get; set; }
+        public string Subca_UsuarioModificacion { get; set; }
         public DateTime? Subca_FechaModificacion { get; set; }
         public bool? Subca_Estado { get; set; }
 

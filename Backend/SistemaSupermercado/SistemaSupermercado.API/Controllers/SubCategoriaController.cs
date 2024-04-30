@@ -12,12 +12,12 @@ namespace SistemaSupermercado.API.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
-    public class CategoriaController : Controller
+    public class SubCategoriaController : Controller
     {
         private readonly GeneralServicios _ServiciosGenerales;
         private readonly IMapper _mapper;
 
-        public CategoriaController(GeneralServicios ServiciosGenerales, IMapper mapper)
+        public SubCategoriaController(GeneralServicios ServiciosGenerales, IMapper mapper)
         {
 
             _mapper = mapper;
@@ -29,28 +29,29 @@ namespace SistemaSupermercado.API.Controllers
         [HttpGet("List")]
         public IActionResult List()
         {
-            var list = _ServiciosGenerales.ListarCate();
+            var list = _ServiciosGenerales.ListarSubCate();
             return Ok(list);
         }
 
         [HttpPost("Insertar")]
-        public IActionResult Insertar(CategoriaViewModel item)
+        public IActionResult Insertar(SubCategoriaViewModel item)
         {
-            var model = _mapper.Map<tbCategorias>(item);
-            var modelo = new tbCategorias()
+            var model = _mapper.Map<tbSubcategorias>(item);
+            var modelo = new tbSubcategorias()
             {
+                Subca_Descripcion = item.Subca_Descripcion,
                 Categ_Descripcion = item.Categ_Descripcion,
-                Categ_UsuarioCreacion = item.Categ_UsuarioCreacion
+                Subca_UsuarioCreacion = item.Subca_UsuarioCreacion
             };
 
-            var list = _ServiciosGenerales.CrearCate(modelo);
+            var list = _ServiciosGenerales.CrearSubCate(modelo);
             return Ok(list);
         }
 
-        [HttpGet("ObtenerCateID/{id}")]
-        public IActionResult ObtenerCargID(int id)
+        [HttpGet("ObtenerSubCaID/{id}")]
+        public IActionResult ObtenerSubCaID(int id)
         {
-            var estado = _ServiciosGenerales.LLenarCate(id);
+            var estado = _ServiciosGenerales.LLenarSubCate(id);
             var camp = estado.First();
             return Ok(camp);
         }
@@ -59,7 +60,7 @@ namespace SistemaSupermercado.API.Controllers
         [HttpGet("Detalle/{id}")]
         public IActionResult Detalle(int id)
         {
-            var details = _ServiciosGenerales.DetallesCate(id);
+            var details = _ServiciosGenerales.DetallesSubCate(id);
 
             var detail = details.First();
             return Ok(detail);
@@ -68,24 +69,25 @@ namespace SistemaSupermercado.API.Controllers
 
 
         [HttpPut("Actualizar/{id}")]
-        public IActionResult Actualizar(CategoriaViewModel item)
+        public IActionResult Actualizar(SubCategoriaViewModel item)
         {
-            var model = _mapper.Map<tbCategorias>(item);
-            var modelo = new tbCategorias()
+            var model = _mapper.Map<tbSubcategorias>(item);
+            var modelo = new tbSubcategorias()
             {
-                Categ_Id = item.Categ_Id,
+                Subca_Id = item.Subca_Id,
+                Subca_Descripcion = item.Subca_Descripcion,
                 Categ_Descripcion = item.Categ_Descripcion,
-                Categ_UsuarioModificacion = item.Categ_UsuarioModificacion
+                Subca_UsuarioModificacion = item.Subca_UsuarioModificacion
             };
 
-            var list = _ServiciosGenerales.ActualizarCate(modelo);
+            var list = _ServiciosGenerales.ActualizarSubCate(modelo);
             return Ok(list);
         }
 
         [HttpDelete("Eliminar/{id}")]
         public IActionResult Eliminar(int id)
         {
-            var result = _ServiciosGenerales.EliCategoria(id);
+            var result = _ServiciosGenerales.EliSubCategoria(id);
 
             return Ok(result);
 

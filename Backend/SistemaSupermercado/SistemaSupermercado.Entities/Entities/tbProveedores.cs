@@ -27,9 +27,9 @@ namespace SistemaSupermercado.Entities.Entities
         public string Prove_Telefono { get; set; }
         public string Prove_Correo { get; set; }
         public string Prove_Notas { get; set; }
-        public int Prove_UsuarioCreacion { get; set; }
+        public string Prove_UsuarioCreacion { get; set; }
         public DateTime Prove_FechaCreacion { get; set; }
-        public int? Prove_UsuarioModificacion { get; set; }
+        public string Prove_UsuarioModificacion { get; set; }
         public DateTime? Prove_FechaModificacion { get; set; }
         public bool? Prove_Estado { get; set; }
 

@@ -20,7 +20,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Clien_Id = id };
-                result = db.Query<tbClientes>(ScriptsBaseDeDatos.Cliente_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbClientes>(ScriptBaseDeDatos.Cliente_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -43,7 +43,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Clien_UsuarioModificacion", item.Clien_UsuarioModificacion);
                 parametro.Add("Clien_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Cliente_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Cliente_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -62,7 +62,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Clien_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Cliente_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Cliente_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -96,7 +96,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Clien_UsuarioCreacion", item.Clien_UsuarioCreacion);
                 parametro.Add("Clien_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Cliente_Insertar,
+                var result = db.Execute(ScriptBaseDeDatos.Cliente_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );

@@ -18,7 +18,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Produ_Id = id };
-                result = db.Query<tbProductos>(ScriptsBaseDeDatos.Producto_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -29,7 +29,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Produ_Id = id };
-                result = db.Query<tbProductos>(ScriptsBaseDeDatos.Producto_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -45,12 +45,12 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Produ_PrecioCompra", item.Produ_PrecioCompra);
                 parametro.Add("Produ_PrecioVenta", item.Produ_PrecioVenta);
                 parametro.Add("Subca_Id", item.Subca_Id);
-                parametro.Add("Categ_Id", item.Categ_Id);
+                parametro.Add("Impue_Id", item.Impue_Id);
                 parametro.Add("Prove_Id", item.Prove_Id);
                 parametro.Add("Produ_UsuarioModificacion", item.Produ_UsuarioModificacion);
                 parametro.Add("Produ_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Producto_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Producto_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -69,7 +69,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Produ_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Producto_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Producto_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -100,7 +100,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Produ_UsuarioCreacion", item.Produ_UsuarioCreacion);
                 parametro.Add("Produ_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Producto_Insertar,
+                var result = db.Execute(ScriptBaseDeDatos.Producto_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );

@@ -15,10 +15,10 @@ namespace SistemaSupermercado.DataAccess.Repository
         public IEnumerable<tbDepartamentos> ObtenerID(int id)
         {
             List<tbDepartamentos> result = new List<tbDepartamentos>();
-            using (var db = new SqlConnection(GestionEmergenciaContext.ConnectionString))
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Depar_Id = id };
-                result = db.Query<tbDepartamentos>(ScriptsBaseDeDatos.Departamento_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbDepartamentos>(ScriptBaseDeDatos.Departamento_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -26,17 +26,17 @@ namespace SistemaSupermercado.DataAccess.Repository
         public IEnumerable<tbDepartamentos> Detalless(int id)
         {
             List<tbDepartamentos> result = new List<tbDepartamentos>();
-            using (var db = new SqlConnection(GestionEmergenciaContext.ConnectionString))
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Depar_Id = id };
-                result = db.Query<tbDepartamentos>(ScriptsBaseDeDatos.Departamento_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbDepartamentos>(ScriptBaseDeDatos.Departamento_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
         public RequestStatus Actualizar(tbDepartamentos item)
         {
-            using (var db = new SqlConnection(GestionEmergenciaContext.ConnectionString))
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
                 parametro.Add("Depar_Id", item.Depar_Id);
@@ -44,7 +44,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Depar_UsuarioModificacion", item.Depar_UsuarioModificacion);
                 parametro.Add("Depar_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Departamento_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Departamento_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -58,12 +58,12 @@ namespace SistemaSupermercado.DataAccess.Repository
         public RequestStatus Eliminar(string? id)
         {
 
-            using (var db = new SqlConnection(GestionEmergenciaContext.ConnectionString))
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
                 parametro.Add("Depar_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Departamento_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Departamento_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -81,7 +81,7 @@ namespace SistemaSupermercado.DataAccess.Repository
 
         public RequestStatus Insertar(tbDepartamentos item)
         {
-            using (var db = new SqlConnection(GestionEmergenciaContext.ConnectionString))
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
                 parametro.Add("Depar_Id", item.Depar_Id);
@@ -89,7 +89,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Depar_UsuarioCreacion", item.Depar_UsuarioCreacion);
                 parametro.Add("Depar_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Departamento_Insertar,
+                var result = db.Execute(ScriptBaseDeDatos.Departamento_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -105,7 +105,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             const string sql = "Gral.SP_Departamentos_Mostrar";
 
             List<tbDepartamentos> result = new List<tbDepartamentos>();
-            using (var db = new SqlConnection(GestionEmergenciaContext.ConnectionString))
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 result = db.Query<tbDepartamentos>(sql, commandType: CommandType.Text).ToList();
                 return result;
@@ -118,7 +118,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             const string sql = "Gral.SP_MunicipiosMostrarID";
 
             List<tbMunicipios> result = new List<tbMunicipios>();
-            using (var db = new SqlConnection(GestionEmergenciaContext.ConnectionString))
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { @Depar_Id = id };
                 result = db.Query<tbMunicipios>(sql, parameters, commandType: CommandType.StoredProcedure).ToList();

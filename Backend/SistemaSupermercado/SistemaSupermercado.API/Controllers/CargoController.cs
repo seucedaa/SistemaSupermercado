@@ -39,7 +39,6 @@ namespace SistemaSupermercado.API.Controllers
             var model = _mapper.Map<tbCargos>(item);
             var modelo = new tbCargos()
             {
-                Cargo_Id = item.Cargo_Id,
                 Cargo_Descripcion = item.Cargo_Descripcion,
                 Cargo_UsuarioCreacion = item.Cargo_UsuarioCreacion
             };

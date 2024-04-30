@@ -103,7 +103,7 @@ namespace SistemaSupermercado.API.Controllers
                 Roles_Id = item.Roles_Id,
                 Usuar_Admin = item.Usuar_Admin,
                 Usuar_SuperPuntos = item.Usuar_SuperPuntos,
-                Usuar_UsuarioCreacion = item.Usuar_UsuarioCreacion,
+                Usuar_UsuarioCreacion = item.Usuar_UsuarioCreacion.ToString(),
                 Usuar_UsuarioModificacion = item.Usuar_UsuarioModificacion.ToString()
             };
 

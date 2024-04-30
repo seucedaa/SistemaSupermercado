@@ -17,9 +17,9 @@ namespace SistemaSupermercado.Entities.Entities
         public bool Promo_TipoDisminucion { get; set; }
         public decimal Promo_Disminucion { get; set; }
         public int Promo_PuntosRequeridos { get; set; }
-        public int Promo_UsuarioCreacion { get; set; }
+        public string Promo_UsuarioCreacion { get; set; }
         public DateTime Promo_FechaCreacion { get; set; }
-        public int? Promo_UsuarioModificacion { get; set; }
+        public string Promo_UsuarioModificacion { get; set; }
         public DateTime? Promo_FechaModificacion { get; set; }
         public bool? Promo_Estado { get; set; }
 

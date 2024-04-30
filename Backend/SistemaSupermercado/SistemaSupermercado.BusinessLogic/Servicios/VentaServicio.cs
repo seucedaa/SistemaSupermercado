@@ -176,5 +176,99 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
         #endregion
+
+        #region Venta Detalle
+        public ServiceResult ListarVeDe()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _ventaDetalleRepository.List();
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public IEnumerable<tbVentasDetalle> DetallesVeDe(int id)
+        {
+            return _ventaDetalleRepository.Detalless(id);
+        }
+
+        public ServiceResult EliminarVeDe(int? id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _ventaDetalleRepository.Eliminar(id);
+
+                if (lost.CodeStatus > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
+                    return result.Error(lost);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        #endregion
+
+        #region Venta Encabezado
+        public ServiceResult ListarVeEn()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _ventaEncabezadoRepository.List();
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public IEnumerable<tbVentasEncabezado> DetallesVeEn(int id)
+        {
+            return _ventaEncabezadoRepository.Detalless(id);
+        }
+
+        public ServiceResult EliminarVeEn(int? id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _ventaEncabezadoRepository.Eliminar(id);
+
+                if (lost.CodeStatus > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
+                    return result.Error(lost);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        #endregion
     }
 }

@@ -19,7 +19,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Vende_Id = id };
-                result = db.Query<tbVentasDetalle>(ScriptsBaseDeDatos.VentaDetalle_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbVentasDetalle>(ScriptBaseDeDatos.VentaDetalle_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -36,7 +36,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Vende_UsuarioModificacion", item.Vende_UsuarioModificacion);
                 parametro.Add("Vende_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.VentaDetalle_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.VentaDetalle_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -55,7 +55,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Vende_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.VentaDetalle_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.VentaDetalle_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -82,7 +82,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Vende_UsuarioCreacion", item.Vende_UsuarioCreacion);
                 parametro.Add("Vende_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.VentaDetalle_Insertar,
+                var result = db.Execute(ScriptBaseDeDatos.VentaDetalle_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );

@@ -19,7 +19,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Categ_Id = id };
-                result = db.Query<tbCategorias>(ScriptsBaseDeDatos.Categoria_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbCategorias>(ScriptBaseDeDatos.Categoria_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -30,7 +30,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Categ_Id = id };
-                result = db.Query<tbCategorias>(ScriptsBaseDeDatos.Categoria_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbCategorias>(ScriptBaseDeDatos.Categoria_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -45,7 +45,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Categ_UsuarioModificacion", item.Categ_UsuarioModificacion);
                 parametro.Add("Categ_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Categoria_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Categoria_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -64,7 +64,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Categ_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Categoria_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Categoria_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -89,7 +89,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Categ_UsuarioCreacion", item.Categ_UsuarioCreacion);
                 parametro.Add("Categ_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Categoria_Insertar,
+                var result = db.Execute(ScriptBaseDeDatos.Categoria_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );

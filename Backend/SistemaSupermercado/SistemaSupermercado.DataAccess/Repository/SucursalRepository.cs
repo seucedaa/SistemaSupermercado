@@ -17,7 +17,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Sucur_Id = id };
-                result = db.Query<tbSucursales>(ScriptsBaseDeDatos.Sucursal_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbSucursales>(ScriptBaseDeDatos.Sucursal_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -28,7 +28,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Sucur_Id = id };
-                result = db.Query<tbSucursales>(ScriptsBaseDeDatos.Sucursal_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbSucursales>(ScriptBaseDeDatos.Sucursal_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -46,7 +46,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Sucur_UsuarioModificacion", item.Sucur_UsuarioModificacion);
                 parametro.Add("Sucur_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Sucursal_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Sucursal_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -65,7 +65,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Sucur_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Sucursal_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Sucursal_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -94,7 +94,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Sucur_UsuarioCreacion", item.Sucur_UsuarioCreacion);
                 parametro.Add("Sucur_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Sucursal_Insertar,
+                var result = db.Execute(ScriptBaseDeDatos.Sucursal_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );

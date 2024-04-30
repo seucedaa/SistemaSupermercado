@@ -32,9 +32,9 @@ namespace SistemaSupermercado.Entities.Entities
         public int Sucur_Id { get; set; }
         [NotMapped]
         public string Sucur_Descripcion { get; set; }
-        public int Emple_UsuarioCreacion { get; set; }
+        public string Emple_UsuarioCreacion { get; set; }
         public DateTime Emple_FechaCreacion { get; set; }
-        public int? Emple_UsuarioModificacion { get; set; }
+        public string Emple_UsuarioModificacion { get; set; }
         public DateTime? Emple_FechaModificacion { get; set; }
         public bool? Emple_Estado { get; set; }
 

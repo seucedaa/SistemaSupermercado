@@ -18,7 +18,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Estad_Id = id };
-                result = db.Query<tbEstadosCiviles>(ScriptsBaseDeDatos.EstadoCivil_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbEstadosCiviles>(ScriptBaseDeDatos.EstadoCivil_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -29,7 +29,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Estad_Id = id };
-                result = db.Query<tbEstadosCiviles>(ScriptsBaseDeDatos.EstadoCivil_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbEstadosCiviles>(ScriptBaseDeDatos.EstadoCivil_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -44,7 +44,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Estad_UsuarioModificacion", item.Estad_UsuarioModificacion);
                 parametro.Add("Estad_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.EstadoCivil_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.EstadoCivil_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -63,7 +63,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Estad_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.EstadoCivil_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.EstadoCivil_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -88,7 +88,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Estad_UsuarioCreacion", item.Estad_UsuarioCreacion);
                 parametro.Add("Estad_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.EstadoCivil_Insertar,
+                var result = db.Execute(ScriptBaseDeDatos.EstadoCivil_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );

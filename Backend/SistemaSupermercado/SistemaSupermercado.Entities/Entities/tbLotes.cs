@@ -18,9 +18,9 @@ namespace SistemaSupermercado.Entities.Entities
         public int Produ_Id { get; set; }
         public int Lotes_Cantidad { get; set; }
         public int Sucur_Id { get; set; }
-        public int Lotes_UsuarioCreacion { get; set; }
+        public string Lotes_UsuarioCreacion { get; set; }
         public DateTime Lotes_FechaCreacion { get; set; }
-        public int? Lotes_UsuarioModificacion { get; set; }
+        public string Lotes_UsuarioModificacion { get; set; }
         public DateTime? Lotes_FechaModificacion { get; set; }
         public bool? Lotes_Estado { get; set; }
 

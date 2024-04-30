@@ -18,7 +18,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Cargo_Id = id };
-                result = db.Query<tbCargos>(ScriptsBaseDeDatos.Cargo_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbCargos>(ScriptBaseDeDatos.Cargo_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -29,7 +29,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Cargo_Id = id };
-                result = db.Query<tbCargos>(ScriptsBaseDeDatos.Cargo_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbCargos>(ScriptBaseDeDatos.Cargo_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -44,7 +44,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Cargo_UsuarioModificacion", item.Cargo_UsuarioModificacion);
                 parametro.Add("Cargo_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Cargo_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Cargo_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -63,7 +63,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Cargo_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Cargo_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Cargo_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -88,7 +88,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Cargo_UsuarioCreacion", item.Cargo_UsuarioCreacion);
                 parametro.Add("Cargo_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Cargo_Insertar,
+                var result = db.Execute(ScriptBaseDeDatos.Cargo_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );

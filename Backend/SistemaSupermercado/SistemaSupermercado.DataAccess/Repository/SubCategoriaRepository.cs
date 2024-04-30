@@ -18,7 +18,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Subca_Id = id };
-                result = db.Query<tbSubcategorias>(ScriptsBaseDeDatos.SubCategoria_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.SubCategoria_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -29,7 +29,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Subca_Id = id };
-                result = db.Query<tbSubcategorias>(ScriptsBaseDeDatos.SubCategoria_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.SubCategoria_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -45,7 +45,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Subca_UsuarioModificacion", item.Subca_UsuarioModificacion);
                 parametro.Add("Subca_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.SubCategoria_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.SubCategoria_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -64,7 +64,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Subca_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.SubCategoria_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.SubCategoria_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -90,7 +90,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Subca_UsuarioCreacion", item.Subca_UsuarioCreacion);
                 parametro.Add("Subca_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.SubCategoria_Insertar,
+                var result = db.Execute(ScriptBaseDeDatos.SubCategoria_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -107,7 +107,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbSubcategorias> result = new List<tbSubcategorias>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbSubcategorias>(ScriptsBaseDeDatos.SubCategoria_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.SubCategoria_Mostrar, commandType: CommandType.Text).ToList();
                 return result;
             }
 
@@ -119,7 +119,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Subca_Id = id };
-                result = db.Query<tbMunicipios>(ScriptsBaseDeDatos.SubcategoriasporCate, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbMunicipios>(ScriptBaseDeDatos.SubcategoriasporCate, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }

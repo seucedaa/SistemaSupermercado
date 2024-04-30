@@ -19,7 +19,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Lotes_Id = id };
-                result = db.Query<tbLotes>(ScriptsBaseDeDatos.Lote_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbLotes>(ScriptBaseDeDatos.Lote_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -30,7 +30,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Lotes_Id = id };
-                result = db.Query<tbLotes>(ScriptsBaseDeDatos.Lote_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbLotes>(ScriptBaseDeDatos.Lote_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -48,7 +48,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Lotes_UsuarioModificacion", item.Lotes_UsuarioModificacion);
                 parametro.Add("Lotes_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Lote_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Lote_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -67,7 +67,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Lotes_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Lote_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Lote_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -95,7 +95,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Lotes_UsuarioCreacion", item.Lotes_UsuarioCreacion);
                 parametro.Add("Lotes_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Lote_Insertar,
+                var result = db.Execute(ScriptBaseDeDatos.Lote_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );

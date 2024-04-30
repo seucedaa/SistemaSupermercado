@@ -39,7 +39,6 @@ namespace SistemaSupermercado.Controllers
             var model = _mapper.Map<tbDepartamentos>(item);
             var modelo = new tbDepartamentos()
             {
-                Depar_Id = item.Depar_Id,
                 Depar_Descripcion = item.Depar_Descripcion,
                 Depar_UsuarioCreacion = item.Depar_UsuarioCreacion
             };

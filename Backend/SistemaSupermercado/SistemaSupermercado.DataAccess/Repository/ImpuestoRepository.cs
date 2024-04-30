@@ -18,7 +18,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Impue_Id = id };
-                result = db.Query<tbImpuestos>(ScriptsBaseDeDatos.Impuesto_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbImpuestos>(ScriptBaseDeDatos.Impuesto_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -29,7 +29,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Impue_Id = id };
-                result = db.Query<tbImpuestos>(ScriptsBaseDeDatos.Impuesto_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbImpuestos>(ScriptBaseDeDatos.Impuesto_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
@@ -44,7 +44,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Impue_UsuarioModificacion", item.Impue_UsuarioModificacion);
                 parametro.Add("Impue_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Impuesto_Actualizar,
+                var result = db.Execute(ScriptBaseDeDatos.Impuesto_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -63,7 +63,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Impue_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Impuesto_Eliminar,
+                var result = db.Execute(ScriptBaseDeDatos.Impuesto_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -88,7 +88,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Impue_UsuarioCreacion", item.Impue_UsuarioCreacion);
                 parametro.Add("Impue_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Impuesto_Insertar,
+                var result = db.Execute(ScriptBaseDeDatos.Impuesto_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
