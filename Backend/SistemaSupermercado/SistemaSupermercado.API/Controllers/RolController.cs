@@ -67,12 +67,12 @@ namespace SistemaSupermercado.Controllers
             var model = _mapper.Map<tbRoles>(item);
             var modelo = new tbRoles()
             {
-                Rol_Id = item.Rol_Id,
-                Rol_Rol = item.Rol_Rol
+                Roles_Id = item.Roles_Id,
+                Roles_Descripcion = item.Roles_Descripcion
             };
 
             DateTime fecha = DateTime.Now;
-            var list = _serviciosAcceso.EditarRol(item.Rol_Id, item.Rol_Rol, item.Pantallas, 1, fecha);
+            var list = _serviciosAcceso.EditarRol(item.Roles_Id, item.Roles_Descripcion, item.Pantallas, 1, fecha);
 
             return Json(new { success = true, message = "Rol editadro con exito!" });
         }
@@ -84,11 +84,11 @@ namespace SistemaSupermercado.Controllers
             var model = _mapper.Map<RolViewModel>(item);
             var modelo = new tbRoles()
             {
-                Rol_Id = item.Rol_Id
+                Roles_Id = item.Roles_Id
             };
 
 
-            var list = _serviciosAcceso.EliminarPantallaDelRol(item.Rol_Id, item.PantallasD);
+            var list = _serviciosAcceso.EliminarPantallaDelRol(item.Roles_Id, item.PantallasD);
 
             return Json(new { success = true, message = "Rol eliminado con exito!" });
         }
@@ -113,11 +113,11 @@ namespace SistemaSupermercado.Controllers
             var model = _mapper.Map<tbRoles>(item);
             var modelo = new tbRoles()
             {
-                Rol_Rol = item.Rol_Rol
+                Roles_Descripcion = item.Roles_Descripcion
             };
 
             DateTime fecha = DateTime.Now;
-            var list = _serviciosAcceso.CrearRol(item.Rol_Rol, item.Pantallas, 1, fecha);
+            var list = _serviciosAcceso.CrearRol(item.Roles_Descripcion, item.Pantallas, 1, fecha);
 
             return Json(new { success = true, message = "Rol creado con exito!" });
         }

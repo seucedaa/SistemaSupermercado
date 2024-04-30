@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
-    interface IRepositorio<T>
+    interface IRepository<T>
     {
         public IEnumerable<T> List();
 
