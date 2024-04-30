@@ -9,6 +9,7 @@ namespace SistemaSupermercado.Entities.Entities
     public partial class tbEmpleados
     {
         public int Emple_Id { get; set; }
+        public string Emple_Dni { get; set; }
         public string Emple_PrimerNombre { get; set; }
         public string Emple_SegundoNombre { get; set; }
         public string Emple_PrimerApellido { get; set; }

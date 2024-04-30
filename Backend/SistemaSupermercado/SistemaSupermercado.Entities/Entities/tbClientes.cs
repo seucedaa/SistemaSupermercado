@@ -9,6 +9,7 @@ namespace SistemaSupermercado.Entities.Entities
     public partial class tbClientes
     {
         public int Clien_Id { get; set; }
+        public string Clien_Dni { get; set; }
         public string Clien_PrimerNombre { get; set; }
         public string Clien_SegundoNombre { get; set; }
         public string Clien_PrimerApellido { get; set; }

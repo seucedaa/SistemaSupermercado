@@ -113,6 +113,8 @@ namespace SistemaSupermercado.DataAccess.Context
 
                 entity.Property(e => e.Clien_Direccion).IsRequired();
 
+                entity.Property(e => e.Clien_Dni).HasMaxLength(20);
+
                 entity.Property(e => e.Clien_Estado).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Clien_FechaCreacion).HasColumnType("datetime");
@@ -208,6 +210,10 @@ namespace SistemaSupermercado.DataAccess.Context
                 entity.Property(e => e.Emple_Correo).IsRequired();
 
                 entity.Property(e => e.Emple_Direccion).IsRequired();
+
+                entity.Property(e => e.Emple_Dni)
+                    .IsRequired()
+                    .HasMaxLength(20);
 
                 entity.Property(e => e.Emple_Estado).HasDefaultValueSql("((1))");
 
