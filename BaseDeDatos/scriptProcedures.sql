@@ -1263,6 +1263,7 @@ BEGIN
 END
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Procedimiento para listar todos los proveedores
+GO
 CREATE PROCEDURE Supr.SP_Proveedor_Lista
 AS
 BEGIN
@@ -1450,6 +1451,7 @@ BEGIN
 END
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Procedimiento para listar todos los productos
+GO
 CREATE PROCEDURE Supr.SP_Producto_Lista
 AS
 BEGIN
@@ -1638,6 +1640,7 @@ BEGIN
 END
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Procedimiento para listar todos los lotes
+GO
 CREATE PROCEDURE Supr.SP_Lote_Lista
 AS
 BEGIN
@@ -1790,6 +1793,7 @@ BEGIN
 END
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Procedimiento para listar todos los empleados
+GO
 CREATE PROCEDURE Supr.SP_Empleado_Lista
 AS
 BEGIN
@@ -2011,6 +2015,7 @@ BEGIN
 END
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Procedimiento para listar todas las promociones
+GO
 CREATE PROCEDURE Supr.SP_Promocion_Lista
 AS
 BEGIN
@@ -2173,6 +2178,7 @@ BEGIN
 END
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Procedimiento para listar todos los clientes
+GO
 CREATE PROCEDURE Venta.SP_Cliente_Lista
 AS
 BEGIN
