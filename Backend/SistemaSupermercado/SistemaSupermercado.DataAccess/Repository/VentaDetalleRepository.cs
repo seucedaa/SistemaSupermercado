@@ -10,41 +10,33 @@ using System.Threading.Tasks;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
-    public class ImpuestoRepository : IRepository<tbImpuestos>
+    public class VentaDetalleRepository : IRepository<tbVentasDetalle>
     {
-        public IEnumerable<tbImpuestos> ObtenerID(int id)
+
+        public IEnumerable<tbVentasDetalle> Detalless(int id)
         {
-            List<tbImpuestos> result = new List<tbImpuestos>();
+            List<tbVentasDetalle> result = new List<tbVentasDetalle>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Impue_Id = id };
-                result = db.Query<tbImpuestos>(ScriptsBaseDeDatos.Impuesto_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                var parameters = new { Vende_Id = id };
+                result = db.Query<tbVentasDetalle>(ScriptsBaseDeDatos.VentaDetalle_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public IEnumerable<tbImpuestos> Detalless(int id)
-        {
-            List<tbImpuestos> result = new List<tbImpuestos>();
-            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
-            {
-                var parameters = new { Impue_Id = id };
-                result = db.Query<tbImpuestos>(ScriptsBaseDeDatos.Impuesto_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
-                return result;
-            }
-        }
-
-        public RequestStatus Actualizar(tbImpuestos item)
+        public RequestStatus Actualizar(tbVentasDetalle item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("Impue_Id", item.Impue_Id);
-                parametro.Add("Impue_Descripcion", item.Impue_Descripcion);
-                parametro.Add("Impue_UsuarioModificacion", item.Impue_UsuarioModificacion);
-                parametro.Add("Impue_FechaModificacion", DateTime.Now);
+                parametro.Add("Vende_Id", item.Vende_Id);
+                parametro.Add("Venen_Id", item.Venen_Id);
+                parametro.Add("Lotes_Id", item.Lotes_Id);
+                parametro.Add("Vende_Cantidad", item.Vende_Cantidad);
+                parametro.Add("Vende_UsuarioModificacion", item.Vende_UsuarioModificacion);
+                parametro.Add("Vende_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Impuesto_Actualizar,
+                var result = db.Execute(ScriptsBaseDeDatos.VentaDetalle_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -61,9 +53,9 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("Impue_Id", id);
+                parametro.Add("Vende_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Impuesto_Eliminar,
+                var result = db.Execute(ScriptsBaseDeDatos.VentaDetalle_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -74,21 +66,23 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public tbImpuestos find(int? id)
+        public tbVentasDetalle find(int? id)
         {
             throw new NotImplementedException();
         }
 
-        public RequestStatus Insertar(tbImpuestos item)
+        public RequestStatus Insertar(tbVentasDetalle item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("Impue_Descripcion", item.Impue_Descripcion);
-                parametro.Add("Impue_UsuarioCreacion", item.Impue_UsuarioCreacion);
-                parametro.Add("Impue_FechaCreacion", DateTime.Now);
+                parametro.Add("Venen_Id", item.Venen_Id);
+                parametro.Add("Lotes_Id", item.Lotes_Id);
+                parametro.Add("Vende_Cantidad", item.Vende_Cantidad);
+                parametro.Add("Vende_UsuarioCreacion", item.Vende_UsuarioCreacion);
+                parametro.Add("Vende_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Impuesto_Insertar,
+                var result = db.Execute(ScriptsBaseDeDatos.VentaDetalle_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -99,13 +93,13 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public IEnumerable<tbImpuestos> List()
+        public IEnumerable<tbVentasDetalle> List()
         {
 
-            List<tbImpuestos> result = new List<tbImpuestos>();
+            List<tbVentasDetalle> result = new List<tbVentasDetalle>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbImpuestos>(ScriptBaseDeDatos.Impuesto_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbVentasDetalle>(ScriptBaseDeDatos.VentaDetalle_Mostrar, commandType: CommandType.Text).ToList();
                 return result;
             }
 

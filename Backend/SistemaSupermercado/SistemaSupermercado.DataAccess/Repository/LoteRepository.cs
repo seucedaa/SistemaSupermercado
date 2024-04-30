@@ -8,43 +8,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SistemaSupermercado.DataAccess.Repository
 {
-    public class ImpuestoRepository : IRepository<tbImpuestos>
+    public class LoteRepository : IRepository<tbLotes>
     {
-        public IEnumerable<tbImpuestos> ObtenerID(int id)
+        public IEnumerable<tbLotes> ObtenerID(int id)
         {
-            List<tbImpuestos> result = new List<tbImpuestos>();
+            List<tbLotes> result = new List<tbLotes>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Impue_Id = id };
-                result = db.Query<tbImpuestos>(ScriptsBaseDeDatos.Impuesto_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                var parameters = new { Lotes_Id = id };
+                result = db.Query<tbLotes>(ScriptsBaseDeDatos.Lote_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public IEnumerable<tbImpuestos> Detalless(int id)
+        public IEnumerable<tbLotes> Detalless(int id)
         {
-            List<tbImpuestos> result = new List<tbImpuestos>();
+            List<tbLotes> result = new List<tbLotes>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Impue_Id = id };
-                result = db.Query<tbImpuestos>(ScriptsBaseDeDatos.Impuesto_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                var parameters = new { Lotes_Id = id };
+                result = db.Query<tbLotes>(ScriptsBaseDeDatos.Lote_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbImpuestos item)
+        public RequestStatus Actualizar(tbLotes item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("Impue_Id", item.Impue_Id);
-                parametro.Add("Impue_Descripcion", item.Impue_Descripcion);
-                parametro.Add("Impue_UsuarioModificacion", item.Impue_UsuarioModificacion);
-                parametro.Add("Impue_FechaModificacion", DateTime.Now);
+                parametro.Add("Lotes_Id", item.Lotes_Id);
+                parametro.Add("Lotes_FechaVencimiento", item.Lotes_FechaVencimiento);
+                parametro.Add("Produ_Id", item.Produ_Id);
+                parametro.Add("Lotes_Cantidad", item.Lotes_Cantidad);
+                parametro.Add("Sucur_Id", item.Sucur_Id);
+                parametro.Add("Lotes_UsuarioModificacion", item.Lotes_UsuarioModificacion);
+                parametro.Add("Lotes_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Impuesto_Actualizar,
+                var result = db.Execute(ScriptsBaseDeDatos.Lote_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -61,9 +65,9 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("Impue_Id", id);
+                parametro.Add("Lotes_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Impuesto_Eliminar,
+                var result = db.Execute(ScriptsBaseDeDatos.Lote_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -74,21 +78,24 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public tbImpuestos find(int? id)
+        public tbLotes find(int? id)
         {
             throw new NotImplementedException();
         }
 
-        public RequestStatus Insertar(tbImpuestos item)
+        public RequestStatus Insertar(tbLotes item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("Impue_Descripcion", item.Impue_Descripcion);
-                parametro.Add("Impue_UsuarioCreacion", item.Impue_UsuarioCreacion);
-                parametro.Add("Impue_FechaCreacion", DateTime.Now);
+                parametro.Add("Lotes_FechaVencimiento", item.Lotes_FechaVencimiento);
+                parametro.Add("Produ_Id", item.Produ_Id);
+                parametro.Add("Lotes_Cantidad", item.Lotes_Cantidad);
+                parametro.Add("Sucur_Id", item.Sucur_Id);
+                parametro.Add("Lotes_UsuarioCreacion", item.Lotes_UsuarioCreacion);
+                parametro.Add("Lotes_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Impuesto_Insertar,
+                var result = db.Execute(ScriptsBaseDeDatos.Lote_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -99,13 +106,13 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public IEnumerable<tbImpuestos> List()
+        public IEnumerable<tbLotes> List()
         {
 
-            List<tbImpuestos> result = new List<tbImpuestos>();
+            List<tbLotes> result = new List<tbLotes>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbImpuestos>(ScriptBaseDeDatos.Impuesto_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbLotes>(ScriptBaseDeDatos.Lote_Mostrar, commandType: CommandType.Text).ToList();
                 return result;
             }
 

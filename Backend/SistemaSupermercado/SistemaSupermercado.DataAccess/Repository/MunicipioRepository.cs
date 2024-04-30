@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using SistemaSupermercados.Entities.Entities;
+using SistemaSupermercado.Entities.Entities;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;

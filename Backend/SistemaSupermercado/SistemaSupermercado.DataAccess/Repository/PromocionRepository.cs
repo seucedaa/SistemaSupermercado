@@ -1,0 +1,122 @@
+﻿using Dapper;
+using SistemaSupermercado.Entities.Entities;
+using Microsoft.Data.SqlClient;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SistemaSupermercado.DataAccess.Repository
+{
+    public class PromocionRepository : IRepository<tbPromociones>
+    {
+        public IEnumerable<tbPromociones> ObtenerID(int id)
+        {
+            List<tbPromociones> result = new List<tbPromociones>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { Promo_Id = id };
+                result = db.Query<tbPromociones>(ScriptsBaseDeDatos.Promocion_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
+        public IEnumerable<tbPromociones> Detalless(int id)
+        {
+            List<tbPromociones> result = new List<tbPromociones>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { Promo_Id = id };
+                result = db.Query<tbPromociones>(ScriptsBaseDeDatos.Promocion_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
+        public RequestStatus Actualizar(tbPromociones item)
+        {
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("Promo_Id", item.Promo_Id);
+                parametro.Add("Prom_Descripcion", item.Prom_Descripcion);
+                parametro.Add("Produ_Id", item.Produ_Id);
+                parametro.Add("Promo_TipoDisminucion", item.Promo_TipoDisminucion);
+                parametro.Add("Promo_Disminucion", item.Promo_Disminucion);
+                parametro.Add("Promo_PuntosRequeridos", item.Promo_PuntosRequeridos);
+                parametro.Add("Promo_UsuarioModificacion", item.Promo_UsuarioModificacion);
+                parametro.Add("Promo_FechaModificacion", DateTime.Now);
+
+                var result = db.Execute(ScriptsBaseDeDatos.Promocion_Actualizar,
+                    parametro,
+                     commandType: CommandType.StoredProcedure
+                    );
+
+                string mensaje = (result == 1) ? "Exito" : "Error";
+
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
+        }
+
+        public RequestStatus Eliminar(int? id)
+        {
+
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("Promo_Id", id);
+
+                var result = db.Execute(ScriptsBaseDeDatos.Promocion_Eliminar,
+                    parametro,
+                     commandType: CommandType.StoredProcedure
+                    );
+
+                string mensaje = (result == 1) ? "Exito" : "Error";
+
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
+        }
+
+        public tbPromociones find(int? id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public RequestStatus Insertar(tbPromociones item)
+        {
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("Prom_Descripcion", item.Prom_Descripcion);
+                parametro.Add("Produ_Id", item.Produ_Id);
+                parametro.Add("Promo_TipoDisminucion", item.Promo_TipoDisminucion);
+                parametro.Add("Promo_Disminucion", item.Promo_Disminucion);
+                parametro.Add("Promo_PuntosRequeridos", item.Promo_PuntosRequeridos);
+                parametro.Add("Promo_UsuarioCreacion", item.Promo_UsuarioCreacion);
+                parametro.Add("Promo_FechaCreacion", DateTime.Now);
+
+                var result = db.Execute(ScriptsBaseDeDatos.Promocion_Insertar,
+                    parametro,
+                     commandType: CommandType.StoredProcedure
+                    );
+
+                string mensaje = (result == 1) ? "Exito" : "Error";
+
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
+        }
+
+        public IEnumerable<tbPromociones> List()
+        {
+
+            List<tbPromociones> result = new List<tbPromociones>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                result = db.Query<tbPromociones>(ScriptBaseDeDatos.Promocion_Mostrar, commandType: CommandType.Text).ToList();
+                return result;
+            }
+
+        }
+    }
+}

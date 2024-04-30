@@ -10,41 +10,42 @@ using System.Threading.Tasks;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
-    public class ImpuestoRepository : IRepository<tbImpuestos>
+    public class SubCategoriaRepository : IRepository<tbSubcategorias>
     {
-        public IEnumerable<tbImpuestos> ObtenerID(int id)
+        public IEnumerable<tbSubcategorias> ObtenerID(int id)
         {
-            List<tbImpuestos> result = new List<tbImpuestos>();
+            List<tbSubcategorias> result = new List<tbSubcategorias>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Impue_Id = id };
-                result = db.Query<tbImpuestos>(ScriptsBaseDeDatos.Impuesto_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                var parameters = new { Subca_Id = id };
+                result = db.Query<tbSubcategorias>(ScriptsBaseDeDatos.SubCategoria_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public IEnumerable<tbImpuestos> Detalless(int id)
+        public IEnumerable<tbSubcategorias> Detalless(int id)
         {
-            List<tbImpuestos> result = new List<tbImpuestos>();
+            List<tbSubcategorias> result = new List<tbSubcategorias>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Impue_Id = id };
-                result = db.Query<tbImpuestos>(ScriptsBaseDeDatos.Impuesto_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
+                var parameters = new { Subca_Id = id };
+                result = db.Query<tbSubcategorias>(ScriptsBaseDeDatos.SubCategoria_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Actualizar(tbImpuestos item)
+        public RequestStatus Actualizar(tbSubcategorias item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("Impue_Id", item.Impue_Id);
-                parametro.Add("Impue_Descripcion", item.Impue_Descripcion);
-                parametro.Add("Impue_UsuarioModificacion", item.Impue_UsuarioModificacion);
-                parametro.Add("Impue_FechaModificacion", DateTime.Now);
+                parametro.Add("Subca_Id", item.Subca_Id);
+                parametro.Add("Subca_Descripcion", item.Subca_Descripcion);
+                parametro.Add("Categ_Id", item.Categ_Id);
+                parametro.Add("Subca_UsuarioModificacion", item.Subca_UsuarioModificacion);
+                parametro.Add("Subca_FechaModificacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Impuesto_Actualizar,
+                var result = db.Execute(ScriptsBaseDeDatos.SubCategoria_Actualizar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -61,9 +62,9 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("Impue_Id", id);
+                parametro.Add("Subca_Id", id);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Impuesto_Eliminar,
+                var result = db.Execute(ScriptsBaseDeDatos.SubCategoria_Eliminar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -74,21 +75,22 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public tbImpuestos find(int? id)
+        public tbSubcategorias find(int? id)
         {
             throw new NotImplementedException();
         }
 
-        public RequestStatus Insertar(tbImpuestos item)
+        public RequestStatus Insertar(tbSubcategorias item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("Impue_Descripcion", item.Impue_Descripcion);
-                parametro.Add("Impue_UsuarioCreacion", item.Impue_UsuarioCreacion);
-                parametro.Add("Impue_FechaCreacion", DateTime.Now);
+                parametro.Add("Subca_Descripcion", item.Subca_Descripcion);
+                parametro.Add("Categ_Id", item.Categ_Id);
+                parametro.Add("Subca_UsuarioCreacion", item.Subca_UsuarioCreacion);
+                parametro.Add("Subca_FechaCreacion", DateTime.Now);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Impuesto_Insertar,
+                var result = db.Execute(ScriptsBaseDeDatos.SubCategoria_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -99,13 +101,13 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public IEnumerable<tbImpuestos> List()
+        public IEnumerable<tbSubcategorias> List()
         {
 
-            List<tbImpuestos> result = new List<tbImpuestos>();
+            List<tbSubcategorias> result = new List<tbSubcategorias>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbImpuestos>(ScriptBaseDeDatos.Impuesto_Mostrar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.SubCategoria_Mostrar, commandType: CommandType.Text).ToList();
                 return result;
             }
 
