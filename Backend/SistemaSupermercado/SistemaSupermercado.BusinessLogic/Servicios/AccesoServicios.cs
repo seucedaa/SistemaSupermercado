@@ -113,16 +113,16 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         public IEnumerable<tbUsuarios> DetallesUsu(int id)
         {
-            return _usuarioRepository.Detalless(id);
+            return _usuarioRepository.Buscar(id);
         }
 
 
-        public ServiceResult ActualizarUsua(tbUsuarios item)
+        public ServiceResult ModificarUsua(tbUsuarios item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _usuarioRepository.Actualizar(item);
+                var lost = _usuarioRepository.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
@@ -189,7 +189,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         public IEnumerable<tbRoles> Detalles(int id)
         {
-            return _rolRepository.Detalless(id);
+            return _rolRepository.Buscar(id);
         }
 
         public ServiceResult Insertar(tbRoles item)
@@ -247,7 +247,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             var result = new ServiceResult();
             try
             {
-                var lost = _rolRepository.Actualizar(item);
+                var lost = _rolRepository.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
@@ -374,12 +374,12 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         }
 
        
-        public ServiceResult ActualizarRol(tbRoles item)
+        public ServiceResult ModificarRol(tbRoles item)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _rolRepository.Actualizar(item);
+                var lost = _rolRepository.Modificar(item);
 
                 if (lost.CodeStatus > 0)
                 {
