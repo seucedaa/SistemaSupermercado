@@ -24,7 +24,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public IEnumerable<tbCargos> Buscars(int id)
+        public IEnumerable<tbCargos> Buscar(int id)
         {
             List<tbCargos> result = new List<tbCargos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
