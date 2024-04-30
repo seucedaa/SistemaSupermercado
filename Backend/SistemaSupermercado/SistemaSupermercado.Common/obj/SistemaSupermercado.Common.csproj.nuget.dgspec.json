@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj": {}
+    "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj": {
+    "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj",
+        "projectUniqueName": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj",
         "projectName": "SistemaSupermercado.Common",
-        "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj",
-        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.Common\\obj\\",
+        "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Common\\SistemaSupermercado.Common.csproj",
+        "packagesPath": "C:\\Users\\LAB2\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

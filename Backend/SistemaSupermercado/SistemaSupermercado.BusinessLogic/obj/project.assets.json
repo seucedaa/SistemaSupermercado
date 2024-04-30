@@ -5764,19 +5764,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LAB1\\.nuget\\packages\\": {}
+    "C:\\Users\\LAB2\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj",
+      "projectUniqueName": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj",
       "projectName": "SistemaSupermercado.BusinessLogic",
-      "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj",
-      "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\obj\\",
+      "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\SistemaSupermercado.BusinessLogic.csproj",
+      "packagesPath": "C:\\Users\\LAB2\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.BusinessLogic\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LAB2\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5790,8 +5790,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\LAB1\\source\\repos\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj"
+            "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj"
             }
           }
         }
