@@ -15,9 +15,9 @@ namespace SistemaSupermercado.Entities.Entities
 
         public int Categ_Id { get; set; }
         public string Categ_Descripcion { get; set; }
-        public int Categ_UsuarioCreacion { get; set; }
+        public string Categ_UsuarioCreacion { get; set; }
         public DateTime Categ_FechaCreacion { get; set; }
-        public int? Categ_UsuarioModificacion { get; set; }
+        public string Categ_UsuarioModificacion { get; set; }
         public DateTime? Categ_FechaModificacion { get; set; }
         public bool? Categ_Estado { get; set; }
 

@@ -11,9 +11,9 @@ namespace SistemaSupermercado.Entities.Entities
         public int Papro_Id { get; set; }
         public int Panta_Id { get; set; }
         public int Roles_Id { get; set; }
-        public int Papro_UsuarioCreacion { get; set; }
+        public string Papro_UsuarioCreacion { get; set; }
         public DateTime Papro_FechaCreacion { get; set; }
-        public int? Papro_UsuarioModificacion { get; set; }
+        public string Papro_UsuarioModificacion { get; set; }
         public DateTime? Papro_FechaModificacion { get; set; }
         public bool? Papro_Estado { get; set; }
 

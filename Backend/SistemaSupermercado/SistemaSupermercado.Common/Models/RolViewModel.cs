@@ -14,15 +14,15 @@ namespace SistemaSupermercado.Common.Models
         public string Usua_Id { get; set; }
 
         [Display(Name = "ID")]
-        public int Rol_Id { get; set; }
+        public int Roles_Id { get; set; }
 
 
         [Display(Name = "Rol")]
-        public string Rol_Rol { get; set; }
-        public string Rol_UsuarioCreacion { get; set; }
-        public DateTime? Rol_FechaCreacion { get; set; }
-        public string Rol_UsuarioModificacion { get; set; }
-        public DateTime? Rol_FechaModificacion { get; set; }
+        public string Roles_Descripcion { get; set; }
+        public string Roles_UsuarioCreacion { get; set; }
+        public DateTime? Roles_FechaCreacion { get; set; }
+        public string Roles_UsuarioModificacion { get; set; }
+        public DateTime? Roles_FechaModificacion { get; set; }
         public List<int> Pantallas { get; set; }
         public List<int> PantallasD { get; set; }
     }

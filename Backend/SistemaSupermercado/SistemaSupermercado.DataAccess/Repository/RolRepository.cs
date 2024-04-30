@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
-    public class RolRepository : IRepositorio<tbRoles>
+    public class RolRepository : IRepository<tbRoles>
     {
         public IEnumerable<tbRoles> Detalless(int id)
         {
             List<tbRoles> result = new List<tbRoles>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Rol_Id = id };
+                var parameters = new { Roles_Id = id };
                 result = db.Query<tbRoles>(ScriptBaseDeDatos.Roles_Detalles, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
@@ -28,10 +28,10 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("Rol_Id", item.Rol_Id);
-                parametro.Add("Rol_Rol", item.Rol_Rol);
-                parametro.Add("Rol_UsuarioModificacion", 1);
-                parametro.Add("Rol_FechaModificacion", DateTime.Now);
+                parametro.Add("Roles_Id", item.Roles_Id);
+                parametro.Add("Roles_Descripcion", item.Roles_Descripcion);
+                parametro.Add("Roles_UsuarioModificacion", 1);
+                parametro.Add("Roles_FechaModificacion", DateTime.Now);
 
                 var result = db.Execute(ScriptBaseDeDatos.Roles_Actualizar,
                     parametro,
@@ -50,7 +50,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("Rol_Id", id);
+                parametro.Add("Roles_Id", id);
 
                 var result = db.Execute(ScriptBaseDeDatos.Roles_Eliminar,
                     parametro,
@@ -68,7 +68,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("PaRo_Id", item.PaRo_Id);
+                parametro.Add("Papro_Id", item.Papro_Id);
 
                 var result = db.Execute(ScriptBaseDeDatos.PantallasRoles_Eliminar,
                     parametro,
@@ -91,9 +91,9 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("Rol_Rol", item.Rol_Rol);
-                parametro.Add("Rol_UsuarioCreacion", 1);
-                parametro.Add("Rol_FechaCreacion", DateTime.Now);
+                parametro.Add("Roles_Descripcion", item.Roles_Descripcion);
+                parametro.Add("Roles_UsuarioCreacion", 1);
+                parametro.Add("Roles_FechaCreacion", DateTime.Now);
 
                 var result = db.Execute(ScriptBaseDeDatos.Roles_Insertar,
                     parametro,
@@ -111,7 +111,7 @@ namespace SistemaSupermercado.DataAccess.Repository
 
         public IEnumerable<tbRoles> List()
         {
-            const string sql = "Accs.SP_Roles_Mostrar";
+            const string sql = "Acce.SP_Roles_Mostrar";
 
             List<tbRoles> result = new List<tbRoles>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
@@ -123,13 +123,13 @@ namespace SistemaSupermercado.DataAccess.Repository
         }
 
 
-        public tbRoles ObtenerRol(string Rol_Rol)
+        public tbRoles ObtenerRol(string Roles_Descripcion)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                string query = "EXEC Accs.SP_Roles_Buscar @Rol_Rol";
+                string query = "EXEC Acce.SP_Roles_Buscar @Roles_Descripcion";
                 var parametro = new DynamicParameters();
-                parametro.Add("Rol_Rol", Rol_Rol);
+                parametro.Add("Roles_Descripcion", Roles_Descripcion);
 
                 return db.QueryFirstOrDefault<tbRoles>(query, parametro);
             }
@@ -140,7 +140,7 @@ namespace SistemaSupermercado.DataAccess.Repository
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                string query = "SELECT IDENT_CURRENT('Accs.tbRoles')";
+                string query = "SELECT IDENT_CURRENT('Acce.tbRoles')";
                 return db.ExecuteScalar<int>(query);
             }
         }
@@ -150,10 +150,10 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("Rol_Id", item.Rol_Id);
-                parametro.Add("Pant_Id", item.Pant_Id);
-                parametro.Add("PaRo_UsuarioCreacion", item.PaRo_UsuarioCreacion);
-                parametro.Add("PaRo_FechaCreacion", item.PaRo_FechaCreacion);
+                parametro.Add("Roles_Id", item.Roles_Id);
+                parametro.Add("Panta_Id", item.Panta_Id);
+                parametro.Add("Papro_UsuarioCreacion", item.Papro_UsuarioCreacion);
+                parametro.Add("Papro_FechaCreacion", item.Papro_FechaCreacion);
 
                 var result = db.Execute(ScriptBaseDeDatos.PantallasRoles_Insertar,
                     parametro,
@@ -168,7 +168,7 @@ namespace SistemaSupermercado.DataAccess.Repository
 
         public IEnumerable<tbPantallas> ListPant()
         {
-            const string sql = "[Accs].[SP_Pantallas_Mostrar]";
+            const string sql = "[Acce].[SP_Pantallas_Mostrar]";
 
             List<tbPantallas> result = new List<tbPantallas>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
@@ -181,7 +181,7 @@ namespace SistemaSupermercado.DataAccess.Repository
 
         public IEnumerable<tbPantallasPorRoles> ListPaRol()
         {
-            const string sql = "Accs.SP_PantallasPorRoles_Mostrar";
+            const string sql = "Acce.SP_PantallasPorRoles_Mostrar";
 
             List<tbPantallasPorRoles> result = new List<tbPantallasPorRoles>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
@@ -198,7 +198,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbPantallasPorRoles> result = new List<tbPantallasPorRoles>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Rol_Id = id };
+                var parameters = new { Roles_Id = id };
                 result = db.Query<tbPantallasPorRoles>(ScriptBaseDeDatos.PantallasRoles_MostrarPorRol, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
