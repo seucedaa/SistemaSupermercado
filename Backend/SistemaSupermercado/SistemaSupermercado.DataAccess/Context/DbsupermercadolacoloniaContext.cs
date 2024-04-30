@@ -34,6 +34,7 @@ namespace SistemaSupermercado.DataAccess.Context
         public virtual DbSet<tbPromociones> tbPromociones { get; set; }
         public virtual DbSet<tbProveedores> tbProveedores { get; set; }
         public virtual DbSet<tbRoles> tbRoles { get; set; }
+        public virtual DbSet<tbSubcategorias> tbSubcategorias { get; set; }
         public virtual DbSet<tbSucursales> tbSucursales { get; set; }
         public virtual DbSet<tbUsuarios> tbUsuarios { get; set; }
         public virtual DbSet<tbVentasDetalle> tbVentasDetalle { get; set; }
@@ -498,11 +499,6 @@ namespace SistemaSupermercado.DataAccess.Context
 
                 entity.Property(e => e.Produ_PrecioVenta).HasColumnType("numeric(8, 2)");
 
-                entity.HasOne(d => d.Categ)
-                    .WithMany(p => p.tbProductos)
-                    .HasForeignKey(d => d.Categ_Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
-
                 entity.HasOne(d => d.Impue)
                     .WithMany(p => p.tbProductos)
                     .HasForeignKey(d => d.Impue_Id)
@@ -522,6 +518,11 @@ namespace SistemaSupermercado.DataAccess.Context
                     .HasForeignKey(d => d.Prove_Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tbProdcutos_tbProveedores_Prove_Id");
+
+                entity.HasOne(d => d.Subca)
+                    .WithMany(p => p.tbProductos)
+                    .HasForeignKey(d => d.Subca_Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<tbPromociones>(entity =>
@@ -643,6 +644,41 @@ namespace SistemaSupermercado.DataAccess.Context
                 entity.HasOne(d => d.Roles_UsuarioModificacionNavigation)
                     .WithMany(p => p.tbRolesRoles_UsuarioModificacionNavigation)
                     .HasForeignKey(d => d.Roles_UsuarioModificacion);
+            });
+
+            modelBuilder.Entity<tbSubcategorias>(entity =>
+            {
+                entity.HasKey(e => e.Subca_Id)
+                    .HasName("PK_tbSubcategorias_Subca_Id");
+
+                entity.ToTable("tbSubcategorias", "Gral");
+
+                entity.HasIndex(e => e.Subca_Descripcion, "UQ_tbSubcategorias_Subca_Descripcion")
+                    .IsUnique();
+
+                entity.Property(e => e.Subca_Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Subca_Estado).HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Subca_FechaCreacion).HasColumnType("datetime");
+
+                entity.Property(e => e.Subca_FechaModificacion).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Categ)
+                    .WithMany(p => p.tbSubcategorias)
+                    .HasForeignKey(d => d.Categ_Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(d => d.Subca_UsuarioCreacionNavigation)
+                    .WithMany(p => p.tbSubcategoriasSubca_UsuarioCreacionNavigation)
+                    .HasForeignKey(d => d.Subca_UsuarioCreacion)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(d => d.Subca_UsuarioModificacionNavigation)
+                    .WithMany(p => p.tbSubcategoriasSubca_UsuarioModificacionNavigation)
+                    .HasForeignKey(d => d.Subca_UsuarioModificacion);
             });
 
             modelBuilder.Entity<tbSucursales>(entity =>

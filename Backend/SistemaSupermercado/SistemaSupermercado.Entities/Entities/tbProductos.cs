@@ -20,7 +20,7 @@ namespace SistemaSupermercado.Entities.Entities
         public decimal Produ_PrecioCompra { get; set; }
         public decimal Produ_PrecioVenta { get; set; }
         public int Impue_Id { get; set; }
-        public int Categ_Id { get; set; }
+        public int Subca_Id { get; set; }
         public int Prove_Id { get; set; }
         public int Produ_UsuarioCreacion { get; set; }
         public DateTime Produ_FechaCreacion { get; set; }
@@ -28,11 +28,11 @@ namespace SistemaSupermercado.Entities.Entities
         public DateTime? Produ_FechaModificacion { get; set; }
         public bool? Produ_Estado { get; set; }
 
-        public virtual tbCategorias Categ { get; set; }
         public virtual tbImpuestos Impue { get; set; }
         public virtual tbUsuarios Produ_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Produ_UsuarioModificacionNavigation { get; set; }
         public virtual tbProveedores Prove { get; set; }
+        public virtual tbSubcategorias Subca { get; set; }
         public virtual ICollection<tbLotes> tbLotes { get; set; }
         public virtual ICollection<tbPromociones> tbPromociones { get; set; }
     }
