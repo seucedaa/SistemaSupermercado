@@ -40,6 +40,8 @@ namespace SistemaSupermercado.Entities.Entities
             tbProveedoresProve_UsuarioModificacionNavigation = new HashSet<tbProveedores>();
             tbRolesRoles_UsuarioCreacionNavigation = new HashSet<tbRoles>();
             tbRolesRoles_UsuarioModificacionNavigation = new HashSet<tbRoles>();
+            tbSubcategoriasSubca_UsuarioCreacionNavigation = new HashSet<tbSubcategorias>();
+            tbSubcategoriasSubca_UsuarioModificacionNavigation = new HashSet<tbSubcategorias>();
             tbSucursalesSucur_UsuarioCreacionNavigation = new HashSet<tbSucursales>();
             tbSucursalesSucur_UsuarioModificacionNavigation = new HashSet<tbSucursales>();
             tbVentasDetalleVende_UsuarioCreacionNavigation = new HashSet<tbVentasDetalle>();
@@ -95,6 +97,8 @@ namespace SistemaSupermercado.Entities.Entities
         public virtual ICollection<tbProveedores> tbProveedoresProve_UsuarioModificacionNavigation { get; set; }
         public virtual ICollection<tbRoles> tbRolesRoles_UsuarioCreacionNavigation { get; set; }
         public virtual ICollection<tbRoles> tbRolesRoles_UsuarioModificacionNavigation { get; set; }
+        public virtual ICollection<tbSubcategorias> tbSubcategoriasSubca_UsuarioCreacionNavigation { get; set; }
+        public virtual ICollection<tbSubcategorias> tbSubcategoriasSubca_UsuarioModificacionNavigation { get; set; }
         public virtual ICollection<tbSucursales> tbSucursalesSucur_UsuarioCreacionNavigation { get; set; }
         public virtual ICollection<tbSucursales> tbSucursalesSucur_UsuarioModificacionNavigation { get; set; }
         public virtual ICollection<tbVentasDetalle> tbVentasDetalleVende_UsuarioCreacionNavigation { get; set; }

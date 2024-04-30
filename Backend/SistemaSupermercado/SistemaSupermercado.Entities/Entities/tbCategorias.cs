@@ -10,7 +10,7 @@ namespace SistemaSupermercado.Entities.Entities
     {
         public tbCategorias()
         {
-            tbProductos = new HashSet<tbProductos>();
+            tbSubcategorias = new HashSet<tbSubcategorias>();
         }
 
         public int Categ_Id { get; set; }
@@ -23,6 +23,6 @@ namespace SistemaSupermercado.Entities.Entities
 
         public virtual tbUsuarios Categ_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Categ_UsuarioModificacionNavigation { get; set; }
-        public virtual ICollection<tbProductos> tbProductos { get; set; }
+        public virtual ICollection<tbSubcategorias> tbSubcategorias { get; set; }
     }
 }
