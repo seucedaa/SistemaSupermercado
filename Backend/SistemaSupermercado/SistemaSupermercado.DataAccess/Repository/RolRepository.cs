@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
-    public class RolRepository : IRepositorio<tbRoles>
+    public class RolRepository : IRepository<tbRoles>
     {
         public IEnumerable<tbRoles> Detalless(int id)
         {

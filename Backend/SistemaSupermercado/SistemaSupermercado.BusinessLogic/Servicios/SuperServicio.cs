@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaSupermercado.BusinessLogic.Servicios
 {
-    public class GeneralServicios
+    public class SuperServicio
     {
     }
 }

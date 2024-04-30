@@ -124,52 +124,6 @@ namespace SistemaSupermercado.DataAccess.Repository
         }
 
 
-
-
-        public RequestStatus InsertarPers(tbPersonas item)
-        {
-            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
-            {
-                var parametro = new DynamicParameters();
-                parametro.Add("Perso_DNI", item.Perso_DNI);
-                parametro.Add("Perso_Nombre", item.Perso_Nombre);
-                parametro.Add("Perso_Apellido", item.Perso_Apellido);
-                parametro.Add("Perso_Correo", item.Perso_Correo);
-                parametro.Add("Perso_FechaNacimiento", item.Perso_FechaNacimiento);
-                parametro.Add("Perso_Sexo", item.Perso_Sexo);
-                parametro.Add("Perso_Direccion", item.Perso_Direccion);
-                parametro.Add("Estc_Id", item.Estc_Id);
-                parametro.Add("Ciud_id", item.Ciud_id);
-                parametro.Add("Perso_FechaCreacion", DateTime.Now);
-
-                var result = db.Execute(ScriptBaseDeDatos.Persona_Insertar,
-                    parametro,
-                     commandType: CommandType.StoredProcedure
-                    );
-
-                string mensaje = (result == 1) ? "Exito" : "Error";
-
-                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
-            }
-        }
-
-        public int PersNuevoId()
-        {
-            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
-            {
-                string query = "SELECT IDENT_CURRENT('Grl.tbPersonas')";
-                return db.ExecuteScalar<int>(query);
-            }
-        }
-
-        public int UsuaNuevoId()
-        {
-            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
-            {
-                string query = "SELECT IDENT_CURRENT('Acc.tbUsuarios')";
-                return db.ExecuteScalar<int>(query);
-            }
-        }
         public RequestStatus RegistrarUsu(tbUsuarios item)
         {
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
@@ -181,9 +135,9 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Roles_Id", 2);
                 parametro.Add("Perso_Id", item.Perso_Id);
                 parametro.Add("Perso_Tipo", 1);
-                parametro.Add("Usuar_UltimaSesion", item.Usuar_UltimaSesion);
-                parametro.Add("Usuar_SuperPuntos", item.Usuar_SuperPuntos);
-                parametro.Add("Usuar_UsuarioCreacion", null);
+                parametro.Add("Usuar_UltimaSesion", DateTime.Now);
+                parametro.Add("Usuar_SuperPuntos", 0);
+                parametro.Add("Usuar_UsuarioCreacion", 1);
                 parametro.Add("Usuar_FechaCreacion", DateTime.Now);
 
                 var result = db.Execute(ScriptBaseDeDatos.Usuario_Insertar,
@@ -216,10 +170,6 @@ namespace SistemaSupermercado.DataAccess.Repository
             throw new NotImplementedException();
         }
 
-        public tbUsuarios find(int? id)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
-}
+

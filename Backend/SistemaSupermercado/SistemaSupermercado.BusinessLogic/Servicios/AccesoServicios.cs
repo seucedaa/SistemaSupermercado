@@ -78,33 +78,6 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         }
 
 
-
-        public ServiceResult InsertPersona(tbPersonas item)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var lost = _usuarioRepository.InsertarPers(item);
-
-                if (lost.CodeStatus > 0)
-                {
-                    return result.Ok(lost);
-                }
-                else
-                {
-                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
-                    return result.Error(lost);
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-
-        }
-
         public ServiceResult RegistrarUsu(tbUsuarios item)
         {
             var result = new ServiceResult();
@@ -131,73 +104,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         }
 
-        public ServiceResult Registrar(tbPersonas item)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var nuevaPersona = new tbPersonas()
-                {
-                    Perso_DNI = item.Perso_DNI,
-                    Perso_Nombre = item.Perso_Nombre,
-                    Perso_Apellido = item.Perso_Apellido,
-                    Perso_Correo = item.Perso_Correo,
-                    Perso_FechaNacimiento = item.Perso_FechaNacimiento,
-                    Perso_Sexo = item.Perso_Sexo,
-                    Perso_Direccion = item.Perso_Direccion,
-                    Estc_Id = item.Estc_Id,
-                    Ciud_id = item.Ciud_id
-                };
-
-                int persid = 0;
-
-                var insertar = InsertPersona(nuevaPersona);
-                if (!insertar.Success)
-                {
-                    return insertar.Error();
-                }
-                else
-                {
-
-                    nuevaPersona.Perso_Id = _usuarioRepository.PersNuevoId();
-                    persid = nuevaPersona.Perso_Id;
-                }
-
-                var nuevousuario = new tbUsuarios()
-                {
-                    Usua_Usuario = item.Usua_Usuario,
-                    Usua_Contraseña = item.Usua_Contraseña,
-                    Perso_Id = persid,
-                };
-                int usuarioid = 0;
-
-                var registrar = RegistrarUsu(nuevousuario);
-                if (!registrar.Success)
-                {
-                    return registrar.Error();
-                }
-                else
-                {
-                    nuevousuario.Usua_Id = _usuarioRepository.UsuaNuevoId();
-                    usuarioid = nuevousuario.Usua_Id;
-                }
-
-                var nuevoregistro = new tbRegistros()
-                {
-                    Regi_MiCredito = item.Regi_MiCredito,
-                    Perso_Id = persid,
-                    Regi_UsuarioCreacion = usuarioid
-                };
-
-                var lost = _usuarioRepository.Registro(nuevoregistro);
-
-                return result.Ok(lost);
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
+       
 
         public IEnumerable<tbUsuarios> LlenarUsu(int id)
         {
@@ -209,11 +116,6 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             return _usuarioRepository.Detalless(id);
         }
 
-
-        public IEnumerable<tbUsuarios> obtenerCorreo(string usuario)
-        {
-            return _usuarioRepository.obtenerCorreo(usuario);
-        }
 
         public ServiceResult ActualizarUsua(tbUsuarios item)
         {
@@ -240,56 +142,6 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
 
-        public ServiceResult Reestablecer(string codigo, string contraseña)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var lost = _usuarioRepository.Reestablecer(codigo, contraseña);
-
-                if (lost.CodeStatus > 0)
-                {
-                    return result.Ok(lost);
-                }
-                else
-                {
-                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
-                    return result.Error(lost);
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
-
-
-        public ServiceResult InsertarCodigo(string usuario, string codigo)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var lost = _usuarioRepository.InsertarCodigo(usuario, codigo);
-
-                if (lost.CodeStatus > 0)
-                {
-                    return result.Ok(lost);
-                }
-                else
-                {
-                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
-                    return result.Error(lost);
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
 
 
         public ServiceResult ElimUsua(int? id)
@@ -339,40 +191,6 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         {
             return _rolRepository.Detalless(id);
         }
-
-
-        public ServiceResult ListarPant()
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var lost = _rolRepository.ListPant();
-
-                return result.Ok(lost);
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
-
-        public ServiceResult ListPantdelRol(int id)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var lost = _rolRepository.ListPadelRol(id);
-
-                return result.Ok(lost);
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
-
-
-
 
         public ServiceResult Insertar(tbRoles item)
         {
@@ -457,16 +275,16 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                 var rolExistente = _rolRepository.ObtenerRol(rol);
                 if (rolExistente != null)
                 {
-                    var roleId = rolExistente.Rol_Id;
+                    var roleId = rolExistente.Roles_Id;
 
                     foreach (var pantallaId in pantallas)
                     {
                         var pantallaPorRol = new tbPantallasPorRoles()
                         {
-                            Pant_Id = pantallaId,
-                            Rol_Id = roleId,
-                            PaRo_UsuarioCreacion = usuarioId,
-                            PaRo_FechaCreacion = fechaCreacion
+                            Panta_Id = pantallaId,
+                            Roles_Id = roleId,
+                            Papro_UsuarioCreacion = usuarioId,
+                            Papro_FechaCreacion = fechaCreacion
                         };
                         _rolRepository.InserarPaRol(pantallaPorRol);
                     }
@@ -476,9 +294,9 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                 {
                     var nuevoRol = new tbRoles()
                     {
-                        Rol_Rol = rol,
-                        Rol_UsuarioCreacion = usuarioId.ToString(),
-                        Rol_FechaCreacion = fechaCreacion
+                        Roles_Descripcion = rol,
+                        Roles_UsuarioCreacion = usuarioId.ToString(),
+                        Roles_FechaCreacion = fechaCreacion
                     };
 
                     int rolId = 0;
@@ -491,18 +309,18 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                     else
                     {
 
-                        nuevoRol.Rol_Id = _rolRepository.RolNuevoId();
-                        rolId = nuevoRol.Rol_Id;
+                        nuevoRol.Roles_Id = _rolRepository.RolNuevoId();
+                        rolId = nuevoRol.Roles_Id;
                     }
 
                     foreach (var pantallaId in pantallas)
                     {
                         var pantallaPorRol = new tbPantallasPorRoles()
                         {
-                            Pant_Id = pantallaId,
-                            Rol_Id = rolId,
-                            PaRo_UsuarioCreacion = usuarioId,
-                            PaRo_FechaCreacion = fechaCreacion
+                            Panta_Id = pantallaId,
+                            Roles_Id = rolId,
+                            Papro_UsuarioCreacion = usuarioId,
+                            Papro_FechaCreacion = fechaCreacion
                         };
                         _rolRepository.InserarPaRol(pantallaPorRol);
                     }
@@ -515,28 +333,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
 
-        public ServiceResult EliminarPantallaDelRol(int roleId, List<int> pantallasd)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                foreach (var pantallaId in pantallasd)
-                {
-                    var pantallaPorRol = _rolRepository.ListPaRol().FirstOrDefault(p => p.Rol_Id == roleId && p.Pant_Id == pantallaId);
-                    if (pantallaPorRol != null)
-                    {
-                        var lost = _rolRepository.EliminarPaRol(pantallaPorRol);
-
-
-                    }
-                }
-                return result.Ok(new { success = true, message = "Rol creado con éxito!" });
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
+        
 
         public ServiceResult EditarRol(int idrol, string rol, List<int> pantallas, int usuarioId, DateTime fechaCreacion)
         {
@@ -549,10 +346,10 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                 {
                     var editarrol = new tbRoles()
                     {
-                        Rol_Id = idrol,
-                        Rol_Rol = rol,
-                        Rol_UsuarioModificacion = usuarioId.ToString(),
-                        Rol_FechaModificacion = fechaCreacion
+                        Roles_Id = idrol,
+                        Roles_Descripcion = rol,
+                        Roles_UsuarioModificacion = usuarioId.ToString(),
+                        Roles_FechaModificacion = fechaCreacion
                     };
 
 
@@ -560,10 +357,10 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
                     var pantallaPorRol = new tbPantallasPorRoles()
                     {
-                        Pant_Id = pantallaId,
-                        Rol_Id = idrol,
-                        PaRo_UsuarioCreacion = usuarioId,
-                        PaRo_FechaCreacion = fechaCreacion
+                        Panta_Id = pantallaId,
+                        Roles_Id = idrol,
+                        Papro_UsuarioCreacion = usuarioId,
+                        Papro_FechaCreacion = fechaCreacion
                     };
                     _rolRepository.InserarPaRol(pantallaPorRol);
                 }
@@ -576,28 +373,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
 
-        public ServiceResult EliminarPantallaRol(int roleId, List<int> pantallasd)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                foreach (var pantallaId in pantallasd)
-                {
-                    var pantallaPorRol = _rolRepository.ListPaRol().FirstOrDefault(p => p.Rol_Id == roleId && p.Pant_Id == pantallaId);
-                    if (pantallaPorRol != null)
-                    {
-                        var lost = _rolRepository.EliminarPaRol(pantallaPorRol);
-
-
-                    }
-                }
-                return result.Ok(new { success = true, message = "Rol creado con éxito!" });
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
+       
         public ServiceResult ActualizarRol(tbRoles item)
         {
             var result = new ServiceResult();
@@ -641,6 +417,86 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                 }
 
 
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        #endregion
+
+        #region Pantallas
+        public ServiceResult ListarPant()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _rolRepository.ListPant();
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        #endregion
+
+        #region Pantallas por Roles
+        public ServiceResult ListPantdelRol(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _rolRepository.ListPadelRol(id);
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult EliminarPantallaDelRol(int roleId, List<int> pantallasd)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                foreach (var pantallaId in pantallasd)
+                {
+                    var pantallaPorRol = _rolRepository.ListPaRol().FirstOrDefault(p => p.Roles_Id == roleId && p.Panta_Id == pantallaId);
+                    if (pantallaPorRol != null)
+                    {
+                        var lost = _rolRepository.EliminarPaRol(pantallaPorRol);
+
+
+                    }
+                }
+                return result.Ok(new { success = true, message = "Rol creado con éxito!" });
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult EliminarPantallaRol(int roleId, List<int> pantallasd)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                foreach (var pantallaId in pantallasd)
+                {
+                    var pantallaPorRol = _rolRepository.ListPaRol().FirstOrDefault(p => p.Roles_Id == roleId && p.Panta_Id == pantallaId);
+                    if (pantallaPorRol != null)
+                    {
+                        var lost = _rolRepository.EliminarPaRol(pantallaPorRol);
+
+
+                    }
+                }
+                return result.Ok(new { success = true, message = "Rol creado con éxito!" });
             }
             catch (Exception ex)
             {

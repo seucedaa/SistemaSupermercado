@@ -106,6 +106,14 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
+        public int ClienteNuevoId()
+        {
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                string query = "SELECT IDENT_CURRENT('Venta.tbClientes')";
+                return db.ExecuteScalar<int>(query);
+            }
+        }
         public IEnumerable<tbClientes> List()
         {
 
