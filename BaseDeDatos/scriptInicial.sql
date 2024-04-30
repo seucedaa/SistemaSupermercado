@@ -12,7 +12,7 @@ CREATE TABLE Acce.tbUsuarios(
 	Roles_Id INT NOT NULL,
 	Usuar_Admin BIT NOT NULL,
 	Usuar_UltimaSesion DATETIME NULL,
-	Usuar_SuperPuntos INT NOT NULL,
+	Usuar_SuperPuntos INT CONSTRAINT DF_tbUsuarios_Usuar_SuperPuntos DEFAULT 0,
 	CONSTRAINT PK_tbUsuarios_Usuar_Id PRIMARY KEY(Usuar_Id),
 	CONSTRAINT UQ_tbUsuarios_Usuar_Usuario UNIQUE(Usuar_Usuario),
 	CONSTRAINT UQ_tbUsuarios_Usuar_Correo UNIQUE(Usuar_Correo),
