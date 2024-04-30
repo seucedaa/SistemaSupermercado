@@ -141,6 +141,23 @@ CREATE TABLE Gral.tbCategorias(
 	CONSTRAINT FK_tbCategorias_tbUsuarios_Categ_UsuarioModificacion FOREIGN KEY(Categ_UsuarioModificacion) REFERENCES Acce.tbUsuarios(Usuar_Id),
 )
 GO
+CREATE TABLE Gral.tbSubcategorias(
+	Subca_Id INT IDENTITY(1,1),
+	Subca_Descripcion NVARCHAR(50) NOT NULL,
+	Categ_Id INT NOT NULL,
+	CONSTRAINT PK_tbSubcategorias_Subca_Id PRIMARY KEY(Subca_Id),
+	CONSTRAINT UQ_tbSubcategorias_Subca_Descripcion UNIQUE(Subca_Descripcion),
+	CONSTRAINT FK_tbSubcategorias_tbCategorias_Categ_Id FOREIGN KEY(Categ_Id) REFERENCES Gral.tbCategorias(Categ_Id),
+
+	[Subca_UsuarioCreacion] [int] NOT NULL,
+	[Subca_FechaCreacion] [datetime] NOT NULL,
+	[Subca_UsuarioModificacion] [int] NULL,
+	[Subca_FechaModificacion] [datetime] NULL,
+	[Subca_Estado] [bit] CONSTRAINT DF_tbSubcategorias_Subca_Estado DEFAULT 1,
+	CONSTRAINT FK_tbSubcategorias_tbUsuarios_Subca_UsuarioCreacion FOREIGN KEY(Subca_UsuarioCreacion) REFERENCES Acce.tbUsuarios(Usuar_Id),
+	CONSTRAINT FK_tbSubcategorias_tbUsuarios_Subca_UsuarioModificacion FOREIGN KEY(Subca_UsuarioModificacion) REFERENCES Acce.tbUsuarios(Usuar_Id),
+)
+GO
 CREATE TABLE Gral.tbImpuestos(
 	Impue_Id INT IDENTITY(1,1),
 	Impue_Descripcion NUMERIC(4,2) NOT NULL,
@@ -169,7 +186,6 @@ CREATE TABLE Gral.tbCargos(
 	[Cargo_Estado] [bit] CONSTRAINT DF_tbCargos_Cargo_Estado DEFAULT 1,
 	CONSTRAINT FK_tbCargos_tbUsuarios_Cargo_UsuarioCreacion FOREIGN KEY(Cargo_UsuarioCreacion) REFERENCES Acce.tbUsuarios(Usuar_Id),
 	CONSTRAINT FK_tbCargos_tbUsuarios_Cargo_UsuarioModificacion FOREIGN KEY(Cargo_UsuarioModificacion) REFERENCES Acce.tbUsuarios(Usuar_Id),
-
 )
 GO
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -227,11 +243,11 @@ CREATE TABLE Supr.tbProductos(
 	Produ_PrecioCompra NUMERIC(8,2) NOT NULL,
 	Produ_PrecioVenta NUMERIC(8,2) NOT NULL,
 	Impue_Id INT NOT NULL,
-	Categ_Id INT NOT NULL,
+	Subca_Id INT NOT NULL,
 	Prove_Id INT NOT NULL,
 	CONSTRAINT PK_tbProductos_Produ_Id PRIMARY KEY(Produ_Id),
 	CONSTRAINT UQ_tbProductos_Produ_Descripcion UNIQUE(Produ_Descripcion),
-	CONSTRAINT FK_tbProductos_tbCategorias_Categ_Id FOREIGN KEY(Categ_Id) REFERENCES Gral.tbCategorias(Categ_Id),
+	CONSTRAINT FK_tbProductos_tbSubcategorias_Subca_Id FOREIGN KEY(Subca_Id) REFERENCES Gral.tbSubcategorias(Subca_Id),
 	CONSTRAINT FK_tbProdcutos_tbProveedores_Prove_Id FOREIGN KEY(Prove_Id) REFERENCES Supr.tbProveedores(Prove_Id),
 	CONSTRAINT FK_tbProductos_tbImpuestos_Impue_Id FOREIGN KEY(Impue_Id) REFERENCES Gral.tbImpuestos(Impue_Id),
 
