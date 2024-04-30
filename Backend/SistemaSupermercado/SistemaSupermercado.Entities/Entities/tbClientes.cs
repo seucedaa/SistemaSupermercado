@@ -15,6 +15,7 @@ namespace SistemaSupermercado.Entities.Entities
         [NotMapped]
         public string Usuar_Contrasena { get; set; }
         public int Clien_Id { get; set; }
+        public string Clien_Dni { get; set; }
         public string Clien_PrimerNombre { get; set; }
         public string Clien_SegundoNombre { get; set; }
         public string Clien_PrimerApellido { get; set; }
