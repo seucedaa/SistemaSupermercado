@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zzlva1xyeaQ68AVNghIqpVF3uwosVNfQRCmdVLHicIzB7Jab/xKwsS3MnhIcDzHjUMwmEPQG3s/naAmncWUHYg==",
+  "dgSpecHash": "6mr0jdjF04YFlWEdkqn4rLBP+9pdc8ySDubuKmilitzcIq4TW21TjmwrY+ahXwoftQCzneO5Ye+svFefh/fYyA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pavel\\OneDrive\\Escritorio\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj",
+  "projectFilePath": "C:\\repositorio\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
