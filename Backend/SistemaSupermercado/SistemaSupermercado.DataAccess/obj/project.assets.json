@@ -5746,19 +5746,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LAB2\\.nuget\\packages\\": {}
+    "C:\\Users\\pavel\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\pavel\\OneDrive\\Escritorio\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj",
       "projectName": "SistemaSupermercado.DataAccess",
-      "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj",
-      "packagesPath": "C:\\Users\\LAB2\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\obj\\",
+      "projectPath": "C:\\Users\\pavel\\OneDrive\\Escritorio\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\SistemaSupermercado.DataAccess.csproj",
+      "packagesPath": "C:\\Users\\pavel\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\pavel\\OneDrive\\Escritorio\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\LAB2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pavel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5772,8 +5772,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj": {
-              "projectPath": "C:\\Users\\LAB2\\Desktop\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj"
+            "C:\\Users\\pavel\\OneDrive\\Escritorio\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj": {
+              "projectPath": "C:\\Users\\pavel\\OneDrive\\Escritorio\\SistemaSupermercado\\Backend\\SistemaSupermercado\\SistemaSupermercado.Entities\\SistemaSupermercado.Entities.csproj"
             }
           }
         }

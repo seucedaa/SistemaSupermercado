@@ -10,7 +10,7 @@ import { ServiceService } from 'src/app/Services/service.service';
 })
 export class ListComponent implements OnInit {
 
-  prueba: Prueba[] = []; 
+  prueba: Roles[] = []; 
 
   constructor(private service: ServiceService, private router: Router) { }
 

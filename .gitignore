@@ -1,0 +1,12 @@
+*.cache
+*.editorconfig
+Backend/SistemaSupermercado/SistemaSupermercado.API/obj/SistemaSupermercado.API.csproj.nuget.dgspec.json
+Backend/SistemaSupermercado/SistemaSupermercado.API/obj/project.assets.json
+*.editorconfig
+*.props
+Backend/SistemaSupermercado/SistemaSupermercado.Entities/obj/SistemaSupermercado.Entities.csproj.nuget.dgspec.json
+Backend/SistemaSupermercado/SistemaSupermercado.Entities/obj/project.assets.json
+Backend/SistemaSupermercado/SistemaSupermercado.DataAccess/obj/SistemaSupermercado.DataAccess.csproj.nuget.dgspec.json
+Backend/SistemaSupermercado/SistemaSupermercado.DataAccess/obj/project.assets.json
+Backend/SistemaSupermercado/SistemaSupermercado.Common/obj/project.assets.json
+Backend/SistemaSupermercado/SistemaSupermercado.BusinessLogic/obj/project.assets.json
