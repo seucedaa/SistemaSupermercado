@@ -54,7 +54,7 @@ namespace SistemaSupermercado.API.Controllers
                 Usuar_SuperPuntos = item.Usuar_SuperPuntos,
                 Roles_Id = item.Roles_Id,
                 Perso_Id = item.Perso_Id,
-                Usuar_UsuarioCreacion = item.Usuar_UsuarioCreacion.ToString()
+                Usuar_UsuarioCreacion = item.Usuar_UsuarioCreacion
             };
 
             var list = _accesoservicios.CrearUsua(modelo);
@@ -103,11 +103,10 @@ namespace SistemaSupermercado.API.Controllers
                 Roles_Id = item.Roles_Id,
                 Usuar_Admin = item.Usuar_Admin,
                 Usuar_SuperPuntos = item.Usuar_SuperPuntos,
-                Usuar_UsuarioCreacion = item.Usuar_UsuarioCreacion.ToString(),
-                Usuar_UsuarioModificacion = item.Usuar_UsuarioModificacion.ToString()
+                Usuar_UsuarioModificacion = item.Usuar_UsuarioModificacion
             };
 
-            var list = _accesoservicios.ActualizarUsua(modelo);
+            var list = _accesoservicios.ModificarUsua(modelo);
             return Ok(list);
         }
 

@@ -78,7 +78,7 @@ namespace SistemaSupermercado.API.Controllers
                 Estad_UsuarioModificacion = item.Estad_UsuarioModificacion
             };
 
-            var list = _ServiciosGenerales.ActualizarCivil(modelo);
+            var list = _ServiciosGenerales.ModificarCivil(modelo);
             return Ok(list);
         }
 

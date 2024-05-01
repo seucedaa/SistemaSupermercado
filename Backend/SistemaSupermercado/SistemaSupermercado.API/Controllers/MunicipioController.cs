@@ -80,7 +80,7 @@ namespace SistemaSupermercado.API.Controllers
                 Munic_UsuarioModificacion = item.Munic_UsuarioModificacion
             };
 
-            var list = _ServiciosGenerales.ActualizarMuni(modelo);
+            var list = _ServiciosGenerales.ModificarMuni(modelo);
             return Ok(list);
         }
 

@@ -89,7 +89,7 @@ namespace SistemaSupermercado.API.Controllers
                 Clien_UsuarioModificacion = item.Clien_UsuarioModificacion
             };
 
-            var list = _ventaServicio.ActualizarClien(modelo);
+            var list = _ventaServicio.ModificarClien(modelo);
             return Ok(list);
         }
 

@@ -23,30 +23,30 @@ namespace SistemaSupermercado.API.Controllers
             _ventaServicio = ventaServicio;
         }
 
-        [HttpGet("List")]
-        public IActionResult List()
-        {
-            var list = _ventaServicio.ListarVeDe();
-            return Ok(list);
-        }
+        //[HttpGet("List")]
+        //public IActionResult List()
+        //{
+        //    var list = _ventaServicio.ListarVeDe();
+        //    return Ok(list);
+        //}
 
-        [HttpGet("Detalle/{id}")]
-        public IActionResult Detalle(int id)
-        {
-            var details = _ventaServicio.DetallesVeDe(id);
+        //[HttpGet("Detalle/{id}")]
+        //public IActionResult Detalle(int id)
+        //{
+        //    var details = _ventaServicio.DetallesVeDe(id);
 
-            var detail = details.First();
-            return Ok(detail);
+        //    var detail = details.First();
+        //    return Ok(detail);
 
-        }
+        //}
 
-        [HttpDelete("Eliminar/{id}")]
-        public IActionResult Eliminar(int id)
-        {
-            var result = _ventaServicio.EliminarVeDe(id);
+        //[HttpDelete("Eliminar/{id}")]
+        //public IActionResult Eliminar(int id)
+        //{
+        //    var result = _ventaServicio.EliminarVeDe(id);
 
-            return Ok(result);
+        //    return Ok(result);
 
-        }
+        //}
     }
 }

@@ -1,0 +1,15 @@
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\bin\Release\net5.0\SistemaSupermercado.DataAccess.deps.json
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\bin\Release\net5.0\SistemaSupermercado.DataAccess.dll
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\bin\Release\net5.0\ref\SistemaSupermercado.DataAccess.dll
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\bin\Release\net5.0\SistemaSupermercado.DataAccess.pdb
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\bin\Release\net5.0\SistemaSupermercado.Entities.dll
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\bin\Release\net5.0\SistemaSupermercado.Entities.pdb
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Release\net5.0\SistemaSupermercado.DataAccess.csproj.AssemblyReference.cache
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Release\net5.0\SistemaSupermercado.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Release\net5.0\SistemaSupermercado.DataAccess.AssemblyInfoInputs.cache
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Release\net5.0\SistemaSupermercado.DataAccess.AssemblyInfo.cs
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Release\net5.0\SistemaSupermercado.DataAccess.csproj.CoreCompileInputs.cache
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Release\net5.0\SistemaSupermercado.DataAccess.csproj.CopyComplete
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Release\net5.0\SistemaSupermercado.DataAccess.dll
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Release\net5.0\ref\SistemaSupermercado.DataAccess.dll
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.DataAccess\obj\Release\net5.0\SistemaSupermercado.DataAccess.pdb

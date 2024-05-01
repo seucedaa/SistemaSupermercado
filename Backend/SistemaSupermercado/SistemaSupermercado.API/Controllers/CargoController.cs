@@ -78,7 +78,7 @@ namespace SistemaSupermercado.API.Controllers
                 Cargo_UsuarioModificacion = item.Cargo_UsuarioModificacion
             };
 
-            var list = _ServiciosGenerales.ActualizarCargo(modelo);
+            var list = _ServiciosGenerales.ModificarCargo(modelo);
             return Ok(list);
         }
 

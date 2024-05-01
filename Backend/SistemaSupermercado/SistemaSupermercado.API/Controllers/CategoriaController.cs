@@ -78,7 +78,7 @@ namespace SistemaSupermercado.API.Controllers
                 Categ_UsuarioModificacion = item.Categ_UsuarioModificacion
             };
 
-            var list = _ServiciosGenerales.ActualizarCate(modelo);
+            var list = _ServiciosGenerales.ModificarCate(modelo);
             return Ok(list);
         }
 

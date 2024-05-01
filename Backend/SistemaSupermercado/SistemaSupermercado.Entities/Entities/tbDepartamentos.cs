@@ -15,9 +15,9 @@ namespace SistemaSupermercado.Entities.Entities
 
         public string Depar_Id { get; set; }
         public string Depar_Descripcion { get; set; }
-        public string Depar_UsuarioCreacion { get; set; }
+        public int Depar_UsuarioCreacion { get; set; }
         public DateTime Depar_FechaCreacion { get; set; }
-        public string Depar_UsuarioModificacion { get; set; }
+        public int? Depar_UsuarioModificacion { get; set; }
         public DateTime? Depar_FechaModificacion { get; set; }
         public bool? Depar_Estado { get; set; }
 

@@ -78,7 +78,7 @@ namespace SistemaSupermercado.Controllers
                 Depar_UsuarioModificacion = item.Depar_UsuarioModificacion
             };
 
-            var list = _ServiciosGenerales.ActualizarDepto(modelo);
+            var list = _ServiciosGenerales.ModificarDepto(modelo);
             return Ok(list);
         }
 

@@ -64,9 +64,9 @@ namespace SistemaSupermercado.Entities.Entities
         public bool Usuar_Admin { get; set; }
         public DateTime? Usuar_UltimaSesion { get; set; }
         public int? Usuar_SuperPuntos { get; set; }
-        public string Usuar_UsuarioCreacion { get; set; }
+        public int Usuar_UsuarioCreacion { get; set; }
         public DateTime Usuar_FechaCreacion { get; set; }
-        public string Usuar_UsuarioModificacion { get; set; }
+        public int? Usuar_UsuarioModificacion { get; set; }
         public DateTime? Usuar_FechaModificacion { get; set; }
         public bool? Usuar_Estado { get; set; }
 

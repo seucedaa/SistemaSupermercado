@@ -78,7 +78,7 @@ namespace SistemaSupermercado.API.Controllers
                 Impue_UsuarioModificacion = item.Impue_UsuarioModificacion
             };
 
-            var list = _ServiciosGenerales.ActualizarImpue(modelo);
+            var list = _ServiciosGenerales.ModificarImpue(modelo);
             return Ok(list);
         }
 

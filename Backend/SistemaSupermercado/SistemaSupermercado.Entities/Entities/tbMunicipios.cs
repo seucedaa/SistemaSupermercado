@@ -22,9 +22,9 @@ namespace SistemaSupermercado.Entities.Entities
         public string Depar_Id { get; set; }
         [NotMapped]
         public string Depar_Descripcion { get; set; }
-        public string Munic_UsuarioCreacion { get; set; }
+        public int Munic_UsuarioCreacion { get; set; }
         public DateTime Munic_FechaCreacion { get; set; }
-        public string Munic_UsuarioModificacion { get; set; }
+        public int? Munic_UsuarioModificacion { get; set; }
         public DateTime? Munic_FechaModificacion { get; set; }
         public bool? Munic_Estado { get; set; }
 

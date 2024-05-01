@@ -81,7 +81,7 @@ namespace SistemaSupermercado.API.Controllers
                 Produ_UsuarioModificacion = item.Produ_UsuarioModificacion
             };
 
-            var list = _superServicio.ActualizarProdu(modelo);
+            var list = _superServicio.ModificarProdu(modelo);
             return Ok(list);
         }
 

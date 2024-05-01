@@ -84,7 +84,7 @@ namespace SistemaSupermercado.API.Controllers
                 Lotes_UsuarioModificacion = item.Lotes_UsuarioModificacion
             };
 
-            var list = _superServicio.ActualizarLote(modelo);
+            var list = _superServicio.ModificarLote(modelo);
             return Ok(list);
         }
 

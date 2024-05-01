@@ -76,7 +76,7 @@ namespace SistemaSupermercado.API.Controllers
                 Promo_UsuarioModificacion = item.Promo_UsuarioModificacion
             };
 
-            var list = _superServicio.ActualizarProm(modelo);
+            var list = _superServicio.ModificarProm(modelo);
             return Ok(list);
         }
 

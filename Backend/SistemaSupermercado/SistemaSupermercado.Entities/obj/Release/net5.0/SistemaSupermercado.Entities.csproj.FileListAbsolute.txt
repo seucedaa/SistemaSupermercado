@@ -1,0 +1,12 @@
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.Entities\bin\Release\net5.0\SistemaSupermercado.Entities.deps.json
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.Entities\bin\Release\net5.0\SistemaSupermercado.Entities.dll
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.Entities\bin\Release\net5.0\ref\SistemaSupermercado.Entities.dll
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.Entities\bin\Release\net5.0\SistemaSupermercado.Entities.pdb
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.Entities\obj\Release\net5.0\SistemaSupermercado.Entities.csproj.AssemblyReference.cache
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.Entities\obj\Release\net5.0\SistemaSupermercado.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.Entities\obj\Release\net5.0\SistemaSupermercado.Entities.AssemblyInfoInputs.cache
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.Entities\obj\Release\net5.0\SistemaSupermercado.Entities.AssemblyInfo.cs
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.Entities\obj\Release\net5.0\SistemaSupermercado.Entities.csproj.CoreCompileInputs.cache
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.Entities\obj\Release\net5.0\SistemaSupermercado.Entities.dll
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.Entities\obj\Release\net5.0\ref\SistemaSupermercado.Entities.dll
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.Entities\obj\Release\net5.0\SistemaSupermercado.Entities.pdb

@@ -29,9 +29,9 @@ namespace SistemaSupermercado.Entities.Entities
         public int Prove_Id { get; set; }
         [NotMapped]
         public string Prove_Marca { get; set; }
-        public string Produ_UsuarioCreacion { get; set; }
+        public int Produ_UsuarioCreacion { get; set; }
         public DateTime Produ_FechaCreacion { get; set; }
-        public string Produ_UsuarioModificacion { get; set; }
+        public int? Produ_UsuarioModificacion { get; set; }
         public DateTime? Produ_FechaModificacion { get; set; }
         public bool? Produ_Estado { get; set; }
 

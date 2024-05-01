@@ -60,7 +60,7 @@ namespace SistemaSupermercado.API.Controllers
         [HttpGet("Detalle/{id}")]
         public IActionResult Detalle(int id)
         {
-            var details = _ServiciosGenerales.DetallesSubCate(id);
+            var details = _ServiciosGenerales.BuscarubCate(id);
 
             var detail = details.First();
             return Ok(detail);
@@ -80,7 +80,7 @@ namespace SistemaSupermercado.API.Controllers
                 Subca_UsuarioModificacion = item.Subca_UsuarioModificacion
             };
 
-            var list = _ServiciosGenerales.ActualizarSubCate(modelo);
+            var list = _ServiciosGenerales.ModificarSubCate(modelo);
             return Ok(list);
         }
 

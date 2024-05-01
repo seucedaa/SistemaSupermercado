@@ -23,9 +23,9 @@ namespace SistemaSupermercado.Entities.Entities
         public string Munic_Descripcion { get; set; }
         public string Sucur_Direccion { get; set; }
         public string Sucur_Telefono { get; set; }
-        public string Sucur_UsuarioCreacion { get; set; }
+        public int Sucur_UsuarioCreacion { get; set; }
         public DateTime Sucur_FechaCreacion { get; set; }
-        public string Sucur_UsuarioModificacion { get; set; }
+        public int? Sucur_UsuarioModificacion { get; set; }
         public DateTime? Sucur_FechaModificacion { get; set; }
         public bool? Sucur_Estado { get; set; }
 

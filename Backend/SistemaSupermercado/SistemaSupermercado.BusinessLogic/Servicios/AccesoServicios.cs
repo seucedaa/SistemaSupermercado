@@ -283,7 +283,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                         {
                             Panta_Id = pantallaId,
                             Roles_Id = roleId,
-                            Papro_UsuarioCreacion = usuarioId.ToString(),
+                            Papro_UsuarioCreacion = usuarioId,
                             Papro_FechaCreacion = fechaCreacion
                         };
                         _rolRepository.InserarPaRol(pantallaPorRol);
@@ -295,7 +295,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                     var nuevoRol = new tbRoles()
                     {
                         Roles_Descripcion = rol,
-                        Roles_UsuarioCreacion = usuarioId.ToString(),
+                        Roles_UsuarioCreacion = usuarioId,
                         Roles_FechaCreacion = fechaCreacion
                     };
 
@@ -319,7 +319,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                         {
                             Panta_Id = pantallaId,
                             Roles_Id = rolId,
-                            Papro_UsuarioCreacion = usuarioId.ToString(),
+                            Papro_UsuarioCreacion = usuarioId,
                             Papro_FechaCreacion = fechaCreacion
                         };
                         _rolRepository.InserarPaRol(pantallaPorRol);
@@ -359,7 +359,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                     {
                         Panta_Id = pantallaId,
                         Roles_Id = idrol,
-                        Papro_UsuarioCreacion = usuarioId.ToString(),
+                        Papro_UsuarioCreacion = usuarioId,
                         Papro_FechaCreacion = fechaCreacion
                     };
                     _rolRepository.InserarPaRol(pantallaPorRol);

@@ -62,7 +62,7 @@ namespace SistemaSupermercado.API.Controllers
         [HttpGet("Detalle/{id}")]
         public IActionResult Detalle(int id)
         {
-            var details = _superServicio.DetallesSucur(id);
+            var details = _superServicio.Buscarucur(id);
 
             var detail = details.First();
             return Ok(detail);
@@ -84,7 +84,7 @@ namespace SistemaSupermercado.API.Controllers
                 Sucur_UsuarioModificacion = item.Sucur_UsuarioModificacion
             };
 
-            var list = _superServicio.ActualizarSucur(modelo);
+            var list = _superServicio.ModificarSucur(modelo);
             return Ok(list);
         }
 

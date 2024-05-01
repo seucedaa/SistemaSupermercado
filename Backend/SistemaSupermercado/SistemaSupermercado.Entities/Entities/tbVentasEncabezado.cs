@@ -21,9 +21,9 @@ namespace SistemaSupermercado.Entities.Entities
         public int Usuar_Id { get; set; }
         [NotMapped]
         public string Usuar_Usuario { get; set; }
-        public string Venen_UsuarioCreacion { get; set; }
+        public int Venen_UsuarioCreacion { get; set; }
         public DateTime Venen_FechaCreacion { get; set; }
-        public string Venen_UsuarioModificacion { get; set; }
+        public int? Venen_UsuarioModificacion { get; set; }
         public DateTime? Venen_FechaModificacion { get; set; }
         public bool? Venen_Estado { get; set; }
 

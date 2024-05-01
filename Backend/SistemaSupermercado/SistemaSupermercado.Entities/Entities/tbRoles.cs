@@ -15,7 +15,7 @@ namespace SistemaSupermercado.Entities.Entities
 
         public int Roles_Id { get; set; }
         public string Roles_Descripcion { get; set; }
-        public string Roles_UsuarioCreacion { get; set; }
+        public int Roles_UsuarioCreacion { get; set; }
         public DateTime Roles_FechaCreacion { get; set; }
         public int? Roles_UsuarioModificacion { get; set; }
         public DateTime? Roles_FechaModificacion { get; set; }

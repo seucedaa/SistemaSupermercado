@@ -94,7 +94,7 @@ namespace SistemaSupermercado.API.Controllers
                 Emple_UsuarioModificacion = item.Emple_UsuarioModificacion
             };
 
-            var list = _superServicio.ActualizarEmple(modelo);
+            var list = _superServicio.ModificarEmple(modelo);
             return Ok(list);
         }
 
