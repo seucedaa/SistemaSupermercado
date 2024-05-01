@@ -15,4 +15,6 @@ export class Empleado{
     emple_Direccion!: string;
     emple_UsuarioCreacion!: string;
     emple_UsuarioModificacion!: string;
+    emple_FechaCreacion: string;
+    emple_FechaModificacion: string;
 }

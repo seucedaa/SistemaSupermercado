@@ -6,4 +6,6 @@ export class Lote{
     sucur_Id!: number;
     lotes_UsuarioCreacion!: string;
     lotes_UsuarioModificacion!: string;
+    lotes_FechaCreacion: string;
+    lotes_FechaModificacion: string;
 }

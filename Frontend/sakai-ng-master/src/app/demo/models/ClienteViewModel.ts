@@ -11,5 +11,7 @@ export class Cliente{
     munic_Id!: number;
     clien_Direccion!: string;
     clien_UsuarioCreacion!: string;
+    clien_FechaCreacion: string;
     clien_UsuarioModificacion!: string;
+    clien_FechaModificacion: string;
 }

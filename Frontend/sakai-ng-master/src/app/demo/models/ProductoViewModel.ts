@@ -9,4 +9,6 @@ export class Producto{
     prove_Id!: number;
     produ_UsuarioCreacion!: string;
     produ_UsuarioModificacion!: string;
+    produ_FechaCreacion: string;
+    produ_FechaModificacion: string;
 }
