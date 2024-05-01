@@ -1,0 +1,6 @@
+primary: #40a72e
+primary-light: #55d83e
+primar-lighter: #beffb2
+primary-dark: #2e7d20
+secondary: #d8d8d8 
+secondary-light: #ffff
