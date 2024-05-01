@@ -8,7 +8,7 @@ namespace SistemaSupermercado.DataAcceess.Repository
 {
     public class ScriptBaseDeDatos
     {
-        #region Acceso
+        #region Acceo
         #region Usuarios
         public static string Usuario_Lista = "Acce.SP_Usuario_Lista";
         public static string Usuario_Insertar = "Acce.SP_Usuario_Insertar";
@@ -21,16 +21,17 @@ namespace SistemaSupermercado.DataAcceess.Repository
         #endregion
 
         #region Roles
-        public static string Rol_Insertar = "Acces.SP_Rol_Insertar";
-        public static string Rol_Modificar = "Acces.SP_Rol_Modificar";
-        public static string Rol_Eliminar = "Acces.SP_Rol_Desactivar";
-        public static string Rol_Buscar = "Acces.SP_Rol_Buscar";
-        public static string Rol_Lista = "Acces.SP_Rol_Lista";
+        public static string Rol_Insertar = "Acce.SP_Rol_Insertar";
+        public static string Rol_Modificar = "Acce.SP_Rol_Modificar";
+        public static string Rol_Eliminar = "Acce.SP_Rol_Desactivar";
+        public static string Rol_Buscar = "Acce.SP_Rol_Buscar";
+        public static string Rol_Buscarr = "[Acce].[SP_Rol_Buscarr]";
+        public static string Rol_Lista = "Acce.SP_Rol_Lista";
 
-        public static string PantallasRoles_Insertar = "[Acces].[SP_PantallasPorRoles_Insertar]";
-        public static string PantallasRoles_Eliminar = "[Acces].[SP_PantallasPorRoles_Eliminar]";
-        public static string PantallasRoles_Lista = "[Acces].[SP_PantallasPorRoles_Lista]";
-        public static string PantallasRoles_ListaPorRol = "[Acces].[SP_PantallasPorRoles_PorRol]";
+        public static string PantallasRoles_Insertar = "[Acce].[SP_PantallaPorRol_Insertar]";
+        public static string PantallasRoles_Eliminar = "[Acce].[SP_PantallaPorRol_Desactivar]";
+        public static string PantallasRoles_Lista = "[Acce].[SP_PantallaPorRol_Lista]";
+        public static string PantallasRoles_ListaPorRol = "[Acce].[SP_PantallaPorRol_PorRol]";
         #endregion
         #endregion
 

@@ -16,7 +16,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         private readonly UsuarioRepository _usuarioRepository;
         private readonly AccesoServicios _accesoServicios;
 
-        public VentaServicio(UsuarioRepository usuarioRepository, AccesoServicios accesoServicios,ClienteRepository clienteRepository, /*VentaEncabezadoRepository ventaEncabezadoRepository, VentaDetalleRepository ventaDetalleRepository*/)
+        public VentaServicio(UsuarioRepository usuarioRepository, AccesoServicios accesoServicios,ClienteRepository clienteRepository/*, VentaEncabezadoRepository ventaEncabezadoRepository, VentaDetalleRepository ventaDetalleRepository*/)
         {
             _clienteRepository = clienteRepository;
             //_ventaEncabezadoRepository = ventaEncabezadoRepository;
