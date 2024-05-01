@@ -12,14 +12,14 @@ ng g c prueba/list-->
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>categoria</th>
+                    <th>rol</th>
                     <th>acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor ="let prub of prueba">
-                    <td>{{prub.id}}</td>
-                    <td>{{prub.name}}</td>
+                    <td>{{prub.role_Id}}</td>
+                    <td>{{prub.role_Descripcion}}</td>
                     <td>
                         <button class="btn btn-danger">Eliminar</button>
                     </td>

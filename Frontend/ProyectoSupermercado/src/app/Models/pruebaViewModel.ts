@@ -1,4 +1,4 @@
 export class Prueba{
-    id!:number;
-    name!:String;
+    role_Id!:number;
+    role_Descripcion!:String;
 }

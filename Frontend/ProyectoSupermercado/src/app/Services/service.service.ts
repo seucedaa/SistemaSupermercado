@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class ServiceService {
 
   constructor(private http:HttpClient) { }
-  Url = 'https://api.thecatapi.com/v1/categories';
+  Url = 'http://www.gestiongastos.somee.com/Api/Rol/List';
 
   getpruebas(){
     return this.http.get<Prueba[]>(this.Url);

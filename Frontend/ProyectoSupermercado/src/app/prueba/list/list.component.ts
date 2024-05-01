@@ -10,16 +10,16 @@ import { ServiceService } from 'src/app/Services/service.service';
 })
 export class ListComponent implements OnInit {
 
-  prueba!:Prueba[];
-  constructor(private service: ServiceService, private router: Router,) { }
+  prueba: Prueba[] = []; 
+
+  constructor(private service: ServiceService, private router: Router) { }
 
   ngOnInit(): void {
-    this.service.getpruebas().subscribe((data: any) => {
-      console.log(data);
-      this.prueba = data;
-    }, error =>{
+    this.service.getpruebas().subscribe((response: any) => { 
+      console.log(response); 
+      this.prueba = response; 
+    }, error => {
       console.log(error);
     });
   }
-
 }
