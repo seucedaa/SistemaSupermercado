@@ -42,7 +42,48 @@ export class CargoComponent implements OnInit {
         ];
     }
 
-    
+    openNew() {
+        this.cargo = {};
+        this.submitted = false;
+        this.productDialog = true;
+    }
+
+    hideDialog() {
+        this.productDialog = false;
+        this.submitted = false;
+    }
+
+    saveProduct() {
+        this.submitted = true;
+
+        if (this.cargo.cargo_Descripcion?.trim()) {
+            if (this.cargo.cargo_Id) {
+                // @ts-ignore
+                this.cargos[this.findIndexById(this.cargo.cargo_Id)] = this.cargo;
+                this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro actualizado.', life: 3000 });
+            } else {
+                // @ts-ignore
+                this.cargos.push(this.cargo);
+                this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro agregado.', life: 3000 });
+            }
+
+            this.cargos = [...this.cargos];
+            this.productDialog = false;
+            this.cargo = {};
+        }
+    }
+
+    findIndexById(cargo_Id: number): number {
+        let index = -1;
+        for (let i = 0; i < this.cargos.length; i++) {
+            if (this.cargos[i].cargo_Id === cargo_Id) {
+                index = i;
+                break;
+            }
+        }
+
+        return index;
+    }
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
