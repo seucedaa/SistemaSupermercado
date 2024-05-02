@@ -64,6 +64,9 @@ namespace SistemaSupermercado.Entities.Entities
         [NotMapped]
         public string Roles_Descripcion { get; set; }
         public bool Usuar_Admin { get; set; }
+        [NotMapped]
+
+        public string Administrador { get; set; }
         public DateTime? Usuar_UltimaSesion { get; set; }
         public int? Usuar_SuperPuntos { get; set; }
         public int Usuar_UsuarioCreacion { get; set; }

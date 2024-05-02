@@ -28,6 +28,9 @@ namespace SistemaSupermercado.Common.Models
         public string Roles_Descripcion { get; set; }
         [Display(Name = "Administrador")]
         public bool Usuar_Admin { get; set; }
+        [NotMapped]
+
+        public string Administrador { get; set; }
         public DateTime? Usuar_UltimaSesion { get; set; }
         [Display(Name = "Super puntos")]
         public int? Usuar_SuperPuntos { get; set; }

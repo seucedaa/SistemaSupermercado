@@ -24,9 +24,7 @@ export class LoginComponent {
 
     valCheck: string[] = ['remember'];
 
-    password!: string;
-
-    usuario: Usuario[] = [];
+    usuario: Usuario = {};
 
 
     constructor(public layoutService: LayoutService, public usuarioService: UsuarioService, public router: Router) { }
@@ -35,6 +33,8 @@ export class LoginComponent {
         this.usuarioService.Login(this.username, this.contrasena).then((response => {
             if(response.success){
                 this.router.navigate(['/'])
+            }else{
+                console.log('credenciales erroneas')
             }
         }));
     }

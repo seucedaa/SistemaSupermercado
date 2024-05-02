@@ -18,6 +18,6 @@ export class UsuarioEndPoints{
   }
 
   public Login(usuario: string, contrasena: string):string{
-    return `${this.api.baseUrl}/Usuario/Login`; 
+    return `${this.api.baseUrl}/Usuario/Login/${usuario}/${contrasena}`; 
   }
 }

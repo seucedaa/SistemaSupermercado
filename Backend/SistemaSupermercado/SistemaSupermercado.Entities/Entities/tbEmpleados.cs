@@ -18,6 +18,8 @@ namespace SistemaSupermercado.Entities.Entities
         [NotMapped]
         public string Emple_NombreCompleto { get; set; }
         public string Emple_Sexo { get; set; }
+        [NotMapped]
+        public string Sexo { get; set; }
         public int Estad_Id { get; set; }
 
         [NotMapped]

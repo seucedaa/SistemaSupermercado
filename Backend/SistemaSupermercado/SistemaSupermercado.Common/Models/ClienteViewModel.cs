@@ -23,6 +23,8 @@ namespace SistemaSupermercado.Common.Models
         [NotMapped]
         public string Clien_NombreCompleto { get; set; }
         public string Clien_Sexo { get; set; }
+        [NotMapped]
+        public string Sexo { get; set; }
         public int? Estad_Id { get; set; }
         [NotMapped]
         public string Estad_Descripcion { get; set; }
