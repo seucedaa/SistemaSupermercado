@@ -15,6 +15,8 @@ namespace SistemaSupermercado.Common.Models
         public string Emple_SegundoNombre { get; set; }
         public string Emple_PrimerApellido { get; set; }
         public string Emple_SegundoApellido { get; set; }
+        [NotMapped]
+        public string Emple_NombreCompleto { get; set; }
         public string Emple_Sexo { get; set; }
         public int Estad_Id { get; set; }
 

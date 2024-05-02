@@ -11,3 +11,4 @@ Backend/SistemaSupermercado/SistemaSupermercado.DataAccess/obj/project.assets.js
 Backend/SistemaSupermercado/SistemaSupermercado.Common/obj/project.assets.json
 Backend/SistemaSupermercado/SistemaSupermercado.BusinessLogic/obj/project.assets.json
 *.cache
+Backend/SistemaSupermercado/SistemaSupermercado.DataAccess/obj/Debug/net5.0/SistemaSupermercado.DataAccess.csproj.AssemblyReference.cache
