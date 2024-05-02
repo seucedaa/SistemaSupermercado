@@ -127,5 +127,17 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
 
         }
+
+        public IEnumerable<tbClientes> Totalclientes()
+        {
+
+            List<tbClientes> result = new List<tbClientes>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                result = db.Query<tbClientes>(ScriptBaseDeDatos.Cliente_Total, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+
+        }
     }
 }
