@@ -38,7 +38,7 @@ export class RolComponent implements OnInit {
         this.rolService.getList().then(data => this.roles = data);
 
         this.cols = [
-            { field: 'role_Descripcion', header: 'Descripcion' },
+            { field: 'roles_Descripcion', header: 'Descripcion' },
         ];
     }
 

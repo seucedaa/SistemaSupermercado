@@ -12,9 +12,8 @@ export class UsuarioService {
   public endpoint = new UsuarioEndPoints();
 
   List(){
-    return this.http.get<any>(this.endpoint.List()) 
-      .toPromise() 
-      .then(res => res.data as Usuario[])
+    return this.http.get<Usuario[]>(this.endpoint.List()) 
+      .toPromise()
       .then(data => data);
   }
 

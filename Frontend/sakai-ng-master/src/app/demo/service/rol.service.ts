@@ -8,11 +8,12 @@ import { HttpClient } from '@angular/common/http';
 export class RolService {
 
   constructor(private http:HttpClient) { }
-  Url = 'http://www.gestiongastos.somee.com/Api/Rol/List';
+  Url = 'http://www.proyectosupermercado.somee.com/Api/Rol/List';
 
   getList(){
-    return this.http.get<Rol[]>(this.Url)  // Return as an array of Rol
+    return this.http.get<any>(this.Url)  // Return as an array of Rol
       .toPromise()  // Convert Observable to Promise
+      .then(res => res.data as Rol[])
       .then(data => data);
   }
 }

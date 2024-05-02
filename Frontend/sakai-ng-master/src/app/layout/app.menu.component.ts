@@ -95,36 +95,104 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-fw pi-user',
                         items:[
                             {
-                                label: 'Rol',
-                                icon: 'pi pi-fw pi-pencil',
+                                label: 'Roles',
+                                icon: 'pi pi-fw pi-cog',
                                 routerLink: ['/pages/rol']
+                            },
+                            {
+                                label: 'Usuarios',
+                                icon: 'pi pi-fw pi-user',
+                                routerLink: ['/pages/usuario']
                             }
                         ]
                     },
                     {
                         label: 'General',
-                        icon: 'pi pi-fw pi-world',
+                        icon: 'pi pi-fw pi-globe',
                         items:[
                             {
-                            
+                                label: 'Cargos',
+                                icon: 'pi pi-fw pi-briefcase',
+                                routerLink: ['/pages/cargo']
+                            },
+                            {
+                                label: 'Categorias',
+                                icon: 'pi pi-fw pi-sitemap',
+                                routerLink: ['/pages/categoria']
+                            },
+                            {
+                                label: 'Departamentos',
+                                icon: 'pi pi-fw pi-map-marker',
+                                routerLink: ['/pages/departamento']
+                            },
+                            {
+                                label: 'Estados Civiles',
+                                icon: 'pi pi-fw pi-heart',
+                                routerLink: ['/pages/estadocivil']
+                            }
+                            ,
+                            {
+                                label: 'Impuestos',
+                                icon: 'pi pi-fw pi-money-bill',
+                                routerLink: ['/pages/impuesto']
+                            },
+                            {
+                                label: 'Municipios',
+                                icon: 'pi pi-fw pi-building',
+                                routerLink: ['/pages/municipio']
+                            }
+                            ,
+                            {
+                                label: 'Sub Categorias',
+                                icon: 'pi pi-fw pi-th-large',
+                                routerLink: ['/pages/subcategoria']
                             }
                         ]
                     },
                     {
                         label: 'Supermercado',
-                        icon: 'pi pi-fw pi-market',
+                        icon: 'pi pi-fw pi-shopping-cart',
                         items:[
                             {
-                            
+                                label: 'Empleados',
+                                icon: 'pi pi-fw pi-users',
+                                routerLink: ['/pages/empleado']
+                            },
+                            {
+                                label: 'Lotes',
+                                icon: 'pi pi-fw pi-inbox',
+                                routerLink: ['/pages/lote']
+                            },
+                            {
+                                label: 'Productos',
+                                icon: 'pi pi-fw pi-shopping-bag',
+                                routerLink: ['/pages/producto']
+                            },
+                            {
+                                label: 'Promociones',
+                                icon: 'pi pi-fw pi-percentage',
+                                routerLink: ['/pages/promocion']
+                            },
+                            {
+                                label: 'Proveedores',
+                                icon: 'pi pi-fw pi-truck',
+                                routerLink: ['/pages/proveedor']
+                            },
+                            {
+                                label: 'Sucursales',
+                                icon: 'pi pi-fw pi-home',
+                                routerLink: ['/pages/sucursal']
                             }
                         ]
                     },
                     {
                         label: 'Ventas',
-                        icon: 'pi pi-fw pi-money',
+                        icon: 'pi pi-fw pi-dollar',
                         items:[
                             {
-                            
+                                label: 'Clientes',
+                                icon: 'pi pi-fw pi-user-plus',
+                                routerLink: ['/pages/cliente']
                             }
                         ]
                     },

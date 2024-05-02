@@ -11,6 +11,8 @@ namespace SistemaSupermercado.Common.Models
     {
         public int Emple_Id { get; set; }
         public string Emple_Dni { get; set; }
+        [NotMapped]
+        public string Nombre { get; set; }
         public string Emple_PrimerNombre { get; set; }
         public string Emple_SegundoNombre { get; set; }
         public string Emple_PrimerApellido { get; set; }
