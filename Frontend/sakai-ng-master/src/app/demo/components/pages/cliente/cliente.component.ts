@@ -39,7 +39,7 @@ export class ClienteComponent implements OnInit {
 
         this.cols = [
             { field: 'clien_Dni', header: 'DNI' },
-            { field: 'nombre', header: 'Cliente' },
+            { field: 'clien_NombreCompleto', header: 'Cliente' },
             { field: 'clien_Telefono', header: 'Telefono' },
             { field: 'estad_Descripcion', header: 'Estado Civil' },
             { field: 'sexo', header: 'Sexo' },

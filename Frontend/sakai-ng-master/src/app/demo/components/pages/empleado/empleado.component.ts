@@ -39,7 +39,7 @@ export class EmpleadoComponent implements OnInit {
 
         this.cols = [
             { field: 'emple_Dni', header: 'DNI' },
-            { field: 'nombre', header: 'Empleado' },
+            { field: 'emple_NombreCompleto', header: 'Empleado' },
             { field: 'emple_Correo', header: 'Correo' },
             { field: 'emple_Telefono', header: 'Telefono' },
             { field: 'cargo_Descripcion', header: 'Cargo' },

@@ -8,14 +8,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZlRX9VL6OUG23M/U1l1z/gAAAAACAAAAAAAQZgAAAAEAACAAAAD3bsOlQmsT+P4YUCw/9k7zelOQiFwJx0bGCtdvLDspBwAAAAAOgAAAAAIAACAAAABq1ua211vI82BMoGjhGGgQYTUB4qIpuye4aCp3QdsQTCAAAAAr2y54+SXEx2vnhxyCCNAMI+wgFRuy026Huv2ViM3xEkAAAAAyB4dPKOS/aoNLvrseLclfZjxtLXIbkSrE/eHPH2Q6hIYxHIFUtnQA5TvWGaDSAE1XF1Yh7HcE+DCSEHgeqnLZ</EncryptedPassword>
     <_PublishTargetUrl>ftp://155.254.244.28/www.proyectosupermercado.somee.com</_PublishTargetUrl>
-    <History>True|2024-05-01T23:05:15.0468567Z;</History>
+    <History>True|2024-05-02T12:01:43.3041392Z;True|2024-05-02T05:55:32.9829898-06:00;True|2024-05-01T17:05:15.0468567-06:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
-      <publishTime>04/29/2024 15:43:41</publishTime>
+      <publishTime>04/29/2024 19:48:15</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>04/29/2024 19:16:30</publishTime>
+      <publishTime>04/29/2024 19:48:15</publishTime>
     </File>
     <File Include="AutoMapper.dll">
       <publishTime>01/05/2022 09:27:54</publishTime>
@@ -285,43 +285,43 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/15/2019 02:53:46</publishTime>
     </File>
     <File Include="SistemaSupermercado.API.deps.json">
-      <publishTime>05/01/2024 16:59:11</publishTime>
+      <publishTime>05/02/2024 05:58:03</publishTime>
     </File>
     <File Include="SistemaSupermercado.API.dll">
-      <publishTime>05/01/2024 16:59:05</publishTime>
+      <publishTime>05/02/2024 05:57:33</publishTime>
     </File>
     <File Include="SistemaSupermercado.API.exe">
-      <publishTime>05/01/2024 16:59:05</publishTime>
+      <publishTime>05/02/2024 05:57:33</publishTime>
     </File>
     <File Include="SistemaSupermercado.API.pdb">
-      <publishTime>05/01/2024 16:59:05</publishTime>
+      <publishTime>05/02/2024 05:57:33</publishTime>
     </File>
     <File Include="SistemaSupermercado.API.runtimeconfig.json">
-      <publishTime>05/01/2024 16:59:05</publishTime>
+      <publishTime>05/02/2024 05:51:11</publishTime>
     </File>
     <File Include="SistemaSupermercado.BusinessLogic.dll">
-      <publishTime>05/01/2024 16:59:04</publishTime>
+      <publishTime>05/02/2024 05:51:09</publishTime>
     </File>
     <File Include="SistemaSupermercado.BusinessLogic.pdb">
-      <publishTime>05/01/2024 16:59:04</publishTime>
+      <publishTime>05/02/2024 05:51:09</publishTime>
     </File>
     <File Include="SistemaSupermercado.Common.dll">
-      <publishTime>05/01/2024 16:59:02</publishTime>
+      <publishTime>05/02/2024 05:51:08</publishTime>
     </File>
     <File Include="SistemaSupermercado.Common.pdb">
-      <publishTime>05/01/2024 16:59:02</publishTime>
+      <publishTime>05/02/2024 05:51:08</publishTime>
     </File>
     <File Include="SistemaSupermercado.DataAccess.dll">
-      <publishTime>05/01/2024 16:59:04</publishTime>
+      <publishTime>05/02/2024 05:51:09</publishTime>
     </File>
     <File Include="SistemaSupermercado.DataAccess.pdb">
-      <publishTime>05/01/2024 16:59:04</publishTime>
+      <publishTime>05/02/2024 05:51:09</publishTime>
     </File>
     <File Include="SistemaSupermercado.Entities.dll">
-      <publishTime>05/01/2024 16:59:02</publishTime>
+      <publishTime>05/02/2024 05:51:08</publishTime>
     </File>
     <File Include="SistemaSupermercado.Entities.pdb">
-      <publishTime>05/01/2024 16:59:02</publishTime>
+      <publishTime>05/02/2024 05:51:08</publishTime>
     </File>
     <File Include="Swashbuckle.AspNetCore.Swagger.dll">
       <publishTime>01/11/2023 00:48:20</publishTime>
@@ -387,7 +387,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/11/2020 18:16:28</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>05/01/2024 16:59:11</publishTime>
+      <publishTime>05/02/2024 05:58:04</publishTime>
     </File>
     <File Include="zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll">
       <publishTime>11/11/2020 18:15:14</publishTime>
