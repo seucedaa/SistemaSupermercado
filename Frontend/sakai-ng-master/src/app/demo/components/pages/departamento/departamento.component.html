@@ -5,7 +5,7 @@
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="my-2">
-                        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
+                        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
                         <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger" ></button>
                     </div>
                 </ng-template>
@@ -60,6 +60,27 @@
                 </ng-template>
             </p-table>
         </div>
+
+        <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Nuevo" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <label for="depar_Id">Codigo</label>
+                        <input type="text" pInputText id="name" [(ngModel)]="departamento.depar_Id" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !departamento.depar_Id}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !departamento.depar_Id">El codigo es requerido.</small>                    </div>
+                    <div class="field col">
+                        <label for="depar_Descripcion">Departamento</label>
+                        <input type="text" pInputText id="name" [(ngModel)]="departamento.depar_Descripcion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !departamento.depar_Descripcion}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !departamento.depar_Descripcion">El departamento es requerido.</small>                       </div>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-element p-ripple p-button-raised p-button-success p-button p-component" (click)="saveProduct()"></button>
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-element p-ripple p-button-raised p-button-secondary p-button p-component" (click)="hideDialog()"></button>
+            </ng-template>
+        </p-dialog>
 
     </div>
 </div>

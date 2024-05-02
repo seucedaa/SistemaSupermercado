@@ -102,6 +102,16 @@ namespace SistemaSupermercado.DataAccess.Repository
                 return result;
             }
 
+        }public IEnumerable<tbVentasEncabezado> totalventas()
+        {
+
+            List<tbVentasEncabezado> result = new List<tbVentasEncabezado>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                result = db.Query<tbVentasEncabezado>(ScriptBaseDeDatos.Venta_totalventas, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+
         }
     }
 }

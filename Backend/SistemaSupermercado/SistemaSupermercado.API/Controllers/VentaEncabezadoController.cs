@@ -20,6 +20,12 @@ namespace SistemaSupermercado.API.Controllers
             _mapper = mapper;
             _ventaServicio = ventaServicio;
         }
+        [HttpGet("Total")]
+        public IActionResult totalventas()
+        {
+            var list = _ventaServicio.totalventas();
+            return Ok(list);
+        }
 
         //[HttpGet("List")]
         //public IActionResult List()

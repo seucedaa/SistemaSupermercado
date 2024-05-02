@@ -1,0 +1,11 @@
+line chart que muestre el dinero total de las ventas que hizo por mes, cada 6 meses mostrar.
+
+-sumar el dinero total de todas las ventas encabezado que se hizo del mes y ese es el total
+
+2. 5 categorías en la q mas compran pie chart
+3. 5 subcategorías bar chart
+4. 4 sucursales q mas venden polar área chart
+5. productos que hay por sucursal por marcar bar chart
+
+INICIO
+productos mejor vendidos

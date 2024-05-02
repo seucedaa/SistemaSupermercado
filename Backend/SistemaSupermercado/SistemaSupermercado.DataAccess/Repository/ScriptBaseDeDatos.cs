@@ -152,6 +152,7 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Cliente_Modificar = "Venta.SP_Cliente_Modificar";
         public static string Cliente_Desactivar = "Venta.SP_Cliente_Desactivar";
         public static string Cliente_Buscar = "Venta.SP_Cliente_Buscar";
+        public static string Cliente_Total = "Venta.SP_Clientes_Total";
         #endregion
 
         #region VentaEncabezado
@@ -160,6 +161,7 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string VentaEncabezado_Modificar = "Venta.SP_VentaEncabezado_Modificar";
         public static string VentaEncabezado_Desactivar = "Venta.SP_VentaEncabezado_Desactivar";
         public static string VentaEncabezado_Buscar = "Venta.SP_VentaEncabezado_Buscar";
+        public static string Venta_totalventas = "[Venta].[SP_Ventas_Total]";
         #endregion
 
         #region VentaDetalle
