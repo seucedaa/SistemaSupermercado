@@ -19,6 +19,8 @@ namespace SistemaSupermercado.Common.Models
         [Display(Name = "Contraseña")]
         public string Usuar_Contrasena { get; set; }
         public int Perso_Id { get; set; }
+        [NotMapped]
+        public string Perso_NombreCompleto { get; set; }
         public bool Perso_Tipo { get; set; }
         public int Roles_Id { get; set; }
 
