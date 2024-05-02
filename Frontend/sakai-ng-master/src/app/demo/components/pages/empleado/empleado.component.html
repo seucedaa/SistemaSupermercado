@@ -1,0 +1,94 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-toast></p-toast>
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <div class="my-2">
+                        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
+                        <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger" ></button>
+                    </div>
+                </ng-template>
+
+                <ng-template pTemplate="right">
+                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="empleados" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['emple_Dni', 'nombre', 'emple_Correo','emple_Telefono', 'cargo_Descripcion', 'estad_Descripcion','sucur_Descripcion', 'emple_Direccion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedEmpleados" selectionMode="multiple" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Administrar Empleados</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="emple_Dni">DNI <p-sortIcon field="emple_Dni"></p-sortIcon></th>
+                        <th pSortableColumn="nombre">Empleado <p-sortIcon field="nombre"></p-sortIcon></th>
+                        <th pSortableColumn="emple_Correo">Correo <p-sortIcon field="emple_Correo"></p-sortIcon></th>
+                        <th pSortableColumn="emple_Telefono">Telefono <p-sortIcon field="emple_Telefono"></p-sortIcon></th>
+                        <th pSortableColumn="cargo_Descripcion">Cargo <p-sortIcon field="cargo_Descripcion"></p-sortIcon></th>
+                        <th pSortableColumn="estad_Descripcion">Estado Civil <p-sortIcon field="estad_Descripcion"></p-sortIcon></th>
+                        <th pSortableColumn="sucur_Descripcion">Sucursal <p-sortIcon field="sucur_Descripcion"></p-sortIcon></th>
+                        <th pSortableColumn="emple_Direccion">Direccion <p-sortIcon field="nombre"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-empleado>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="empleado"></p-tableCheckbox>
+                        </td>
+                        <td style="width:14%; min-width:12rem;">
+                            <span class="p-column-title">DNI</span>
+                            {{empleado.emple_Dni}}
+                        </td>
+                        <td style="width:14%; min-width:15rem;">
+                            <span class="p-column-title">Empleado</span>
+                            {{empleado.nombre}}
+                        </td>
+                        <td style="width:14%; min-width:15rem;">
+                            <span class="p-column-title">Correo</span>
+                            {{empleado.emple_Correo}}
+                        </td>
+                        <td style="width:14%; min-width:12rem;">
+                            <span class="p-column-title">Telefono</span>
+                            {{empleado.emple_Telefono}}
+                        </td>
+                        <td style="width:14%; min-width:12rem;">
+                            <span class="p-column-title">Cargo</span>
+                            {{empleado.cargo_Descripcion}}
+                        </td>
+                        <td style="width:14%; min-width:12rem;">
+                            <span class="p-column-title">Estado Civil</span>
+                            {{empleado.estad_Descripcion}}
+                        </td>
+                        <td style="width:14%; min-width:15rem;">
+                            <span class="p-column-title">Sucursal</span>
+                            {{empleado.sucur_Descripcion}}
+                        </td>
+                        <td style="width:14%; min-width:15rem;">
+                            <span class="p-column-title">Direccion</span>
+                            {{empleado.emple_Direccion}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+    </div>
+</div>

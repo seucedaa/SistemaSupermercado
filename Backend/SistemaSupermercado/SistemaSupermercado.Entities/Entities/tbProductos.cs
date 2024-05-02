@@ -25,7 +25,7 @@ namespace SistemaSupermercado.Entities.Entities
         public string Impue_Descripcion { get; set; }
         public int Subca_Id { get; set; }
         [NotMapped]
-        public string Subca_Descipcion { get; set; }
+        public string Subca_Descripcion { get; set; }
         public int Prove_Id { get; set; }
         [NotMapped]
         public string Prove_Marca { get; set; }

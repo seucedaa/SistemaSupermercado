@@ -1,14 +1,16 @@
-
 export interface Usuario{
     usuar_Id?:number;
-    usuar_Correo?:string;
-    usuar_Usuario?:string;
-    usuar_Contrasena?:string;
-    perso_Id?:number;
-    perso_Tipo?:boolean;
     perso_NombreCompleto?:string;
+    usuar_Usuario?:String;
+    usuar_Correo?:String;
+    perso_Tipo?:boolean;
+    perso_Id?:number;
     roles_Id?:number;
     roles_Descripcion?:string;
-    usuar_Admin?:Boolean;
+    usuar_Admin?:string;
     usuar_UltimaSesion?:Date;
+    usuar_UsuarioCreacion?: number;
+    usuar_FechaCreacion?:string;
+    usuar_UsuarioModificacion?:number;
+    usuar_FechaModificacion?:string;
 }

@@ -34,6 +34,8 @@ namespace SistemaSupermercado.Entities.Entities
         public int Clien_UsuarioCreacion { get; set; }
         public DateTime Clien_FechaCreacion { get; set; }
         public int? Clien_UsuarioModificacion { get; set; }
+        [NotMapped]
+        public string Nombre { get; set; }
         public DateTime? Clien_FechaModificacion { get; set; }
         public bool? Clien_Estado { get; set; }
 
