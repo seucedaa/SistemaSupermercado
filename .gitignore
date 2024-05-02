@@ -10,3 +10,4 @@ Backend/SistemaSupermercado/SistemaSupermercado.DataAccess/obj/SistemaSupermerca
 Backend/SistemaSupermercado/SistemaSupermercado.DataAccess/obj/project.assets.json
 Backend/SistemaSupermercado/SistemaSupermercado.Common/obj/project.assets.json
 Backend/SistemaSupermercado/SistemaSupermercado.BusinessLogic/obj/project.assets.json
+*.cache
