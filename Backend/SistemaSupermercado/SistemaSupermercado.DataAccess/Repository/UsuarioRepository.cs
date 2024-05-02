@@ -153,14 +153,22 @@ namespace SistemaSupermercado.DataAccess.Repository
         }
 
 
-        public IEnumerable<tbUsuarios> List()
+        public tbUsuarios List()
         {
 
             List<tbUsuarios> result = new List<tbUsuarios>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 result = db.Query<tbUsuarios>(ScriptBaseDeDatos.Usuario_Lista, commandType: CommandType.StoredProcedure).ToList();
-                return result;
+
+                var resul = new tbUsuarios();
+
+                if(result.Count > 0)
+                {
+                    resul = result.First();
+                }
+
+                return resul;
             }
 
         }
