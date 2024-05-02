@@ -1,8 +1,8 @@
-export class Departamento{
-    depar_Id!:number;
-    depar_Descripcion!:String;
-    depar_UsuarioCreacion!: string;
-    depar_FechaCreacion: string;
-    depar_FechaModificacion: string;
-    depar_UsuarioModificacion!: string;
+export interface Departamento{
+    depar_Id?:string;
+    depar_Descripcion?:String;
+    depar_UsuarioCreacion?: number;
+    depar_FechaCreacion?:string;
+    depar_UsuarioModificacion?:number;
+    depar_FechaModificacion?:string;
 }

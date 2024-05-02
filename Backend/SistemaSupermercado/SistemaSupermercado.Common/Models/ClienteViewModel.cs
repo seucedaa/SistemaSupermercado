@@ -14,6 +14,9 @@ namespace SistemaSupermercado.Common.Models
 
         [NotMapped]
         public string Usuar_Contrasena { get; set; }
+
+        [NotMapped]
+        public string Nombre { get; set; }
         public int Clien_Id { get; set; }
         public string Clien_Dni { get; set; }
         public string Clien_PrimerNombre { get; set; }

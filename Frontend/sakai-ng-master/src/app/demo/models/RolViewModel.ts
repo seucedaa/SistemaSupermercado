@@ -1,4 +1,8 @@
 export interface Rol{
-    role_Id?:number;
-    role_Descripcion?:String;
+    roles_Id?:number;
+    roles_Descripcion?:String;
+    roles_UsuarioCreacion?: number;
+    roles_FechaCreacion?:string;
+    roles_UsuarioModificacion?:number;
+    roles_FechaModificacion?:string;
 }
