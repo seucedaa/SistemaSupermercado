@@ -13,7 +13,7 @@ namespace SistemaSupermercado.DataAccess.Repository
 {
     public class UsuarioRepository : IRepository<tbUsuarios>
     {
-        public IEnumerable<tbUsuarios> Login(string usuario, string contra)
+        public tbUsuarios Login(string usuario, string contra)
         {
 
 
@@ -22,7 +22,14 @@ namespace SistemaSupermercado.DataAccess.Repository
             {
                 var parameters = new { Usuario = usuario, Contrasena = contra };
                 result = db.Query<tbUsuarios>(ScriptBaseDeDatos.Usuario_Login, parameters, commandType: CommandType.StoredProcedure).ToList();
-                return result;
+
+                var resul = new tbUsuarios();
+
+                if (result.Count > 0)
+                {
+                    resul = result.First();
+                }
+                return resul;
             }
         }
 
@@ -153,7 +160,7 @@ namespace SistemaSupermercado.DataAccess.Repository
         }
 
 
-        public tbUsuarios List()
+        public IEnumerable<tbUsuarios> List()
         {
 
             List<tbUsuarios> result = new List<tbUsuarios>();
@@ -161,14 +168,9 @@ namespace SistemaSupermercado.DataAccess.Repository
             {
                 result = db.Query<tbUsuarios>(ScriptBaseDeDatos.Usuario_Lista, commandType: CommandType.StoredProcedure).ToList();
 
-                var resul = new tbUsuarios();
+               
 
-                if(result.Count > 0)
-                {
-                    resul = result.First();
-                }
-
-                return resul;
+                return result;
             }
 
         }
