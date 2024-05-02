@@ -33,6 +33,13 @@ namespace SistemaSupermercado.API.Controllers
             var list = _ventaServicio.ListarClien();
             return Ok(list);
         }
+        
+        [HttpGet("Total")]
+        public IActionResult Totalclientes()
+        {
+            var list = _ventaServicio.Totalclientes();
+            return Ok(list);
+        }
 
         [HttpPost("Insertar")]
         public IActionResult Insertar(ClienteViewModel item)

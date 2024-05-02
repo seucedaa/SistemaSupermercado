@@ -11,7 +11,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
     public class VentaServicio
     {
         private readonly ClienteRepository _clienteRepository;
-        //private readonly VentaEncabezadoRepository _ventaEncabezadoRepository;
+        private readonly VentaEncabezadoRepository _ventaEncabezadoRepository;
         //private readonly VentaDetalleRepository _ventaDetalleRepository;
         private readonly UsuarioRepository _usuarioRepository;
         private readonly AccesoServicios _accesoServicios;
@@ -19,7 +19,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         public VentaServicio(UsuarioRepository usuarioRepository, AccesoServicios accesoServicios,ClienteRepository clienteRepository/*, VentaEncabezadoRepository ventaEncabezadoRepository, VentaDetalleRepository ventaDetalleRepository*/)
         {
             _clienteRepository = clienteRepository;
-            //_ventaEncabezadoRepository = ventaEncabezadoRepository;
+            _ventaEncabezadoRepository = ventaEncabezadoRepository;
             //_ventaDetalleRepository = ventaDetalleRepository;
             _usuarioRepository = usuarioRepository;
             _accesoServicios = accesoServicios;
@@ -32,6 +32,21 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             try
             {
                 var lost = _clienteRepository.List();
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult Totalclientes()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _clienteRepository.Totalclientes();
 
                 return result.Ok(lost);
             }
@@ -239,6 +254,21 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         //        return result.Error(ex.Message);
         //    }
         //}
+
+        public ServiceResult totalventas()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _ventaEncabezadoRepository.totalventas();
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
 
         //public IEnumerable<tbVentasEncabezado> DetallesVeEn(int id)
         //{

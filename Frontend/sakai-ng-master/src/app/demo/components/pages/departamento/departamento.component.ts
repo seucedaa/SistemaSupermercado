@@ -43,7 +43,50 @@ export class DepartamentoComponent implements OnInit {
         ];
     }
 
+    openNew() {
+        this.departamento = {};
+        this.submitted = false;
+        this.productDialog = true;
+    }
+
+    hideDialog() {
+        this.productDialog = false;
+        this.submitted = false;
+    }
+
+    saveProduct() {
+        this.submitted = true;
+
+        if (this.departamento.depar_Descripcion?.trim()) {
+            if (this.departamento.depar_Id) {
+                // @ts-ignore
+                this.departamentos[this.findIndexById(this.departamento.depar_Id)] = this.departamento;
+                this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro actualizado.', life: 3000 });
+            } else {
+                // @ts-ignore
+                this.departamentos.push(this.departamento);
+                this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro agregado.', life: 3000 });
+            }
+
+            this.departamentos = [...this.departamentos];
+            this.productDialog = false;
+            this.departamento = {};
+        }
+    }
+
     
+
+    findIndexById(depar_Id: string): number {
+        let index = -1;
+        for (let i = 0; i < this.departamentos.length; i++) {
+            if (this.departamentos[i].depar_Id === depar_Id) {
+                index = i;
+                break;
+            }
+        }
+
+        return index;
+    }
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');

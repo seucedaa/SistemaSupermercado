@@ -42,7 +42,7 @@ export class UsuarioComponent implements OnInit {
             { field: 'usuar_Correo', header: 'Correo' },
             { field: 'perso_NombreCompleto', header: 'Persona' },
             { field: 'roles_Descripcion', header: 'Rol' },
-            { field: 'usuar_Admin', header: 'Administrador' },
+            { field: 'administrador', header: 'Administrador' },
         ];
     }
 

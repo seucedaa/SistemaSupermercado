@@ -16,7 +16,7 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="empleados" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['emple_Dni', 'nombre', 'emple_Correo','emple_Telefono', 'cargo_Descripcion', 'estad_Descripcion','sucur_Descripcion', 'emple_Direccion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedEmpleados" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="empleados" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['emple_Dni', 'emple_NombreCompleto', 'emple_Correo','emple_Telefono', 'cargo_Descripcion', 'estad_Descripcion','sucur_Descripcion', 'emple_Direccion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedEmpleados" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Administrar Empleados</h5>
@@ -32,13 +32,13 @@
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
                         <th pSortableColumn="emple_Dni">DNI <p-sortIcon field="emple_Dni"></p-sortIcon></th>
-                        <th pSortableColumn="nombre">Empleado <p-sortIcon field="nombre"></p-sortIcon></th>
+                        <th pSortableColumn="emple_NombreCompleto">Empleado <p-sortIcon field="emple_NombreCompleto"></p-sortIcon></th>
                         <th pSortableColumn="emple_Correo">Correo <p-sortIcon field="emple_Correo"></p-sortIcon></th>
                         <th pSortableColumn="emple_Telefono">Telefono <p-sortIcon field="emple_Telefono"></p-sortIcon></th>
                         <th pSortableColumn="cargo_Descripcion">Cargo <p-sortIcon field="cargo_Descripcion"></p-sortIcon></th>
                         <th pSortableColumn="estad_Descripcion">Estado Civil <p-sortIcon field="estad_Descripcion"></p-sortIcon></th>
                         <th pSortableColumn="sucur_Descripcion">Sucursal <p-sortIcon field="sucur_Descripcion"></p-sortIcon></th>
-                        <th pSortableColumn="emple_Direccion">Direccion <p-sortIcon field="nombre"></p-sortIcon></th>
+                        <th pSortableColumn="emple_Direccion">Direccion <p-sortIcon field="emple_NombreCompleto"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
@@ -53,7 +53,7 @@
                         </td>
                         <td style="width:14%; min-width:15rem;">
                             <span class="p-column-title">Empleado</span>
-                            {{empleado.nombre}}
+                            {{empleado.emple_NombreCompleto}}
                         </td>
                         <td style="width:14%; min-width:15rem;">
                             <span class="p-column-title">Correo</span>

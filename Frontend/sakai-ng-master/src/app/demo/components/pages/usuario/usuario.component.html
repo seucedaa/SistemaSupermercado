@@ -16,7 +16,7 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="usuarios" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['usuar_Usuario', 'usuar_Correo', 'perso_NombreCompleto', 'roles_Descripcion', 'usuar_Admin']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedUsuarios" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="usuarios" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['usuar_Usuario', 'usuar_Correo', 'perso_NombreCompleto', 'roles_Descripcion', 'administrador']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedUsuarios" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Administrar Usuarios</h5>
@@ -35,7 +35,7 @@
                         <th pSortableColumn="usuar_Correo">Correo <p-sortIcon field="usuar_Correo"></p-sortIcon></th>
                         <th pSortableColumn="perso_NombreCompleto">Persona <p-sortIcon field="perso_NombreCompleto"></p-sortIcon></th>
                         <th pSortableColumn="roles_Descripcion">Rol <p-sortIcon field="roles_Descripcion"></p-sortIcon></th>
-                        <th pSortableColumn="usuar_Admin">Administrador <p-sortIcon field="usuar_Admin"></p-sortIcon></th>
+                        <th pSortableColumn="administrador">Administrador <p-sortIcon field="administrador"></p-sortIcon></th>
                         
                         <th></th>
                     </tr>
@@ -63,7 +63,7 @@
                         </td>
                         <td style="width:14%; min-width:12rem;">
                             <span class="p-column-title">Administrador</span>
-                            {{usuario.usuar_Admin}}
+                            {{usuario.administrador}}
                         </td>
                         <td>
                             <div class="flex">
