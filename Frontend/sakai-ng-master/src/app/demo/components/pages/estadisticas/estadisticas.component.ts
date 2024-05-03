@@ -7,6 +7,9 @@ import { SubcategoriaService } from 'src/app/demo/service/subcategoria.service';
 import { Subcategoria } from 'src/app/demo/models/SubcategoriaViewModel';
 import { ProductoService } from 'src/app/demo/service/producto.service';
 import { Producto } from 'src/app/demo/models/ProductoViewModel';
+import { SucursalService } from 'src/app/demo/service/sucursal.service';
+import { Sucursal } from 'src/app/demo/models/SucursalViewModel';
+import * as chroma from 'chroma-js';
 
 @Component({
     templateUrl: './estadisticas.component.html'
@@ -37,8 +40,13 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     categorias: Categoria[] = [];
     subcategorias: Subcategoria[] = [];
     productos: Producto[] = [];
+    sucursales: Sucursal[] = [];
 
-    constructor(private layoutService: LayoutService,private categoriaService: CategoriaService,private subcategoriaService: SubcategoriaService,private productoService: ProductoService,) {
+    sucursalid: any;
+    inicio:any;
+    fin:any;
+
+    constructor(private layoutService: LayoutService,private sucursalService:SucursalService, private categoriaService: CategoriaService,private subcategoriaService: SubcategoriaService,private productoService: ProductoService,) {
         this.subscription = this.layoutService.configUpdate$
             .pipe(debounceTime(25))
             .subscribe((config) => {
@@ -46,24 +54,54 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
             });
     }
 
-    ngOnInit() {
-        this.initCharts();
+    formatDate(date: Date): string {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); 
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    onSucursalChange(sucur_Id: any) {
+        this.sucursalid = sucur_Id.sucur_Id;
+        console.log(this.sucursalid);
+        this.updateData();
+    }
     
-        this.categoriaService.CategoriaTotal(2, '2023-01-01', '2024-12-12').then(data => {
+    onFechaChange(type: string, event: any) {
+        if (type === 'inicio') {
+            this.inicio = event;
+        } else if (type === 'fin') {
+            this.fin = event;
+        }
+        this.updateData();
+    }
+
+    updateData() {
+        const formattedInicio = this.formatDate(this.inicio);
+        const formattedFin = this.formatDate(this.fin);
+    
+        this.categoriaService.CategoriaTotal(this.sucursalid, formattedInicio, formattedFin).then(data => {
             this.categorias = data.data;
             this.updatePieChart();
         });
     
-        this.subcategoriaService.SubcategoriaTotal(2,'2023-01-01', '2024-12-12').then(data => {
+        this.subcategoriaService.SubcategoriaTotal(this.sucursalid, formattedInicio, formattedFin).then(data => {
             this.subcategorias = data.data;
+            console.log(this, this.sucursalid, formattedInicio, formattedFin);
             this.updateBarChart();
         });
     
-        this.productoService.Existencia(2).then(data => {
+        this.productoService.Existencia(this.sucursalid).then(data => {
             this.productos = data.data;
             console.log(this.productos);
             this.updateDoughnutChart();
         });
+    }
+    ngOnInit() {
+        this.initCharts();
+        this.sucursalService.getList().then(data => this.sucursales = data);
+
+        
     }
     
     updatePieChart() {
@@ -72,7 +110,7 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
     
     if (Array.isArray(this.categorias)) {
-        const colors = this.categorias.map((_, index) => `hsl(${index * 90}, 60%, 70%)`); 
+        const colors = this.categorias.map((_, index) => `hsl(${index * 40}, 100%, 60%)`); 
 
         this.pieData = {
             labels: this.categorias.map(categoria => categoria.categoria || 'No hay'),
@@ -88,71 +126,81 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
             plugins: {
                 legend: {
                     labels: {
-                        usePointStyle: true,
+                        usePointStyle: true, 
                         color: textColor
                     }
                 }
             }
         };
+        
     } else {
         console.error('no funciona');
     }
 }
-    updateBarChart() {
-        const documentStyle = getComputedStyle(document.documentElement);
-        const textColor = documentStyle.getPropertyValue('--text-color');
-        const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-        
-        if (Array.isArray(this.subcategorias)) {
-            const colors = this.productos.map((_, index) => `hsl(${index * 90}, 60%, 70%)`); 
-            this.barData = {
-                labels: this.subcategorias.map(subcategoria => subcategoria.subcategoria),
-                datasets: [
-                    {
-                        label: 'Total Ventas',
-                        backgroundColor: colors,
-                        borderColor: colors,
-                        data: this.subcategorias.map(subcategoria => parseInt(subcategoria.totalVentas))
-                    }
-                ]
-            };
-        
-            this.barOptions = {
-                plugins: {
-                    legend: {
-                        labels: {
-                            fontColor: textColor
-                        }
+updateBarChart() {
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+  
+    if (Array.isArray(this.subcategorias)) {
+      const colors = this.subcategorias.map(() => chroma.random());
+  
+      this.barData = {
+        labels: this.subcategorias.map(subcategoria => subcategoria.subcategoria),
+        datasets: [
+          {
+            label: 'Total Ventas',
+            backgroundColor: colors,
+            borderColor: colors,
+            borderWidth: 2,
+            hoverBackgroundColor: colors, 
+            hoverBorderColor: colors, 
+            data: this.subcategorias.map(subcategoria => parseInt(subcategoria.totalVentas))
+          }
+        ]
+      };
+  
+      this.barOptions = {
+        plugins: {
+            legend: {
+                labels: {
+                    fontColor: textColor
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: textColor,
+                    font: {
+                        weight: 500
                     }
                 },
-                scales: {
-                    x: {
-                        ticks: {
-                            color: textColor,
-                            font: {
-                                weight: 500
-                            }
-                        },
-                        grid: {
-                            display: false,
-                            drawBorder: false
-                        }
-                    },
-                    y: {
-                        ticks: {
-                            color: textColor 
-                        },
-                        grid: {
-                            color: surfaceBorder,
-                            drawBorder: false
-                        }
-                    },
+                grid: {
+                    display: false,
+                    drawBorder: false
                 }
-            };
-        } else {
-            console.error('no funciona');
+            },
+            y: {
+                ticks: {
+                    color: textColor,
+                    callback: function(value, index, values) {
+                        return value;
+                    }
+                },
+                grid: {
+                    color: surfaceBorder,
+                    drawBorder: false
+                }
+            },
         }
+    };
+    
+    } else {
+      console.error('no funciona');
     }
+  }
+
     
     updateDoughnutChart() {
         const documentStyle = getComputedStyle(document.documentElement);
@@ -160,15 +208,21 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
         
         if (Array.isArray(this.productos)) {
-            const colors = this.productos.map((_, index) => `hsl(${index * 90}, 60%, 70%)`); 
-    
             this.siData = {
                 labels: this.productos.map(producto => producto.producto || 'No hay'),
                 datasets: [
                     {
                         data: this.productos.map(producto => parseInt(producto.cantidad)),
-                        backgroundColor: colors,
-                        hoverBackgroundColor: colors
+                        backgroundColor: [
+                            documentStyle.getPropertyValue('--indigo-500'),
+                            documentStyle.getPropertyValue('--purple-500'),
+                            documentStyle.getPropertyValue('--teal-500')
+                        ],
+                        hoverBackgroundColor: [
+                            documentStyle.getPropertyValue('--indigo-400'),
+                            documentStyle.getPropertyValue('--purple-400'),
+                            documentStyle.getPropertyValue('--teal-400')
+                        ]
                     }]
             };
         

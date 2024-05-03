@@ -41,7 +41,7 @@ export class CategoriaEndPoints{
     return `${this.api.baseUrl}/Categoria/List`;
   }
 
-  public CategoriaTotal(sucursal: number, inicio: string, fin: string):string{
+  public CategoriaTotal(sucursal: number, inicio: string , fin: string):string{
     return `${this.api.baseUrl}/Categoria/Total/${sucursal}/${inicio}/${fin}`; 
   }
 }
@@ -67,5 +67,17 @@ export class SubCategoriaEndPoints{
 
   public SubCategoriaTotal(sucursal: number, inicio: string, fin: string):string{
     return `${this.api.baseUrl}/SubCategoria/TotalSub/${sucursal}/${inicio}/${fin}`; 
+  }
+}
+
+export class VentaEncabezadoEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/Cliente/List`;
+  }
+
+  public Total():string{
+    return `${this.api.baseUrl}/VentaEncabezado/Total`;
   }
 }

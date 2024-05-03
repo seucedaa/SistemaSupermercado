@@ -6,6 +6,8 @@ import { Subscription, debounceTime } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { ClienteService } from 'src/app/demo/service/cliente.service';
 import { Cliente } from 'src/app/demo/models/ClienteViewModel';
+import { Cliente } from 'src/app/demo/service/ven';
+import { Cliente } from 'src/app/demo/models/VentasEncabezadoViewModel';
 
 @Component({
     templateUrl: './dashboard.component.html',
