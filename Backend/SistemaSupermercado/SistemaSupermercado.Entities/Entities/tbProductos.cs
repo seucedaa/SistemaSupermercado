@@ -23,6 +23,10 @@ namespace SistemaSupermercado.Entities.Entities
         public int Impue_Id { get; set; }
         [NotMapped]
         public string Impue_Descripcion { get; set; }
+        [NotMapped]
+        public string Producto { get; set; }
+        [NotMapped]
+        public string Cantidad { get; set; }
         public int Subca_Id { get; set; }
         [NotMapped]
         public string Subca_Descripcion { get; set; }

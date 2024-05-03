@@ -26,6 +26,14 @@ namespace SistemaSupermercado.API.Controllers
 
         }
 
+        [HttpGet("TotalSub/{sucursal}/{inicio}/{fin}")]
+        public IActionResult TotalSub(int sucursal, string inicio, string fin)
+        {
+            var estado = _ServiciosGenerales.TotalSub(sucursal, inicio, fin);
+            return Ok(estado);
+
+        }
+
         [HttpGet("List")]
         public IActionResult List()
         {

@@ -112,6 +112,16 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
+        public IEnumerable<tbProductos> Existencia(int sucursal)
+        {
+            List<tbProductos> result = new List<tbProductos>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { Sucur_Id = sucursal };
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Existencia, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
         public IEnumerable<tbProductos> List()
         {
 

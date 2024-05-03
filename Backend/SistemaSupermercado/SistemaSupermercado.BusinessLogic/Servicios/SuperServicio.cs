@@ -233,6 +233,21 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         #endregion
 
         #region Productos
+
+        public ServiceResult Existencia(int sucursal)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _productoRepository.Existencia(sucursal);
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
         public ServiceResult ListarProdu()
         {
             var result = new ServiceResult();

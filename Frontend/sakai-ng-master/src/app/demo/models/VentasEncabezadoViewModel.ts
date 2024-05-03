@@ -2,7 +2,8 @@ export class VentaEncabezado{
     venen_Id?:number;
     sucur_Id?:number;
     usuar_Id?:number;
-    totalventas?:number;
+    totalVentasMesActual?:number;
+    diferenciaVentasMesPasado?:number;
     usuarioCreacion?: string;
     usuarioModificacion?: string;
     venen_UsuarioCreacion?: number;

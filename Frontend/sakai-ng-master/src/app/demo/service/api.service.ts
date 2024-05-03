@@ -22,6 +22,7 @@ export class UsuarioEndPoints{
   }
 }
 
+
 export class CargoEndPoints{
   public api = new ApiService();
 
@@ -31,5 +32,17 @@ export class CargoEndPoints{
 
   public Insert():string{
     return `${this.api.baseUrl}/Cargo/Insertar`; 
+  }
+}
+
+export class ClienteEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/Cliente/List`;
+  }
+
+  public Total():string{
+    return `${this.api.baseUrl}/Cliente/Total`;
   }
 }

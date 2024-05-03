@@ -91,6 +91,11 @@ export class AppMenuComponent implements OnInit {
                         routerLink: ['/home/pages/crud']
                     },
                     {
+                        label: 'Estadisticas',
+                        icon: 'pi pi-fw pi-chart-line',
+                        routerLink: ['/pages/estadisticas']
+                    },
+                    {
                         label: 'Acceso',
                         icon: 'pi pi-fw pi-user',
                         items:[

@@ -23,6 +23,10 @@ namespace SistemaSupermercado.Common.Models
         public int Prove_Id { get; set; }
         [NotMapped]
         public string Prove_Marca { get; set; }
+        [NotMapped]
+        public string Producto { get; set; }
+        [NotMapped]
+        public string Cantidad { get; set; }
         public int Produ_UsuarioCreacion { get; set; }
         public DateTime Produ_FechaCreacion { get; set; }
         public int? Produ_UsuarioModificacion { get; set; }

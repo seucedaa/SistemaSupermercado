@@ -14,7 +14,8 @@ export class Cliente{
     nombre?: string;
     estad_Descripcion?: string;
     munic_Descripcion?: string;
-    totalclientes?:number;
+    totalClientesMesActual?:number;
+    diferenciaClientesMesPasado?:number;
     usuarioCreacion?: string;
     usuarioModificacion?: string;
     clien_UsuarioCreacion?: number;

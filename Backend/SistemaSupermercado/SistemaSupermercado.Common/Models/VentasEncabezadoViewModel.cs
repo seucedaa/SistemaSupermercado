@@ -17,7 +17,10 @@ namespace SistemaSupermercado.Common.Models
         [NotMapped]
         public string Usuar_Usuario { get; set; }
         [NotMapped]
-        public int Totalventas { get; set; }
+        public string TotalVentasMesActual { get; set; }
+
+        [NotMapped]
+        public string DiferenciaVentasMesPasado { get; set; }
         public int Venen_UsuarioCreacion { get; set; }
         public DateTime Venen_FechaCreacion { get; set; }
         public int? Venen_UsuarioModificacion { get; set; }
