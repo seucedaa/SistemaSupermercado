@@ -24,8 +24,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     subscription!: Subscription;
     clientes: Cliente[] = [];
+    ventas: VentaEncabezado[] = [];
 
-    constructor(private productService: ProductService,private clienteService: ClienteService, public layoutService: LayoutService) {
+    constructor(private productService: ProductService,private clienteService: ClienteService,private ventaencabezadoService: VentaEncabezadoService, public layoutService: LayoutService) {
         this.subscription = this.layoutService.configUpdate$
         .pipe(debounceTime(25))
         .subscribe((config) => {
@@ -45,6 +46,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.clienteService.getTotal().then(data => {
             this.clientes = data;
             console.log(this.clientes);
+        });
+
+        this.ventaencabezadoService.getTotal().then(data => {
+            this.ventas = data;
+            console.log(this.ventas);
         });
     }
 
