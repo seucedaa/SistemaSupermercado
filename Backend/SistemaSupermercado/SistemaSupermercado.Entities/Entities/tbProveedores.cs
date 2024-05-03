@@ -27,8 +27,6 @@ namespace SistemaSupermercado.Entities.Entities
         [NotMapped]
         public string Munic_Descripcion { get; set; }
 
-        [NotMapped]
-        public string Contacto { get; set; }
         public string Prove_Direccion { get; set; }
         public string Prove_Telefono { get; set; }
         public string Prove_Correo { get; set; }
