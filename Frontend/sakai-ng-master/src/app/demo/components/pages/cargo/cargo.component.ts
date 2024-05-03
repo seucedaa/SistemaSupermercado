@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/demo/api/product';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
-import { ProductService } from 'src/app/demo/service/product.service';
 import { CargoService } from 'src/app/demo/service/cargo.service';
 import { Cargo } from 'src/app/demo/models/CargoViewModel';
 
@@ -12,11 +10,11 @@ import { Cargo } from 'src/app/demo/models/CargoViewModel';
 })
 export class CargoComponent implements OnInit {
 
-    productDialog: boolean = false;
+    cargoDialog: boolean = false;
 
-    deleteProductDialog: boolean = false;
+    deletecargoDialog: boolean = false;
 
-    deleteProductsDialog: boolean = false;
+    deletecargosDialog: boolean = false;
 
     cargos: Cargo[] = [];
 
@@ -42,41 +40,84 @@ export class CargoComponent implements OnInit {
         ];
     }
 
-    openNew() {
+    editCargo(cargo: Cargo) {
+        this.cargo = { ...cargo };
+        this.cargoDialog = true;
+    }
+
+    deleteProduct(cargo: Cargo) {
+        this.deletecargoDialog = true;
+        this.cargo = { ...cargo };
+    }
+
+    confirmDeleteSelected() {
+        this.deletecargosDialog = false;
+        this.cargos = this.cargos.filter(val => !this.selectedCargos.includes(val));
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
+        this.selectedCargos = [];
+    }
+
+    confirmDelete() {
+        this.deletecargoDialog = false;
+        this.cargos = this.cargos.filter(val => val.cargo_Id !== this.cargo.cargo_Id);
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
         this.cargo = {};
-        this.submitted = false;
-        this.productDialog = true;
     }
-
-    hideDialog() {
-        this.productDialog = false;
-        this.submitted = false;
-    }
-
-    saveProduct() {
+    
+    saveCargo() {
         this.submitted = true;
 
         if (this.cargo.cargo_Descripcion?.trim()) {
             if (this.cargo.cargo_Id) {
+                console.log("entra if")
                 // @ts-ignore
-                this.cargos[this.findIndexById(this.cargo.cargo_Id)] = this.cargo;
-                this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro actualizado.', life: 3000 });
+                // this.cargo.inventoryStatus = this.cargo.inventoryStatus.value ? this.cargo.inventoryStatus.value : this.cargo.inventoryStatus;
+                // this.cargos[this.findIndexById(this.cargo.cargo_Id)] = this.cargo;
+                // this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'cargo Updated', life: 3000 });
+                this.cargoService.Update(this.cargo).then((response => {
+                    console.log(response)
+                    if(response.success){
+                        console.log(response.data.codeStatus)
+                            this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'El cargo fue actualizado', life: 3000 });
+                            this.cargoDialog = false;
+                            this.cargo = {};
+                            this.ngOnInit();
+                    }else{
+                        this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
+                    }
+                }));
             } else {
+                console.log("entra else")
+                // this.cargo.id = this.createId();
+                // this.cargo.code = this.createId();
+                // this.cargo.image = 'cargo-placeholder.svg';
                 // @ts-ignore
-                this.cargos.push(this.cargo);
-                this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro agregado.', life: 3000 });
-            }
+                // this.cargo.inventoryStatus = this.cargo.inventoryStatus ? this.cargo.inventoryStatus.value : 'INSTOCK';
+                
+                // this.cargos.push(this.cargo);
 
-            this.cargos = [...this.cargos];
-            this.productDialog = false;
-            this.cargo = {};
+                this.cargoService.Insert(this.cargo).then((response => {
+                    console.log(response)
+                    if(response.success){
+                        console.log(response.data.codeStatus)
+                            this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'El cargo fue creado', life: 3000 });
+                            this.cargoDialog = false;
+                            this.cargo = {};
+                            this.ngOnInit();
+                    }else{
+                        this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
+                    }
+                }));
+
+            }
         }
     }
 
-    findIndexById(cargo_Id: number): number {
+
+    findIndexById(id: number): number {
         let index = -1;
         for (let i = 0; i < this.cargos.length; i++) {
-            if (this.cargos[i].cargo_Id === cargo_Id) {
+            if (this.cargos[i].cargo_Id === id) {
                 index = i;
                 break;
             }
@@ -84,6 +125,17 @@ export class CargoComponent implements OnInit {
 
         return index;
     }
+    //open-hide modal
+    openNew() {
+        this.cargo = {};
+        this.submitted = false;
+        this.cargoDialog = true;
+    }
+    hideDialog() {
+        this.cargoDialog = false;
+        this.submitted = false;
+    }
+    //open-hide modal
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');

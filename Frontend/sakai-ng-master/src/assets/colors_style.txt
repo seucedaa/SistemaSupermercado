@@ -4,3 +4,8 @@ primar-lighter: #beffb2
 primary-dark: #2e7d20
 secondary: #d8d8d8 
 secondary-light: #ffff
+third: #F6B292
+third-dark: #f7844e
+
+danger: #e24c4c
+danger-light: #e38a8a

@@ -22,6 +22,27 @@ export class UsuarioEndPoints{
   }
 }
 
+
+export class CargoEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/Cargo/List`;
+  }
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Cargo/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Cargo/Actualizar`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Cargo/Eliminar/${id}`; 
+  }
+}
+
 export class ClienteEndPoints{
   public api = new ApiService();
 

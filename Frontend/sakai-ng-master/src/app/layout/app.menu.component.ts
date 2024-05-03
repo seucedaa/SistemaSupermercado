@@ -17,7 +17,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Home',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }
+                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/home/'] }
                 ]
             },
             // {
@@ -88,7 +88,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Crud',
                         icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/pages/crud']
+                        routerLink: ['/home/pages/crud']
                     },
                     {
                         label: 'Estadisticas',
@@ -102,12 +102,12 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'Roles',
                                 icon: 'pi pi-fw pi-cog',
-                                routerLink: ['/pages/rol']
+                                routerLink: ['/home/pages/rol']
                             },
                             {
                                 label: 'Usuarios',
                                 icon: 'pi pi-fw pi-user',
-                                routerLink: ['/pages/usuario']
+                                routerLink: ['/home/pages/usuario']
                             }
                         ]
                     },
@@ -118,39 +118,39 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'Cargos',
                                 icon: 'pi pi-fw pi-briefcase',
-                                routerLink: ['/pages/cargo']
+                                routerLink: ['/home/pages/cargo']
                             },
                             {
                                 label: 'Categorias',
                                 icon: 'pi pi-fw pi-sitemap',
-                                routerLink: ['/pages/categoria']
+                                routerLink: ['/home/pages/categoria']
                             },
                             {
                                 label: 'Departamentos',
                                 icon: 'pi pi-fw pi-map-marker',
-                                routerLink: ['/pages/departamento']
+                                routerLink: ['/home/pages/departamento']
                             },
                             {
                                 label: 'Estados Civiles',
                                 icon: 'pi pi-fw pi-heart',
-                                routerLink: ['/pages/estadocivil']
+                                routerLink: ['/home/pages/estadocivil']
                             }
                             ,
                             {
                                 label: 'Impuestos',
                                 icon: 'pi pi-fw pi-money-bill',
-                                routerLink: ['/pages/impuesto']
+                                routerLink: ['/home/pages/impuesto']
                             },
                             {
                                 label: 'Municipios',
                                 icon: 'pi pi-fw pi-building',
-                                routerLink: ['/pages/municipio']
+                                routerLink: ['/home/pages/municipio']
                             }
                             ,
                             {
                                 label: 'Sub Categorias',
                                 icon: 'pi pi-fw pi-th-large',
-                                routerLink: ['/pages/subcategoria']
+                                routerLink: ['/home/pages/subcategoria']
                             }
                         ]
                     },
@@ -161,32 +161,32 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'Empleados',
                                 icon: 'pi pi-fw pi-users',
-                                routerLink: ['/pages/empleado']
+                                routerLink: ['/home/pages/empleado']
                             },
                             {
                                 label: 'Lotes',
                                 icon: 'pi pi-fw pi-inbox',
-                                routerLink: ['/pages/lote']
+                                routerLink: ['/home/pages/lote']
                             },
                             {
                                 label: 'Productos',
                                 icon: 'pi pi-fw pi-shopping-bag',
-                                routerLink: ['/pages/producto']
+                                routerLink: ['/home/pages/producto']
                             },
                             {
                                 label: 'Promociones',
                                 icon: 'pi pi-fw pi-percentage',
-                                routerLink: ['/pages/promocion']
+                                routerLink: ['/home/pages/promocion']
                             },
                             {
                                 label: 'Proveedores',
                                 icon: 'pi pi-fw pi-truck',
-                                routerLink: ['/pages/proveedor']
+                                routerLink: ['/home/pages/proveedor']
                             },
                             {
                                 label: 'Sucursales',
                                 icon: 'pi pi-fw pi-home',
-                                routerLink: ['/pages/sucursal']
+                                routerLink: ['/home/pages/sucursal']
                             }
                         ]
                     },
@@ -197,7 +197,7 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'Clientes',
                                 icon: 'pi pi-fw pi-user-plus',
-                                routerLink: ['/pages/cliente']
+                                routerLink: ['/home/pages/cliente']
                             }
                         ]
                     },
@@ -214,7 +214,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Empty',
                         icon: 'pi pi-fw pi-circle-off',
-                        routerLink: ['/pages/empty']
+                        routerLink: ['/home/pages/empty']
                     },
                 ]
             },

@@ -60,7 +60,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                 }
                 else
                 {
-                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
+                    lost.MessageStatus = (lost.CodeStatus == 0) ? "Ese cargo ya existe" : lost.MessageStatus;
                     return result.Error(lost);
                 }
 

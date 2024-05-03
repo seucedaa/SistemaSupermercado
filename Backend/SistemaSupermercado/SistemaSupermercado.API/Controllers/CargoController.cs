@@ -40,7 +40,7 @@ namespace SistemaSupermercado.API.Controllers
             var modelo = new tbCargos()
             {
                 Cargo_Descripcion = item.Cargo_Descripcion,
-                Cargo_UsuarioCreacion = item.Cargo_UsuarioCreacion
+                Cargo_UsuarioCreacion = item.Cargo_UsuarioCreacion,
             };
 
             var list = _ServiciosGenerales.CrearCargo(modelo);
@@ -67,7 +67,7 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpPut("Actualizar/{id}")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(CargoViewModel item)
         {
             var model = _mapper.Map<tbCargos>(item);

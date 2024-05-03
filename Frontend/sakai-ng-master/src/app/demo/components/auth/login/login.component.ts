@@ -32,7 +32,7 @@ export class LoginComponent {
     login(){
         this.usuarioService.Login(this.username, this.contrasena).then((response => {
             if(response.success){
-                this.router.navigate(['/'])
+                this.router.navigate(['/home'])
             }else{
                 console.log('credenciales erroneas')
             }
