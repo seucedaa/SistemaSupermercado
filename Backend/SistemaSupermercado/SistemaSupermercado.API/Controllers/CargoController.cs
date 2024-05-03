@@ -40,7 +40,7 @@ namespace SistemaSupermercado.API.Controllers
             var modelo = new tbCargos()
             {
                 Cargo_Descripcion = item.Cargo_Descripcion,
-                Cargo_UsuarioCreacion = item.Cargo_UsuarioCreacion
+                Cargo_UsuarioCreacion = 1,
             };
 
             var list = _ServiciosGenerales.CrearCargo(modelo);
