@@ -1275,6 +1275,14 @@
   .p-inputtext.ng-dirty.ng-invalid {
     border-color: #e24c4c;
   }
+
+  .p-inputtext.ng-dirty.ng-invalid:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem #e38a8a;
+    border-color: #e24c4c;
+  }
+
   .p-inputtext.p-inputtext-sm {
     font-size: 0.875rem;
     padding: 0.65625rem 0.65625rem;

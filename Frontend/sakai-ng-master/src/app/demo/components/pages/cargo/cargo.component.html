@@ -60,7 +60,7 @@
         <p-dialog [(visible)]="cargoDialog" [style]="{width: '450px'}" header="Detalles de Cargo" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
                 <div class="field">
-                    <label for="cargo_Descripcion">Name</label>
+                    <label for="cargo_Descripcion">Nombre</label>
                     <input type="text" pInputText id="cargo_Descripcion" [(ngModel)]="cargo.cargo_Descripcion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cargo.cargo_Descripcion}"/>
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && !cargo.cargo_Descripcion">Cargo es requerido.</small>
                 </div>
