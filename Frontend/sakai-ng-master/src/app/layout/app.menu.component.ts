@@ -93,7 +93,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Estadisticas',
                         icon: 'pi pi-fw pi-chart-line',
-                        routerLink: ['/pages/estadisticas']
+                        routerLink: ['/home/pages/estadisticas']
                     },
                     {
                         label: 'Acceso',
