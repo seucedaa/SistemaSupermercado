@@ -134,6 +134,21 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         #endregion
 
         #region Categorias
+
+        public ServiceResult Total(int sucursal, string inicio, string fin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _categoriaRepository.Total(sucursal, inicio, fin);
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
         public ServiceResult ListarCate()
         {
             var result = new ServiceResult();
@@ -672,6 +687,21 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         #endregion
 
         #region SubCategorias
+
+        public ServiceResult TotalSub(int sucursal, string inicio, string fin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _subCategoriaRepository.TotalSub(sucursal, inicio, fin);
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
         public ServiceResult ListarSubCate()
         {
             var result = new ServiceResult();

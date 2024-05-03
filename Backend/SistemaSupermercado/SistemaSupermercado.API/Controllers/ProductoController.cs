@@ -25,6 +25,13 @@ namespace SistemaSupermercado.API.Controllers
 
 
         }
+        [HttpGet("Existencia/{sucursal}")]
+        public IActionResult Total(int sucursal)
+        {
+            var estado = _superServicio.Existencia(sucursal);
+            return Ok(estado);
+
+        }
 
         [HttpGet("List")]
         public IActionResult List()

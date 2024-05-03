@@ -16,7 +16,10 @@ namespace SistemaSupermercado.Entities.Entities
         public string Usuar_Contrasena { get; set; }
         public int Clien_Id { get; set; }
         [NotMapped]
-        public int Totalclientes { get; set; }
+        public string TotalClientesMesActual { get; set; }
+
+        [NotMapped]
+        public string DiferenciaClientesMesPasado { get; set; }
         public string Clien_Dni { get; set; }
         public string Clien_PrimerNombre { get; set; }
         public string Clien_SegundoNombre { get; set; }
@@ -34,6 +37,7 @@ namespace SistemaSupermercado.Entities.Entities
         public string Munic_Id { get; set; }
         [NotMapped]
         public string Munic_Descripcion { get; set; }
+        
         public string Clien_Direccion { get; set; }
         public int Clien_UsuarioCreacion { get; set; }
         public DateTime Clien_FechaCreacion { get; set; }

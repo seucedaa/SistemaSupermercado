@@ -19,7 +19,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         public VentaServicio(UsuarioRepository usuarioRepository, AccesoServicios accesoServicios,ClienteRepository clienteRepository/*, VentaEncabezadoRepository ventaEncabezadoRepository, VentaDetalleRepository ventaDetalleRepository*/)
         {
             _clienteRepository = clienteRepository;
-            _ventaEncabezadoRepository = ventaEncabezadoRepository;
+           // _ventaEncabezadoRepository = ventaEncabezadoRepository;
             //_ventaDetalleRepository = ventaDetalleRepository;
             _usuarioRepository = usuarioRepository;
             _accesoServicios = accesoServicios;

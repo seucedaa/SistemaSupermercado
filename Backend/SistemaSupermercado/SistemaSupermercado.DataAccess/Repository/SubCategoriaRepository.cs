@@ -102,6 +102,17 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
+        public IEnumerable<tbSubcategorias> TotalSub(int sucursal, string inicio, string fin)
+        {
+            List<tbSubcategorias> result = new List<tbSubcategorias>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { Sucur_Id = sucursal, FechaInicio = inicio, FechaFin = fin };
+                result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.Subcategoria_Total, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
         public IEnumerable<tbSubcategorias> List()
         {
 

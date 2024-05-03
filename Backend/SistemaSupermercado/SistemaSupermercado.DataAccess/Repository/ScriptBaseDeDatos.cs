@@ -50,6 +50,7 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Categoria_Modificar = "Gral.SP_Categoria_Modificar";
         public static string Categoria_Eliminar = "Gral.SP_Categoria_Eliminar";
         public static string Categoria_Buscar = "Gral.SP_Categoria_Buscar";
+        public static string Categoria_Total = "Venta.SP_Categoria_Total";
         #endregion
 
         #region Subcategoria
@@ -59,6 +60,7 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Subcategoria_Eliminar = "Gral.SP_Subcategoria_Eliminar";
         public static string Subcategoria_Buscar = "Gral.SP_Subcategoria_Buscar";
         public static string Subcategoria_DropDownList = "Gral.SP_Subcategoria_DropDownList";
+        public static string Subcategoria_Total = "Venta.SP_Subcategoria_Total";
         #endregion
 
         #region Departamento
@@ -118,6 +120,7 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Producto_Modificar = "Supr.SP_Producto_Modificar";
         public static string Producto_Desactivar = "Supr.SP_Producto_Desactivar";
         public static string Producto_Buscar = "Supr.SP_Producto_Buscar";
+        public static string Producto_Existencia = "Supr.SP_Productos_Existencia";
         #endregion
 
         #region Promocion
@@ -152,7 +155,7 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Cliente_Modificar = "Venta.SP_Cliente_Modificar";
         public static string Cliente_Desactivar = "Venta.SP_Cliente_Desactivar";
         public static string Cliente_Buscar = "Venta.SP_Cliente_Buscar";
-        public static string Cliente_Total = "Venta.SP_Clientes_Total";
+        public static string Cliente_Total = "[Venta].[SP_Cliente_Total]";
         #endregion
 
         #region VentaEncabezado

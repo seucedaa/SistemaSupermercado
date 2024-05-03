@@ -4,6 +4,8 @@ import { Product } from '../../api/product';
 import { ProductService } from '../../service/product.service';
 import { Subscription, debounceTime } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { ClienteService } from 'src/app/demo/service/cliente.service';
+import { Cliente } from 'src/app/demo/models/ClienteViewModel';
 
 @Component({
     templateUrl: './dashboard.component.html',
@@ -19,8 +21,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     chartOptions: any;
 
     subscription!: Subscription;
+    clientes: Cliente[] = [];
+    cliente: Cliente = {};
 
-    constructor(private productService: ProductService, public layoutService: LayoutService) {
+    constructor(private productService: ProductService,private clienteService: ClienteService, public layoutService: LayoutService) {
         this.subscription = this.layoutService.configUpdate$
         .pipe(debounceTime(25))
         .subscribe((config) => {
@@ -36,6 +40,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
             { label: 'Add New', icon: 'pi pi-fw pi-plus' },
             { label: 'Remove', icon: 'pi pi-fw pi-minus' }
         ];
+
+        this.clienteService.getList().then(data => this.clientes = data);
+
     }
 
     initChart() {

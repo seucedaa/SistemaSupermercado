@@ -21,3 +21,15 @@ export class UsuarioEndPoints{
     return `${this.api.baseUrl}/Usuario/Login/${usuario}/${contrasena}`; 
   }
 }
+
+export class ClienteEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/Cliente/List`;
+  }
+
+  public Total():string{
+    return `${this.api.baseUrl}/Cliente/Total`;
+  }
+}

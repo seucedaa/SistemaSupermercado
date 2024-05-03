@@ -3,6 +3,8 @@ export class Subcategoria{
     subca_Descripcion?:String;
     categ_Id?: string;
     categ_Descripcion?: string;
+    subcategoria?:string;
+    totalVentas?:number;
     usuarioCreacion?: string;
     usuarioModificacion?: string;
     subca_UsuarioCreacion?: number;
