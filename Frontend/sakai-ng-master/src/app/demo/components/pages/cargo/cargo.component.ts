@@ -67,7 +67,6 @@ export class CargoComponent implements OnInit {
                             this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'El cargo fue creado exitosamente', life: 3000 });
                             this.cargoDialog = false;
                             this.cargo = {};
-                            this.ngOnInit();
                     }else{
                         this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
                     }
