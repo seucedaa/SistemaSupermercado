@@ -40,6 +40,30 @@ export class CargoComponent implements OnInit {
         ];
     }
 
+    editCargo(cargo: Cargo) {
+        this.cargo = { ...cargo };
+        this.cargoDialog = true;
+    }
+
+    deleteProduct(cargo: Cargo) {
+        this.deletecargoDialog = true;
+        this.cargo = { ...cargo };
+    }
+
+    confirmDeleteSelected() {
+        this.deletecargosDialog = false;
+        this.cargos = this.cargos.filter(val => !this.selectedCargos.includes(val));
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
+        this.selectedCargos = [];
+    }
+
+    confirmDelete() {
+        this.deletecargoDialog = false;
+        this.cargos = this.cargos.filter(val => val.cargo_Id !== this.cargo.cargo_Id);
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+        this.cargo = {};
+    }
+    
     saveCargo() {
         this.submitted = true;
 
@@ -50,6 +74,18 @@ export class CargoComponent implements OnInit {
                 // this.cargo.inventoryStatus = this.cargo.inventoryStatus.value ? this.cargo.inventoryStatus.value : this.cargo.inventoryStatus;
                 // this.cargos[this.findIndexById(this.cargo.cargo_Id)] = this.cargo;
                 // this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'cargo Updated', life: 3000 });
+                this.cargoService.Update(this.cargo).then((response => {
+                    console.log(response)
+                    if(response.success){
+                        console.log(response.data.codeStatus)
+                            this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'El cargo fue actualizado', life: 3000 });
+                            this.cargoDialog = false;
+                            this.cargo = {};
+                            this.ngOnInit();
+                    }else{
+                        this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
+                    }
+                }));
             } else {
                 console.log("entra else")
                 // this.cargo.id = this.createId();
@@ -64,9 +100,10 @@ export class CargoComponent implements OnInit {
                     console.log(response)
                     if(response.success){
                         console.log(response.data.codeStatus)
-                            this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'El cargo fue creado exitosamente', life: 3000 });
+                            this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'El cargo fue creado', life: 3000 });
                             this.cargoDialog = false;
                             this.cargo = {};
+                            this.ngOnInit();
                     }else{
                         this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
                     }

@@ -23,4 +23,14 @@ export class CargoService {
     return this.http.post<any>(this.endpoint.Insert(), model) 
       .toPromise()  
   }
+
+  Update(model: Cargo){
+    return this.http.put<any>(this.endpoint.Update(), model) 
+      .toPromise()  
+  }
+
+  Delete(id: number){
+    return this.http.delete<any>(this.endpoint.Delete(id.toString())) 
+      .toPromise()  
+  }
 }

@@ -33,6 +33,14 @@ export class CargoEndPoints{
   public Insert():string{
     return `${this.api.baseUrl}/Cargo/Insertar`; 
   }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Cargo/Actualizar`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Cargo/Eliminar/${id}`; 
+  }
 }
 
 export class ClienteEndPoints{
