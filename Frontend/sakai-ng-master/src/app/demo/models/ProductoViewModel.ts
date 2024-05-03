@@ -7,6 +7,8 @@ export class Producto{
     impue_Id?: number;
     subca_Id?: number;
     prove_Id?: number;
+    cantidad?: string;
+    producto?: string;
     subca_Descripcion?: string;
     prove_Marca?: string;
     impue_Descripcion?: string;

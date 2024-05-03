@@ -22,7 +22,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     subscription!: Subscription;
     clientes: Cliente[] = [];
-    cliente: Cliente = {};
 
     constructor(private productService: ProductService,private clienteService: ClienteService, public layoutService: LayoutService) {
         this.subscription = this.layoutService.configUpdate$
@@ -41,8 +40,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
             { label: 'Remove', icon: 'pi pi-fw pi-minus' }
         ];
 
-        this.clienteService.getList().then(data => this.clientes = data);
-
+        this.clienteService.getTotal().then(data => {
+            this.clientes = data;
+            console.log(this.clientes);
+        });
     }
 
     initChart() {

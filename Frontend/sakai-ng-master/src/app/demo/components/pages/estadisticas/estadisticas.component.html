@@ -6,29 +6,25 @@
         </div>
 
         <div class="card flex flex-column align-items-center">
-            <h5 class="text-left w-full">Pie Chart</h5>
+            <h5 class="text-left w-full">Categorias mas vendidas</h5>
             <p-chart type="pie" [data]="pieData" [options]="pieOptions"></p-chart>
         </div>
 
-        <div class="card flex flex-column align-items-center">
-            <h5 class="text-left w-full">Polar Area Chart</h5>
-            <p-chart type="polarArea" [data]="polarData" [options]="polarOptions"></p-chart>
-        </div>
     </div>
     <div class="col-12 lg:col-6">
         <div class="card">
-            <h5>Bar Chart</h5>
+            <h5>Sub-Categorias mas vendidas</h5>
             <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
         </div>
 
         <div class="card flex flex-column align-items-center">
-            <h5 class="text-left w-full">Doughnut Chart</h5>
-            <p-chart type="doughnut" [data]="pieData" [options]="pieOptions"></p-chart>
+            <h5 class="text-left w-full">Cantidad de existencia de productos</h5>
+            <p-chart type="doughnut" [data]="siData" [options]="pieOptions"></p-chart>
         </div>
 
-        <div class="card flex flex-column align-items-center">
+        <!-- <div class="card flex flex-column align-items-center">
             <h5 class="text-left w-full">Radar Chart</h5>
             <p-chart type="radar" [data]="radarData" [options]="radarOptions"></p-chart>
-        </div>
+        </div> -->
     </div>
 </div>

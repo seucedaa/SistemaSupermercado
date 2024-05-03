@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Categoria } from '../models/CategoriaViewModel';
 import { HttpClient } from '@angular/common/http';
+import { CategoriaEndPoints } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +9,16 @@ import { HttpClient } from '@angular/common/http';
 export class CategoriaService {
 
   constructor(private http:HttpClient) { }
-  Url = 'http://www.proyectosupermercado.somee.com/Api/Categoria/List';
-
+  public endpoint = new CategoriaEndPoints();
   getList(){
-    return this.http.get<any>(this.Url)  // Return as an array of Rol
-      .toPromise()  // Convert Observable to Promise
-      .then(res => res.data as Categoria[])
-      .then(data => data);
+    return this.http.get<any>(this.endpoint.List()) 
+    .toPromise()  
+    .then(res => res.data as Categoria[])
+    .then(data => data);
+  }
+
+  CategoriaTotal(sucursal: number, inicio: string, fin: string){
+    return this.http.get<any>(this.endpoint.CategoriaTotal(sucursal, inicio,fin))
+        .toPromise()
   }
 }

@@ -33,3 +33,39 @@ export class ClienteEndPoints{
     return `${this.api.baseUrl}/Cliente/Total`;
   }
 }
+
+export class CategoriaEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/Categoria/List`;
+  }
+
+  public CategoriaTotal(sucursal: number, inicio: string, fin: string):string{
+    return `${this.api.baseUrl}/Categoria/Total/${sucursal}/${inicio}/${fin}`; 
+  }
+}
+
+export class ProductoEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/Producto/List`;
+  }
+
+  public Existencia(sucursal: number):string{
+    return `${this.api.baseUrl}/Producto/Existencia/${sucursal}`; 
+  }
+}
+
+export class SubCategoriaEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/SubCategoria/List`;
+  }
+
+  public SubCategoriaTotal(sucursal: number, inicio: string, fin: string):string{
+    return `${this.api.baseUrl}/SubCategoria/TotalSub/${sucursal}/${inicio}/${fin}`; 
+  }
+}
