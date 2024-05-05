@@ -5,7 +5,7 @@
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="my-2">
-                        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
+                        <button routerLink="insertar" pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
                         <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger" ></button>
                     </div>
                 </ng-template>
@@ -44,7 +44,7 @@
                 <ng-template pTemplate="body" let-cliente>
                     <tr>
                         <td>
-                            <p-tableCheckbox [value]="cliente"></p-tableCheckbox>
+                            <p-tableCheckbox [value]="cliente.clien_Id"></p-tableCheckbox>
                         </td>
                         <td style="width:14%; min-width:15rem;">
                             <span class="p-column-title">DNI</span>
@@ -76,8 +76,9 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                                <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-success mr-2" (click)="editCliente(cliente)"> Editar</button>
+                                <button pButton pRipple icon="pi pi-ellipsis-h"  class="p-element p-ripple p-button-rounded p-button-info p-button p-component" (click)="detalleCliente(cliente)"> Detalles</button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"(click)="deleteCliente(cliente)"> Eliminar</button>
                             </div>
                         </td>
                     </tr>
@@ -85,5 +86,30 @@
             </p-table>
         </div>
 
+        <p-dialog [(visible)]="clienteDialog" [style]="{width: '450px'}" header="Detalles de Cliente" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                <div class="field">
+                    <label for="categ_Descripcion">Cliente</label>
+                    <input type="text" pInputText id="categ_Descripcion" [(ngModel)]="cliente.categ_Descripcion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.categ_Descripcion}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.categ_Descripcion">Cliente es requerido.</small>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveCliente()"></button>
+            </ng-template>
+        </p-dialog>
+        
+        <p-dialog [(visible)]="deleteclienteDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="cliente">¿Estas seguro que deseas eliminar <b>{{cliente.categ_Descripcion}}</b>?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteclienteDialog = false" ></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
     </div>
 </div>

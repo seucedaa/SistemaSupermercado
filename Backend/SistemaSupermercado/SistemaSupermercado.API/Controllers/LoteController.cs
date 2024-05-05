@@ -73,7 +73,6 @@ namespace SistemaSupermercado.API.Controllers
         [HttpPut("Actualizar/{id}")]
         public IActionResult Actualizar(LoteViewModel item)
         {
-            var model = _mapper.Map<tbLotes>(item);
             var modelo = new tbLotes()
             {
                 Lotes_Id = item.Lotes_Id,

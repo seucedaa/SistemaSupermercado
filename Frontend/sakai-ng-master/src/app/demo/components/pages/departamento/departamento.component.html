@@ -52,8 +52,9 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                                <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-success mr-2" (click)="editDepartamento(departamento)"> Editar</button>
+                                <button pButton pRipple icon="pi pi-ellipsis-h"  class="p-element p-ripple p-button-rounded p-button-info p-button p-component" (click)="detalleDepartamento(departamento)"> Detalles</button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"(click)="deleteDepartamento(departamento)"> Eliminar</button>
                             </div>
                         </td>
                     </tr>
@@ -61,26 +62,37 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Nuevo" [modal]="true" class="p-fluid">
-            <ng-template pTemplate="content">
-
-                <div class="formgrid grid">
-                    <div class="field col">
-                        <label for="depar_Id">Codigo</label>
-                        <input type="text" pInputText id="name" [(ngModel)]="departamento.depar_Id" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !departamento.depar_Id}"/>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !departamento.depar_Id">El codigo es requerido.</small>                    </div>
-                    <div class="field col">
-                        <label for="depar_Descripcion">Departamento</label>
-                        <input type="text" pInputText id="name" [(ngModel)]="departamento.depar_Descripcion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !departamento.depar_Descripcion}"/>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !departamento.depar_Descripcion">El departamento es requerido.</small>                       </div>
-                </div>
+        <p-dialog [(visible)]="departamentoDialog" [style]="{width: '450px'}" header="Detalles de Departamento" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content" class="col-12">
+                    <div class="p-formgrid grid">
+                        <div class="field col-6" *ngIf="nuevodept">
+                            <label for="depar_Id">Codigo</label>
+                            <input type="text" pInputText id="depar_Id" [(ngModel)]="departamento.depar_Id" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted &&!departamento.depar_Id}" readonly/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted &&!departamento.depar_Id">El codigo es requerido.</small>
+                        </div>
+                        <div [ngClass]="{'field col-6': nuevodept, 'field col-12':!nuevodept}">
+                            <label for="depar_Descripcion">Departamento</label>
+                            <input type="text" pInputText id="depar_Descripcion" [(ngModel)]="departamento.depar_Descripcion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !departamento.depar_Descripcion}"/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !departamento.depar_Descripcion">Departamento es requerida.</small>
+                        </div>
+                    </div>
             </ng-template>
 
             <ng-template pTemplate="footer">
-                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-element p-ripple p-button-raised p-button-success p-button p-component" (click)="saveProduct()"></button>
-                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-element p-ripple p-button-raised p-button-secondary p-button p-component" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveDepartamento()"></button>
             </ng-template>
         </p-dialog>
-
+        
+        <p-dialog [(visible)]="deletedepartamentoDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="departamento">¿Estas seguro que deseas eliminar <b>{{departamento.depar_Descripcion}}</b>?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deletecategoriaDialog = false" ></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
     </div>
 </div>

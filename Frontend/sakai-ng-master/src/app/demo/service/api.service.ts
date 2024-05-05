@@ -53,6 +53,22 @@ export class ClienteEndPoints{
   public Total():string{
     return `${this.api.baseUrl}/Cliente/Total`;
   }
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Cliente/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Cliente/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Cliente/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Cliente/Eliminar/${id}`; 
+  }
 }
 
 export class CategoriaEndPoints{
@@ -64,6 +80,166 @@ export class CategoriaEndPoints{
 
   public CategoriaTotal(sucursal: number, inicio: string , fin: string):string{
     return `${this.api.baseUrl}/Categoria/Total/${sucursal}/${inicio}/${fin}`; 
+  }
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Categoria/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Categoria/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Categoria/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Categoria/Eliminar/${id}`; 
+  }
+}
+
+export class DepartamentoEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/Departamento/List`;
+  }
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Departamento/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Departamento/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Departamento/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Departamento/Eliminar/${id}`; 
+  }
+}
+
+export class EmpleadoEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/Empleado/List`;
+  }
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Empleado/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Empleado/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Empleado/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Empleado/Eliminar/${id}`; 
+  }
+}
+
+export class EstadoCivilEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/EstadoCivil/List`;
+  }
+
+  public Insert():string{
+    return `${this.api.baseUrl}/EstadoCivil/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/EstadoCivil/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/EstadoCivil/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/EstadoCivil/Eliminar/${id}`; 
+  }
+}
+
+export class ImpuestoEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/Impuesto/List`;
+  }
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Impuesto/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Impuesto/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Impuesto/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Impuesto/Eliminar/${id}`; 
+  }
+}
+
+export class LoteEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/Lote/List`;
+  }
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Lote/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Lote/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Lote/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Lote/Eliminar/${id}`; 
+  }
+}
+
+export class MunicipioEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/Municipio/List`;
+  }
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Municipio/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Municipio/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Municipio/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Municipio/Eliminar/${id}`; 
   }
 }
 

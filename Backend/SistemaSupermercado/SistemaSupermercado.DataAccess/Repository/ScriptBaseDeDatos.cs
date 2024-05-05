@@ -47,7 +47,7 @@ namespace SistemaSupermercado.DataAcceess.Repository
         #region Categoria
         public static string Categoria_Lista = "Gral.SP_Categoria_Lista";
         public static string Categoria_Insertar = "Gral.SP_Categoria_Insertar";
-        public static string Categoria_Modificar = "Gral.SP_Categoria_Modificar";
+        public static string Categoria_Modificar = "[Gral].[SP_Categoria_Modificar]";
         public static string Categoria_Eliminar = "Gral.SP_Categoria_Eliminar";
         public static string Categoria_Buscar = "Gral.SP_Categoria_Buscar";
         public static string Categoria_Total = "Venta.SP_Categoria_Total";

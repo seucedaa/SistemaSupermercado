@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/demo/api/product';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
-import { ProductService } from 'src/app/demo/service/product.service';
 import { DepartamentoService } from 'src/app/demo/service/departamento.service';
 import { Departamento } from 'src/app/demo/models/DepartamentoViewModel';
+import { Router } from '@angular/router';
+
 
 @Component({
     templateUrl: './departamento.component.html',
@@ -12,11 +12,11 @@ import { Departamento } from 'src/app/demo/models/DepartamentoViewModel';
 })
 export class DepartamentoComponent implements OnInit {
 
-    productDialog: boolean = false;
+    departamentoDialog: boolean = false;
 
-    deleteProductDialog: boolean = false;
+    deletedepartamentoDialog: boolean = false;
 
-    deleteProductsDialog: boolean = false;
+    deletedepartamentosDialog: boolean = false;
 
     departamentos: Departamento[] = [];
 
@@ -32,60 +32,133 @@ export class DepartamentoComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private departamentoService: DepartamentoService, private messageService: MessageService) { }
+    nuevodept: boolean = true; 
+
+
+    constructor(private router: Router,private departamentoService: DepartamentoService, private messageService: MessageService) { }
 
     ngOnInit() {
         this.departamentoService.getList().then(data => this.departamentos = data);
 
         this.cols = [
-            { field: 'depar_Id', header: 'Codigo' },
-            { field: 'depar_Descripcion', header: 'Departamento' },
+            { field: 'depar_Id', header: 'Coodigo' },
+            { field: 'depar_Descripcion', header: 'Descripcion' },
         ];
+    }
+
+    editDepartamento(departamento: Departamento) {
+        this.departamento = { ...departamento };
+        this.departamentoDialog = true;
+        this.nuevodept = false;
+    }
+
+    detalleDepartamento(departamento: Departamento) {
+        console.log(departamento.depar_Id);
+        this.router.navigate(['/detalle', departamento.depar_Id.toString()]);
+    }
+    
+
+    deleteDepartamento(departamento: Departamento) {
+        this.deletedepartamentoDialog = true;
+        this.departamento = { ...departamento };
+    }
+
+    confirmDeleteSelected() {
+        this.deletedepartamentosDialog = false;
+        this.departamentos = this.departamentos.filter(val => !this.selectedDepartamentos.includes(val));
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Departamentos eliminados.', life: 3000 });
+        this.selectedDepartamentos = [];
+    }
+
+    confirmDelete() {
+        this.deletedepartamentoDialog = false;
+    
+        this.departamentoService.Delete(this.departamento.depar_Id).then((response) => {
+            if(response.success){
+                this.departamentos = this.departamentos.filter(val => val.depar_Id!== this.departamento.depar_Id);
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Departamento eliminada.', life: 3000 });
+            this.departamento = {};
+            } else{
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El departamento esta siendo utilizado.', life: 3000 });
+            }
+            
+        }).catch(error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar el departamento.', life: 3000 });
+        });
+    }
+    
+    detalles(){
+        this.departamentoService.Details(this.departamento.depar_Id).then(() => {
+        }).catch(error => {
+        });
     }
 
     openNew() {
         this.departamento = {};
         this.submitted = false;
-        this.productDialog = true;
+        this.departamentoDialog = true;
+        this.nuevodept = true;
     }
-
-    hideDialog() {
-        this.productDialog = false;
-        this.submitted = false;
-    }
-
-    saveProduct() {
+    
+    saveDepartamento() {
         this.submitted = true;
+        this.departamento.depar_UsuarioCreacion = 1;
+        this.departamento.depar_UsuarioModificacion = 1;
 
-        if (this.departamento.depar_Descripcion?.trim()) {
-            if (this.departamento.depar_Id) {
+        if (this.departamento.depar_Id?.trim() && this.departamento.depar_Descripcion?.trim()) {
+            if (this.nuevodept == false) {
+                console.log("entra editar")
+                console.log(this.departamento);
                 // @ts-ignore
-                this.departamentos[this.findIndexById(this.departamento.depar_Id)] = this.departamento;
-                this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro actualizado.', life: 3000 });
+                this.departamentoService.Update(this.departamento).then((response => {
+                    console.log(response)
+                    if(response.success){
+                        console.log(response.data.codeStatus)
+                            this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Departamento actualizado.', life: 3000 });
+                            this.departamentoDialog = false;
+                            this.departamento = {};
+                            this.ngOnInit();
+                    }else{
+                        this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
+                    }
+                }));
             } else {
-                // @ts-ignore
-                this.departamentos.push(this.departamento);
-                this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Registro agregado.', life: 3000 });
-            }
+                console.log("entra insertar")
+                console.log(this.departamento);
 
-            this.departamentos = [...this.departamentos];
-            this.productDialog = false;
-            this.departamento = {};
+                this.departamentoService.Insert(this.departamento).then((response => {
+                    console.log(response)
+                    if(response.success){
+                        console.log(response.data.codeStatus)
+                            this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Departamento creado', life: 3000 });
+                            this.departamentoDialog = false;
+                            this.departamento = {};
+                            this.ngOnInit();
+                    }else{
+                        this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
+                    }
+                }));
+
+            }
         }
     }
 
-    
 
-    findIndexById(depar_Id: string): number {
+    findIndexById(id: string): number {
         let index = -1;
         for (let i = 0; i < this.departamentos.length; i++) {
-            if (this.departamentos[i].depar_Id === depar_Id) {
+            if (this.departamentos[i].depar_Id === id) {
                 index = i;
                 break;
             }
         }
 
         return index;
+    }
+    
+    hideDialog() {
+        this.departamentoDialog = false;
+        this.submitted = false;
     }
 
     onGlobalFilter(table: Table, event: Event) {

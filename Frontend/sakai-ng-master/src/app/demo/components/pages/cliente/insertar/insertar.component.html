@@ -1,0 +1,93 @@
+<div class="grid">
+	<div class="col-12 md:col-12">
+        <div class="card p-fluid">
+			<h5>Nuevo cliente</h5>
+            <form>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label for="clien_Identidad">Identidad</label>
+                        <input type="text" pInputText id="clien_Identidad" [(ngModel)]="cliente.clien_Dni" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Dni}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.clien_Dni">La identidad es requerida.</small>
+                    </div>
+                    <div class="field col">
+                        <label for="clien_Identidad">Telefono</label>
+                        <input type="text" pInputText id="clien_Identidad" [(ngModel)]="cliente.clien_Dni" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Dni}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.clien_Dni">La identidad es requerida.</small>
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label for="clien_Identidad">Primer nombre</label>
+                        <input type="text" pInputText id="clien_Identidad" [(ngModel)]="cliente.clien_Dni" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Dni}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.clien_Dni">La identidad es requerida.</small>
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="email2">Segundo nombre:</label>
+                        <input type="text" pInputText id="clien_Identidad" [(ngModel)]="cliente.clien_Dni" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Dni}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.clien_Dni">La identidad es requerida.</small>				
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="name2">Primer apellido</label>
+                        <input type="text" pInputText id="clien_Identidad" [(ngModel)]="cliente.clien_Dni" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Dni}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.clien_Dni">La identidad es requerida.</small>				
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="email2">Segundo apellido:</label>
+                        <input type="text" pInputText id="clien_Identidad" [(ngModel)]="cliente.clien_Dni" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Dni}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.clien_Dni">La identidad es requerida.</small>				
+                    </div>
+                </div>
+                
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="name2">Estado Civil</label>
+                        <p-dropdown [options]="estadosciviles" optionLabel="estad_Descripcion" [(ngModel)]="estadoid"></p-dropdown>
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="email2">Sexo:</label>
+                        <input pInputText id="email2" type="text" />
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="name2">Direccion</label>
+                        <input type="text" pInputText id="clien_Identidad" [(ngModel)]="cliente.clien_Dni" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Dni}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.clien_Dni">La identidad es requerida.</small>				
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="name2">Departamento</label>
+                        <p-dropdown [options]="estadosciviles" optionLabel="estad_Descripcion" [(ngModel)]="estadoid"></p-dropdown>
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="email2">Municipio:</label>
+                        <input pInputText id="email2" type="text" />
+                    </div>
+                </div>
+            </form>
+			
+            <div class="flex flex-wrap gap-2">   
+                <div class="field col">
+                </div>
+                <div class="field col">
+                               
+                </div>
+                <div class="field col">
+                </div>  
+                <div class="field col">
+                   <button routerLink="" pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
+
+                </div>  
+               
+               <div class="field col">
+                   <button routerLink="cliente" pButton pRipple label="Nuevo" icon="pi pi-times" class="p-button-secondary mr-2" ></button>
+               
+               </div>
+            </div>
+	    </div>
+        
+    </div>
+</div>

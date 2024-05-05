@@ -4,7 +4,8 @@ import { ClienteComponent } from './cliente.component';
 
 @NgModule({
 	imports: [RouterModule.forChild([
-		{ path: '', component: ClienteComponent }
+		{ path: '', component: ClienteComponent },
+		{ path: 'insertar', loadChildren: () => import('./insertar/insertar.module').then(m => m.InsertarModule) },
 	])],
 	exports: [RouterModule]
 })

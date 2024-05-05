@@ -3,8 +3,8 @@ export interface Categoria{
     categ_Descripcion?:String;
     categoria?:string;
     totalVentas?:string;
-    categ_UsuarioCreacion?: number;
+    categ_UsuarioCreacion?: 1;
     categ_FechaCreacion?:string;
-    categ_UsuarioModificacion?:number;
+    categ_UsuarioModificacion?:1;
     categ_FechaModificacion?:string;
 }

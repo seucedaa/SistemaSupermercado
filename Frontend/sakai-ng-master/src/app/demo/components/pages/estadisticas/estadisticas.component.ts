@@ -46,13 +46,23 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     inicio:any;
     fin:any;
 
-    constructor(private layoutService: LayoutService,private sucursalService:SucursalService, private categoriaService: CategoriaService,private subcategoriaService: SubcategoriaService,private productoService: ProductoService,) {
-        this.subscription = this.layoutService.configUpdate$
-            .pipe(debounceTime(25))
-            .subscribe((config) => {
-                this.initCharts();
-            });
+    constructor(private layoutService: LayoutService,
+            private sucursalService: SucursalService,
+            private categoriaService: CategoriaService,
+            private subcategoriaService: SubcategoriaService,
+            private productoService: ProductoService) {
+             this.subscription = this.layoutService.configUpdate$
+                .pipe(debounceTime(25))
+                .subscribe((config) => {
+                     this.initCharts();
+                 });
+             
+             const today = new Date();
+             const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+             this.inicio = firstDayOfMonth;
+             this.fin = today;
     }
+
 
     formatDate(date: Date): string {
         const year = date.getFullYear();
@@ -105,6 +115,7 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
             this.chartDoughnutChart();
         });
     }
+    
     ngOnInit() {
         this.initCharts();
         this.sucursalService.getList().then(data => this.sucursales = data);

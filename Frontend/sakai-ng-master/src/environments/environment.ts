@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://www.proyectosupermercado.somee.com/api'
+  apiBaseUrl: 'http://www.proyectosupermercado.somee.com/Api'
 };
 
 /*

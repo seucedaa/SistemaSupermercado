@@ -36,7 +36,6 @@ namespace SistemaSupermercado.API.Controllers
         [HttpPost("Insertar")]
         public IActionResult Insertar(EmpleadoViewModel item)
         {
-            var model = _mapper.Map<tbEmpleados>(item);
             var modelo = new tbEmpleados()
             {
                 Emple_Dni = item.Emple_Dni,
@@ -75,7 +74,6 @@ namespace SistemaSupermercado.API.Controllers
         [HttpPut("Actualizar/{id}")]
         public IActionResult Actualizar(EmpleadoViewModel item)
         {
-            var model = _mapper.Map<tbEmpleados>(item);
             var modelo = new tbEmpleados()
             {
                 Emple_Dni = item.Emple_Dni,

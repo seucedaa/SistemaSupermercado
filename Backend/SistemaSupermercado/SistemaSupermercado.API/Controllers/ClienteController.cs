@@ -44,7 +44,6 @@ namespace SistemaSupermercado.API.Controllers
         [HttpPost("Insertar")]
         public IActionResult Insertar(ClienteViewModel item)
         {
-            var model = _mapper.Map<tbClientes>(item);
             var modelo = new tbClientes()
             {
                 Clien_Dni = item.Clien_Dni,
@@ -80,7 +79,6 @@ namespace SistemaSupermercado.API.Controllers
         [HttpPut("Actualizar/{id}")]
         public IActionResult Actualizar(ClienteViewModel item)
         {
-            var model = _mapper.Map<tbClientes>(item);
             var modelo = new tbClientes()
             {
                 Clien_Dni = item.Clien_Dni,
@@ -112,7 +110,6 @@ namespace SistemaSupermercado.API.Controllers
         [HttpPost("Registrarse")]
         public IActionResult Registrarse(ClienteViewModel item)
         {
-            var model = _mapper.Map<tbClientes>(item);
             var modelo = new tbClientes()
             {
                 Clien_Dni = item.Clien_Dni,

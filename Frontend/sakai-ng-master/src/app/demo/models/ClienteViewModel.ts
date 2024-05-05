@@ -19,7 +19,7 @@ export class Cliente{
     usuarioCreacion?: string;
     usuarioModificacion?: string;
     clien_UsuarioCreacion?: number;
-    clien_UsuarioModificacion?: string;
+    clien_UsuarioModificacion?: number;
     clien_FechaCreacion?: number;
     clien_FechaModificacion?: string;
 }

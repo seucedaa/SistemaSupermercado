@@ -1,0 +1,54 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <h1>Detalles de la Categoría</h1>
+            <div *ngIf="categoria">
+                <div class="form-group">
+                    <label for="categ_Descripcion">ID:</label>
+                    <input type="text" id="categ_Descripcion" [(ngModel)]="categoria.categ_Id" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="categ_Descripcion">Descripción:</label>
+                    <input type="text" id="categ_Descripcion" [(ngModel)]="categoria.categ_Descripcion" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="categ_UsuarioCreacion">Usuario Creación:</label>
+                    <input type="text" id="categ_UsuarioCreacion" [(ngModel)]="categoria.Creacion" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="categ_FechaCreacion">Fecha Creación:</label>
+                    <input type="text" id="categ_FechaCreacion" [(ngModel)]="categoria.categ_FechaCreacion" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="categ_UsuarioCreacion">Usuario Modificacion:</label>
+                    <input type="text" id="categ_UsuarioCreacion" [(ngModel)]="categoria.Modificacion"readonly>
+                </div>
+                <div class="form-group">
+                    <label for="categ_FechaCreacion">Fecha Modificacion:</label>
+                    <input type="text" id="categ_FechaCreacion" [(ngModel)]="categoria.categ_FechaModificacion"readonly>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-2">   
+                <div class="field col">
+                </div>
+                <div class="field col">
+                               
+                </div>
+                <div class="field col">
+                </div>  
+                <div class="field col">
+                   <button routerLink="" pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
+
+                </div>  
+               
+               <div class="field col">
+                   <button routerLink="categoria" pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-secondary mr-2" ></button>
+               
+               </div>
+            </div>
+        </div>
+        
+    </div>
+</div> 
+
+<!--  -->
