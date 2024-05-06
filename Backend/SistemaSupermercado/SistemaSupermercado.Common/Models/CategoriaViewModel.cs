@@ -16,6 +16,10 @@ namespace SistemaSupermercado.Common.Models
         [NotMapped]
         public string Categoria { get; set; }
         [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
+        [NotMapped]
         public string TotalVentas { get; set; }
         public int Categ_UsuarioCreacion { get; set; }
         public DateTime Categ_FechaCreacion { get; set; }

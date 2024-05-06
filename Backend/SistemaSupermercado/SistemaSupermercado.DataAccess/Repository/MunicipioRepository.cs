@@ -115,7 +115,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public IEnumerable<tbMunicipios> ListarMuniporDepa(string id)
+        public IEnumerable<tbMunicipios> ListporDept(string id)
         {
             List<tbMunicipios> result = new List<tbMunicipios>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))

@@ -36,7 +36,6 @@ namespace SistemaSupermercado.API.Controllers
         [HttpPost("Insertar")]
         public IActionResult Insertar(ImpuestoViewModel item)
         {
-            var model = _mapper.Map<tbImpuestos>(item);
             var modelo = new tbImpuestos()
             {
                 Impue_Descripcion = item.Impue_Descripcion,
@@ -67,10 +66,9 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpPut("Actualizar/{id}")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(ImpuestoViewModel item)
         {
-            var model = _mapper.Map<tbImpuestos>(item);
             var modelo = new tbImpuestos()
             {
                 Impue_Id = item.Impue_Id,

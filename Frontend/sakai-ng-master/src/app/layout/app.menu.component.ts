@@ -93,7 +93,18 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Estadisticas',
                         icon: 'pi pi-fw pi-chart-line',
-                        routerLink: ['/home/pages/estadisticas']
+                        items:[
+                            {
+                                label: 'Productos',
+                                icon: 'pi pi-fw pi-cog',
+                                routerLink: ['/home/pages/estadisticas']
+                            },
+                            {
+                                label: 'Usuarios',
+                                icon: 'pi pi-fw pi-user',
+                                routerLink: ['/home/pages/usuario']
+                            }
+                        ]
                     },
                     {
                         label: 'Acceso',

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/demo/api/product';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
-import { ProductService } from 'src/app/demo/service/product.service';
 import { ClienteService } from 'src/app/demo/service/cliente.service';
 import { Cliente } from 'src/app/demo/models/ClienteViewModel';
+
 
 @Component({
     templateUrl: './cliente.component.html',
@@ -12,11 +11,11 @@ import { Cliente } from 'src/app/demo/models/ClienteViewModel';
 })
 export class ClienteComponent implements OnInit {
 
-    productDialog: boolean = false;
+    clienteDialog: boolean = false;
 
-    deleteProductDialog: boolean = false;
+    deleteclienteDialog: boolean = false;
 
-    deleteProductsDialog: boolean = false;
+    deleteclientesDialog: boolean = false;
 
     clientes: Cliente[] = [];
 
@@ -32,11 +31,11 @@ export class ClienteComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private clienteService: ClienteService, private messageService: MessageService) { }
+    constructor(private clienteService: ClienteService, private messageService: MessageService) { 
+    }
 
     ngOnInit() {
         this.clienteService.getList().then(data => this.clientes = data);
-
         this.cols = [
             { field: 'clien_Dni', header: 'DNI' },
             { field: 'clien_NombreCompleto', header: 'Cliente' },
@@ -48,8 +47,48 @@ export class ClienteComponent implements OnInit {
         ];
     }
 
+    deleteCliente(cliente: Cliente) {
+        this.deleteclienteDialog = true;
+        this.cliente = { ...cliente };
+    }
+
+    confirmDeleteSelected() {
+        this.deleteclientesDialog = false;
+        this.clientes = this.clientes.filter(val => !this.selectedClientes.includes(val));
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Clientes eliminadas.', life: 3000 });
+        this.selectedClientes = [];
+    }
+
+    confirmDelete() {
+        this.deleteclienteDialog = false;
+    
+        this.clienteService.Delete(this.cliente.clien_Id).then((response) => {
+            console.log(response);
+            if(response.success){
+                this.clientes = this.clientes.filter(val => val.clien_Id!== this.cliente.clien_Id);
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Cliente eliminado.', life: 3000 });
+            this.cliente = {};
+            } else{
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El cliente esta siendo utilizado.', life: 3000 });
+            }
+            
+        }).catch(error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar la categoría.', life: 3000 });
+        });
+    }
     
 
+    findIndexById(id: number): number {
+        let index = -1;
+        for (let i = 0; i < this.clientes.length; i++) {
+            if (this.clientes[i].clien_Id === id) {
+                index = i;
+                break;
+            }
+        }
+
+        return index;
+    }
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
     }

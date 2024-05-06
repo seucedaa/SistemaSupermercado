@@ -46,13 +46,23 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     inicio:any;
     fin:any;
 
-    constructor(private layoutService: LayoutService,private sucursalService:SucursalService, private categoriaService: CategoriaService,private subcategoriaService: SubcategoriaService,private productoService: ProductoService,) {
-        this.subscription = this.layoutService.configUpdate$
-            .pipe(debounceTime(25))
-            .subscribe((config) => {
-                this.initCharts();
-            });
+    constructor(private layoutService: LayoutService,
+            private sucursalService: SucursalService,
+            private categoriaService: CategoriaService,
+            private subcategoriaService: SubcategoriaService,
+            private productoService: ProductoService) {
+             this.subscription = this.layoutService.configUpdate$
+                .pipe(debounceTime(25))
+                .subscribe((config) => {
+                     this.initCharts();
+                 });
+             
+             const today = new Date();
+             const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+             this.inicio = firstDayOfMonth;
+             this.fin = today;
     }
+
 
     formatDate(date: Date): string {
         const year = date.getFullYear();
@@ -77,26 +87,35 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     }
 
     updateData() {
-        const formattedInicio = this.formatDate(this.inicio);
-        const formattedFin = this.formatDate(this.fin);
+        let formattedInicio = null;
+        let formattedFin = null;
+
+        formattedInicio = this.formatDate(this.inicio);
+        formattedFin = this.formatDate(this.fin)
+
+        this.chartPieChart();
+        this.chartBarChart();
+        this.chartDoughnutChart();
     
         this.categoriaService.CategoriaTotal(this.sucursalid, formattedInicio, formattedFin).then(data => {
             this.categorias = data.data;
-            this.updatePieChart();
+            console.log(formattedInicio,formattedFin)
+            this.chartPieChart();
         });
     
         this.subcategoriaService.SubcategoriaTotal(this.sucursalid, formattedInicio, formattedFin).then(data => {
             this.subcategorias = data.data;
             console.log(this, this.sucursalid, formattedInicio, formattedFin);
-            this.updateBarChart();
+            this.chartBarChart();
         });
     
         this.productoService.Existencia(this.sucursalid).then(data => {
             this.productos = data.data;
             console.log(this.productos);
-            this.updateDoughnutChart();
+            this.chartDoughnutChart();
         });
     }
+    
     ngOnInit() {
         this.initCharts();
         this.sucursalService.getList().then(data => this.sucursales = data);
@@ -104,7 +123,7 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
         
     }
     
-    updatePieChart() {
+    chartPieChart() {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
@@ -137,7 +156,7 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
         console.error('no funciona');
     }
 }
-updateBarChart() {
+chartBarChart() {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
@@ -202,7 +221,7 @@ updateBarChart() {
   }
 
     
-    updateDoughnutChart() {
+    chartDoughnutChart() {
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
@@ -258,14 +277,6 @@ updateBarChart() {
                     fill: false,
                     backgroundColor: documentStyle.getPropertyValue('--primary-500'),
                     borderColor: documentStyle.getPropertyValue('--primary-500'),
-                    tension: .4
-                },
-                {
-                    label: 'Second Dataset',
-                    data: [28, 48, 40, 19, 86, 27, 90],
-                    fill: false,
-                    backgroundColor: documentStyle.getPropertyValue('--primary-200'),
-                    borderColor: documentStyle.getPropertyValue('--primary-200'),
                     tension: .4
                 }
             ]

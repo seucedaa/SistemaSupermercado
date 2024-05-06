@@ -9,6 +9,10 @@ namespace SistemaSupermercado.Common.Models
 {
     public class MunicipioViewModel
     {
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
         public string Munic_Id { get; set; }
         public string Munic_Descripcion { get; set; }
         public string Depar_Id { get; set; }

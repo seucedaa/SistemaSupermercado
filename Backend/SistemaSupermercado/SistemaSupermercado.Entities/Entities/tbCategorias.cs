@@ -25,6 +25,10 @@ namespace SistemaSupermercado.Entities.Entities
         public int? Categ_UsuarioModificacion { get; set; }
         public DateTime? Categ_FechaModificacion { get; set; }
         public bool? Categ_Estado { get; set; }
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
 
         public virtual tbUsuarios Categ_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Categ_UsuarioModificacionNavigation { get; set; }

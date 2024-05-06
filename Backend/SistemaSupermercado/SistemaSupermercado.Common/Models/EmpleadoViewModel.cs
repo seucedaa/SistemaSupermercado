@@ -9,6 +9,10 @@ namespace SistemaSupermercado.Common.Models
 {
     public class EmpleadoViewModel
     {
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
         public int Emple_Id { get; set; }
         public string Emple_Dni { get; set; }
         [NotMapped]

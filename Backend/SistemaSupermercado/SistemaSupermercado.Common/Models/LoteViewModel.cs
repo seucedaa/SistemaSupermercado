@@ -9,6 +9,10 @@ namespace SistemaSupermercado.Common.Models
 {
     public class LoteViewModel
     {
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
         public int Lotes_Id { get; set; }
         public DateTime Lotes_FechaVencimiento { get; set; }
         public int Produ_Id { get; set; }

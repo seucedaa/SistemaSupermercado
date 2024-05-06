@@ -33,10 +33,16 @@ namespace SistemaSupermercado.API.Controllers
             return Ok(list);
         }
 
+        [HttpGet("ListporDept/{id}")]
+        public IActionResult ListporDept(string id)
+        {
+            var list = _ServiciosGenerales.ListporDept(id);
+            return Ok(list);
+        }
+
         [HttpPost("Insertar")]
         public IActionResult Insertar(MunicipioViewModel item)
         {
-            var model = _mapper.Map<tbMunicipios>(item);
             var modelo = new tbMunicipios()
             {
                 Munic_Descripcion = item.Munic_Descripcion,
@@ -68,10 +74,9 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpPut("Actualizar/{id}")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(MunicipioViewModel item)
         {
-            var model = _mapper.Map<tbMunicipios>(item);
             var modelo = new tbMunicipios()
             {
                 Munic_Id = item.Munic_Id,

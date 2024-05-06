@@ -44,11 +44,10 @@ namespace SistemaSupermercado.API.Controllers
         [HttpPost("Insertar")]
         public IActionResult Insertar(CategoriaViewModel item)
         {
-            var model = _mapper.Map<tbCategorias>(item);
             var modelo = new tbCategorias()
             {
                 Categ_Descripcion = item.Categ_Descripcion,
-                Categ_UsuarioCreacion = item.Categ_UsuarioCreacion
+                Categ_UsuarioCreacion = item.Categ_UsuarioCreacion,
             };
 
             var list = _ServiciosGenerales.CrearCate(modelo);
@@ -56,7 +55,7 @@ namespace SistemaSupermercado.API.Controllers
         }
 
         [HttpGet("ObtenerCateID/{id}")]
-        public IActionResult ObtenerCargID(int id)
+        public IActionResult ObtenerCateID(int id)
         {
             var estado = _ServiciosGenerales.LLenarCate(id);
             var camp = estado.First();
@@ -75,10 +74,9 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpPut("Actualizar/{id}")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(CategoriaViewModel item)
         {
-            var model = _mapper.Map<tbCategorias>(item);
             var modelo = new tbCategorias()
             {
                 Categ_Id = item.Categ_Id,

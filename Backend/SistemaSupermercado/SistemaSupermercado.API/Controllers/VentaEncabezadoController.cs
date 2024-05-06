@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace SistemaSupermercado.API.Controllers
 {
+    [ApiController]
+    [Route("Api/[controller]")]
     public class VentaEncabezadoController : Controller
     {
         private readonly VentaServicio _ventaServicio;
