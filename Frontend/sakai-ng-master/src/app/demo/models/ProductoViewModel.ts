@@ -1,9 +1,9 @@
 export class Producto{
     produ_Id?:number;
-    produ_Descripcion?:String;
-    produ_Existencia?:String;
-    produ_PrecioCompra?:String;
-    produ_PrecioVenta?:String;
+    produ_Descripcion?:string;
+    produ_Existencia?:string;
+    produ_PrecioCompra?:string;
+    produ_PrecioVenta?:string;
     impue_Id?: number;
     subca_Id?: number;
     prove_Id?: number;
