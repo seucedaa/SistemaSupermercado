@@ -226,6 +226,10 @@ export class MunicipioEndPoints{
     return `${this.api.baseUrl}/Municipio/List`;
   }
 
+  public ListporDept(id: string):string{
+    return `${this.api.baseUrl}/Municipio/ListporDept/${id}`;
+  }
+
   public Insert():string{
     return `${this.api.baseUrl}/Municipio/Insertar`; 
   }

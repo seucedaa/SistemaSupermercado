@@ -5,7 +5,6 @@ import { CategoriaService } from 'src/app/demo/service/categoria.service';
 import { Categoria } from 'src/app/demo/models/CategoriaViewModel';
 import { Router } from '@angular/router';
 
-
 @Component({
     templateUrl: './categoria.component.html',
     providers: [MessageService]
@@ -48,8 +47,6 @@ export class CategoriaComponent implements OnInit {
     }
 
     detalleCategoria(categoria: Categoria) {
-        console.log(categoria.categ_Id);
-        this.router.navigate(['/detalle', categoria.categ_Id]);
     }    
     
 

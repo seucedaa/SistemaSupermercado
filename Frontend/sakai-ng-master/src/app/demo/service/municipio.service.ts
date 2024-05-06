@@ -18,6 +18,13 @@ export class MunicipioService {
     .then(data => data);
   }
 
+  ListporDept(id: string){
+    return this.http.get<any>(this.endpoint.ListporDept(id)) 
+    .toPromise()  
+    .then(res => res.data as Municipio[])
+    .then(data => data);
+  }
+
   Insert(model: Municipio){
     return this.http.post<any>(this.endpoint.Insert(), model) 
       .toPromise()  

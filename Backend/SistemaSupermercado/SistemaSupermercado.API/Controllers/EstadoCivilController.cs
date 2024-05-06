@@ -66,7 +66,7 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpPut("Actualizar/{id}")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(EstadoCivilViewModel item)
         {
             var modelo = new tbEstadosCiviles()

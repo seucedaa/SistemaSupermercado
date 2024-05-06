@@ -10,6 +10,10 @@ namespace SistemaSupermercado.Entities.Entities
     public partial class tbClientes
     {
         [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
+        [NotMapped]
         public string Usuar_Usuario { get; set; }
 
         [NotMapped]

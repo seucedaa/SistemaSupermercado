@@ -27,6 +27,10 @@ namespace SistemaSupermercado.Entities.Entities
         public int? Munic_UsuarioModificacion { get; set; }
         public DateTime? Munic_FechaModificacion { get; set; }
         public bool? Munic_Estado { get; set; }
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
 
         public virtual tbDepartamentos Depar { get; set; }
         public virtual tbUsuarios Munic_UsuarioCreacionNavigation { get; set; }

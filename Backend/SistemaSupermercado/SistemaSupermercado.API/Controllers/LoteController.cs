@@ -70,7 +70,7 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpPut("Actualizar/{id}")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(LoteViewModel item)
         {
             var modelo = new tbLotes()

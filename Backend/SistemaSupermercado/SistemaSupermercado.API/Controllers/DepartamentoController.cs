@@ -68,7 +68,7 @@ namespace SistemaSupermercado.Controllers
         }
 
 
-        [HttpPut("Actualizar/{id}")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(DepartamentoViewModel item)
         {
             var modelo = new tbDepartamentos()
@@ -89,13 +89,6 @@ namespace SistemaSupermercado.Controllers
 
             return Ok(result);
 
-        }
-
-        [HttpGet("Municipios/{id}")]
-        public IActionResult Municipios(string id)
-        {
-            var list = _ServiciosGenerales.ListarMuniporDepa(id);
-            return Ok(list);
         }
 
     }

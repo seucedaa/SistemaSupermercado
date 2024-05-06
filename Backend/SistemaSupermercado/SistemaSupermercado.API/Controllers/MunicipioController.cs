@@ -33,6 +33,13 @@ namespace SistemaSupermercado.API.Controllers
             return Ok(list);
         }
 
+        [HttpGet("ListporDept/{id}")]
+        public IActionResult ListporDept(string id)
+        {
+            var list = _ServiciosGenerales.ListporDept(id);
+            return Ok(list);
+        }
+
         [HttpPost("Insertar")]
         public IActionResult Insertar(MunicipioViewModel item)
         {
@@ -67,7 +74,7 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpPut("Actualizar/{id}")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(MunicipioViewModel item)
         {
             var modelo = new tbMunicipios()

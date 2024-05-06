@@ -585,12 +585,12 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
 
-        public ServiceResult ListarMuniporDepa(string id)
+        public ServiceResult ListporDept(string id)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _municipiosRepositorio.ListarMuniporDepa(id);
+                var lost = _municipiosRepositorio.ListporDept(id);
 
                 return result.Ok(lost);
             }
