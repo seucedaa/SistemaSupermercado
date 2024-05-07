@@ -119,7 +119,7 @@ export class EditarComponent implements OnInit {
                         this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Empleado actualizado.', life: 3000 });
                         this.empleado = {};
                         this.ngOnInit();
-                        //this.router.navigate(['empleado']);
+                        this.router.navigate(['/home/pages/empleado']);
                 }else{
                     this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
                 }

@@ -74,7 +74,7 @@ export class InsertarComponent implements OnInit {
         this.cliente.clien_UsuarioCreacion = 1;
         console.log("entra al guarda");
         console.log(this.cliente);
-        //this.router.navigate(['cliente']);
+        // this.router.navigate(['/home/pages/cliente']);
 
         if (this.cliente.clien_Dni?.toString().trim() && this.cliente.clien_Telefono?.toString().trim() && this.cliente.clien_PrimerNombre?.trim() && this.cliente.clien_SegundoNombre?.trim() && this.cliente.clien_PrimerApellido?.trim() && this.cliente.clien_SegundoApellido?.trim() && this.cliente.estad_Id.toString()?.trim() && this.cliente.clien_Sexo?.trim() && this.cliente.clien_Direccion?.trim() && this.cliente.munic_Id.trim()) {
             
@@ -86,7 +86,7 @@ export class InsertarComponent implements OnInit {
                         this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Cliente creado.', life: 3000 });
                         this.cliente = {};
                         this.ngOnInit();
-                        //this.router.navigate(['/cliente']);
+                        this.router.navigate(['/home/pages/cliente']);
                 }else{
                     this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
                 }
