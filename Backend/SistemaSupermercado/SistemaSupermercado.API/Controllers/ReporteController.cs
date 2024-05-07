@@ -20,10 +20,10 @@ namespace SistemaSupermercado.API.Controllers
             _mapper = mapper;
             _reporteServices = reporteServices;
         }
-        [HttpGet("Stock")]
-        public IActionResult reporteStock()
+        [HttpGet("Stock/{Sucur_Id}")]
+        public IActionResult reporteStock(int Sucur_Id)
         {
-            var list = _reporteServices.reporteStock();
+            var list = _reporteServices.reporteStock(Sucur_Id);
             return Ok(list);
         }
     }

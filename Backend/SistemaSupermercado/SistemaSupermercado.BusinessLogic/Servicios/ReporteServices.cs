@@ -16,21 +16,15 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             _reporteRepository = reporteRepository;
         }
 
-        public ServiceResult reporteStock()
+        public ServiceResult reporteStock(int Sucur_Id)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _reporteRepository.reporteStock();
+                var lost = _reporteRepository.reporteStock(Sucur_Id);
 
-                if (lost.Any())
-                {
                     return result.Ok(lost);
-                }
-                else
-                {
-                    return result.Error(lost);
-                }
+                
             }
             catch (Exception ex)
             {

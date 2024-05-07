@@ -13,12 +13,14 @@ namespace SistemaSupermercado.DataAccess.Repository
 {
     public class ReporteRepository
     {
-        public IEnumerable<tbProductos> reporteStock()
+        public IEnumerable<tbProductos> reporteStock(int Sucur_Id)
         {
             List<tbProductos> result = new List<tbProductos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbProductos>(ScriptBaseDeDatos.Reporte_Stock, commandType: CommandType.StoredProcedure).ToList();
+                var parameters = new { Sucur_Id = Sucur_Id };
+
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Reporte_Stock, parameters, commandType: CommandType.StoredProcedure).ToList();
 
                 return result;
             }
