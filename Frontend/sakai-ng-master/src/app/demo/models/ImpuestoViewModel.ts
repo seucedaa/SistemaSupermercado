@@ -5,4 +5,6 @@ export interface Impuesto{
     impue_FechaCreacion?:string;
     impue_UsuarioModificacion?:number;
     impue_FechaModificacion?:string;
+    usuarioCreacion?: string
+    usuarioModificacion?: string
 }

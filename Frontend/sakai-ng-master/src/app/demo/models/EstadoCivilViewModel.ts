@@ -5,4 +5,6 @@ export interface EstadoCivil{
     estad_FechaCreacion?:string;
     estad_UsuarioModificacion?:number;
     estad_FechaModificacion?:string;
+    usuarioCreacion?: string
+    usuarioModificacion?: string
 }

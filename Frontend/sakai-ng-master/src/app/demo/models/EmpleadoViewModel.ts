@@ -22,7 +22,7 @@ export class Empleado{
     usuarioCreacion?: string;
     usuarioModificacion?: string;
     emple_UsuarioCreacion?: number;
-    emple_UsuarioModificacion?: string;
+    emple_UsuarioModificacion?: number;
     emple_FechaCreacion?: number;
     emple_FechaModificacion?: string;
 }

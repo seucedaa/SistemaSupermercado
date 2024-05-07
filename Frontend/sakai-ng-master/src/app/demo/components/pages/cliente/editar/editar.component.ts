@@ -41,10 +41,13 @@ export class EditarComponent implements OnInit {
     departamentos: Departamento[] = [];
     departid: any;
 
+    prueba: any;
+
     constructor(private departamentoService: DepartamentoService,private router: Router, private route:ActivatedRoute, private messageService: MessageService, private estadocivilService: EstadoCivilService,private municipioService: MunicipioService, private clienteService: ClienteService) { }
 
     onEstadIdChange(value: any) {
         this.cliente.estad_Id = value?.estad_Id; 
+        
     }
 
     onDeparIdChange(value: any){
@@ -64,15 +67,10 @@ export class EditarComponent implements OnInit {
         const id = this.route.snapshot.paramMap.get('id');
         this.clienteService.Details(Number(id)).then(data => {
             this.cliente = data;
-            this.estadoid = this.estadosciviles.find(e => e.estad_Id === this.cliente.estad_Id);
-            
-            const municipio = this.municipios.find(m => m.munic_Id === this.cliente.munic_Id);
-            if (municipio) {
-                const depar = this.departamentos.find(d => d.depar_Id === municipio.depar_Id);
-                if (depar) {
-                    this.departid = depar;
-                }
-            }
+            this.estadoid = this.cliente.estad_Id;
+            this.municipioid = this.cliente.munic_Id;
+
+        
         });
     }
     

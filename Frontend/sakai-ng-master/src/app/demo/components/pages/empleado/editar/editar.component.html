@@ -1,0 +1,120 @@
+<div class="grid">
+	<div class="col-12 md:col-12">
+        <div class="card p-fluid">
+             <p-toast></p-toast>
+			<h5>Editar empleado</h5>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label for="emple_Dni">Identidad</label>
+                        <input type="number" pInputText id="emple_Dni" [(ngModel)]="empleado.emple_Dni" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !empleado.emple_Dni}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !empleado.emple_Dni">La identidad es requerida.</small>
+                    </div>
+                    <div class="field col">
+                        <label for="emple_Correo">Correo</label>
+                        <input type="text" pInputText id="emple_Correo" [(ngModel)]="empleado.emple_Correo" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !empleado.emple_Correo}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !empleado.emple_Correo">El correo es requerido.</small>
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label for="emple_PrimerNombre">Primer nombre</label>
+                        <input type="text" pInputText id="emple_PrimerNombre" [(ngModel)]="empleado.emple_PrimerNombre" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !empleado.emple_PrimerNombre}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !empleado.emple_PrimerNombre">El primer nombre es requerido.</small>
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="emple_SegundoNombre">Segundo nombre:</label>
+                        <input type="text" pInputText id="emple_SegundoNombre" [(ngModel)]="empleado.emple_SegundoNombre" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !empleado.emple_SegundoNombre}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !empleado.emple_SegundoNombre">El segundo nombre es requerido.</small>				
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="emple_PrimerApellido">Primer apellido</label>
+                        <input type="text" pInputText id="emple_PrimerApellido" [(ngModel)]="empleado.emple_PrimerApellido" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !empleado.emple_PrimerApellido}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !empleado.emple_PrimerApellido">El primer apellido es requerido.</small>				
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="emple_SegundoApellido">Segundo apellido:</label>
+                        <input type="text" pInputText id="emple_SegundoApellido" [(ngModel)]="empleado.emple_SegundoApellido" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !empleado.emple_SegundoApellido}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !empleado.emple_SegundoApellido">El segundo apellido es requerido.</small>				
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label for="emple_Telefono">Telefono</label>
+                        <input type="text" pInputText id="emple_Telefono" [(ngModel)]="empleado.emple_Telefono" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !empleado.emple_Telefono}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !empleado.emple_Telefono">El telefono es requerido.</small>
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="empleado.estad_Id">Cargo</label>
+                        <p-dropdown [options]="cargos" optionLabel="cargo_Descripcion" (onChange)="onCargoIdChange($event.value)" [(ngModel)]="cargoid"></p-dropdown>
+                    </div>
+                </div>
+                
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="empleado.estad_Id">Estado Civil</label>
+                        <p-dropdown [options]="estadosciviles" optionLabel="estad_Descripcion" (onChange)="onEstadIdChange($event.value)" [(ngModel)]="estadoid"></p-dropdown>
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="empleado.emple_Sexo">Sexo:</label>
+                        <div class="grid formgrid">
+                            <div class="col-12 md:col-3">
+                                <div class="field-radiobutton">
+                                    <p-radioButton name="f" value="f" [(ngModel)]="empleado.emple_Sexo"></p-radioButton>
+                                    <label for="empleado.emple_Sexo">Femenino</label>
+                                </div>
+                            </div>
+                            <div class="col-12 md:col-3">
+                                <div class="field-radiobutton">
+                                    <p-radioButton name="m" value="m" [(ngModel)]="empleado.emple_Sexo"></p-radioButton>
+                                    <label for="empleado.emple_Sexo">Masculino</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="name2">Sucursal</label>
+                        <p-dropdown [options]="sucursales" optionLabel="sucur_Descripcion" (onChange)="onSucurIdChange($event.value)" [(ngModel)]="sucurid"></p-dropdown>
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="emple_Direccion">Direccion</label>
+                        <input type="text" pInputText id="emple_Direccion" [(ngModel)]="empleado.emple_Direccion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !empleado.emple_Direccion}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !empleado.emple_Direccion">La direccion es requerida.</small>				
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="name2">Departamento</label>
+                        <p-dropdown [options]="departamentos" optionLabel="depar_Descripcion" (onChange)="onDeparIdChange($event.value)" [(ngModel)]="departid"></p-dropdown>
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="empleado.munic_Id">Municipio</label>
+                        <p-dropdown [options]="municipios" optionLabel="munic_Descripcion" (onChange)="onMunicIdChange($event.value)" [(ngModel)]="municipioid"></p-dropdown>
+                    </div>
+                </div>
+			
+            <div class="flex flex-wrap gap-2">   
+                <div class="field col">
+                </div>
+                <div class="field col">
+                               
+                </div>
+                <div class="field col">
+                </div>  
+                <div class="field col">
+                   <button pButton pRipple label="Guardar" icon="pi pi-plus" class="p-button-success mr-2" (click)="guardar()"></button>
+
+                </div>  
+               
+               <div class="field col">
+                   <button routerLink="empleado" pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-secondary mr-2" ></button>
+               
+               </div>
+            </div>
+	    </div>
+        
+    </div>
+</div>

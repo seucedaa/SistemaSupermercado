@@ -5,7 +5,7 @@
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="my-2">
-                        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
+                        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()" ></button>
                         <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger" ></button>
                     </div>
                 </ng-template>
@@ -62,14 +62,67 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                                <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-success mr-2" (click)="editLote(lote)"> Editar</button>
+                                <button pButton pRipple icon="pi pi-ellipsis-h"  class="p-element p-ripple p-button-rounded p-button-info p-button p-component" routerLink="detalle/{{lote.lotes_Id}}"> Detalles</button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"(click)="deleteLote(lote)"> Eliminar</button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
+        <p-dialog [(visible)]="loteDialog" [style]="{width: '450px'}" header="Lote" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content" class="col-12">
+               
+                <div class="p-formgrid grid">
+                    <div class="field col-6">
+                        <label for="produid">Producto</label>
+                        <p-dropdown [(ngModel)]="produid"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !lote.produ_Id}" [options]="productos" optionLabel="produ_Descripcion" placeholder="Seleccione"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !lote.produ_Id">El producto es requerido.</small>
+                    </div>
+                    
+                    <div class="field col-6">
+                        <label for="lotes_Cantidad">Cantidad</label>
+                        <input type="number" pInputText id="lotes_Cantidad" [(ngModel)]="lote.lotes_Cantidad" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !lote.lotes_Cantidad}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !lote.lotes_Cantidad">Cantidad es requerida.</small>
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col-6">
+                        <label for="lotes_FechaVencimiento">Fecha de vencimiento</label>
+                        <span class="p-float-label">
+                            <p-calendar
+                                inputId="calendar"
+                                [(ngModel)]="fecha"
+                            ></p-calendar>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !lote.lotes_FechaVencimiento">Fecha de vencimiento es requerida.</small>
+                        </span>
+                    </div>
+                    
+                    <div class="field col-6">
+                        <label for="sucurid">Sucursal</label>
+                        <p-dropdown [(ngModel)]="sucurid"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !lote.sucur_Id}" [options]="sucursales" optionLabel="sucur_Descripcion" placeholder="Seleccione"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !lote.sucur_Id">La sucrusal es requerida.</small>
+                    </div>
+                </div>
+                
+            </ng-template>
 
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveLote()"></button>
+            </ng-template>
+        </p-dialog>
+        
+        <p-dialog [(visible)]="deleteloteDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="lote">¿Estas seguro que deseas eliminar el registro?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteloteDialog = false" ></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
     </div>
 </div>

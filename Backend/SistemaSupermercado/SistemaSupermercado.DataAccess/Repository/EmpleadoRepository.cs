@@ -1,13 +1,11 @@
 ﻿using Dapper;
-using SistemaSupermercado.Entities.Entities;
 using Microsoft.Data.SqlClient;
+using SistemaSupermercado.DataAcceess.Repository;
+using SistemaSupermercado.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SistemaSupermercado.DataAcceess.Repository;
 
 namespace SistemaSupermercado.DataAccess.Repository
 {
@@ -86,6 +84,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
+                parametro.Add("Emple_Dni", item.Emple_Dni);
                 parametro.Add("Emple_PrimerNombre", item.Emple_PrimerNombre);
                 parametro.Add("Emple_SegundoNombre", item.Emple_SegundoNombre);
                 parametro.Add("Emple_PrimerApellido", item.Emple_PrimerApellido);

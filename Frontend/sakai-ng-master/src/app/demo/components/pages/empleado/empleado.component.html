@@ -5,7 +5,7 @@
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="my-2">
-                        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
+                        <button routerLink="insertar" pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
                         <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger" ></button>
                     </div>
                 </ng-template>
@@ -16,7 +16,7 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="empleados" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['emple_Dni', 'emple_NombreCompleto', 'emple_Correo','emple_Telefono', 'cargo_Descripcion', 'estad_Descripcion','sucur_Descripcion', 'emple_Direccion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedEmpleados" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="empleados" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['emple_Dni', 'emple_NombreCompleto', 'emple_Correo','emple_Telefono', 'cargo_Descripcion','sucur_Descripcion', 'emple_Direccion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedEmpleados" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Administrar Empleados</h5>
@@ -36,7 +36,6 @@
                         <th pSortableColumn="emple_Correo">Correo <p-sortIcon field="emple_Correo"></p-sortIcon></th>
                         <th pSortableColumn="emple_Telefono">Telefono <p-sortIcon field="emple_Telefono"></p-sortIcon></th>
                         <th pSortableColumn="cargo_Descripcion">Cargo <p-sortIcon field="cargo_Descripcion"></p-sortIcon></th>
-                        <th pSortableColumn="estad_Descripcion">Estado Civil <p-sortIcon field="estad_Descripcion"></p-sortIcon></th>
                         <th pSortableColumn="sucur_Descripcion">Sucursal <p-sortIcon field="sucur_Descripcion"></p-sortIcon></th>
                         <th pSortableColumn="emple_Direccion">Direccion <p-sortIcon field="emple_NombreCompleto"></p-sortIcon></th>
                         <th></th>
@@ -45,7 +44,7 @@
                 <ng-template pTemplate="body" let-empleado>
                     <tr>
                         <td>
-                            <p-tableCheckbox [value]="empleado"></p-tableCheckbox>
+                            <p-tableCheckbox [value]="empleado.emple_Id"></p-tableCheckbox>
                         </td>
                         <td style="width:14%; min-width:12rem;">
                             <span class="p-column-title">DNI</span>
@@ -59,17 +58,13 @@
                             <span class="p-column-title">Correo</span>
                             {{empleado.emple_Correo}}
                         </td>
-                        <td style="width:14%; min-width:12rem;">
+                        <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Telefono</span>
                             {{empleado.emple_Telefono}}
                         </td>
-                        <td style="width:14%; min-width:12rem;">
+                        <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Cargo</span>
                             {{empleado.cargo_Descripcion}}
-                        </td>
-                        <td style="width:14%; min-width:12rem;">
-                            <span class="p-column-title">Estado Civil</span>
-                            {{empleado.estad_Descripcion}}
                         </td>
                         <td style="width:14%; min-width:15rem;">
                             <span class="p-column-title">Sucursal</span>
@@ -81,8 +76,9 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                                <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-success mr-2" routerLink="editar/{{empleado.emple_Id}}"> Editar</button>
+                                <button pButton pRipple icon="pi pi-ellipsis-h"  class="p-element p-ripple p-button-rounded p-button-info p-button p-component" routerLink="detalle/{{empleado.emple_Id}}"> Detalles</button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"(click)="deleteEmpleado(empleado)"> Eliminar</button>
                             </div>
                         </td>
                     </tr>
@@ -90,5 +86,15 @@
             </p-table>
         </div>
 
+        <p-dialog [(visible)]="deleteempleadoDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="empleado">¿Estas seguro que deseas eliminar <b>{{empleado.emple_NombreCompleto}}</b>?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteempleadoDialog = false" ></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
     </div>
 </div>

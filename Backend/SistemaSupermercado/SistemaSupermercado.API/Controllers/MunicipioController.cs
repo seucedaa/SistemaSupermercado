@@ -45,8 +45,9 @@ namespace SistemaSupermercado.API.Controllers
         {
             var modelo = new tbMunicipios()
             {
+                Munic_Id = item.Munic_Id,
                 Munic_Descripcion = item.Munic_Descripcion,
-                Depar_Descripcion = item.Depar_Descripcion,
+                Depar_Id = item.Depar_Id,
                 Munic_UsuarioCreacion = item.Munic_UsuarioCreacion
             };
 
@@ -81,7 +82,7 @@ namespace SistemaSupermercado.API.Controllers
             {
                 Munic_Id = item.Munic_Id,
                 Munic_Descripcion = item.Munic_Descripcion,
-                Depar_Descripcion = item.Depar_Descripcion,
+                Depar_Id = item.Depar_Id,
                 Munic_UsuarioModificacion = item.Munic_UsuarioModificacion
             };
 

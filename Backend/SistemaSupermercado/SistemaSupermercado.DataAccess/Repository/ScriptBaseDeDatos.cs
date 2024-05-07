@@ -101,9 +101,9 @@ namespace SistemaSupermercado.DataAcceess.Repository
         #region Empleado
         public static string Empleado_Lista = "Supr.SP_Empleado_Lista";
         public static string Empleado_Insertar = "Supr.SP_Empleado_Insertar";
-        public static string Empleado_Modificar = "Supr.SP_Empleado_Modificar";
+        public static string Empleado_Modificar = "[Supr].[SP_Empleado_Modificar]";
         public static string Empleado_Eliminar = "Supr.SP_Empleado_Desactivar";
-        public static string Empleado_Buscar = "Supr.SP_Empleado_Buscar";
+        public static string Empleado_Buscar = "[Supr].[SP_Empleado_Buscar]";
         #endregion
 
         #region Lote

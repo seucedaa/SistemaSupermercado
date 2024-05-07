@@ -295,12 +295,12 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
 
-        public IEnumerable<tbDepartamentos> LlenarDepto(int id)
+        public IEnumerable<tbDepartamentos> LlenarDepto(string id)
         {
             return _departamentoRepositorio.ObtenerID(id);
         }
 
-        public IEnumerable<tbDepartamentos> DetallesDepto(int id)
+        public IEnumerable<tbDepartamentos> DetallesDepto(string id)
         {
             return _departamentoRepositorio.Buscar(id);
         }

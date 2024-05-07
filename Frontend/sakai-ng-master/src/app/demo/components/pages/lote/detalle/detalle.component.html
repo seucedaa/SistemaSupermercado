@@ -1,0 +1,101 @@
+<div class="grid">
+	<div class="col-12 md:col-12">
+		<div class="card p-fluid">
+            <h4>Detalles</h4>
+            
+            <div *ngIf="lote">
+                <div class="p-formgrid grid">
+
+                    <div class="field col">
+                        <label><b>ID</b></label>
+                        <p>{{lote.lotes_Id}}</p>
+                    </div>
+                    <div class="field col">
+                        <label><b>Producto</b></label>
+                        <p>{{lote.produ_Descripcion}}</p>
+                    </div>
+                    <div class="field col">
+                        <label><b>Cantidad</b></label>
+                        <p>{{lote.lotes_Cantidad}}</p>
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+
+                    <div class="field col">
+                        <label><b>Fecha de vencimiento</b></label>
+                        <p>{{lote.lotes_FechaVencimiento}}</p>
+                    </div>
+                    <div class="field col">
+                        <label><b>Sucursal</b></label>
+                        <p>{{lote.sucur_Descripcion}}</p>
+                    </div>
+                    <div class="field col">
+                    </div>
+                </div>
+				
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <button routerLink="lote" pButton pRipple label="Volver" icon="pi pi-times" class="p-button-secondary mr-2" ></button>
+            
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-12 md:col-12">
+		<div class="card p-fluid">
+            <h5>Auditoria</h5>
+
+            <p-table #dt [value]="lotess" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['usuarioCreacion','usuarioModificacion', 'lotes_FechaCreacion', 'lotes_FechaModificacion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                          Accion
+                        </th>
+                        <th style="width: 3rem">
+                            Usuario
+                        </th>
+                          <th style="width: 3rem">
+                            Fecha
+                          </th>
+                        
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-lote>
+                    <tr>
+                        <td style="width:14%; min-width:20rem;">
+                            Creador
+                        </td>
+                        <td style="width:14%; min-width:20rem;">
+                            {{ lote.usuarioCreacion }}
+                        </td>
+                        <td style="width:14%; min-width:20rem;">
+                            {{ lote.lotes_FechaCreacion }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:14%; min-width:20rem;">
+                            Modificador
+                        </td>
+                        <td style="width:14%; min-width:20rem;">
+                            {{ lote.usuarioModificacion }}
+                        </td>
+                        <td style="width:14%; min-width:20rem;">
+                            {{ lote.lotes_FechaModificacion }}
+                        </td>
+                    </tr>
+                </ng-template>
+                
+                
+            </p-table>
+        
+    </div>
+</div> 
+
