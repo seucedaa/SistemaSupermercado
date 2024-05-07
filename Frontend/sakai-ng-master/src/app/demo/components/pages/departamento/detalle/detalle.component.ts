@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DetalleComponent implements OnInit {
 
     departamentos: Departamento[] = [];
+    departamentoss: Departamento[] = [];
 
     departamento: Departamento;
 
@@ -32,6 +33,9 @@ export class DetalleComponent implements OnInit {
         this.departamentoService.Details(id).then(data => {
             this.departamento = data;
             console.log(this.departamento);
+        });
+        this.departamentoService.Details(id).then(data => {
+            this.departamentoss.push(data);
         });
     
         this.cols = [

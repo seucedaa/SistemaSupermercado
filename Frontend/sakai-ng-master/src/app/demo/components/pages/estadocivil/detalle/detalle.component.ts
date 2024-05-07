@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DetalleComponent implements OnInit {
 
     estadosciviles: EstadoCivil[] = [];
+    estadocivils: EstadoCivil[] = [];
 
     estadocivil: EstadoCivil;
 
@@ -33,6 +34,9 @@ export class DetalleComponent implements OnInit {
     ngOnInit() {
         const id = this.route.snapshot.paramMap.get('id');
         this.estadocivilService.Details(Number(id)).then(data => this.estadocivil = data);
+        this.estadocivilService.Details(Number(id)).then(data => {
+            this.estadocivils.push(data);
+        });
     }
     
     

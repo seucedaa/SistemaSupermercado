@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DetalleComponent implements OnInit {
 
     clientes: Cliente[] = [];
+    clientess: Cliente[] = [];
 
     cliente: Cliente;
 
@@ -35,6 +36,11 @@ export class DetalleComponent implements OnInit {
         this.clienteService.Details(Number(id)).then(data => {
             console.log(data);
             this.cliente = data;
+        });
+
+        this.clienteService.Details(Number(id)).then(data => {
+            this.clientess.push(data);
+            console.log(this.clientess);
         });
         this.cols = [
             { field: 'UsuarioCreacion', header: 'Creador' },

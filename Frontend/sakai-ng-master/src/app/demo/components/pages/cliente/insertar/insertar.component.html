@@ -6,12 +6,12 @@
                 <div class="p-formgrid grid">
                     <div class="field col">
                         <label for="clien_Dni">Identidad</label>
-                        <input type="number" pInputText id="clien_Dni" [(ngModel)]="cliente.clien_Dni" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Dni}"/>
+                        <input type="text" pInputText id="clien_Dni" [(ngModel)]="cliente.clien_Dni" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Dni}"/>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.clien_Dni">La identidad es requerida.</small>
                     </div>
                     <div class="field col">
                         <label for="clien_Telefono">Telefono</label>
-                        <input type="number" pInputText id="clien_Telefono" [(ngModel)]="cliente.clien_Telefono" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Telefono}"/>
+                        <input type="text" pInputText id="clien_Telefono" [(ngModel)]="cliente.clien_Telefono" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Telefono}"/>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.clien_Telefono">El telefono es requerido.</small>
                     </div>
                 </div>

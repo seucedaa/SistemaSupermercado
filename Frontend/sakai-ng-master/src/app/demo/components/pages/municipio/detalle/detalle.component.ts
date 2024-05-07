@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DetalleComponent implements OnInit {
 
     municipios: Municipio[] = [];
+    municipioss: Municipio[] = [];
 
     municipio: Municipio;
 
@@ -32,6 +33,9 @@ export class DetalleComponent implements OnInit {
         this.municipioService.Details(id).then(data => {
             this.municipio = data;
             console.log(this.municipio);
+        });
+        this.municipioService.Details(id).then(data => {
+            this.municipioss.push(data);
         });
     
         this.cols = [

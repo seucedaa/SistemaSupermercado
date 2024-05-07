@@ -28,7 +28,7 @@
 		<div class="card p-fluid">
             <h5>Auditoria</h5>
 
-            <p-table #dt [value]="estadosciviles" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['UsuarioCreacion,UsuarioModificacion,estad_FechaCreacion,estad_FechaModificacion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedEstadosCiviles" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="estadocivils" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['usuarioCreacion','usuarioModificacion', 'estad_FechaCreacion', 'estad_FechaModificacion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
@@ -39,37 +39,44 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>Accion</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
+                        <th style="width: 3rem">
+                          Accion
+                        </th>
+                        <th style="width: 3rem">
+                            Usuario
+                        </th>
+                          <th style="width: 3rem">
+                            Fecha
+                          </th>
                         
-                        <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-categoria>
+                <ng-template pTemplate="body" let-estadocivil>
                     <tr>
-                        <td>
+                        <td style="width:14%; min-width:20rem;">
                             Creador
                         </td>
                         <td style="width:14%; min-width:20rem;">
-                            {{estadocivil.UsuarioCreacion}}
+                            {{ estadocivil.usuarioCreacion }}
                         </td>
                         <td style="width:14%; min-width:20rem;">
-                            {{estadocivil.estad_FechaCreacion}}
+                            {{ estadocivil.estad_FechaCreacion }}
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="width:14%; min-width:20rem;">
                             Modificador
                         </td>
                         <td style="width:14%; min-width:20rem;">
-                            {{estadocivil.UsuarioModificacion}}
+                            {{ estadocivil.usuarioModificacion }}
                         </td>
                         <td style="width:14%; min-width:20rem;">
-                            {{estadocivil.estad_FechaModificacion}}
+                            {{ estadocivil.estad_FechaModificacion }}
                         </td>
                     </tr>
                 </ng-template>
+                
+                
             </p-table>
         
     </div>

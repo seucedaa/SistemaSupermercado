@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DetalleComponent implements OnInit {
 
     impuestos: Impuesto[] = [];
+    impuestoss: Impuesto[] = [];
 
     impuesto: Impuesto;
 
@@ -33,6 +34,10 @@ export class DetalleComponent implements OnInit {
             this.impuesto = data;
             console.log(this.impuesto);
         });
+        this.impuestoService.Details(Number(id)).then(data => {
+            this.impuestoss.push(data);
+        });
+
     
         this.cols = [
             { field: 'UsuarioCreacion'},

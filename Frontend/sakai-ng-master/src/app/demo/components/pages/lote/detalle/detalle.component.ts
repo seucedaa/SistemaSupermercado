@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DetalleComponent implements OnInit {
 
     lotes: Lote[] = [];
+    lotess: Lote[] = [];
 
     lote: Lote;
 
@@ -32,6 +33,9 @@ export class DetalleComponent implements OnInit {
         this.loteService.Details(Number(id)).then(data => {
             this.lote = data;
             console.log(this.lote);
+        });
+        this.loteService.Details(Number(id)).then(data => {
+            this.lotess.push(data);
         });
     
         this.cols = [
