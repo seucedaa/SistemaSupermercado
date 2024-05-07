@@ -53,7 +53,7 @@
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-success mr-2" (click)="editDepartamento(departamento)"> Editar</button>
-                                <button pButton pRipple icon="pi pi-ellipsis-h"  class="p-element p-ripple p-button-rounded p-button-info p-button p-component" (click)="detalleDepartamento(departamento)"> Detalles</button>
+                                <button pButton pRipple icon="pi pi-ellipsis-h"  class="p-element p-ripple p-button-rounded p-button-info p-button p-component" routerLink="detalle/{{departamento.depar_Id}}"> Detalles</button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"(click)="deleteDepartamento(departamento)"> Eliminar</button>
                             </div>
                         </td>
@@ -67,7 +67,7 @@
                     <div class="p-formgrid grid">
                         <div class="field col-6" *ngIf="nuevodept">
                             <label for="depar_Id">Codigo</label>
-                            <input type="text" pInputText id="depar_Id" [(ngModel)]="departamento.depar_Id" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted &&!departamento.depar_Id}" readonly/>
+                            <input type="text" pInputText id="depar_Id" [(ngModel)]="departamento.depar_Id" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted &&!departamento.depar_Id}"/>
                             <small class="ng-dirty ng-invalid" *ngIf="submitted &&!departamento.depar_Id">El codigo es requerido.</small>
                         </div>
                         <div [ngClass]="{'field col-6': nuevodept, 'field col-12':!nuevodept}">

@@ -7,4 +7,6 @@ export interface Categoria{
     categ_FechaCreacion?:string;
     categ_UsuarioModificacion?:1;
     categ_FechaModificacion?:string;
+    usuarioCreacion?: string
+    usuarioModificacion?: string
 }

@@ -49,7 +49,7 @@ namespace SistemaSupermercado.Controllers
         }
 
         [HttpGet("ObtenerDepaID/{id}")]
-        public IActionResult ObtenerDepaID(int id)
+        public IActionResult ObtenerDepaID(string id)
         {
             var estado = _ServiciosGenerales.LlenarDepto(id);
             var camp = estado.First();
@@ -58,7 +58,7 @@ namespace SistemaSupermercado.Controllers
 
 
         [HttpGet("Detalle/{id}")]
-        public IActionResult Detalle(int id)
+        public IActionResult Detalle(string id)
         {
             var details = _ServiciosGenerales.DetallesDepto(id);
 

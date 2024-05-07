@@ -5,7 +5,7 @@
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="my-2">
-                        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
+                        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()" ></button>
                         <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger" ></button>
                     </div>
                 </ng-template>
@@ -16,7 +16,7 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="municipios" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['munic_Id', 'munic_Descripcion', 'depar_Descripcion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedMunicipios" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="municipios" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['munic_Id','munic_Descripcion', 'depar_Descripcion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedMunicipios" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Administrar Municipios</h5>
@@ -34,31 +34,32 @@
                         <th pSortableColumn="munic_Id">Codigo <p-sortIcon field="munic_Id"></p-sortIcon></th>
                         <th pSortableColumn="munic_Descripcion">Municipio <p-sortIcon field="munic_Descripcion"></p-sortIcon></th>
                         <th pSortableColumn="depar_Descripcion">Departamento <p-sortIcon field="depar_Descripcion"></p-sortIcon></th>
-                        
+
                         <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-municipio>
                     <tr>
                         <td>
-                            <p-tableCheckbox [value]="municipio"></p-tableCheckbox>
+                            <p-tableCheckbox [value]="municipio.munic_Id"></p-tableCheckbox>
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Codigo</span>
                             {{municipio.munic_Id}}
                         </td>
-                        <td style="width:14%; min-width:13rem;">
+                        <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Municipio</span>
                             {{municipio.munic_Descripcion}}
                         </td>
-                        <td style="width:14%; min-width:13rem;">
-                            <span class="p-column-title">Departamento</span>
+                        <td style="width:14%; min-width:10rem;">
                             {{municipio.depar_Descripcion}}
                         </td>
+                       
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                                <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-success mr-2" (click)="editMunicipio(municipio)"> Editar</button>
+                                <button pButton pRipple icon="pi pi-ellipsis-h"  class="p-element p-ripple p-button-rounded p-button-info p-button p-component" routerLink="detalle/{{municipio.munic_Id}}"> Detalles</button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"(click)="deleteMunicipio(municipio)"> Eliminar</button>
                             </div>
                         </td>
                     </tr>
@@ -66,5 +67,47 @@
             </p-table>
         </div>
 
+        <p-dialog [(visible)]="municipioDialog" [style]="{width: '450px'}" header="Municipio" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content" class="col-12">
+                <div class="p-formgrid grid">
+                    <div class="field col" *ngIf="nuevomuni">
+                        <label for="municipio.munic_Id">Codigo</label>
+                        <input type="text" pInputText id="municipio.munic_Id" [(ngModel)]="municipio.munic_Id" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !municipio.munic_Id}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !municipio.munic_Id">Codigo es requerido.</small>
+                    </div>
+                    
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col-6">
+                        <label for="deparid">Departamento</label>
+                        <p-dropdown [(ngModel)]="deparid"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !municipio.depar_Id}" [options]="departamentos" optionLabel="depar_Descripcion" placeholder="Seleccione"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !municipio.depar_Id">El departamento es requerido.</small>
+                    </div>
+                    
+                    <div class="field col-6">
+                        <label for="munic_Descripcion">Municipio</label>
+                        <input type="text" pInputText id="munic_Descripcion" [(ngModel)]="municipio.munic_Descripcion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !municipio.munic_Descripcion}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !municipio.munic_Descripcion">Municipio es requerido.</small>
+                    </div>
+                </div>
+                
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveMunicipio()"></button>
+            </ng-template>
+        </p-dialog>
+        
+        <p-dialog [(visible)]="deletemunicipioDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="municipio">¿Estas seguro que deseas eliminar <b>{{municipio.munic_Descripcion}}</b>?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deletemunicipioDialog = false" ></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
     </div>
 </div>

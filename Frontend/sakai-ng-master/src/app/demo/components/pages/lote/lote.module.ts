@@ -16,11 +16,13 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
     imports: [
         CommonModule,
         LoteRoutingModule,
+        CalendarModule,
         TableModule,
         FileUploadModule,
         FormsModule,

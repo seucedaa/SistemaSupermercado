@@ -11,7 +11,7 @@
                         <p>{{categoria.categ_Id}}</p>
                     </div>
                     <div class="field col">
-                        <label><b>Estado civil</b></label>
+                        <label><b>Categoria</b></label>
                         <p>{{categoria.categ_Descripcion}}</p>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
 		<div class="card p-fluid">
             <h5>Auditoria</h5>
 
-            <p-table #dt [value]="categorias" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['UsuarioCreacion,UsuarioModificacion,categ_FechaCreacion,categ_FechaModificacion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedCategorias" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="categoriass" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['usuarioCreacion','usuarioModificacion', 'categ_FechaCreacion', 'categ_FechaModificacion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
@@ -39,40 +39,46 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>Accion</th>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
+                        <th style="width: 3rem">
+                          Accion
+                        </th>
+                        <th style="width: 3rem">
+                            Usuario
+                        </th>
+                          <th style="width: 3rem">
+                            Fecha
+                          </th>
                         
-                        <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-categoria>
                     <tr>
-                        <td>
+                        <td style="width:14%; min-width:20rem;">
                             Creador
                         </td>
                         <td style="width:14%; min-width:20rem;">
-                            {{categoria.UsuarioCreacion}}
+                            {{ categoria.usuarioCreacion }}
                         </td>
                         <td style="width:14%; min-width:20rem;">
-                            {{categoria.categ_FechaCreacion}}
+                            {{ categoria.categ_FechaCreacion }}
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td style="width:14%; min-width:20rem;">
                             Modificador
                         </td>
                         <td style="width:14%; min-width:20rem;">
-                            {{categoria.UsuarioModificacion}}
+                            {{ categoria.usuarioModificacion }}
                         </td>
                         <td style="width:14%; min-width:20rem;">
-                            {{categoria.categ_FechaModificacion}}
+                            {{ categoria.categ_FechaModificacion }}
                         </td>
                     </tr>
                 </ng-template>
+                
+                
             </p-table>
         
     </div>
 </div> 
 
-<!--  -->

@@ -58,23 +58,26 @@ export class InsertarComponent implements OnInit {
     }
     
 
-     ngOnInit() {
+    ngOnInit() {
         this.cliente.clien_Sexo = 'f'; 
         this.estadocivilService.getList().then(data => this.estadosciviles = data);
+
         this.departamentoService.getList().then(data => this.departamentos = data);
-        //this.municipioService.getList().then(data => this.municipios = data);
-        
+        //this.cliente.estad_Id = 0;
+        //this.estadoid = 0;
     }
+    
+    
     
     guardar() {
         this.submitted = true;
         this.cliente.clien_UsuarioCreacion = 1;
         console.log("entra al guarda");
+        console.log(this.cliente);
         //this.router.navigate(['cliente']);
 
-
-        if (this.cliente.clien_Dni?.trim() && this.cliente.clien_Telefono?.trim() && this.cliente.clien_PrimerNombre?.trim() && this.cliente.clien_SegundoNombre?.trim() && this.cliente.clien_PrimerApellido?.trim() && this.cliente.clien_SegundoApellido?.trim() && this.cliente.estad_Id.toString()?.trim() && this.cliente.clien_Sexo?.trim() && this.cliente.clien_Direccion?.trim() && this.cliente.munic_Id.trim()) {
-            console.log(this.cliente);
+        if (this.cliente.clien_Dni?.toString().trim() && this.cliente.clien_Telefono?.toString().trim() && this.cliente.clien_PrimerNombre?.trim() && this.cliente.clien_SegundoNombre?.trim() && this.cliente.clien_PrimerApellido?.trim() && this.cliente.clien_SegundoApellido?.trim() && this.cliente.estad_Id.toString()?.trim() && this.cliente.clien_Sexo?.trim() && this.cliente.clien_Direccion?.trim() && this.cliente.munic_Id.trim()) {
+            
             console.log("intenta guardar");
             this.clienteService.Insert(this.cliente).then((response => {
                 console.log(response)

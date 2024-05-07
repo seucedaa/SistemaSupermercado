@@ -6,12 +6,12 @@
                 <div class="p-formgrid grid">
                     <div class="field col">
                         <label for="clien_Dni">Identidad</label>
-                        <input type="text" pInputText id="clien_Dni" [(ngModel)]="cliente.clien_Dni" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Dni}"/>
+                        <input type="number" pInputText id="clien_Dni" [(ngModel)]="cliente.clien_Dni" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Dni}"/>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.clien_Dni">La identidad es requerida.</small>
                     </div>
                     <div class="field col">
                         <label for="clien_Telefono">Telefono</label>
-                        <input type="text" pInputText id="clien_Telefono" [(ngModel)]="cliente.clien_Telefono" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Telefono}"/>
+                        <input type="number" pInputText id="clien_Telefono" [(ngModel)]="cliente.clien_Telefono" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.clien_Telefono}"/>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.clien_Telefono">El telefono es requerido.</small>
                     </div>
                 </div>
@@ -43,7 +43,8 @@
                 <div class="p-formgrid grid">
                     <div class="field col">
                         <label htmlFor="cliente.estad_Id">Estado Civil</label>
-                        <p-dropdown [options]="estadosciviles" optionLabel="estad_Descripcion" (onChange)="onEstadIdChange($event.value)" [(ngModel)]="estadoid"></p-dropdown>
+                        <p-dropdown [options]="estadosciviles" optionLabel="estad_Descripcion" (onChange)="onEstadIdChange($event.value)" [(ngModel)]="estadoid" required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !cliente.estad_Id}"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.estad_Id">El estado civil es requerido.</small>
                     </div>
                     <div class="field col">
                         <label htmlFor="cliente.clien_Sexo">Sexo:</label>

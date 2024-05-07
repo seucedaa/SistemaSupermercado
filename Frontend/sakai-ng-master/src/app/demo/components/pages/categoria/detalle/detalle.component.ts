@@ -14,12 +14,10 @@ import { ActivatedRoute } from '@angular/router';
 export class DetalleComponent implements OnInit {
 
     categorias: Categoria[] = [];
+    categoriass: Categoria[] = [];
 
     categoria: Categoria;
 
-    selectedCategorias: Categoria[] = [];
-
-    submitted: boolean = false;
 
     cols: any[] = [];
 
@@ -32,7 +30,22 @@ export class DetalleComponent implements OnInit {
 
     ngOnInit() {
         const id = this.route.snapshot.paramMap.get('id');
-        this.categoriaService.Details(Number(id)).then(data => this.categoria = data);
+        this.categoriaService.Details(Number(id)).then(data => {
+            this.categoria = data;
+            console.log(this.categoria);
+        });
+
+        this.categoriaService.Details(Number(id)).then(data => {
+            this.categoriass.push(data);
+            console.log(this.categoriass);
+        });
+    
+        this.cols = [
+            { field: 'UsuarioCreacion'},
+            { field: 'UsuarioModificacion'},
+            { field: 'categ_FechaCreacion'},
+            { field: 'categ_FechaModificacion'}
+        ];
     }
     
     

@@ -13,7 +13,7 @@ namespace SistemaSupermercado.DataAccess.Repository
 {
     public class DepartamentoRepository : IRepository<tbDepartamentos>
     {
-        public IEnumerable<tbDepartamentos> ObtenerID(int id)
+        public IEnumerable<tbDepartamentos> ObtenerID(string id)
         {
             List<tbDepartamentos> result = new List<tbDepartamentos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
@@ -24,7 +24,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public IEnumerable<tbDepartamentos> Buscar(int id)
+        public IEnumerable<tbDepartamentos> Buscar(string id)
         {
             List<tbDepartamentos> result = new List<tbDepartamentos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))

@@ -76,6 +76,7 @@ namespace SistemaSupermercado.API.Controllers
         {
             var modelo = new tbEmpleados()
             {
+                Emple_Id = item.Emple_Id,
                 Emple_Dni = item.Emple_Dni,
                 Emple_PrimerNombre = item.Emple_PrimerNombre,
                 Emple_SegundoNombre = item.Emple_SegundoNombre,

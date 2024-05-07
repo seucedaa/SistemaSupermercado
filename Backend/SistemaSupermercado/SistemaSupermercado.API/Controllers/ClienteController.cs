@@ -81,6 +81,7 @@ namespace SistemaSupermercado.API.Controllers
         {
             var modelo = new tbClientes()
             {
+                Clien_Id = item.Clien_Id,
                 Clien_Dni = item.Clien_Dni,
                 Clien_PrimerNombre = item.Clien_PrimerNombre,
                 Clien_SegundoNombre = item.Clien_SegundoNombre,

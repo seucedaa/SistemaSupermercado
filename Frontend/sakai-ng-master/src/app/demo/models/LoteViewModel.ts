@@ -9,7 +9,7 @@ export class Lote{
     usuarioCreacion?: string;
     usuarioModificacion?: string;
     lotes_UsuarioCreacion?: number;
-    lotes_UsuarioModificacion?: string;
+    lotes_UsuarioModificacion?: number;
     lotes_FechaCreacion?: number;
     lotes_FechaModificacion?: string;
 }

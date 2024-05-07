@@ -35,8 +35,11 @@ export class ClienteComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.clienteService.getList().then(data => this.clientes = data);
-        this.cols = [
+        this.clienteService.getList().then(data => {
+            this.clientes = data;
+            console.log(this.clientes); 
+        });
+                this.cols = [
             { field: 'clien_Dni', header: 'DNI' },
             { field: 'clien_NombreCompleto', header: 'Cliente' },
             { field: 'clien_Telefono', header: 'Telefono' },

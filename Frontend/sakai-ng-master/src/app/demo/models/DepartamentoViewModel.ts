@@ -5,4 +5,6 @@ export interface Departamento{
     depar_FechaCreacion?:string;
     depar_UsuarioModificacion?:1;
     depar_FechaModificacion?:string;
+    usuarioCreacion?: string
+    usuarioModificacion?: string
 }
