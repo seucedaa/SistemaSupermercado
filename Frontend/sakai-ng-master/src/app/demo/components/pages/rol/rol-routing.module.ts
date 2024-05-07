@@ -4,7 +4,8 @@ import { RolComponent } from './rol.component';
 
 @NgModule({
 	imports: [RouterModule.forChild([
-		{ path: '', component: RolComponent }
+		{ path: '', component: RolComponent },
+		{ path: 'insertar', loadChildren: () => import('./insertar/insertar.module').then(m => m.InsertarModule) },
 	])],
 	exports: [RouterModule]
 })

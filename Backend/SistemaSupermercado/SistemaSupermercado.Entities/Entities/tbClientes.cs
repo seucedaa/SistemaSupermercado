@@ -41,7 +41,11 @@ namespace SistemaSupermercado.Entities.Entities
         public string Munic_Id { get; set; }
         [NotMapped]
         public string Munic_Descripcion { get; set; }
-        
+        [NotMapped]
+        public int deparid { get; set; }
+        [NotMapped]
+        public string depardescrip { get; set; }
+
         public string Clien_Direccion { get; set; }
         public int Clien_UsuarioCreacion { get; set; }
         public DateTime Clien_FechaCreacion { get; set; }
