@@ -122,8 +122,22 @@ namespace SistemaSupermercado.DataAccess.Repository
                 result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.Subcategoria_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
+        }
+        public IEnumerable<tbSubcategorias> DropDownList(int Categ_Id)
+        {
+
+            List<tbSubcategorias> result = new List<tbSubcategorias>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { Categ_Id = Categ_Id };
+
+                result = db.Query<tbSubcategorias>(ScriptBaseDeDatos.Subcategoria_DropDownList, parameters,commandType: CommandType.StoredProcedure).ToList();
+                
+                return result;
+            }
 
         }
+
 
         public IEnumerable<tbSubcategorias> ListarSubcateporCate(int id)
         {

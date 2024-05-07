@@ -141,6 +141,21 @@ CREATE TABLE Gral.tbCategorias(
 	CONSTRAINT FK_tbCategorias_tbUsuarios_Categ_UsuarioModificacion FOREIGN KEY(Categ_UsuarioModificacion) REFERENCES Acce.tbUsuarios(Usuar_Id),
 )
 GO
+CREATE TABLE Gral.tbTiposdePagos(
+	Tipos_Id INT IDENTITY(1,1),
+	Tipos_Descripcion NVARCHAR(50) NOT NULL,
+	CONSTRAINT PK_tbTiposdePagos_Tipos_Id PRIMARY KEY(Tipos_Id),
+	CONSTRAINT UQ_tbTiposdePagos_Tipos_Descripcion UNIQUE(Tipos_Descripcion),
+
+	[Tipos_UsuarioCreacion] [int] NOT NULL,
+	[Tipos_FechaCreacion] [datetime] NOT NULL,
+	[Tipos_UsuarioModificacion] [int] NULL,
+	[Tipos_FechaModificacion] [datetime] NULL,
+	[Tipos_Estado] [bit] CONSTRAINT DF_tbTiposdePagos_Tipos_Estado DEFAULT 1,
+	CONSTRAINT FK_tbTiposdePagos_tbUsuarios_Tipos_UsuarioCreacion FOREIGN KEY(Tipos_UsuarioCreacion) REFERENCES Acce.tbUsuarios(Usuar_Id),
+	CONSTRAINT FK_tbTiposdePagos_tbUsuarios_Tipos_UsuarioModificacion FOREIGN KEY(Tipos_UsuarioModificacion) REFERENCES Acce.tbUsuarios(Usuar_Id),
+)
+GO
 CREATE TABLE Gral.tbSubcategorias(
 	Subca_Id INT IDENTITY(1,1),
 	Subca_Descripcion NVARCHAR(50) NOT NULL,
@@ -361,9 +376,11 @@ CREATE TABLE Venta.tbVentasEncabezado(
 	Venen_Id INT IDENTITY(1,1),
 	Sucur_Id INT NOT NULL,
 	Usuar_Id INT NOT NULL,
+	Tipos_Id INT NOT NULL,
 	CONSTRAINT PK_tbVentasEncabezado_Venen_Id PRIMARY KEY(Venen_Id),
 	CONSTRAINT FK_tbVentasEncabezado_tbSucursales_Sucur_Id FOREIGN KEY(Sucur_Id) REFERENCES Supr.tbSucursales(Sucur_Id),
 	CONSTRAINT FK_tbVentasEncabezado_tbUsuarios_Usuar_Id FOREIGN KEY(Usuar_Id) REFERENCES Acce.tbUsuarios,
+	CONSTRAINT FK_tbVentasEncabezado_tbTiposdePagos_Tipos_Id FOREIGN KEY(Tipos_Id) REFERENCES Gral.tbTiposdePagos(Tipos_Id),
 
 	[Venen_UsuarioCreacion] [int] NOT NULL,
 	[Venen_FechaCreacion] [datetime] NOT NULL,

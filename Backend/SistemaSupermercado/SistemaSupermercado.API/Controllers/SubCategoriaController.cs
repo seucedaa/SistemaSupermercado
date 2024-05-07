@@ -41,6 +41,13 @@ namespace SistemaSupermercado.API.Controllers
             return Ok(list);
         }
 
+        [HttpGet("DropDownList/{Categ_Id}")]
+        public IActionResult DropDownList(int Categ_Id)
+        {
+            var list = _ServiciosGenerales.DropDownListSubca(Categ_Id);
+            return Ok(list);
+        }
+
         [HttpPost("Insertar")]
         public IActionResult Insertar(SubCategoriaViewModel item)
         {

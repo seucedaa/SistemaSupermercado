@@ -718,6 +718,22 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
 
+        public ServiceResult DropDownListSubca(int Categ_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _subCategoriaRepository.DropDownList(Categ_Id);
+
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
         public ServiceResult ListarSubcateporCate(int id)
         {
             var result = new ServiceResult();

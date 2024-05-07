@@ -178,6 +178,11 @@ namespace SistemaSupermercado.DataAcceess.Repository
         #endregion
         #endregion
 
+        #region Reporte
+        public static string Reporte_Stock = "Rptes.SP_Stock";
+
+        #endregion
+
 
 
 

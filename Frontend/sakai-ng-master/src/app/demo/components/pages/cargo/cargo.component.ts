@@ -58,10 +58,19 @@ export class CargoComponent implements OnInit {
     }
 
     confirmDelete() {
-        this.deletecargoDialog = false;
-        this.cargos = this.cargos.filter(val => val.cargo_Id !== this.cargo.cargo_Id);
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-        this.cargo = {};
+        this.cargoService.Delete(this.cargo.cargo_Id).then((response => {
+            console.log(response)
+            if(response.success){
+                console.log(response.data.codeStatus);
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Cargo desactivado', life: 3000 });
+                this.deletecargoDialog = false;
+                this.cargo = {};
+                this.ngOnInit();
+            }else{
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
+            }
+        }));
+        
     }
     
     saveCargo() {

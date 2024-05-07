@@ -17,6 +17,10 @@ namespace SistemaSupermercado.Common.Models
         public int Impue_Id { get; set; }
         [NotMapped]
         public string Impue_Descripcion { get; set; }
+        [NotMapped]
+        public int Categ_Id { get; set; }
+        [NotMapped]
+        public string Categ_Descripcion { get; set; }
         public int Subca_Id { get; set; }
         [NotMapped]
         public string Subca_Descripcion { get; set; }
