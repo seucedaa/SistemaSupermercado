@@ -10,9 +10,13 @@
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !rol.roles_Descripcion">El rol es requerido.</small>
                     </div>
                 </div>
-                <div class="card">
+                <div class="fild col-8">
                     <h5>Tree</h5>
-                    <p-tree [value]="pantallas" selectionMode="checkbox" [(selection)]="pantallasSeleccionadas"></p-tree>
+                    <p-tree [value]="pantallas" selectionMode="checkbox" [(selection)]="pantallasSeleccionadas">
+                        <ng-template let-pantalla pTemplate="default">
+                            <b>{{ pantalla.panta_Descripcion }}</b>
+                        </ng-template>
+                    </p-tree>
                 </div>
 			
             <div class="flex flex-wrap gap-2">   

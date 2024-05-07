@@ -22,14 +22,16 @@ export class InsertarComponent implements OnInit {
     rowsPerPageOptions = [5, 10, 20];
 
     pantallas: Pantalla[] = [];
+    pantalla: Pantalla = {};
     pantallasSeleccionadas: Pantalla[] = [];
 
     constructor(private router: Router, private messageService: MessageService, private pantallaService: PantallaService, private rolService: RolService) { }
 
     ngOnInit() {
-        this.pantallaService.getList().then(data => this.pantallas = data);
-
-        
+        this.pantallaService.getList().then(data => {
+            this.pantallas = data;
+            console.log(this.pantallas);
+        });
     }
     
     guardar() {
@@ -37,7 +39,9 @@ export class InsertarComponent implements OnInit {
         this.rol.roles_UsuarioCreacion = 1;
         console.log("entra al guarda");
         console.log(this.rol);
-        this.router.navigate(['rol']);
+        //this.router.navigate(['rol']);
+
+        console.log(this.pantallasSeleccionadas);
 
         if (this.rol.roles_Descripcion?.toString().trim() ) {
             
