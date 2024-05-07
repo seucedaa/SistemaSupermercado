@@ -21,7 +21,13 @@ export class UsuarioEndPoints{
     return `${this.api.baseUrl}/Usuario/Login/${usuario}/${contrasena}`; 
   }
 }
+export class ReporteEndPoints{
+  public api = new ApiService();
 
+  public Stock():string{
+    return `${this.api.baseUrl}/Reporte/Stock`;
+  }
+}
 
 export class CargoEndPoints{
   public api = new ApiService();

@@ -15,5 +15,27 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         {
             _reporteRepository = reporteRepository;
         }
+
+        public ServiceResult reporteStock()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _reporteRepository.reporteStock();
+
+                if (lost.Any())
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    return result.Error(lost);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
     }
 }
