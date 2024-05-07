@@ -18,6 +18,4 @@ export class PantallaService {
     .then(data => data);
   }
 
-
-
 }

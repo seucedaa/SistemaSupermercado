@@ -28,6 +28,8 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Rol_Buscarr = "[Acce].[SP_Rol_Buscarr]";
         public static string Rol_Lista = "Acce.SP_Rol_Lista";
 
+        public static string Pantalla_Lista = "Acce.SP_Pantallas_Lista";
+
         public static string PantallasRoles_Insertar = "[Acce].[SP_PantallaPorRol_Insertar]";
         public static string PantallasRoles_Eliminar = "[Acce].[SP_PantallaPorRol_Desactivar]";
         public static string PantallasRoles_Lista = "[Acce].[SP_PantallaPorRol_Lista]";

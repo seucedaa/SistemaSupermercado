@@ -46,6 +46,14 @@ export class RolEndPoints{
   }
 }
 
+export class PantallaEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/Pantalla/List`;
+  }
+}
+
 export class CargoEndPoints{
   public api = new ApiService();
 

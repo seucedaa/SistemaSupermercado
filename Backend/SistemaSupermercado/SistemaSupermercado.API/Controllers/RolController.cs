@@ -44,19 +44,8 @@ namespace SistemaSupermercado.Controllers
 
         }
 
-        [HttpGet("ListPantallas")]
-        public IActionResult ListPantallas()
-        {
-            var pantallas = _serviciosAcceso.ListarPant();
-            return Ok(pantallas.Data);
-        }
 
-        [HttpGet("ListPantallasDelRol")]
-        public IActionResult ListPantallasDelRol(int id)
-        {
-            var pantallasderol = _serviciosAcceso.ListPantdelRol(id);
-            return Ok(pantallasderol.Data);
-        }
+       
 
 
 

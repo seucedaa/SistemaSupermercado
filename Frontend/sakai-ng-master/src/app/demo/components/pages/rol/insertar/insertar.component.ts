@@ -4,8 +4,8 @@ import { Table } from 'primeng/table';
 import { RolService } from 'src/app/demo/service/rol.service';
 import { Rol } from 'src/app/demo/models/RolViewModel';
 import { Router } from '@angular/router';
-import { EstadoCivilService } from 'src/app/demo/service/estadocivil.service';
-import { EstadoCivil } from 'src/app/demo/models/EstadoCivilViewModel';
+import { PantallaService } from 'src/app/demo/service/pantalla.service';
+import { Pantalla } from 'src/app/demo/models/PantallaViewModel';
 
 @Component({
     templateUrl: './insertar.component.html',
@@ -15,21 +15,19 @@ import { EstadoCivil } from 'src/app/demo/models/EstadoCivilViewModel';
 export class InsertarComponent implements OnInit {
 
     roles: Rol[] = [];
-    rolesSeleccionado: Rol[] = [];
-
     rol: Rol = {};
 
     submitted: boolean = false;
 
     rowsPerPageOptions = [5, 10, 20];
 
-    estadosciviles: EstadoCivil[] = [];
-    estadoid: any;
+    pantallas: Pantalla[] = [];
+    pantallasSeleccionadas: Pantalla[] = [];
 
-    constructor(private router: Router, private messageService: MessageService, private estadocivilService: EstadoCivilService, private rolService: RolService) { }
+    constructor(private router: Router, private messageService: MessageService, private pantallaService: PantallaService, private rolService: RolService) { }
 
     ngOnInit() {
-        this.estadocivilService.getList().then(data => this.estadosciviles = data);
+        this.pantallaService.getList().then(data => this.pantallas = data);
 
         
     }

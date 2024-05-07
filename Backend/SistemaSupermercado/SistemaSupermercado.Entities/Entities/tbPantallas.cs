@@ -15,6 +15,8 @@ namespace SistemaSupermercado.Entities.Entities
 
         public int Panta_Id { get; set; }
         public string Panta_Descripcion { get; set; }
+        public int Panta_Esquema { get; set; }
+
         public int Panta_UsuarioCreacion { get; set; }
         public DateTime Panta_FechaCreacion { get; set; }
         public int? Panta_UsuarioModificacion { get; set; }
