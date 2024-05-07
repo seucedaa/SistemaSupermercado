@@ -24,8 +24,8 @@ export class UsuarioEndPoints{
 export class ReporteEndPoints{
   public api = new ApiService();
 
-  public Stock():string{
-    return `${this.api.baseUrl}/Reporte/Stock`;
+  public Stock(Sucur_Id: number):string{
+    return `${this.api.baseUrl}/Reporte/Stock/${Sucur_Id}`;
   }
 }
 

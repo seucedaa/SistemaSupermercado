@@ -14,6 +14,7 @@ import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 import { StockComponent } from './stock.component';
 import { StockRoutingModule } from './stock-routing.module';
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
 	imports: [
@@ -30,7 +31,8 @@ import { StockRoutingModule } from './stock-routing.module';
 		MultiSelectModule,
 		DropdownModule,
 		ProgressBarModule,
-		ToastModule
+		ToastModule,
+		NgxPrintModule
 	],
 	declarations: [StockComponent]
 })

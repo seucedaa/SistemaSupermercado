@@ -11,8 +11,8 @@ export class ReporteService {
   constructor(private http:HttpClient) { }
   public endpoint = new ReporteEndPoints();
 
-  Stock(){
-    return this.http.get<any>(this.endpoint.Stock()) 
+  Stock(Sucur_Id: number){
+    return this.http.get<any>(this.endpoint.Stock(Sucur_Id)) 
     .toPromise()  
     .then(res => res.data as Producto[])
     .then(data => data);

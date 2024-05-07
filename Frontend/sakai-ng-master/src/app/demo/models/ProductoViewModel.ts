@@ -9,6 +9,8 @@ export class Producto{
     prove_Id?: number;
     cantidad?: string;
     producto?: string;
+    categ_Id?: number;
+    categ_Descripcion?: string;
     subca_Descripcion?: string;
     prove_Marca?: string;
     impue_Descripcion?: string;
