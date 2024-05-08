@@ -13,10 +13,11 @@
                 <div class="fild col-8">
                     <h5>Tree</h5>
                     <p-tree [value]="datos" selectionMode="checkbox" [(selection)]="pantallasSeleccionadas" (onNodeSelect)="guardar()">                      
-                          <ng-template let-pantall pTemplate="default">
-                          <b>{{ pantall.label }}</b>
+                        <ng-template let-pantall pTemplate="default">
+                            <b>{{ pantall.label }}</b>
                         </ng-template>
                     </p-tree>
+                    
                 </div>
 			
             <div class="flex flex-wrap gap-2">   

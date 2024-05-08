@@ -1,7 +1,5 @@
 export interface Rol {
     roles_Id?: number;
-    pantallas: number[]; 
-    pantallasD: number[];
     roles_Descripcion?: string;
     roles_UsuarioCreacion?: number;
     roles_FechaCreacion?: string;

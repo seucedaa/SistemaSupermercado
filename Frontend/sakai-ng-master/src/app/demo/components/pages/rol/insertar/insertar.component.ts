@@ -16,8 +16,6 @@ export class InsertarComponent implements OnInit {
 
     roles: Rol[] = [];
     rol: Rol = {
-      pantallas: [],
-      pantallasD: []
     };
 
     submitted: boolean = false;
@@ -38,94 +36,97 @@ export class InsertarComponent implements OnInit {
     }
     
     construir(pantallas: Pantalla[]): any {
-        const datos: any = [];
-        const pantallaMap: any = {};
-    
-        pantallas.forEach(pantalla => {
+      const datos: any = [];
+      const pantallaMap: any = {};
+  
+      pantallas.forEach(pantalla => {
           pantallaMap[pantalla.panta_Id] = pantalla;
-        });
-    
-        const padre = {
+      });
+  
+      const padre = {
           label: 'Todas las pantallas',
           children: []
-        };
-    
-        datos.push(padre);
-    
-        const acceso = {
+      };
+  
+      datos.push(padre);
+  
+      const acceso = {
           label: 'Acceso',
           children: []
-        };
-    
-        const general = {
+      };
+  
+      const general = {
           label: 'General',
           children: []
-        };
-    
-        const supermercado = {
+      };
+  
+      const supermercado = {
           label: 'Supermercado',
           children: []
-        };
-    
-        const ventas = {
+      };
+  
+      const ventas = {
           label: 'Ventas',
           children: []
-        };
-    
-        padre.children.push(acceso, general, supermercado, ventas);
-    
-        pantallas.forEach(pantalla => {
+      };
+  
+      padre.children.push(acceso, general, supermercado, ventas);
+  
+      pantallas.forEach(pantalla => {
           switch (pantalla.panta_Esquema) {
-            case 1:
-              acceso.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
-              break;
-            case 2:
-              general.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
-              break;
-            case 3:
-              supermercado.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
-              break;
-            case 4:
-              ventas.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
-              break;
+              case 1:
+                  acceso.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
+                  break;
+              case 2:
+                  general.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
+                  break;
+              case 3:
+                  supermercado.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
+                  break;
+              case 4:
+                  ventas.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
+                  break;
           }
-        });
-    
-        return datos;
-      }
+      });
+  
+      return datos;
+  }
+  
 
-      
-      guardar() {
-        this.submitted = true;
-        this.rol.roles_UsuarioCreacion = 1;
-    
-        if (this.rol.roles_Descripcion?.toString().trim() && this.pantallasSeleccionadas.length > 0) {
-            // Filtra los IDs de las pantallas seleccionadas para excluir los valores undefined
-            const filteredPantallasIds = this.pantallasSeleccionadas
-               .filter(pantalla => pantalla.data!== undefined) // Filtra para excluir undefined
-               .map(pantalla => pantalla.data); // Mapea a los IDs de las pantallas
-    
-            this.rol.pantallas = filteredPantallasIds;
-            console.log('entra', this.rol);
-    
-            this.rolService.Insert(this.rol).then(response => {
-                if (response.success) {
-                    console.log(response);
-                    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Rol creado.', life: 3000 });
-                    this.ngOnInit();
-                    this.router.navigate(['/home/pages/rol']);
-                } else {
-                    this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
-                }
-            });
-        } else {
-            // Maneja el caso donde el usuario no ha seleccionado pantallas
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Escriba el rol.', life: 3000 });
-        }
-    }
-    
+  async guardar() {
+    this.submitted = true;
+    this.rol.roles_UsuarioCreacion = 1;
 
-    onGlobalFilter(table: Table, event: Event) {
-        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+    if (this.rol.roles_Descripcion?.toString().trim() && this.pantallasSeleccionadas.length > 0) {
+        console.log('entra', this.rol);
+
+        await this.guardarPantallasSeleccionadas(this.rol.roles_Descripcion, this.pantallasSeleccionadas, this.rol.roles_UsuarioCreacion);
+        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Rol creado.', life: 3000 });
+
+        this.ngOnInit();
+        this.router.navigate(['/home/pages/rol']);
+    } else {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Escriba el rol.', life: 3000 });
     }
+}
+
+async guardarPantallasSeleccionadas(rol, pantallasSeleccionadas,creador) {
+    console.log('seleccionadas ' + pantallasSeleccionadas);
+    const response = await fetch('http://www.proyectosupermercado.somee.com/Api/Rol/Insertar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ Roles_Descripcion: rol, Pantallas: pantallasSeleccionadas, Roles_UsuarioCreacion: creador}),
+    });
+
+    if (!response.ok) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Escriba el rol.', life: 3000 });
+      return;
+    }
+
+    const data = await response.json();
+}
+
+    
 }

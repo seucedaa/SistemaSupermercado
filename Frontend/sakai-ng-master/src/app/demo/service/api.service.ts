@@ -66,6 +66,15 @@ export class PantallaEndPoints{
  
 }
 
+export class PantallaporRolEndPoints{
+  public api = new ApiService();
+
+  public List(id:string):string{
+    return `${this.api.baseUrl}/PantallaporRol/PantallaporRol/${id}`;
+  }
+ 
+}
+
 export class CargoEndPoints{
   public api = new ApiService();
 

@@ -6,6 +6,8 @@ import { Rol } from 'src/app/demo/models/RolViewModel';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PantallaService } from 'src/app/demo/service/pantalla.service';
 import { Pantalla } from 'src/app/demo/models/PantallaViewModel';
+import { PantallaporRolService } from 'src/app/demo/service/pantallaporrol.service';
+import { PantallaporRol } from 'src/app/demo/models/PantallaporRolViewModel';
 
 @Component({
     templateUrl: './editar.component.html',
@@ -15,31 +17,29 @@ import { Pantalla } from 'src/app/demo/models/PantallaViewModel';
 export class EditarComponent implements OnInit {
 
     roles: Rol[] = [];
-    rol: Rol = {
-      pantallas: [],
-      pantallasD:[]
+    rol: Rol = {};
 
-    };
+    pantallaspr: PantallaporRol[] = [];
 
     submitted: boolean = false;
 
     rowsPerPageOptions = [5, 10, 20];
 
-    pantallasSeleccionadas: Pantalla[] = [];
+    pantallasSeleccionadas: number[] = [];
 
     datos: any[] = [];
 
 
-    constructor(private router: Router,  private route:ActivatedRoute,private messageService: MessageService, private pantallaService: PantallaService, private rolService: RolService) { }
+    constructor(private router: Router,  private prService: PantallaporRolService,private route:ActivatedRoute,private messageService: MessageService, private pantallaService: PantallaService, private rolService: RolService) { }
 
     
     ngOnInit() {
         const id = this.route.snapshot.paramMap.get('id');
-        this.rolService.PantdelRol(id).then(data => {
-            this.rol = data; 
-            this.pantallasSeleccionadas = this.rol.pantallas; 
+        this.prService.getList(id).then(data => {
+            this.pantallaspr = data; 
+             this.pantallasSeleccionadas = data.map(pantalla => pantalla.panta_Id);
         });
-
+    
         this.pantallaService.getList().then(data => {
             this.datos = this.construir(data);
         });  
@@ -103,30 +103,69 @@ export class EditarComponent implements OnInit {
         return datos;
       }
     
-      guardar() {
+      async guardar() {
         this.submitted = true;
-        this.rol.roles_UsuarioModificacion = 1; // Supongo que aquí asignas el usuario actual, puedes cambiarlo según tu lógica
-    
+        this.rol.roles_UsuarioCreacion = 1;
+        
+        this.pantallasSeleccionadas = this.datos.filter(pantalla => pantalla.selected).map(pantalla => pantalla.data);
+
         if (this.rol.roles_Descripcion?.toString().trim() && this.pantallasSeleccionadas.length > 0) {
-            this.rol.pantallas = this.pantallasSeleccionadas.map(pantalla => pantalla.data);
             console.log('entra', this.rol);
     
-            this.rolService.Update(this.rol).then(response => {
-                if (response.success) {
-                  console.log(response);
-                    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Rol actualizado.', life: 3000 });
-                    this.ngOnInit();
-                    this.router.navigate(['/home/pages/rol']);
-                } else {
-                    this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
-                }
-            });
+            await this.guardarPantallasSeleccionadas(this.rol.roles_Descripcion, this.pantallasSeleccionadas, this.rol.roles_UsuarioCreacion);
+            this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Rol creado.', life: 3000 });
+    
+            this.ngOnInit();
+            this.router.navigate(['/home/pages/rol']);
         } else {
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Escriba el rol.', life: 3000 });
         }
     }
+    
+    async guardarPantallasSeleccionadas(rol, pantallasSeleccionadas,creador) {
+        console.log('seleccionadas ' + pantallasSeleccionadas);
+        const response = await fetch('http://www.proyectosupermercado.somee.com/Api/Rol/Insertar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ Roles_Descripcion: rol, Pantallas: pantallasSeleccionadas, Roles_UsuarioCreacion: creador}),
+        });
+    
+        if (!response.ok) {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Escriba el rol.', life: 3000 });
+          return;
+        }
+    
+        const data = await response.json();
+    }
 
-    onGlobalFilter(table: Table, event: Event) {
-        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+
+    async eliminarPantallasDeseleccionadas(idd, pantallasDeseleccionadas) {
+        console.log(idd, pantallasDeseleccionadas);
+        const response = await fetch('http://www.proyectosupermercado.somee.com/Api/Rol/EliminarPantalladelRol', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ Roles_Id: idd, PantallasD: pantallasDeseleccionadas }),
+        });
+    
+        if (!response.ok) {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al eliminar pantallas', life: 3000 });
+            return;
+        }
+    
+        const data = await response.json();
+    }
+
+    onCheckboxChange(event: any, pantallaId: number) {
+        const isChecked = event.target.checked;
+        const pantallaIdSeleccionada = pantallaId;
+    
+        if (!isChecked) {
+            const idd = this.rol.roles_Id;  
+            this.eliminarPantallasDeseleccionadas(idd, [pantallaIdSeleccionada]);
+        }
     }
 }

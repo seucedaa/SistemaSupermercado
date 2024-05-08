@@ -17,8 +17,6 @@ export class RolComponent implements OnInit {
     roles: Rol[] = [];
 
     rol: Rol = {
-        pantallas:[],
-        pantallasD:[]
     };
 
     selectedRoles: Rol[] = [];
