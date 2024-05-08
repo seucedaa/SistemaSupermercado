@@ -1,0 +1,42 @@
+<div class="grid">
+	<div class="col-12 md:col-12">
+        <div class="card p-fluid">
+             <p-toast></p-toast>
+			<h5>Nuevo Rol</h5>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label for="roles_Descripcion">Rol</label>
+                        <input type="text" pInputText id="roles_Descripcion" [(ngModel)]="rol.roles_Descripcion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !rol.roles_Descripcion}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !rol.roles_Descripcion">El rol es requerido.</small>
+                    </div>
+                </div>
+                <div class="fild col-8">
+                    <h5>Tree</h5>
+                    <p-tree [value]="datos" selectionMode="checkbox" [(selection)]="pantallasSeleccionadas" (onNodeSelect)="guardar()">                      
+                          <ng-template let-pantall pTemplate="default">
+                          <b>{{ pantall.label }}</b>
+                        </ng-template>
+                    </p-tree>
+                </div>
+			
+            <div class="flex flex-wrap gap-2">   
+                <div class="field col">
+                </div>
+                <div class="field col">
+                               
+                </div>
+                <div class="field col">
+                </div>  
+                <div class="field col">
+
+                </div>  
+               
+               <div class="field col">
+                   <button routerLink="rol" pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-secondary mr-2" ></button>
+               
+               </div>
+            </div>
+	    </div>
+        
+    </div>
+</div>

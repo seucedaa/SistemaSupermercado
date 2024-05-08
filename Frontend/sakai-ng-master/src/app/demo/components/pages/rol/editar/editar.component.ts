@@ -3,21 +3,22 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { RolService } from 'src/app/demo/service/rol.service';
 import { Rol } from 'src/app/demo/models/RolViewModel';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PantallaService } from 'src/app/demo/service/pantalla.service';
 import { Pantalla } from 'src/app/demo/models/PantallaViewModel';
 
 @Component({
-    templateUrl: './insertar.component.html',
+    templateUrl: './editar.component.html',
     providers: [MessageService]
 
 })
-export class InsertarComponent implements OnInit {
+export class EditarComponent implements OnInit {
 
     roles: Rol[] = [];
     rol: Rol = {
       pantallas: [],
-      pantallasD: []
+      pantallasD:[]
+
     };
 
     submitted: boolean = false;
@@ -29,13 +30,21 @@ export class InsertarComponent implements OnInit {
     datos: any[] = [];
 
 
-    constructor(private router: Router, private messageService: MessageService, private pantallaService: PantallaService, private rolService: RolService) { }
+    constructor(private router: Router,  private route:ActivatedRoute,private messageService: MessageService, private pantallaService: PantallaService, private rolService: RolService) { }
 
+    
     ngOnInit() {
+        const id = this.route.snapshot.paramMap.get('id');
+        this.rolService.PantdelRol(id).then(data => {
+            this.rol = data; 
+            this.pantallasSeleccionadas = this.rol.pantallas; 
+        });
+
         this.pantallaService.getList().then(data => {
             this.datos = this.construir(data);
-        });
+        });  
     }
+    
     
     construir(pantallas: Pantalla[]): any {
         const datos: any = [];
@@ -93,25 +102,19 @@ export class InsertarComponent implements OnInit {
     
         return datos;
       }
-
-      
+    
       guardar() {
         this.submitted = true;
-        this.rol.roles_UsuarioCreacion = 1;
+        this.rol.roles_UsuarioModificacion = 1; // Supongo que aquí asignas el usuario actual, puedes cambiarlo según tu lógica
     
         if (this.rol.roles_Descripcion?.toString().trim() && this.pantallasSeleccionadas.length > 0) {
-            // Filtra los IDs de las pantallas seleccionadas para excluir los valores undefined
-            const filteredPantallasIds = this.pantallasSeleccionadas
-               .filter(pantalla => pantalla.data!== undefined) // Filtra para excluir undefined
-               .map(pantalla => pantalla.data); // Mapea a los IDs de las pantallas
-    
-            this.rol.pantallas = filteredPantallasIds;
+            this.rol.pantallas = this.pantallasSeleccionadas.map(pantalla => pantalla.data);
             console.log('entra', this.rol);
     
-            this.rolService.Insert(this.rol).then(response => {
+            this.rolService.Update(this.rol).then(response => {
                 if (response.success) {
-                    console.log(response);
-                    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Rol creado.', life: 3000 });
+                  console.log(response);
+                    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Rol actualizado.', life: 3000 });
                     this.ngOnInit();
                     this.router.navigate(['/home/pages/rol']);
                 } else {
@@ -119,11 +122,9 @@ export class InsertarComponent implements OnInit {
                 }
             });
         } else {
-            // Maneja el caso donde el usuario no ha seleccionado pantallas
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Escriba el rol.', life: 3000 });
         }
     }
-    
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');

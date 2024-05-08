@@ -51,6 +51,9 @@ export class RolEndPoints{
   public Delete(id: string):string{
     return `${this.api.baseUrl}/Lote/Eliminar/${id}`; 
   }
+  public PantdelRol(id: string):string{
+    return `${this.api.baseUrl}/Pantalla/ListPantallasDelRol?id=${id}`;
+  }
 }
 
 export class PantallaEndPoints{
@@ -59,6 +62,8 @@ export class PantallaEndPoints{
   public List():string{
     return `${this.api.baseUrl}/Pantalla/List`;
   }
+
+ 
 }
 
 export class CargoEndPoints{

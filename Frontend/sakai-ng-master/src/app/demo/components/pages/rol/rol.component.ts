@@ -16,7 +16,10 @@ export class RolComponent implements OnInit {
 
     roles: Rol[] = [];
 
-    rol: Rol = {};
+    rol: Rol = {
+        pantallas:[],
+        pantallasD:[]
+    };
 
     selectedRoles: Rol[] = [];
 
@@ -56,7 +59,7 @@ export class RolComponent implements OnInit {
             if(response.success){
                 this.roles = this.roles.filter(val => val.roles_Id!== this.rol.roles_Id);
             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Rol eliminado.', life: 3000 });
-            this.rol = {};
+            //this.rol = {};
             } else{
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El rol esta siendo utilizado.', life: 3000 });
             }

@@ -1,10 +1,12 @@
-export interface Rol{
-    roles_Id?:number;
-    roles_Descripcion?:String;
+export interface Rol {
+    roles_Id?: number;
+    pantallas: number[]; 
+    pantallasD: number[];
+    roles_Descripcion?: string;
     roles_UsuarioCreacion?: number;
-    roles_FechaCreacion?:string;
-    roles_UsuarioModificacion?:number;
-    roles_FechaModificacion?:string;
+    roles_FechaCreacion?: string;
+    roles_UsuarioModificacion?: number;
+    roles_FechaModificacion?: string;
     usuarioCreacion?: string;
     usuarioModificacion?: string;
 }

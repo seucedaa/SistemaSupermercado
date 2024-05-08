@@ -298,7 +298,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                         };
                          var list = _rolRepository.InserarPaRol(pantallaPorRol);
                     }
-                    return result.Ok();
+                    return result.Ok(new { success = true, message = "Rol actualizado con éxito!" });
                 }
                 else
                 {
@@ -332,7 +332,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                         };
                         _rolRepository.InserarPaRol(pantallaPorRol);
                     }
-                    return result.Ok();
+                    return result.Ok(new { success = true, message = "Rol creado con éxito!" });
                 }
             }
             catch (Exception ex)
@@ -343,7 +343,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
         
 
-        public ServiceResult EditarRol(int idrol, string rol, List<int> pantallas, int usuarioId, DateTime fechaCreacion)
+        public ServiceResult EditarRol(int idrol, string rol, List<int> pantallas, int usuarioId)
         {
             var result = new ServiceResult();
             try
@@ -357,7 +357,6 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                         Roles_Id = idrol,
                         Roles_Descripcion = rol,
                         Roles_UsuarioModificacion = usuarioId,
-                        Roles_FechaModificacion = fechaCreacion
                     };
 
 
@@ -368,7 +367,6 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                         Panta_Id = pantallaId,
                         Roles_Id = idrol,
                         Papro_UsuarioCreacion = usuarioId,
-                        Papro_FechaCreacion = fechaCreacion
                     };
                     _rolRepository.InserarPaRol(pantallaPorRol);
                 }
@@ -480,7 +478,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
                     }
                 }
-                return result.Ok(new { success = true, message = "Rol creado con éxito!" });
+                return result.Ok();
             }
             catch (Exception ex)
             {
@@ -503,7 +501,7 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
 
                     }
                 }
-                return result.Ok(new { success = true, message = "Rol creado con éxito!" });
+                return result.Ok();
             }
             catch (Exception ex)
             {
