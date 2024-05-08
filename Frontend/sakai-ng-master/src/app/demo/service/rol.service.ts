@@ -38,8 +38,9 @@ export class RolService {
       .toPromise()  
   }
   PantdelRol(id: string){
-    return this.http.get<Rol[]>(this.endpoint.PantdelRol(id)) 
-      .toPromise()
-      .then(data => data);
+    return this.http.get<any>(this.endpoint.PantdelRol(id)) 
+    .toPromise()  
+    .then(res => res.data as Rol[])
+    .then(data => data);
   }
 }

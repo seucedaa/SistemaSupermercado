@@ -35,9 +35,17 @@ export class EditarComponent implements OnInit {
     
     ngOnInit() {
         const id = this.route.snapshot.paramMap.get('id');
-        this.prService.getList(id).then(data => {
-            this.pantallaspr = data; 
-             this.pantallasSeleccionadas = data.map(pantalla => pantalla.panta_Id);
+        this.rolService.Details(Number(id)).then(data => {
+          this.rol = data;
+          console.log(this.rol);
+
+      
+      });
+        this.rolService.PantdelRol(id).then(data => {
+            this.roles = data; 
+            this.pantallasSeleccionadas = data.map(pantalla => pantalla.panta_Id);
+            console.log(this.roles, this.pantallasSeleccionadas);
+
         });
     
         this.pantallaService.getList().then(data => {
@@ -108,7 +116,7 @@ export class EditarComponent implements OnInit {
         this.rol.roles_UsuarioCreacion = 1;
         
         this.pantallasSeleccionadas = this.datos.filter(pantalla => pantalla.selected).map(pantalla => pantalla.data);
-
+        console.log(this.pantallasSeleccionadas);
         if (this.rol.roles_Descripcion?.toString().trim() && this.pantallasSeleccionadas.length > 0) {
             console.log('entra', this.rol);
     

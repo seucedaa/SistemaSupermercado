@@ -37,22 +37,22 @@ export class RolEndPoints{
   }
 
   public Insert():string{
-    return `${this.api.baseUrl}/Lote/Insertar`; 
+    return `${this.api.baseUrl}/Rol/Insertar`; 
   }
 
   public Update():string{
-    return `${this.api.baseUrl}/Lote/Actualizar`; 
+    return `${this.api.baseUrl}/Rol/Actualizar`; 
   }
 
   public Details(id: string):string{
-    return `${this.api.baseUrl}/Lote/Detalle/${id}`; 
+    return `${this.api.baseUrl}/Rol/Detalle/${id}`; 
   }
 
   public Delete(id: string):string{
-    return `${this.api.baseUrl}/Lote/Eliminar/${id}`; 
+    return `${this.api.baseUrl}/Rol/Eliminar/${id}`; 
   }
   public PantdelRol(id: string):string{
-    return `${this.api.baseUrl}/Pantalla/ListPantallasDelRol?id=${id}`;
+    return `${this.api.baseUrl}/PantallaporRol/PantdelRol/${id}`;
   }
 }
 
@@ -70,7 +70,7 @@ export class PantallaporRolEndPoints{
   public api = new ApiService();
 
   public List(id:string):string{
-    return `${this.api.baseUrl}/PantallaporRol/PantallaporRol/${id}`;
+    return `${this.api.baseUrl}/PantallaporRol/PantdelRol/${id}`;
   }
  
 }

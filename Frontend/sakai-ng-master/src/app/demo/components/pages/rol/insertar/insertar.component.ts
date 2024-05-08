@@ -22,7 +22,7 @@ export class InsertarComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    pantallasSeleccionadas: Pantalla[] = [];
+    pantallasSeleccionadas: [] = [];
 
     datos: any[] = [];
 
@@ -52,7 +52,8 @@ export class InsertarComponent implements OnInit {
   
       const acceso = {
           label: 'Acceso',
-          children: []
+          children: [],
+          id: 1,
       };
   
       const general = {
@@ -75,16 +76,16 @@ export class InsertarComponent implements OnInit {
       pantallas.forEach(pantalla => {
           switch (pantalla.panta_Esquema) {
               case 1:
-                  acceso.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
+                  acceso.children.push({ label: pantalla.panta_Descripcion, id: pantalla.panta_Id });
                   break;
               case 2:
-                  general.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
+                  general.children.push({ label: pantalla.panta_Descripcion, id: pantalla.panta_Id });
                   break;
               case 3:
-                  supermercado.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
+                  supermercado.children.push({ label: pantalla.panta_Descripcion, id: pantalla.panta_Id });
                   break;
               case 4:
-                  ventas.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
+                  ventas.children.push({ label: pantalla.panta_Descripcion, id: pantalla.panta_Id });
                   break;
           }
       });
@@ -96,8 +97,10 @@ export class InsertarComponent implements OnInit {
   async guardar() {
     this.submitted = true;
     this.rol.roles_UsuarioCreacion = 1;
+    console.log(this.pantallasSeleccionadas, 'pantallas');
+    
 
-    if (this.rol.roles_Descripcion?.toString().trim() && this.pantallasSeleccionadas.length > 0) {
+    if (this.rol.roles_Descripcion?.toString().trim()) {
         console.log('entra', this.rol);
 
         await this.guardarPantallasSeleccionadas(this.rol.roles_Descripcion, this.pantallasSeleccionadas, this.rol.roles_UsuarioCreacion);
@@ -111,6 +114,7 @@ export class InsertarComponent implements OnInit {
 }
 
 async guardarPantallasSeleccionadas(rol, pantallasSeleccionadas,creador) {
+   //const seleccionadas = this.pantallasSeleccionadas.map(panta => panta.id);
     console.log('seleccionadas ' + pantallasSeleccionadas);
     const response = await fetch('http://www.proyectosupermercado.somee.com/Api/Rol/Insertar', {
         method: 'POST',
