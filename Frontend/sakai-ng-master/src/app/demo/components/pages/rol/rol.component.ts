@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/demo/api/product';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
-import { ProductService } from 'src/app/demo/service/product.service';
 import { RolService } from 'src/app/demo/service/rol.service';
 import { Rol } from 'src/app/demo/models/RolViewModel';
 
@@ -12,11 +10,9 @@ import { Rol } from 'src/app/demo/models/RolViewModel';
 })
 export class RolComponent implements OnInit {
 
-    productDialog: boolean = false;
+    deleterolDialog: boolean = false;
 
-    deleteProductDialog: boolean = false;
-
-    deleteProductsDialog: boolean = false;
+    deleterolsDialog: boolean = false;
 
     roles: Rol[] = [];
 
@@ -27,8 +23,6 @@ export class RolComponent implements OnInit {
     submitted: boolean = false;
 
     cols: any[] = [];
-
-    statuses: any[] = [];
 
     rowsPerPageOptions = [5, 10, 20];
 
@@ -42,90 +36,35 @@ export class RolComponent implements OnInit {
         ];
     }
 
-    // openNew() {
-    //     this.rol = {};
-    //     this.submitted = false;
-    //     this.productDialog = true;
-    // }
+    deleteRol(rol: Rol) {
+        this.deleterolDialog = true;
+        this.rol = { ...rol };
+    }
 
-    // deleteSelectedProducts() {
-    //     this.deleteProductsDialog = true;
-    // }
+    confirmDeleteSelected() {
+        this.deleterolsDialog = false;
+        this.roles = this.roles.filter(val => !this.selectedRoles.includes(val));
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Roles eliminados.', life: 3000 });
+        this.selectedRoles = [];
+    }
 
-    // editProduct(rol: Rol) {
-    //     this.rol = { ...rol };
-    //     this.productDialog = true;
-    // }
-
-    // deleteProduct(rol: Rol) {
-    //     this.deleteProductDialog = true;
-    //     this.rol = { ...rol };
-    // }
-
-    // confirmDeleteSelected() {
-    //     this.deleteProductsDialog = false;
-    //     this.rol = this.rol.filter(val => !this.rol.includes(val));
-    //     this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-    //     this.selectedProducts = [];
-    // }
-
-    // confirmDelete() {
-    //     this.deleteProductDialog = false;
-    //     this.products = this.products.filter(val => val.id !== this.product.id);
-    //     this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-    //     this.product = {};
-    // }
-
-    // hideDialog() {
-    //     this.productDialog = false;
-    //     this.submitted = false;
-    // }
-
-    // saveProduct() {
-    //     this.submitted = true;
-
-    //     if (this.product.name?.trim()) {
-    //         if (this.product.id) {
-    //             // @ts-ignore
-    //             this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-    //             this.products[this.findIndexById(this.product.id)] = this.product;
-    //             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-    //         } else {
-    //             this.product.id = this.createId();
-    //             this.product.code = this.createId();
-    //             this.product.image = 'product-placeholder.svg';
-    //             // @ts-ignore
-    //             this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-    //             this.products.push(this.product);
-    //             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-    //         }
-
-    //         this.products = [...this.products];
-    //         this.productDialog = false;
-    //         this.product = {};
-    //     }
-    // }
-
-    // findIndexById(id: string): number {
-    //     let index = -1;
-    //     for (let i = 0; i < this.products.length; i++) {
-    //         if (this.products[i].id === id) {
-    //             index = i;
-    //             break;
-    //         }
-    //     }
-
-    //     return index;
-    // }
-
-    // createId(): string {
-    //     let id = '';
-    //     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    //     for (let i = 0; i < 5; i++) {
-    //         id += chars.charAt(Math.floor(Math.random() * chars.length));
-    //     }
-    //     return id;
-    // }
+    confirmDelete() {
+        this.deleterolDialog = false;
+    
+        this.rolService.Delete(this.rol.roles_Id).then((response) => {
+            console.log(response);
+            if(response.success){
+                this.roles = this.roles.filter(val => val.roles_Id!== this.rol.roles_Id);
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Rol eliminado.', life: 3000 });
+            this.rol = {};
+            } else{
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El rol esta siendo utilizado.', life: 3000 });
+            }
+            
+        }).catch(error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar la categoría.', life: 3000 });
+        });
+    }
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');

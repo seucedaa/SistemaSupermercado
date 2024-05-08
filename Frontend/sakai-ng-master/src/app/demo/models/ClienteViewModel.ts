@@ -10,6 +10,8 @@ export class Cliente{
     estad_Id?: number;
     clien_Telefono?: string;
     munic_Id?: string;
+    deparid?: number;
+    depardescrip?: string;
     clien_Direccion?: string;
     nombre?: string;
     estad_Descripcion?: string;

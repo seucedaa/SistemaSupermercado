@@ -11,6 +11,8 @@ export class Empleado{
     emple_Telefono?: string;
     emple_Correo?: string;
     munic_Id?: string;
+    deparid?: number;
+    depardescrip?: string;
     emple_Direccion?: string;
     cargo_Id?: number;
     sucur_Id?: number;

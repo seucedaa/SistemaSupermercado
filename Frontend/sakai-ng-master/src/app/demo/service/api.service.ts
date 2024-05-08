@@ -29,6 +29,38 @@ export class ReporteEndPoints{
   }
 }
 
+export class RolEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/Rol/List`;
+  }
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Lote/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Lote/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Lote/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Lote/Eliminar/${id}`; 
+  }
+}
+
+export class PantallaEndPoints{
+  public api = new ApiService();
+
+  public List():string{
+    return `${this.api.baseUrl}/Pantalla/List`;
+  }
+}
+
 export class CargoEndPoints{
   public api = new ApiService();
 

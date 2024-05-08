@@ -169,12 +169,11 @@ namespace SistemaSupermercado.DataAccess.Repository
 
         public IEnumerable<tbPantallas> ListPant()
         {
-            const string sql = "[Acce].[SP_Pantallas_Lista]";
 
             List<tbPantallas> result = new List<tbPantallas>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                result = db.Query<tbPantallas>(sql, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbPantallas>(ScriptBaseDeDatos.Pantalla_Lista, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 

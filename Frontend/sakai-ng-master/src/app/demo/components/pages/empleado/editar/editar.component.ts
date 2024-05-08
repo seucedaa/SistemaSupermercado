@@ -53,6 +53,8 @@ export class EditarComponent implements OnInit {
     cargos: Cargo[] = [];
     cargoid: any;
 
+    departamento: any;
+
     constructor(private cargoService: CargoService, private sucursalService: SucursalService, private departamentoService: DepartamentoService,private router: Router, private route:ActivatedRoute, private messageService: MessageService, private estadocivilService: EstadoCivilService,private municipioService: MunicipioService, private empleadoService: EmpleadoService) { }
 
     onEstadIdChange(value: any) {
@@ -72,7 +74,7 @@ export class EditarComponent implements OnInit {
     onDeparIdChange(value: any){
         const depar = value?.depar_Id;
         this.municipioService.ListporDept(depar).then(data => this.municipios = data);
-
+        
     }
     
     onMunicIdChange(value: any) {
@@ -81,6 +83,8 @@ export class EditarComponent implements OnInit {
     
     ngOnInit() {
         this.estadocivilService.getList().then(data => this.estadosciviles = data);
+        this.cargoService.getList().then(data => this.cargos = data);
+        this.sucursalService.getList().then(data => this.sucursales = data);
         this.departamentoService.getList().then(data => this.departamentos = data);
     
         const id = this.route.snapshot.paramMap.get('id');
@@ -89,9 +93,9 @@ export class EditarComponent implements OnInit {
             this.estadoid = this.empleado.estad_Id;
             this.municipioid = this.empleado.munic_Id;
             this.cargoid = this.empleado.cargo_Id;
-            this.sucurid = this.empleado.sucur_Id;
-
-        
+            this.sucurid = this.empleado.sucur_Descripcion;
+            console.log(this.empleado);
+            
         });
     }
     
@@ -115,7 +119,7 @@ export class EditarComponent implements OnInit {
                         this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Empleado actualizado.', life: 3000 });
                         this.empleado = {};
                         this.ngOnInit();
-                        //this.router.navigate(['empleado']);
+                        this.router.navigate(['/home/pages/empleado']);
                 }else{
                     this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
                 }

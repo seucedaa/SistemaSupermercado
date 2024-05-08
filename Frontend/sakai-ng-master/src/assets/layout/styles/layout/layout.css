@@ -62,21 +62,13 @@ html {
 body {
   font-family: var(--font-family);
   color: var(--text-color);
-  background-color: #ecebeb ;
+  background-color: #d8d8d8;
   margin: 0;
   padding: 0;
   min-height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-
-
-
-
-
-
-
 
 a {
   text-decoration: none;
@@ -89,7 +81,7 @@ a {
 
 .layout-topbar {
   position: fixed;
-  height: 5rem;
+  height: 6rem;
   z-index: 997;
   left: 0;
   top: 0;
@@ -109,38 +101,33 @@ a {
   font-weight: 500;
   width: 300px;
   border-radius: 12px;
+  /*&:focus {
+      @include focused();
+  }*/
 }
 .layout-topbar .layout-topbar-logo img {
-  height: 2.5rem;
+  height: 5rem;
   margin-right: 0.5rem;
-}
-.layout-topbar .layout-topbar-logo:focus {
-  outline: 0 none;
-  outline-offset: 0;
-  transition: box-shadow 0.2s;
-  box-shadow: var(--focus-ring);
 }
 .layout-topbar .layout-topbar-button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  color: var(--text-color-secondary);
+  color: white;
+  background-color: #40a72e;
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
   cursor: pointer;
   transition: background-color 0.2s;
+  /*&:focus {
+      @include focused();
+  }*/
 }
 .layout-topbar .layout-topbar-button:hover {
-  color: var(--text-color);
-  background-color: var(--surface-hover);
-}
-.layout-topbar .layout-topbar-button:focus {
-  outline: 0 none;
-  outline-offset: 0;
-  transition: box-shadow 0.2s;
-  box-shadow: var(--focus-ring);
+  color: white;
+  background-color: #55d83e;
 }
 .layout-topbar .layout-topbar-button i {
   font-size: 1.5rem;
@@ -197,11 +184,10 @@ a {
     top: 5rem;
     min-width: 15rem;
     display: none;
-    -webkit-animation: scalein 0.15s linear;
     animation: scalein 0.15s linear;
   }
   .layout-topbar .layout-topbar-menu.layout-topbar-menu-mobile-active {
-    display: block;
+    display: flex;
   }
   .layout-topbar .layout-topbar-menu .layout-topbar-button {
     margin-left: 0;
@@ -227,14 +213,18 @@ a {
   height: calc(100vh - 9rem);
   z-index: 999;
   overflow-y: auto;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   top: 7rem;
   left: 2rem;
   transition: transform 0.2s, left 0.2s;
-  background-color: var(--surface-overlay);
+  background-color: #40a72e;
   border-radius: 12px;
   padding: 0.5rem 1.5rem;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.02), 0px 0px 2px rgba(0, 0, 0, 0.05), 0px 1px 4px rgba(0, 0, 0, 0.08);
+  scrollbar-width: thin; /* Adjust scrollbar width */
+  scrollbar-color: #2e7d20 #40a72e;
 }
 
 .layout-menu {
@@ -253,7 +243,9 @@ a {
   display: none;
 }
 .layout-menu a {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .layout-menu a.active-menuitem > .layout-submenu-toggler {
   transform: rotate(-180deg);
@@ -271,11 +263,14 @@ a {
   align-items: center;
   position: relative;
   outline: 0 none;
-  color: var(--text-color);
+  color: white;
   cursor: pointer;
   padding: 0.75rem 1rem;
   border-radius: 12px;
   transition: background-color 0.2s, box-shadow 0.2s;
+  /*&:focus {
+      @include focused-inset();
+  }*/
 }
 .layout-menu ul a .layout-menuitem-icon {
   margin-right: 0.5rem;
@@ -287,16 +282,11 @@ a {
 }
 .layout-menu ul a.active-route {
   font-weight: 700;
-  color: var(--primary-color);
+  color: #d8d8d8;
+  background-color: #f7844e;
 }
 .layout-menu ul a:hover {
-  background-color: var(--surface-hover);
-}
-.layout-menu ul a:focus {
-  outline: 0 none;
-  outline-offset: 0;
-  transition: box-shadow 0.2s;
-  box-shadow: inset var(--focus-ring);
+  background-color: #f7844e;
 }
 .layout-menu ul ul {
   overflow: hidden;
@@ -528,4 +518,4 @@ p {
 }
 p:last-child {
   margin-bottom: 0;
-}
+}/*# sourceMappingURL=layout.css.map */

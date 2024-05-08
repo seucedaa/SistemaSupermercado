@@ -5,4 +5,6 @@ export interface Rol{
     roles_FechaCreacion?:string;
     roles_UsuarioModificacion?:number;
     roles_FechaModificacion?:string;
+    usuarioCreacion?: string;
+    usuarioModificacion?: string;
 }

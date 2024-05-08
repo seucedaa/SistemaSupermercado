@@ -19,6 +19,10 @@ namespace SistemaSupermercado.Common.Models
 
         [Display(Name = "Rol")]
         public string Roles_Descripcion { get; set; }
+        [NotMapped]
+        public int Panta_Id { get; set; }
+        [NotMapped]
+        public string Panta_Descripcion { get; set; }
         public string Roles_UsuarioCreacion { get; set; }
         public DateTime? Roles_FechaCreacion { get; set; }
         public string Roles_UsuarioModificacion { get; set; }

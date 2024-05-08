@@ -48,6 +48,7 @@ export class MunicipioComponent implements OnInit {
     ngOnInit() {
         this.municipioService.getList().then(data => this.municipios = data);
         this.departamentoService.getList().then(data => this.departamentos = data);
+        
         this.cols = [
             { field: 'munic_Id', header: 'Codigo' },
             { field: 'munic_Descripcion', header: 'Municipio' },

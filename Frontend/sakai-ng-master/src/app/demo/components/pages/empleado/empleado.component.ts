@@ -10,7 +10,6 @@ import { Empleado } from 'src/app/demo/models/EmpleadoViewModel';
 })
 export class EmpleadoComponent implements OnInit {
 
-    empleadoDialog: boolean = false;
 
     deleteempleadoDialog: boolean = false;
 
@@ -25,8 +24,6 @@ export class EmpleadoComponent implements OnInit {
     submitted: boolean = false;
 
     cols: any[] = [];
-
-    statuses: any[] = [];
 
     rowsPerPageOptions = [5, 10, 20];
 

@@ -46,15 +46,15 @@
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !empleado.emple_Telefono">El telefono es requerido.</small>
                     </div>
                     <div class="field col">
-                        <label htmlFor="empleado.estad_Id">Cargo</label>
-                        <p-dropdown [options]="cargos" optionLabel="cargo_Descripcion" (onChange)="onCargoIdChange($event.value)" [(ngModel)]="cargoid"></p-dropdown>
+                        <label htmlFor="empleado.cargo_Id">Cargo</label>
+                        <p-dropdown [options]="cargos" placeholder="{{empleado.cargo_Descripcion}}" optionLabel="cargo_Descripcion" (onChange)="onCargoIdChange($event.value)" [(ngModel)]="cargoid"></p-dropdown>
                     </div>
                 </div>
                 
                 <div class="p-formgrid grid">
                     <div class="field col">
                         <label htmlFor="empleado.estad_Id">Estado Civil</label>
-                        <p-dropdown [options]="estadosciviles" optionLabel="estad_Descripcion" (onChange)="onEstadIdChange($event.value)" [(ngModel)]="estadoid"></p-dropdown>
+                        <p-dropdown [options]="estadosciviles" placeholder="{{empleado.estad_Descripcion}}" optionLabel="estad_Descripcion" (onChange)="onEstadIdChange($event.value)" [(ngModel)]="estadoid"></p-dropdown>
                     </div>
                     <div class="field col">
                         <label htmlFor="empleado.emple_Sexo">Sexo:</label>
@@ -77,7 +77,7 @@
                 <div class="p-formgrid grid">
                     <div class="field col">
                         <label htmlFor="name2">Sucursal</label>
-                        <p-dropdown [options]="sucursales" optionLabel="sucur_Descripcion" (onChange)="onSucurIdChange($event.value)" [(ngModel)]="sucurid"></p-dropdown>
+                        <p-dropdown [options]="sucursales" optionLabel="sucur_Descripcion"  placeholder="{{empleado.sucur_Descripcion}}" (onChange)="onSucurIdChange($event.value)" [(ngModel)]="sucurid"></p-dropdown>
                     </div>
                     <div class="field col">
                         <label htmlFor="emple_Direccion">Direccion</label>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="field col">
                         <label htmlFor="empleado.munic_Id">Municipio</label>
-                        <p-dropdown [options]="municipios" optionLabel="munic_Descripcion" (onChange)="onMunicIdChange($event.value)" [(ngModel)]="municipioid"></p-dropdown>
+                        <p-dropdown [options]="municipios" placeholder="{{empleado.munic_Descripcion}}" optionLabel="munic_Descripcion" (onChange)="onMunicIdChange($event.value)" [(ngModel)]="municipioid"></p-dropdown>
                     </div>
                 </div>
 			

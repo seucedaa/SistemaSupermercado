@@ -43,7 +43,7 @@
                 <div class="p-formgrid grid">
                     <div class="field col">
                         <label htmlFor="cliente.estad_Id">Estado Civil</label>
-                        <p-dropdown [options]="estadosciviles" optionLabel="estad_Descripcion" (onChange)="onEstadIdChange($event.value)" [(ngModel)]="estadoid" required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !cliente.estad_Id}"></p-dropdown>
+                        <p-dropdown [options]="estadosciviles" placeholder="--Seleccione--" optionLabel="estad_Descripcion" (onChange)="onEstadIdChange($event.value)" [(ngModel)]="estadoid" required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !cliente.estad_Id}"></p-dropdown>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.estad_Id">El estado civil es requerido.</small>
                     </div>
                     <div class="field col">
@@ -74,11 +74,11 @@
                 <div class="p-formgrid grid">
                     <div class="field col">
                         <label htmlFor="name2">Departamento</label>
-                        <p-dropdown [options]="departamentos" optionLabel="depar_Descripcion" (onChange)="onDeparIdChange($event.value)" [(ngModel)]="departid"></p-dropdown>
+                        <p-dropdown [options]="departamentos" placeholder="--Seleccione--" optionLabel="depar_Descripcion" (onChange)="onDeparIdChange($event.value)" [(ngModel)]="departid"></p-dropdown>
                     </div>
                     <div class="field col">
                         <label htmlFor="cliente.munic_Id">Municipio</label>
-                        <p-dropdown [options]="municipios" optionLabel="munic_Descripcion" (onChange)="onMunicIdChange($event.value)" [(ngModel)]="municipioid"></p-dropdown>
+                        <p-dropdown [options]="municipios" placeholder="--Seleccione--" optionLabel="munic_Descripcion" (onChange)="onMunicIdChange($event.value)" [(ngModel)]="municipioid"></p-dropdown>
                     </div>
                 </div>
 			
