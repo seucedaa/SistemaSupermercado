@@ -154,7 +154,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Roles_Id", item.Roles_Id);
                 parametro.Add("Panta_Id", item.Panta_Id);
                 parametro.Add("Papro_UsuarioCreacion", item.Papro_UsuarioCreacion);
-                parametro.Add("Papro_FechaCreacion", item.Papro_FechaCreacion);
+                parametro.Add("Papro_FechaCreacion", DateTime.Now);
 
                 var result = db.Execute(ScriptBaseDeDatos.PantallasRoles_Insertar,
                     parametro,

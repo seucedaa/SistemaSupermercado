@@ -23,9 +23,13 @@ namespace SistemaSupermercado.Common.Models
         public int Panta_Id { get; set; }
         [NotMapped]
         public string Panta_Descripcion { get; set; }
-        public string Roles_UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
+        public int Roles_UsuarioCreacion { get; set; }
         public DateTime? Roles_FechaCreacion { get; set; }
-        public string Roles_UsuarioModificacion { get; set; }
+        public int Roles_UsuarioModificacion { get; set; }
         public DateTime? Roles_FechaModificacion { get; set; }
         public List<int> Pantallas { get; set; }
         public List<int> PantallasD { get; set; }

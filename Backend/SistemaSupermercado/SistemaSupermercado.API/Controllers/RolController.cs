@@ -61,7 +61,7 @@ namespace SistemaSupermercado.Controllers
             };
 
             DateTime fecha = DateTime.Now;
-            var list = _serviciosAcceso.EditarRol(item.Roles_Id, item.Roles_Descripcion, item.Pantallas, 1, fecha);
+            var list = _serviciosAcceso.EditarRol(item.Roles_Id, item.Roles_Descripcion, item.Pantallas, item.Roles_UsuarioModificacion);
 
             return Json(new { success = true, message = "Rol editadro con exito!" });
         }
@@ -102,11 +102,11 @@ namespace SistemaSupermercado.Controllers
             var model = _mapper.Map<tbRoles>(item);
             var modelo = new tbRoles()
             {
-                Roles_Descripcion = item.Roles_Descripcion
+                Roles_Descripcion = item.Roles_Descripcion,
+                Roles_UsuarioCreacion = item.Roles_UsuarioCreacion,
             };
 
-            DateTime fecha = DateTime.Now;
-            var list = _serviciosAcceso.CrearRol(item.Roles_Descripcion, item.Pantallas, 1, fecha);
+            var list = _serviciosAcceso.CrearRol(item.Roles_Descripcion, item.Pantallas, item.Roles_UsuarioCreacion);
 
             return Json(new { success = true, message = "Rol creado con exito!" });
         }

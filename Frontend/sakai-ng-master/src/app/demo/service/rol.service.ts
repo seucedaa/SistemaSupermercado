@@ -37,5 +37,9 @@ export class RolService {
     return this.http.delete<any>(this.endpoint.Delete(id.toString())) 
       .toPromise()  
   }
-
+  PantdelRol(id: string){
+    return this.http.get<Rol[]>(this.endpoint.PantdelRol(id)) 
+      .toPromise()
+      .then(data => data);
+  }
 }
