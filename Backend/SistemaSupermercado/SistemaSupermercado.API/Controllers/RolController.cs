@@ -106,9 +106,9 @@ namespace SistemaSupermercado.Controllers
             };
 
             DateTime fecha = DateTime.Now;
-            var list = _serviciosAcceso.CrearRol(item.Roles_Descripcion, item.Pantallas, 1, fecha);
+            var list = _serviciosAcceso.CrearRol(item.Roles_Descripcion, item.Pantallas, item.Roles_UsuarioCreacion);
 
-            return Json(new { success = true, message = "Rol creado con exito!" });
+            return Ok(list);
         }
 
         [HttpDelete("Eliminar/{id}")]
