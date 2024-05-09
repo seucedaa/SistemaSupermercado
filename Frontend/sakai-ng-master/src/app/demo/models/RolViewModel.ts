@@ -8,4 +8,7 @@ export interface Rol {
     roles_FechaModificacion?: string;
     usuarioCreacion?: string;
     usuarioModificacion?: string;
+    pantallas?: string[];
+    pantallasD?: string[];
+
 }

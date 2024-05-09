@@ -56,6 +56,21 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
 
+        public ServiceResult Genero(int sucursal)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _clienteRepository.Genero(sucursal);
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
 
         public ServiceResult InsertarClien(tbClientes item)
         {

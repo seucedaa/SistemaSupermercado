@@ -139,5 +139,16 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
 
         }
+
+        public IEnumerable<tbClientes> Genero(int sucursal)
+        {
+            List<tbClientes> result = new List<tbClientes>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { Sucur_Id = sucursal };
+                result = db.Query<tbClientes>(ScriptBaseDeDatos.Cliente_Genero, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
     }
 }

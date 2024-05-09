@@ -45,4 +45,9 @@ export class ClienteService {
       .toPromise()  
   }
 
+  Genero(sucursal: number){
+    return this.http.get<any>(this.endpoint.Genero(sucursal))
+        .toPromise()
+  }
+
 }

@@ -123,6 +123,8 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Producto_Desactivar = "Supr.SP_Producto_Desactivar";
         public static string Producto_Buscar = "Supr.SP_Producto_Buscar";
         public static string Producto_Existencia = "Supr.SP_Productos_Existencia";
+        public static string Producto_Total = "Venta.SP_Ventas_Totall";
+        public static string Producto_Top = "[Venta].[SP_Productos_Top]";
         #endregion
 
         #region Promocion
@@ -158,6 +160,7 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Cliente_Desactivar = "Venta.SP_Cliente_Desactivar";
         public static string Cliente_Buscar = "Venta.SP_Cliente_Buscar";
         public static string Cliente_Total = "[Venta].[SP_Cliente_Total]";
+        public static string Cliente_Genero = "[Venta].[SP_Ventas_Genero]";
         #endregion
 
         #region VentaEncabezado

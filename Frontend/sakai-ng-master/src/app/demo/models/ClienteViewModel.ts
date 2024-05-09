@@ -24,4 +24,6 @@ export class Cliente{
     clien_UsuarioModificacion?: number;
     clien_FechaCreacion?: number;
     clien_FechaModificacion?: string;
+    genero?:string;
+    cantidadVentas?:string;
 }

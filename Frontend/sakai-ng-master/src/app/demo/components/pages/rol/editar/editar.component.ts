@@ -8,6 +8,9 @@ import { PantallaService } from 'src/app/demo/service/pantalla.service';
 import { Pantalla } from 'src/app/demo/models/PantallaViewModel';
 import { PantallaporRolService } from 'src/app/demo/service/pantallaporrol.service';
 import { PantallaporRol } from 'src/app/demo/models/PantallaporRolViewModel';
+import { NodeService } from 'src/app/demo/service/node.service';
+import { TreeNode} from 'primeng/api';
+
 
 @Component({
     templateUrl: './editar.component.html',
@@ -19,161 +22,144 @@ export class EditarComponent implements OnInit {
     roles: Rol[] = [];
     rol: Rol = {};
 
-    pantallaspr: PantallaporRol[] = [];
+    pantalla: Pantalla = {};
 
     submitted: boolean = false;
 
     rowsPerPageOptions = [5, 10, 20];
 
-    pantallasSeleccionadas: number[] = [];
-
     datos: any[] = [];
 
+    files1: TreeNode[] = [];
+    pantallasseleccionadas: TreeNode[] = [];
+    pantallasdeseleccionadas: TreeNode[] = [];
 
-    constructor(private router: Router,  private prService: PantallaporRolService,private route:ActivatedRoute,private messageService: MessageService, private pantallaService: PantallaService, private rolService: RolService) { }
 
+    constructor(private router: Router,private route:ActivatedRoute,  private nodeService: NodeService, private messageService: MessageService, private pantallaService: PantallaService, private rolService: RolService) {
+        this.rol = {
+            pantallas: [],
+            pantallasD: []
+        };
+    }
     
     ngOnInit() {
-        const id = this.route.snapshot.paramMap.get('id');
-        this.rolService.Details(Number(id)).then(data => {
+      const id = this.route.snapshot.paramMap.get('id');
+      this.rolService.Details(Number(id)).then(data => {
           this.rol = data;
-          console.log(this.rol);
-
-      
       });
-        this.rolService.PantdelRol(id).then(data => {
-            this.roles = data; 
-            this.pantallasSeleccionadas = data.map(pantalla => pantalla.panta_Id);
-            console.log(this.roles, this.pantallasSeleccionadas);
+  
+      this.pantallaService.getList().then(data => {
+        const root = { label: 'Todas las pantallas', data: 'Todas las pantallas', icon: 'pi pi-fw pi-folder', children: [] };
+        const acceso = { label: 'Acceso', data: 'Acceso', icon: 'pi pi-fw pi-lock', children: [] };
+        const general = { label: 'General', data: 'General', icon: 'pi pi-fw pi-cog', children: [] };
+        const supermercado = { label: 'Supermercado', data: 'Supermercado', icon: 'pi pi-fw pi-shopping-cart', children: [] };
+        const ventas = { label: 'Ventas', data: 'Ventas', icon: 'pi pi-fw pi-chart-bar', children: [] };
 
+        root.children.push(acceso, general, supermercado, ventas);
+        data.forEach(pantalla => {
+            const esquema = pantalla.panta_Esquema;
+            const label = pantalla.panta_Descripcion;
+            const key = pantalla.panta_Id;
+
+            const nodoPantalla = { key, label, data: label, icon: 'pi pi-fw pi-file', children: [] };
+
+            if (esquema === 1) {
+                acceso.children.push(nodoPantalla);
+            } else if (esquema === 2) {
+                general.children.push(nodoPantalla);
+            } else if (esquema === 3) {
+                supermercado.children.push(nodoPantalla);
+            } else if (esquema === 4) {
+                ventas.children.push(nodoPantalla);
+            }
         });
-    
-        this.pantallaService.getList().then(data => {
-            this.datos = this.construir(data);
-        });  
-    }
-    
-    
-    construir(pantallas: Pantalla[]): any {
-        const datos: any = [];
-        const pantallaMap: any = {};
-    
-        pantallas.forEach(pantalla => {
-          pantallaMap[pantalla.panta_Id] = pantalla;
-        });
-    
-        const padre = {
-          label: 'Todas las pantallas',
-          children: []
-        };
-    
-        datos.push(padre);
-    
-        const acceso = {
-          label: 'Acceso',
-          children: []
-        };
-    
-        const general = {
-          label: 'General',
-          children: []
-        };
-    
-        const supermercado = {
-          label: 'Supermercado',
-          children: []
-        };
-    
-        const ventas = {
-          label: 'Ventas',
-          children: []
-        };
-    
-        padre.children.push(acceso, general, supermercado, ventas);
-    
-        pantallas.forEach(pantalla => {
-          switch (pantalla.panta_Esquema) {
-            case 1:
-              acceso.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
-              break;
-            case 2:
-              general.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
-              break;
-            case 3:
-              supermercado.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
-              break;
-            case 4:
-              ventas.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
-              break;
-          }
-        });
-    
-        return datos;
-      }
-    
-      async guardar() {
-        this.submitted = true;
-        this.rol.roles_UsuarioCreacion = 1;
+
+        this.files1 = [root];
         
-        this.pantallasSeleccionadas = this.datos.filter(pantalla => pantalla.selected).map(pantalla => pantalla.data);
-        console.log(this.pantallasSeleccionadas);
-        if (this.rol.roles_Descripcion?.toString().trim() && this.pantallasSeleccionadas.length > 0) {
-            console.log('entra', this.rol);
-    
-            await this.guardarPantallasSeleccionadas(this.rol.roles_Descripcion, this.pantallasSeleccionadas, this.rol.roles_UsuarioCreacion);
-            this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Rol creado.', life: 3000 });
-    
-            this.ngOnInit();
-            this.router.navigate(['/home/pages/rol']);
+    });
+
+    this.rolService.PantdelRol(id).then(data => {
+      this.roles = data; 
+
+      console.log(this.roles);
+      console.log(this.files1);
+        this.roles.forEach(rol => {
+          ['acceso', 'general', 'supermercado', 'ventas'].forEach(categoria => {
+            const categoriaObj = this.files1.find(file => file.label === categoria);
+            console.log(categoriaObj);
+
+            if (categoriaObj && categoriaObj.children) {
+              console.log(categoriaObj.children);
+              categoriaObj.children.forEach(child => {
+                if (child.key === rol.panta_Id.toString()) {
+                  this.pantallasseleccionadas.push(child);
+                  console.log(this.pantallasdeseleccionadas);
+                }
+              });
+            }
+          });
+        });
+      
+    });
+  }
+
+  actualizar() {
+    this.submitted = true;
+    this.rol.roles_UsuarioModificacion = 1;
+    console.log(this.rol);
+  
+    if (this.rol.roles_Descripcion?.trim()) {
+      console.log('antes del for');
+      this.pantallasseleccionadas.forEach(pantallaSeleccionada => {
+        if (pantallaSeleccionada && pantallaSeleccionada.key !== undefined) {
+          this.rol.pantallas.push(pantallaSeleccionada.key);
+        }            
+      });
+      console.log(this.rol.pantallas);
+  
+      this.rolService.Update(this.rol).then((response => {
+        console.log(response)
+        if(response.success){
+          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Rol actualizado.', life: 3000 });
+          this.rol = {};
+          //this.ngOnInit();
+          //this.router.navigate(['/home/pages/rol']);
         } else {
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Escriba el rol.', life: 3000 });
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
         }
+      }));
+    }
+  }
+  
+
+    eliminar() {
+        console.log(this.rol);
+    
+            this.pantallasdeseleccionadas.forEach(pantallaDeseleccionada => {
+                if (pantallaDeseleccionada.key !== undefined) {
+                    this.rol.pantallasD.push(pantallaDeseleccionada.key);
+                }            });
+            console.log(this.rol.pantallasD);
+    
+            this.rolService.Elimparol(this.rol).then((response => {
+                console.log(response)
+                if(response.success){
+                        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Pantalla eliminada.', life: 3000 });
+                        //this.rol = {};
+                        this.ngOnInit();
+                        //this.router.navigate(['/home/pages/rol']);
+                }else{
+                    this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
+                }
+            }));
+        
     }
     
-    async guardarPantallasSeleccionadas(rol, pantallasSeleccionadas,creador) {
-        console.log('seleccionadas ' + pantallasSeleccionadas);
-        const response = await fetch('http://www.proyectosupermercado.somee.com/Api/Rol/Insertar', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ Roles_Descripcion: rol, Pantallas: pantallasSeleccionadas, Roles_UsuarioCreacion: creador}),
-        });
-    
-        if (!response.ok) {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Escriba el rol.', life: 3000 });
-          return;
-        }
-    
-        const data = await response.json();
+    onNodeSelected(event) {
+        this.actualizar();
     }
-
-
-    async eliminarPantallasDeseleccionadas(idd, pantallasDeseleccionadas) {
-        console.log(idd, pantallasDeseleccionadas);
-        const response = await fetch('http://www.proyectosupermercado.somee.com/Api/Rol/EliminarPantalladelRol', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ Roles_Id: idd, PantallasD: pantallasDeseleccionadas }),
-        });
     
-        if (!response.ok) {
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al eliminar pantallas', life: 3000 });
-            return;
-        }
-    
-        const data = await response.json();
-    }
-
-    onCheckboxChange(event: any, pantallaId: number) {
-        const isChecked = event.target.checked;
-        const pantallaIdSeleccionada = pantallaId;
-    
-        if (!isChecked) {
-            const idd = this.rol.roles_Id;  
-            this.eliminarPantallasDeseleccionadas(idd, [pantallaIdSeleccionada]);
-        }
+    Deseleccionadas(event) {
+        this.eliminar();
     }
 }

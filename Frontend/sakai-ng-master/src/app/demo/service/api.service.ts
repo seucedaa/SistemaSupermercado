@@ -40,6 +40,14 @@ export class RolEndPoints{
     return `${this.api.baseUrl}/Rol/Insertar`; 
   }
 
+  public Elimparo():string{
+    return `${this.api.baseUrl}/Rol/EliminarPantallaRol`; 
+  }
+
+  public Elimparol():string{
+    return `${this.api.baseUrl}/Rol/EliminarPantalladelRol`; 
+  }
+
   public Update():string{
     return `${this.api.baseUrl}/Rol/Actualizar`; 
   }
@@ -120,6 +128,10 @@ export class ClienteEndPoints{
 
   public Delete(id: string):string{
     return `${this.api.baseUrl}/Cliente/Eliminar/${id}`; 
+  }
+
+  public Genero(sucursal: number):string{
+    return `${this.api.baseUrl}/Cliente/Genero/${sucursal}`; 
   }
 }
 
@@ -308,6 +320,12 @@ export class ProductoEndPoints{
 
   public Existencia(sucursal: number):string{
     return `${this.api.baseUrl}/Producto/Existencia/${sucursal}`; 
+  }
+  public Top(sucursal: number):string{
+    return `${this.api.baseUrl}/Producto/Top/${sucursal}`; 
+  }
+  public Ventas(sucursal: number, inicio: string, fin: string):string{
+    return `${this.api.baseUrl}/Producto/Ventas/${sucursal}/${inicio}/${fin}`; 
   }
 }
 

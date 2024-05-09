@@ -23,6 +23,16 @@ export class RolService {
       .toPromise()  
   }
 
+  Elimparo(model: Rol){
+    return this.http.post<any>(this.endpoint.Elimparo(), model) 
+      .toPromise()  
+  }
+
+  Elimparol(model: Rol){
+    return this.http.post<any>(this.endpoint.Elimparol(), model) 
+      .toPromise()  
+  }
+
   Update(model: Rol){
     return this.http.post<any>(this.endpoint.Update(), model) 
       .toPromise()  

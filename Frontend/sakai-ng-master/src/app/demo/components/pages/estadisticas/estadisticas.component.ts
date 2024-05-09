@@ -96,6 +96,7 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
         this.chartPieChart();
         this.chartBarChart();
         this.chartDoughnutChart();
+        this.chartLineChart();
     
         this.categoriaService.CategoriaTotal(this.sucursalid, formattedInicio, formattedFin).then(data => {
             this.categorias = data.data;
@@ -114,6 +115,11 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
             console.log(this.productos);
             this.chartDoughnutChart();
         });
+
+        this.productoService.Ventas(this.sucursalid, formattedInicio, formattedFin).then(data => {
+            this.productos = data.data;
+            this.chartLineChart();
+        });
     }
     
     ngOnInit() {
@@ -122,7 +128,62 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
 
         
     }
-    
+
+    chartLineChart() {
+        const documentStyle = getComputedStyle(document.documentElement);
+        const textColor = documentStyle.getPropertyValue('--text-color');
+        const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+        const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+        
+        if (Array.isArray(this.productos)) {
+            this.lineData = {
+                labels: this.productos.map(producto => producto.mes || 'No hay'),
+                datasets: [
+                    {
+                        label: 'Ventas',
+                        data: this.productos.map(producto => parseInt(producto.totalVentas)),
+                        fill: false,
+                        backgroundColor: documentStyle.getPropertyValue('--primary-500'),
+                        borderColor: documentStyle.getPropertyValue('--primary-500'),
+                        tension: .4
+                    }]
+            };
+        
+            this.lineOptions = {
+                plugins: {
+                    legend: {
+                        labels: {
+                            fontColor: textColor
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: textColorSecondary
+                        },
+                        grid: {
+                            color: surfaceBorder,
+                            drawBorder: false
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: textColorSecondary
+                        },
+                        grid: {
+                            color: surfaceBorder,
+                            drawBorder: false
+                        }
+                    },
+                }
+            };
+            
+        } else {
+            console.error('no funciona');
+        }
+    }
+
     chartPieChart() {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
@@ -268,51 +329,7 @@ chartBarChart() {
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
         
        
-        this.lineData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                    label: 'First Dataset',
-                    data: [65, 59, 80, 81, 56, 55, 40],
-                    fill: false,
-                    backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-                    borderColor: documentStyle.getPropertyValue('--primary-500'),
-                    tension: .4
-                }
-            ]
-        };
-
-        this.lineOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        fontColor: textColor
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: textColorSecondary
-                    },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
-                    }
-                },
-                y: {
-                    ticks: {
-                        color: textColorSecondary
-                    },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
-                    }
-                },
-            }
-        };
-
-        
+       
 
         this.radarData = {
             labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
