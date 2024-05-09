@@ -54,14 +54,14 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             {
                 return result.Error(ex.Message);
             }
-        }
+        } 
 
-        public ServiceResult Genero(int sucursal)
+        public ServiceResult Genero(int sucursal, string inicio, string fin)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _clienteRepository.Genero(sucursal);
+                var lost = _clienteRepository.Genero(sucursal, inicio, fin);
 
                 return result.Ok(lost);
             }

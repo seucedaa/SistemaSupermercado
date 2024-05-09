@@ -49,10 +49,10 @@ namespace SistemaSupermercado.API.Controllers
 
         }
 
-        [HttpGet("Ventas/{sucursal}")]
-        public IActionResult Ventas(int sucursal)
+        [HttpGet("Ventas/{sucursal}/{inicio}/{fin}")]
+        public IActionResult Ventas(int sucursal, string inicio, string fin)
         {
-            var estado = _superServicio.Ventas(sucursal);
+            var estado = _superServicio.Ventas(sucursal, inicio, fin);
             return Ok(estado);
 
         }

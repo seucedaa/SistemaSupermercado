@@ -23,6 +23,7 @@ export class Producto{
     totalVendidoActual?: string;
     porcentajeCambio?: string;
     productoo?: string;
+    categoriaa?: string;
     totalVentas?: string;
     mes?: string;
 }

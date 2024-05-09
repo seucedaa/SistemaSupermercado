@@ -31,4 +31,8 @@ export class ProductoService {
     return this.http.get<any>(this.endpoint.Ventas(sucursal, inicio,fin))
         .toPromise()
   }
+  Principal(sucursal: number){
+    return this.http.get<any>(this.endpoint.Principal(sucursal))
+        .toPromise()
+  }
 }

@@ -34,10 +34,7 @@
                         <th pSortableColumn="emple_Dni">DNI <p-sortIcon field="emple_Dni"></p-sortIcon></th>
                         <th pSortableColumn="emple_NombreCompleto">Empleado <p-sortIcon field="emple_NombreCompleto"></p-sortIcon></th>
                         <th pSortableColumn="emple_Correo">Correo <p-sortIcon field="emple_Correo"></p-sortIcon></th>
-                        <th pSortableColumn="emple_Telefono">Telefono <p-sortIcon field="emple_Telefono"></p-sortIcon></th>
                         <th pSortableColumn="cargo_Descripcion">Cargo <p-sortIcon field="cargo_Descripcion"></p-sortIcon></th>
-                        <th pSortableColumn="sucur_Descripcion">Sucursal <p-sortIcon field="sucur_Descripcion"></p-sortIcon></th>
-                        <th pSortableColumn="emple_Direccion">Direccion <p-sortIcon field="emple_NombreCompleto"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
@@ -58,22 +55,13 @@
                             <span class="p-column-title">Correo</span>
                             {{empleado.emple_Correo}}
                         </td>
-                        <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Telefono</span>
-                            {{empleado.emple_Telefono}}
-                        </td>
+                      
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Cargo</span>
                             {{empleado.cargo_Descripcion}}
                         </td>
-                        <td style="width:14%; min-width:15rem;">
-                            <span class="p-column-title">Sucursal</span>
-                            {{empleado.sucur_Descripcion}}
-                        </td>
-                        <td style="width:14%; min-width:15rem;">
-                            <span class="p-column-title">Direccion</span>
-                            {{empleado.emple_Direccion}}
-                        </td>
+                       
+                       
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-success mr-2" routerLink="editar/{{empleado.emple_Id}}"> Editar</button>

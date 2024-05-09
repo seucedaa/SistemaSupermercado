@@ -27,6 +27,12 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Stock', icon: 'pi pi-fw pi-book', routerLink: ['/home/reports/stock']}
                 ]
             },
+            {
+                label: 'Estadisticas',
+                items:[
+                    {label: 'Estadisticas', icon: 'pi pi-fw pi-chart-line', routerLink: ['/home/estadisticas']}
+                ]
+            },
             // {
             //     label: 'UI Components',
             //     items: [
@@ -96,22 +102,6 @@ export class AppMenuComponent implements OnInit {
                         label: 'Crud',
                         icon: 'pi pi-fw pi-pencil',
                         routerLink: ['/home/pages/crud']
-                    },
-                    {
-                        label: 'Estadisticas',
-                        icon: 'pi pi-fw pi-chart-line',
-                        items:[
-                            {
-                                label: 'Productos',
-                                icon: 'pi pi-fw pi-cog',
-                                routerLink: ['/home/pages/estadisticas']
-                            },
-                            {
-                                label: 'Usuarios',
-                                icon: 'pi pi-fw pi-user',
-                                routerLink: ['/home/pages/usuario']
-                            }
-                        ]
                     },
                     {
                         label: 'Acceso',

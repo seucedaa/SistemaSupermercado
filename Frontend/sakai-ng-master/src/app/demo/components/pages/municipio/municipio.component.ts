@@ -60,10 +60,7 @@ export class MunicipioComponent implements OnInit {
         this.municipio = { ...municipio };
         this.municipioDialog = true;
         this.nuevomuni = false;
-    }
-
-    detalleMunicipio(municipio: Municipio) {
-    }    
+    } 
     
 
     deleteMunicipio(municipio: Municipio) {

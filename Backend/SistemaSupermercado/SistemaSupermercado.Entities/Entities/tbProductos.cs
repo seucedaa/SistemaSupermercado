@@ -32,6 +32,8 @@ namespace SistemaSupermercado.Entities.Entities
         [NotMapped]
         public string PorcentajeCambio { get; set; }
         [NotMapped]
+        public string Categoriaa { get; set; }
+        [NotMapped]
         public string Productoo { get; set; }
         [NotMapped]
         public string TotalVentas { get; set; }

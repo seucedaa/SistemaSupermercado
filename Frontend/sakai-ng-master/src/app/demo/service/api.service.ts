@@ -327,6 +327,9 @@ export class ProductoEndPoints{
   public Ventas(sucursal: number, inicio: string, fin: string):string{
     return `${this.api.baseUrl}/Producto/Ventas/${sucursal}/${inicio}/${fin}`; 
   }
+  public Principal(sucursal: number):string{
+    return `${this.api.baseUrl}/Producto/Principal/${sucursal}`; 
+  }
 }
 
 export class SubCategoriaEndPoints{

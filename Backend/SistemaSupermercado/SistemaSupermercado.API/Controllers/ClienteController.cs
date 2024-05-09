@@ -41,10 +41,10 @@ namespace SistemaSupermercado.API.Controllers
             return Ok(list);
         }
 
-        [HttpGet("Genero/{sucursal}")]
-        public IActionResult Genero(int sucursal)
+        [HttpGet("Genero/{sucursal}/{inicio}/{fin}")]
+        public IActionResult Genero(int sucursal,string inicio, string fin)
         {
-            var estado = _ventaServicio.Genero(sucursal);
+            var estado = _ventaServicio.Genero(sucursal, inicio, fin);
             return Ok(estado);
 
         }

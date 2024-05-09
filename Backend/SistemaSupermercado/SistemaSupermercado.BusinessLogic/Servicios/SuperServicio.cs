@@ -279,12 +279,12 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
         
-        public ServiceResult Ventas(int sucursal)
+        public ServiceResult Ventas(int sucursal, string inicio, string fin)
         {
             var result = new ServiceResult();
             try
             {
-                var lost = _productoRepository.Ventas(sucursal);
+                var lost = _productoRepository.Ventas(sucursal,inicio,fin);
 
                 return result.Ok(lost);
             }
