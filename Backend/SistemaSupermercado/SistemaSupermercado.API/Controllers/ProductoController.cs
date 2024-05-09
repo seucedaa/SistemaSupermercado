@@ -41,6 +41,14 @@ namespace SistemaSupermercado.API.Controllers
 
         }
         
+        [HttpGet("Principal/{sucursal}")]
+        public IActionResult Principal(int sucursal)
+        {
+            var estado = _superServicio.Principal(sucursal);
+            return Ok(estado);
+
+        }
+
         [HttpGet("Ventas/{sucursal}")]
         public IActionResult Ventas(int sucursal)
         {

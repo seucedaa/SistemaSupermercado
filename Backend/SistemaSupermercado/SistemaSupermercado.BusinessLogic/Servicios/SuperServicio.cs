@@ -264,6 +264,21 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }  
         
+        public ServiceResult Principal(int sucursal)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _productoRepository.Principal(sucursal);
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        
         public ServiceResult Ventas(int sucursal)
         {
             var result = new ServiceResult();

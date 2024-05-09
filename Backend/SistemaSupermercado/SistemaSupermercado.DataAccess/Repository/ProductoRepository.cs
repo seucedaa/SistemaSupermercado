@@ -134,13 +134,13 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         } 
         
-        public IEnumerable<tbProductos> Ventas(int sucursal)
+        public IEnumerable<tbProductos> Principal(int sucursal)
         {
             List<tbProductos> result = new List<tbProductos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Sucur_Id = sucursal };
-                result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Total, parameters, commandType: CommandType.StoredProcedure).ToList();
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Principal, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }

@@ -123,6 +123,7 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Producto_Desactivar = "Supr.SP_Producto_Desactivar";
         public static string Producto_Buscar = "Supr.SP_Producto_Buscar";
         public static string Producto_Existencia = "Supr.SP_Productos_Existencia";
+        public static string Producto_Principal = "Venta.SP_Ventas_Principal";
         public static string Producto_Total = "Venta.SP_Ventas_Totall";
         public static string Producto_Top = "[Venta].[SP_Productos_Top]";
         #endregion
