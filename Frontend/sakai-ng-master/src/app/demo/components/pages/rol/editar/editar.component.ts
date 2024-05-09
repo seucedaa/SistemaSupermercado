@@ -41,6 +41,42 @@ export class EditarComponent implements OnInit {
             pantallasD: []
         };
     }
+
+    updateSelectedScreens(pantIds: number[]) {
+      const addedKeys = pantIds.map((id) => id.toString());
+      console.log('update metodo es string', addedKeys);
+    
+      this.pantallasseleccionadas = [];
+    
+      this.files1.forEach((categoria) => {
+        let categoriaSelected = false; 
+        categoria.children?.forEach((pantalla) => {
+            this.pantallasseleccionadas.push(pantalla);
+            categoriaSelected = true; 
+        });
+    
+        if (categoriaSelected) {
+          categoria.expanded = true;
+        }
+      });
+    
+      this.abrirpadres(this.files1);
+    }
+    
+    abrirpadres(nodes: TreeNode[]) {
+      nodes.forEach((node) => {
+        if (node.children) {
+          const tienehijos = node.children.some((child) =>
+            this.pantallasseleccionadas.includes(child)
+          );
+          if (tienehijos) {
+            node.expanded = true;
+          }
+          this.abrirpadres(node.children);
+        }
+      });
+    }
+    
     
     ngOnInit() {
       const id = this.route.snapshot.paramMap.get('id');
@@ -79,28 +115,11 @@ export class EditarComponent implements OnInit {
     });
 
     this.rolService.PantdelRol(id).then(data => {
-      this.roles = data; 
-
-      console.log(this.roles);
-      console.log(this.files1);
-        this.roles.forEach(rol => {
-          ['acceso', 'general', 'supermercado', 'ventas'].forEach(categoria => {
-            const categoriaObj = this.files1.find(file => file.label === categoria);
-            console.log(categoriaObj);
-
-            if (categoriaObj && categoriaObj.children) {
-              console.log(categoriaObj.children);
-              categoriaObj.children.forEach(child => {
-                if (child.key === rol.panta_Id.toString()) {
-                  this.pantallasseleccionadas.push(child);
-                  console.log(this.pantallasdeseleccionadas);
-                }
-              });
-            }
-          });
-        });
-      
+      const pantIds = data.map(item => item.panta_Id);
+      this.updateSelectedScreens(pantIds);
+      console.log(pantIds);
     });
+    
   }
 
   actualizar() {
@@ -111,11 +130,11 @@ export class EditarComponent implements OnInit {
     if (this.rol.roles_Descripcion?.trim()) {
       console.log('antes del for');
       this.pantallasseleccionadas.forEach(pantallaSeleccionada => {
-        if (pantallaSeleccionada && pantallaSeleccionada.key !== undefined) {
+        if (pantallaSeleccionada.key !== undefined) {
           this.rol.pantallas.push(pantallaSeleccionada.key);
-        }            
-      });
-      console.log(this.rol.pantallas);
+      }            
+    });
+  console.log(this.rol.pantallas);
   
       this.rolService.Update(this.rol).then((response => {
         console.log(response)
