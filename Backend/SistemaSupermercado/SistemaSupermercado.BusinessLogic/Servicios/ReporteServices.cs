@@ -1,4 +1,5 @@
 ﻿using SistemaSupermercado.DataAccess.Repository;
+using SistemaSupermercado.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,20 +17,19 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             _reporteRepository = reporteRepository;
         }
 
-        public ServiceResult reporteStock(int Sucur_Id)
+        public IEnumerable<tbProductos> reporteStock(int Sucur_Id)
         {
-            var result = new ServiceResult();
             try
             {
-                var lost = _reporteRepository.reporteStock(Sucur_Id);
-
-                    return result.Ok(lost);
-                
+                var productos = _reporteRepository.reporteStock(Sucur_Id);
+                return productos;
             }
             catch (Exception ex)
             {
-                return result.Error(ex.Message);
+                // Manejar la excepción o lanzarla para que sea manejada por el código que llama a este método
+                throw new Exception("Error al generar el reporte de stock", ex);
             }
         }
+
     }
 }

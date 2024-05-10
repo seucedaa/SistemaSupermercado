@@ -22,12 +22,13 @@ export class StockComponent implements OnInit {
 
     productos: Producto[] = [];
 
+    filteredProductos: any[] = [];
+
+    loading: boolean = true;
+
     categorias: Categoria[] = [];
 
     subcategorias: Subcategoria[] = [];
-    pdf='';
-    id: any;
-    mostrar = false;
 
     @ViewChild('filter') filter!: ElementRef;
 
@@ -38,6 +39,8 @@ export class StockComponent implements OnInit {
         await this.reporteService.Stock(8).then(data => {
             console.log(data)
             this.productos = data;
+            console.log(this.productos, "this.productos")
+            this.loading = false;
         });
 
         await this.categoriaService.getList().then((data => {
@@ -50,36 +53,17 @@ export class StockComponent implements OnInit {
         }))
     }
 
-    Imprimir(id) {
-        this.reporteService.GenerateInvoicePDF(id).subscribe(res => {
-          let blob: Blob = res.body as Blob;
-          let url = window.URL.createObjectURL(blob);
-          window.open(url);
-        });
+    onFiltered(){
+        this.filteredProductos = [];
+        this.filteredProductos = this.productos;
     }
 
-    Preview(id) {
-        this.reporteService.GenerateInvoicePDF(id).subscribe(res => {
-          let blob: Blob = res.body as Blob;
-          let url = window.URL.createObjectURL(blob);
-          this.pdf = url;
-          console.log('PDF URL:', url); // Imprime la URL en la consola
-          this.mostrar = true;
-        });
-      }
-      
-      
-
-    Descargar(id) {
-        this.reporteService.GenerateInvoicePDF(id).subscribe(res => {
-          let blob: Blob = res.body as Blob;
-          let url = window.URL.createObjectURL(blob);
-
-          let a=document.createElement('a');
-          a.download = id;
-          a.href=url;
-          a.click();
-        });
+    onGlobalFilter(table: Table, event: Event) {
+        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
     }
 
+    clear(table: Table) {
+        table.clear();
+        this.filter.nativeElement.value = '';
+    }
 }

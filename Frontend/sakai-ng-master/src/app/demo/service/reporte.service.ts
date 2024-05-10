@@ -17,4 +17,15 @@ export class ReporteService {
     .then(res => res.data as Producto[])
     .then(data => data);
   }
+
+  Generarpdf(Sucur_Id: number) {
+    const url = this.endpoint.Generarpdf(Sucur_Id);
+    return this.http.get(url, { observe: 'response', responseType: 'blob' });
+  }
+
+  GenerateInvoicePDF(invoiceno:any){
+    return this.http.get('https://localhost:44346/Api/Reporte/Generarpdf/'+invoiceno,{observe:'response',responseType:'blob'});
+    
+  }
+  
 }

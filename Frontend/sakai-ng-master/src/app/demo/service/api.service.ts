@@ -27,6 +27,9 @@ export class ReporteEndPoints{
   public Stock(Sucur_Id: number):string{
     return `${this.api.baseUrl}/Reporte/Stock/${Sucur_Id}`;
   }
+  public Generarpdf(Sucur_Id: number):string{
+    return `${this.api.baseUrl}/Reporte/Generarpdf/${Sucur_Id}`;
+  }
 }
 
 export class RolEndPoints{

@@ -1,0 +1,144 @@
+<div class="col-12">
+    <div class="card">
+        <h5>Filter Menu</h5>
+        <button pButton printSectionId="print-section" class="p-button-outlined mb-2" ngxPrint>Imprimir</button>
+            <div id="print-section">
+                <p-table style="text-align: center;" #dt1 [value]="productos" dataKey="id" [rows]="10" [loading]="false" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['productos.produ_Id','productos.produ_Descripcion','productos.produ_Existencia','productos.produ_PrecioCompra','productos.produ_PrecioVenta']" responsiveLayout="scroll">
+                    <ng-template pTemplate="caption">
+                        <div class="flex justify-content-between flex-column sm:flex-row">
+                            <button pButton label="Limpiar" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                            <span class="p-input-icon-left mb-2">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Search Keyword" class="w-full"/>
+                            </span>
+                        </div>
+                    </ng-template>
+                    
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="min-width: 12rem">
+                                <div class="flex justify-content-between align-items-center">
+                                    Codigo
+                                    <p-columnFilter type="numeric" field="produ_Id" display="menu" ></p-columnFilter>
+                                </div>
+                            </th>
+                            <th style="min-width: 12rem">
+                                <div class="flex justify-content-between align-items-center">
+                                    Producto
+                                    <p-columnFilter type="text" field="produ_Descripcion" display="menu" placeholder="Búsqueda por nombre"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th style="min-width: 12rem">
+                                <div class="flex justify-content-between align-items-center">
+                                    Existencia
+                                    <p-columnFilter type="numeric" field="produ_Existencia" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th style="min-width: 12rem">
+                                <div class="flex justify-content-between align-items-center">
+                                    Precio de Compra
+                                    <p-columnFilter type="numeric" field="produ_PrecioCompra" display="menu" currency="LPS"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th style="min-width: 12rem">
+                                <div class="flex justify-content-between align-items-center">
+                                    Precio de Venta
+                                    <p-columnFilter type="numeric" field="produ_PrecioVenta" display="menu" currency="LPS"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th style="min-width: 12rem">
+                                <div class="flex justify-content-between align-items-center">
+                                    Categorias
+                                    <p-columnFilter field="categ_Descripcion" matchMode="equals" display="menu">
+                                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                            <p-dropdown optionLabel="categ_Descripcion"  [ngModel]="categ_Id" [options]="categorias" (onChange)="filter($event.value)" placeholder="Any" [style]="{'min-width': '12rem'}" >
+                                                <ng-template let-option pTemplate="item">
+                                                    <span [class]="'customer-badge categ-' + option.categ_Id">{{option.categ_Descripcion}}</span>
+                                                </ng-template>
+                                            </p-dropdown>
+                                        </ng-template>
+                                    </p-columnFilter>
+                                </div>
+                            </th>
+                            <th style="min-width: 12rem">
+                                <div class="flex justify-content-between align-items-center">
+                                    Subcategorias
+                                    <p-columnFilter field="subca_Descripcion" matchMode="equals" display="menu">
+                                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                            <p-dropdown optionLabel="subca_Descripcion" [ngModel]="subca_Id" [options]="subcategorias" (onChange)="filter($event.value)" placeholder="Any" [style]="{'min-width': '12rem'}" >
+                                                <ng-template let-option pTemplate="item">
+                                                    <span [class]="'customer-badge subca-' + option.subca_Id">{{option.subca_Descripcion}}</span>
+                                                </ng-template>
+                                            </p-dropdown>
+                                        </ng-template>
+                                    </p-columnFilter>
+                                </div>
+                            </th>
+                            
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-productos>
+                        <tr>
+                            <td>
+                                {{productos.produ_Id}}
+                            </td>
+                            <td>
+                                {{productos.produ_Descripcion}}
+                            </td>
+                            <td>
+                                {{productos.produ_Existencia}}
+                            </td>
+                            <td>
+                                {{productos.produ_PrecioCompra | currency:'LPS ':'symbol'}}
+                            </td>                    
+                            <td>
+                                {{productos.produ_PrecioVenta | currency:'LPS ':'symbol'}}
+                            </td>
+                            <td>
+                                <span [class]="'customer-badge categ-' + productos.categ_Id">{{productos.categ_Descripcion}}</span>
+                            </td>
+                            <td>
+                                <span [class]="'customer-badge subca-' + productos.subca_Id">{{productos.subca_Descripcion}}</span>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="8">Productos no encontrados.</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="loadingbody">
+                        <tr>
+                            <td colspan="8">Cargando productos. Porfavor Espere.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+           
+        </div>
+    </div>
+
+
+    <!-- <div id="print-section" style="display: none;">
+        <h2>Invoice</h2>
+        <p>Items:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Producto</th>
+                    <th>Existencia</th>
+                    <th>Precio de Compra</th>
+                    <th>Precio de Venta</th>
+                    <th>Categoria</th>
+                    <th>SubCategoria</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of filteredProductos">
+                    <td>{{item.produ_Id}}</td>
+                </tr>
+            </tbody>
+        </table>
+       
+      </div> -->
