@@ -18,10 +18,21 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbProductos> result = new List<tbProductos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Sucur_Id = Sucur_Id };
+                var parameters = new { Sucur_Id = Sucur_Id, FiltroSucursal = 1 };
 
                 result = db.Query<tbProductos>(ScriptBaseDeDatos.Reporte_Stock, parameters, commandType: CommandType.StoredProcedure).ToList();
 
+                return result;
+            }
+        }
+
+        public IEnumerable<tbProductos> TodasStock()
+        {
+            List<tbProductos> result = new List<tbProductos>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { FiltroSucursal = 0 };
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Reporte_Stock, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }

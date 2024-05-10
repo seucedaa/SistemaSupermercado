@@ -22,6 +22,10 @@ export class ProductoService {
     return this.http.get<any>(this.endpoint.Existencia(sucursal))
         .toPromise()
   }
+  ExisTodas(){
+    return this.http.get<any>(this.endpoint.ExisTodas())
+        .toPromise()
+  }
 
   Top(sucursal: number){
     return this.http.get<any>(this.endpoint.Top(sucursal))

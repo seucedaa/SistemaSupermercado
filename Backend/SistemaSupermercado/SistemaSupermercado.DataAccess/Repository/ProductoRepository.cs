@@ -117,12 +117,23 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbProductos> result = new List<tbProductos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Sucur_Id = sucursal };
+                var parameters = new { Sucur_Id = sucursal, FiltroSucursal = 1};
                 result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Existencia, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
-        
+
+        public IEnumerable<tbProductos> ExisTodas()
+        {
+            List<tbProductos> result = new List<tbProductos>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { FiltroSucursal = 0 };
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Existencia, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
         public IEnumerable<tbProductos> Top(int sucursal)
         {
             List<tbProductos> result = new List<tbProductos>();

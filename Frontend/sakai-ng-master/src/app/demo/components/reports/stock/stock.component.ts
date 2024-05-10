@@ -32,29 +32,41 @@ export class StockComponent implements OnInit {
       onSucursalChange(sucur_Id: any) {
         this.sucursalid = sucur_Id.sucur_Id;
         console.log(this.sucursalid);
-        this.ngOnInit();
+        this.cambio();
     }
 
-     ngOnInit(){
-      this.sucursalService.getList().then(data => this.sucursales = data);
-
-
-        this.reporteService.Generarpdf(this.sucursalid).subscribe(res => {
-          let blob: Blob = res.body as Blob;
-          let url = window.URL.createObjectURL(blob);
-          this.pdf = url;
-        });
-    }
-
-    mostrartodas(){
-  
+    todas(){
       this.reporteService.Todas().subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;
       });
+    }
+
+    cambio(){
+      this.reporteService.Generarpdf(this.sucursalid).subscribe(res => {
+        let blob: Blob = res.body as Blob;
+        let url = window.URL.createObjectURL(blob);
+        this.pdf = url;
+      });
+    }
+
+     ngOnInit(){
+      this.sucursalService.getList().then(data => this.sucursales = data);
+
+      this.reporteService.Todas().subscribe(res => {
+        let blob: Blob = res.body as Blob;
+        let url = window.URL.createObjectURL(blob);
+        this.pdf = url;
+      });
+       
+    }
+
+    mostrartodas(){
+
+      this.todas();
       
-  }
+   }
   
     
     // Imprimir(id) {

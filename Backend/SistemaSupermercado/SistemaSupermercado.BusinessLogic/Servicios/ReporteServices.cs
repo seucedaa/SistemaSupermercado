@@ -26,7 +26,19 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
             catch (Exception ex)
             {
-                // Manejar la excepción o lanzarla para que sea manejada por el código que llama a este método
+                throw new Exception("Error al generar el reporte de stock", ex);
+            }
+        }
+
+        public IEnumerable<tbProductos> TodasStock()
+        {
+            try
+            {
+                var productos = _reporteRepository.TodasStock();
+                return productos;
+            }
+            catch (Exception ex)
+            {
                 throw new Exception("Error al generar el reporte de stock", ex);
             }
         }

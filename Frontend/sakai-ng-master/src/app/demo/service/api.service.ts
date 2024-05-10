@@ -337,6 +337,9 @@ export class ProductoEndPoints{
   public Existencia(sucursal: number):string{
     return `${this.api.baseUrl}/Producto/Existencia/${sucursal}`; 
   }
+  public ExisTodas():string{
+    return `${this.api.baseUrl}/Producto/ExisTodas`; 
+  }
   public Top(sucursal: number):string{
     return `${this.api.baseUrl}/Producto/Top/${sucursal}`; 
   }

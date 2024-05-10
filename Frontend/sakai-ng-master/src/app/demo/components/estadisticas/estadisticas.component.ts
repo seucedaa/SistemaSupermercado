@@ -121,7 +121,7 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
         });
     }
 
-    mostrartodas(){
+    todas(){
         let iniciofecha = this.formatDate(this.inicio);
         let finfecha = this.formatDate(this.fin)
 
@@ -134,18 +134,28 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
             this.subcategorias = data.data;
             this.chartBarChart();
         });
-    
+        
+        this.productoService.ExisTodas().then(data => {
+            this.productos = data.data;
+            this.chartDoughnutChart();
+        });
+
         this.productoService.Todas(iniciofecha, finfecha).then(data => {
             this.productos = data.data;
             this.chartLineChart();
         });
+      
+    }
+
+    mostrartodas(){
+        this.todas();
     }
     
     ngOnInit() {
         this.initCharts();
         this.sucursalService.getList().then(data => this.sucursales = data);
 
-        
+        this.todas();
     }
 
     chartLineChart() {
