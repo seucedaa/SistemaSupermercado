@@ -155,6 +155,17 @@ namespace SistemaSupermercado.DataAccess.Repository
                 return result;
             }
         }
+
+        public IEnumerable<tbProductos> Todas(string inicio, string fin)
+        {
+            List<tbProductos> result = new List<tbProductos>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { FiltroSucursal = 0, FechaInicio = inicio, FechaFin = fin };
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Total, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
         public IEnumerable<tbProductos> List()
         {
 

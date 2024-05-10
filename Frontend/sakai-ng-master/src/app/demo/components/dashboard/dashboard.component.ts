@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         
         if (Array.isArray(this.productos)) {
             this.lineData = {
-                labels: this.productos.map(producto => producto.mes || 'No hay'),
+                labels: this.productos.map(producto => producto.semana || 'No hay'),
                 datasets: [
                     {
                         label: 'Ventas',

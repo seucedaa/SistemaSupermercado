@@ -57,10 +57,12 @@ export class MunicipioComponent implements OnInit {
     }
 
     editMunicipio(municipio: Municipio) {
-        this.municipio = { ...municipio };
+        this.municipio = {...municipio };
         this.municipioDialog = true;
         this.nuevomuni = false;
-    } 
+        console.log(municipio);
+    }
+    
     
 
     deleteMunicipio(municipio: Municipio) {

@@ -48,6 +48,7 @@ namespace SistemaSupermercado.BusinessLogic
             return SetMessage("Operación completada exitosamente.", ServiceResultType.Success);
         }
 
+
         /// <summary>
         /// Resultado de servicio cuando la operacion se ha realizado exitosamente (200).
         /// </summary>

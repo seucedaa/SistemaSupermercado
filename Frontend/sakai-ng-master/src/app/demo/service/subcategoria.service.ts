@@ -24,4 +24,9 @@ export class SubcategoriaService {
     return this.http.get<any>(this.endpoint.SubCategoriaTotal(sucursal, inicio,fin))
         .toPromise()
   }
+
+  Todas(inicio: string, fin: string){
+    return this.http.get<any>(this.endpoint.Todas(inicio,fin))
+        .toPromise()
+  }
 }

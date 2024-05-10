@@ -38,7 +38,7 @@ namespace SistemaSupermercado.Entities.Entities
         [NotMapped]
         public string TotalVentas { get; set; }
         [NotMapped]
-        public string Mes { get; set; }
+        public string Semana { get; set; }
         public int Subca_Id { get; set; }
         [NotMapped]
         public string Subca_Descripcion { get; set; }

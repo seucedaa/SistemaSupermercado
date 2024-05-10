@@ -57,6 +57,14 @@ namespace SistemaSupermercado.API.Controllers
 
         }
 
+        [HttpGet("Todas/{inicio}/{fin}")]
+        public IActionResult Todas(string inicio, string fin)
+        {
+            var estado = _superServicio.Todas(inicio, fin);
+            return Ok(estado);
+
+        }
+
         [HttpGet("List")]
         public IActionResult List()
         {

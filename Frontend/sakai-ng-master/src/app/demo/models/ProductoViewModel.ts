@@ -25,5 +25,5 @@ export class Producto{
     productoo?: string;
     categoriaa?: string;
     totalVentas?: string;
-    mes?: string;
+    semana?: string;
 }

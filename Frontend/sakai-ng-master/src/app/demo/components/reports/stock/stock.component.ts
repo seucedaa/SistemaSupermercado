@@ -36,7 +36,7 @@ export class StockComponent implements OnInit {
                 private subcategoriaService: SubcategoriaService, private messageService: MessageService) { }
 
     async ngOnInit(){
-        await this.reporteService.Stock(2).then(data => {
+        await this.reporteService.Stock(8).then(data => {
             console.log(data)
             this.productos = data;
             console.log(this.productos, "this.productos")

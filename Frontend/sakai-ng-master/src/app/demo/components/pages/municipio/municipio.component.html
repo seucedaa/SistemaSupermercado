@@ -69,7 +69,7 @@
 
         <p-dialog [(visible)]="municipioDialog" [style]="{width: '450px'}" header="Municipio" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content" class="col-12">
-                <div class="p-formgrid grid">
+                <div class="p-fluid">
                     <div class="field col" *ngIf="nuevomuni">
                         <label for="municipio.munic_Id">Codigo</label>
                         <input type="text" pInputText id="municipio.munic_Id" [(ngModel)]="municipio.munic_Id" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !municipio.munic_Id}"/>
@@ -80,7 +80,7 @@
                 <div class="p-formgrid grid">
                     <div class="field col-6">
                         <label for="deparid">Departamento</label>
-                        <p-dropdown [(ngModel)]="depar_Id" optionValue="depar_Id"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !municipio.depar_Id}" [options]="departamentos" optionLabel="depar_Descripcion" placeholder="Seleccione"></p-dropdown>
+                        <p-dropdown [(ngModel)]="municipio.depar_Id" optionValue="municipio.depar_Id"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !municipio.depar_Id}" [options]="departamentos" optionLabel="departamento.depar_Descripcion" placeholder="Seleccione"></p-dropdown>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !municipio.depar_Id">El departamento es requerido.</small>
                     </div>
                     

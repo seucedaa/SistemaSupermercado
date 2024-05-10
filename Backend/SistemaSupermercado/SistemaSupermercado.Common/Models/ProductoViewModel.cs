@@ -42,7 +42,7 @@ namespace SistemaSupermercado.Common.Models
         [NotMapped]
         public string TotalVentas { get; set; }
         [NotMapped]
-        public string Mes { get; set; }
+        public string Semana { get; set; }
         public int Produ_UsuarioCreacion { get; set; }
         public DateTime Produ_FechaCreacion { get; set; }
         public int? Produ_UsuarioModificacion { get; set; }

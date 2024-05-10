@@ -63,6 +63,7 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
              this.fin = today;
     }
 
+    
 
     formatDate(date: Date): string {
         const year = date.getFullYear();
@@ -100,13 +101,11 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     
         this.categoriaService.CategoriaTotal(this.sucursalid, formattedInicio, formattedFin).then(data => {
             this.categorias = data.data;
-            console.log(formattedInicio,formattedFin)
             this.chartPieChart();
         });
     
         this.subcategoriaService.SubcategoriaTotal(this.sucursalid, formattedInicio, formattedFin).then(data => {
             this.subcategorias = data.data;
-            console.log(this, this.sucursalid, formattedInicio, formattedFin);
             this.chartBarChart();
         });
     
@@ -117,6 +116,26 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
         });
 
         this.productoService.Ventas(this.sucursalid, formattedInicio, formattedFin).then(data => {
+            this.productos = data.data;
+            this.chartLineChart();
+        });
+    }
+
+    mostrartodas(){
+        let iniciofecha = this.formatDate(this.inicio);
+        let finfecha = this.formatDate(this.fin)
+
+        this.categoriaService.Todas(iniciofecha, finfecha).then(data => {
+            this.categorias = data.data;
+            this.chartPieChart();
+        });
+
+        this.subcategoriaService.Todas(iniciofecha, finfecha).then(data => {
+            this.subcategorias = data.data;
+            this.chartBarChart();
+        });
+    
+        this.productoService.Todas(iniciofecha, finfecha).then(data => {
             this.productos = data.data;
             this.chartLineChart();
         });
@@ -137,7 +156,7 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
         
         if (Array.isArray(this.productos)) {
             this.lineData = {
-                labels: this.productos.map(producto => producto.mes || 'No hay'),
+                labels: this.productos.map(producto => producto.semana || 'No hay'),
                 datasets: [
                     {
                         label: 'Ventas',
@@ -226,7 +245,7 @@ chartBarChart() {
       const colors = this.subcategorias.map(() => chroma.random());
   
       this.barData = {
-        labels: this.subcategorias.map(subcategoria => subcategoria.subcategoria),
+        labels: this.subcategorias.map(subcategoria => subcategoria.subcategoria || 'No hay'),
         datasets: [
           {
             label: 'Total Ventas',

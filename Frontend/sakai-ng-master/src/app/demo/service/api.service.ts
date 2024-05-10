@@ -146,6 +146,10 @@ export class CategoriaEndPoints{
     return `${this.api.baseUrl}/Categoria/Total/${sucursal}/${inicio}/${fin}`; 
   }
 
+  public Todas(inicio: string , fin: string):string{
+    return `${this.api.baseUrl}/Categoria/Todas/${inicio}/${fin}`; 
+  }
+
   public Insert():string{
     return `${this.api.baseUrl}/Categoria/Insertar`; 
   }
@@ -327,6 +331,9 @@ export class ProductoEndPoints{
   public Ventas(sucursal: number, inicio: string, fin: string):string{
     return `${this.api.baseUrl}/Producto/Ventas/${sucursal}/${inicio}/${fin}`; 
   }
+  public Todas(inicio: string , fin: string):string{
+    return `${this.api.baseUrl}/Producto/Todas/${inicio}/${fin}`; 
+  }
   public Principal(sucursal: number):string{
     return `${this.api.baseUrl}/Producto/Principal/${sucursal}`; 
   }
@@ -341,6 +348,9 @@ export class SubCategoriaEndPoints{
 
   public SubCategoriaTotal(sucursal: number, inicio: string, fin: string):string{
     return `${this.api.baseUrl}/SubCategoria/TotalSub/${sucursal}/${inicio}/${fin}`; 
+  }
+  public Todas(inicio: string , fin: string):string{
+    return `${this.api.baseUrl}/SubCategoria/Todas/${inicio}/${fin}`; 
   }
 }
 

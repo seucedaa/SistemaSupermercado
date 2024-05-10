@@ -294,6 +294,21 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
 
+        public ServiceResult Todas(string inicio, string fin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _productoRepository.Todas(inicio, fin);
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
         public ServiceResult ListarProdu()
         {
             var result = new ServiceResult();
