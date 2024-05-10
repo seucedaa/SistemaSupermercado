@@ -247,6 +247,21 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             {
                 return result.Error(ex.Message);
             }
+        }  
+        
+        public ServiceResult ExisTodas()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _productoRepository.ExisTodas();
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
         }
 
         public ServiceResult Top(int sucursal)
