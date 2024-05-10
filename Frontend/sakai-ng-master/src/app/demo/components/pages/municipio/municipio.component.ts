@@ -58,6 +58,7 @@ export class MunicipioComponent implements OnInit {
 
     editMunicipio(municipio: Municipio) {
         this.municipio = {...municipio };
+        this.deparid = municipio.depar_Id; //esto y html
         this.municipioDialog = true;
         this.nuevomuni = false;
         console.log(municipio);
@@ -111,8 +112,9 @@ export class MunicipioComponent implements OnInit {
         this.submitted = true;
         this.municipio.munic_UsuarioCreacion = 1;
         this.municipio.munic_UsuarioModificacion = 1;
-        this.municipio.depar_Id = this.deparid.depar_Id;
+        this.municipio.depar_Id = this.deparid; //esto
         console.log(this.municipio);
+
 
         if (this.municipio.munic_Id?.trim() && this.municipio.depar_Id?.trim() && this.municipio.munic_Descripcion?.trim()) {
             if (this.nuevomuni == false) {
@@ -126,6 +128,7 @@ export class MunicipioComponent implements OnInit {
                             this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Municipio actualizado.', life: 3000 });
                             this.municipioDialog = false;
                             this.municipio = {};
+                            this.deparid = '';//esto
                             this.ngOnInit();
                     }else{
                         this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });

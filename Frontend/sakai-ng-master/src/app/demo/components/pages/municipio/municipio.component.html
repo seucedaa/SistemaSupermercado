@@ -80,7 +80,7 @@
                 <div class="p-formgrid grid">
                     <div class="field col-6">
                         <label for="deparid">Departamento</label>
-                        <p-dropdown [(ngModel)]="municipio.depar_Id" optionValue="municipio.depar_Id"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !municipio.depar_Id}" [options]="departamentos" optionLabel="departamento.depar_Descripcion" placeholder="Seleccione"></p-dropdown>
+                        <p-dropdown [(ngModel)]="deparid" optionValue="depar_Id"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !municipio.depar_Id}" [options]="departamentos" optionLabel="depar_Descripcion" placeholder="Seleccione"></p-dropdown>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !municipio.depar_Id">El departamento es requerido.</small>
                     </div>
                     

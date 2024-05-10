@@ -12,14 +12,17 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
 import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
-import { StockComponent } from './stock.component';
-import { StockRoutingModule } from './stock-routing.module';
-import { NgxPrintModule } from 'ngx-print';
+import { PvendidosComponent } from './pvendidos.component';
+import { PvendidosRoutingModule } from './pvendidos-routing.module';
+import { CalendarModule } from "primeng/calendar";
+import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
 
 @NgModule({
 	imports: [
 		CommonModule,
-		StockRoutingModule,
+		CalendarModule,
+		PvendidosRoutingModule,
+		NgxExtendedPdfViewerModule,
 		FormsModule,
 		TableModule,
 		RatingModule,
@@ -31,9 +34,8 @@ import { NgxPrintModule } from 'ngx-print';
 		MultiSelectModule,
 		DropdownModule,
 		ProgressBarModule,
-		ToastModule,
-		NgxPrintModule
+		ToastModule
 	],
-	declarations: [StockComponent]
+	declarations: [PvendidosComponent]
 })
-export class StockModule { }
+export class PvendidosModule { }
