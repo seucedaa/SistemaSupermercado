@@ -20,6 +20,12 @@ namespace SistemaSupermercado.Common.Models
         public string Usuar_Contrasena { get; set; }
 
         [NotMapped]
+        public string Genero { get; set; }
+
+        [NotMapped]
+        public string CantidadVentas { get; set; }
+
+        [NotMapped]
         public string Nombre { get; set; }
         [NotMapped]
         public string TotalClientesMesActual { get; set; }

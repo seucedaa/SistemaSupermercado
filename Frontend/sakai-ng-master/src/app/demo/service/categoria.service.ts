@@ -22,6 +22,11 @@ export class CategoriaService {
         .toPromise()
   }
 
+  Todas(inicio: string, fin: string){
+    return this.http.get<any>(this.endpoint.Todas(inicio,fin))
+        .toPromise()
+  }
+
   Insert(model: Categoria){
     return this.http.post<any>(this.endpoint.Insert(), model) 
       .toPromise()  

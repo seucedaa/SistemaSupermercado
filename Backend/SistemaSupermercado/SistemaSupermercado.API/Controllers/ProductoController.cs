@@ -33,6 +33,46 @@ namespace SistemaSupermercado.API.Controllers
 
         }
 
+        [HttpGet("ExisTodas")]
+        public IActionResult ExisTodas()
+        {
+            var estado = _superServicio.ExisTodas();
+            return Ok(estado);
+
+        }
+
+        [HttpGet("Top/{sucursal}")]
+        public IActionResult Top(int sucursal)
+        {
+            var estado = _superServicio.Top(sucursal);
+            return Ok(estado);
+
+        }
+        
+        [HttpGet("Principal/{sucursal}")]
+        public IActionResult Principal(int sucursal)
+        {
+            var estado = _superServicio.Principal(sucursal);
+            return Ok(estado);
+
+        }
+
+        [HttpGet("Ventas/{sucursal}/{inicio}/{fin}")]
+        public IActionResult Ventas(int sucursal, string inicio, string fin)
+        {
+            var estado = _superServicio.Ventas(sucursal, inicio, fin);
+            return Ok(estado);
+
+        }
+
+        [HttpGet("Todas/{inicio}/{fin}")]
+        public IActionResult Todas(string inicio, string fin)
+        {
+            var estado = _superServicio.Todas(inicio, fin);
+            return Ok(estado);
+
+        }
+
         [HttpGet("List")]
         public IActionResult List()
         {

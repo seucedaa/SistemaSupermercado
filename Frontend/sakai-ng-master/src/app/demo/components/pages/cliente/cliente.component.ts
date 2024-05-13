@@ -51,6 +51,8 @@ export class ClienteComponent implements OnInit {
     }
 
     deleteCliente(cliente: Cliente) {
+        console.log(this.cliente.clien_Id);
+
         this.deleteclienteDialog = true;
         this.cliente = { ...cliente };
     }
@@ -64,7 +66,7 @@ export class ClienteComponent implements OnInit {
 
     confirmDelete() {
         this.deleteclienteDialog = false;
-    
+
         this.clienteService.Delete(this.cliente.clien_Id).then((response) => {
             console.log(response);
             if(response.success){

@@ -31,6 +31,18 @@ namespace SistemaSupermercado.Common.Models
         public string Producto { get; set; }
         [NotMapped]
         public string Cantidad { get; set; }
+        [NotMapped]
+        public string TotalVendidoActual { get; set; }
+        [NotMapped]
+        public string PorcentajeCambio { get; set; }
+        [NotMapped]
+        public string Categoriaa { get; set; }
+        [NotMapped]
+        public string Productoo { get; set; }
+        [NotMapped]
+        public string TotalVentas { get; set; }
+        [NotMapped]
+        public string Semana { get; set; }
         public int Produ_UsuarioCreacion { get; set; }
         public DateTime Produ_FechaCreacion { get; set; }
         public int? Produ_UsuarioModificacion { get; set; }

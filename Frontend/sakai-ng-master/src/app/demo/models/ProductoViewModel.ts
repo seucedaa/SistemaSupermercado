@@ -20,4 +20,10 @@ export class Producto{
     produ_UsuarioModificacion?: string;
     produ_FechaCreacion?: number;
     produ_FechaModificacion?: string;
+    totalVendidoActual?: string;
+    porcentajeCambio?: string;
+    productoo?: string;
+    categoriaa?: string;
+    totalVentas?: string;
+    semana?: string;
 }

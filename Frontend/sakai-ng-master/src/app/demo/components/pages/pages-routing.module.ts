@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 @NgModule({
     imports: [RouterModule.forChild([
         { path: 'crud', loadChildren: () => import('./crud/crud.module').then(m => m.CrudModule) },
-        { path: 'estadisticas', loadChildren: () => import('./estadisticas/estadisticas.module').then(m => m.EstadisticasModule) },
         { path: 'rol', loadChildren: () => import('./rol/rol.module').then(m => m.RolModule) },
         { path: 'usuario', loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule) },
         { path: 'cargo', loadChildren: () => import('./cargo/cargo.module').then(m => m.CargoModule) },

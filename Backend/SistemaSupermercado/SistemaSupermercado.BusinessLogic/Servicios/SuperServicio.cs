@@ -247,7 +247,83 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             {
                 return result.Error(ex.Message);
             }
+        }  
+        
+        public ServiceResult ExisTodas()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _productoRepository.ExisTodas();
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
         }
+
+        public ServiceResult Top(int sucursal)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _productoRepository.Top(sucursal);
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }  
+        
+        public ServiceResult Principal(int sucursal)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _productoRepository.Principal(sucursal);
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        
+        public ServiceResult Ventas(int sucursal, string inicio, string fin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _productoRepository.Ventas(sucursal,inicio,fin);
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult Todas(string inicio, string fin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _productoRepository.Todas(inicio, fin);
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
         public ServiceResult ListarProdu()
         {
             var result = new ServiceResult();

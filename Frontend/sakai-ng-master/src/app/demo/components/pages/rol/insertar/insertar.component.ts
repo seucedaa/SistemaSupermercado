@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Table } from 'primeng/table';
 import { RolService } from 'src/app/demo/service/rol.service';
 import { Rol } from 'src/app/demo/models/RolViewModel';
 import { Router } from '@angular/router';
 import { PantallaService } from 'src/app/demo/service/pantalla.service';
 import { Pantalla } from 'src/app/demo/models/PantallaViewModel';
+import { NodeService } from 'src/app/demo/service/node.service';
+import { TreeNode} from 'primeng/api';
+
 
 @Component({
     templateUrl: './insertar.component.html',
@@ -15,118 +17,115 @@ import { Pantalla } from 'src/app/demo/models/PantallaViewModel';
 export class InsertarComponent implements OnInit {
 
     roles: Rol[] = [];
-    rol: Rol = {
-    };
+    rol: Rol = {};
+
+    pantalla: Pantalla = {};
 
     submitted: boolean = false;
 
     rowsPerPageOptions = [5, 10, 20];
 
-    pantallasSeleccionadas: Pantalla[] = [];
-
     datos: any[] = [];
 
+    files1: TreeNode[] = [];
+    pantallasseleccionadas: TreeNode[] = [];
+    pantallasdeseleccionadas: TreeNode[] = [];
 
-    constructor(private router: Router, private messageService: MessageService, private pantallaService: PantallaService, private rolService: RolService) { }
 
+    constructor(private router: Router, private nodeService: NodeService, private messageService: MessageService, private pantallaService: PantallaService, private rolService: RolService) {
+        this.rol = {
+            pantallas: [],
+            pantallasD: []
+        };
+    }
+    
     ngOnInit() {
         this.pantallaService.getList().then(data => {
-            this.datos = this.construir(data);
+            const root = { label: 'Todas las pantallas', data: 'Todas las pantallas', icon: 'pi pi-fw pi-folder', children: [] };
+            const acceso = { label: 'Acceso', data: 'Acceso', icon: 'pi pi-fw pi-lock', children: [] };
+            const general = { label: 'General', data: 'General', icon: 'pi pi-fw pi-cog', children: [] };
+            const supermercado = { label: 'Supermercado', data: 'Supermercado', icon: 'pi pi-fw pi-shopping-cart', children: [] };
+            const ventas = { label: 'Ventas', data: 'Ventas', icon: 'pi pi-fw pi-chart-bar', children: [] };
+
+            root.children.push(acceso, general, supermercado, ventas);
+            data.forEach(pantalla => {
+                const esquema = pantalla.panta_Esquema;
+                const label = pantalla.panta_Descripcion;
+                const key = pantalla.panta_Id;
+    
+                const nodoPantalla = { key, label, data: label, icon: 'pi pi-fw pi-file', children: [] };
+    
+                if (esquema === 1) {
+                    acceso.children.push(nodoPantalla);
+                } else if (esquema === 2) {
+                    general.children.push(nodoPantalla);
+                } else if (esquema === 3) {
+                    supermercado.children.push(nodoPantalla);
+                } else if (esquema === 4) {
+                    ventas.children.push(nodoPantalla);
+                }
+            });
+    
+            this.files1 = [root];
         });
+    
+        this.rolService.getList().then(data => this.roles = data);
+    }
+
+    guardar() {
+        this.submitted = true;
+        this.rol.roles_UsuarioCreacion = 1;
+        console.log(this.rol);
+    
+        if (this.rol.roles_Descripcion?.trim()) {
+            this.pantallasseleccionadas.forEach(pantallaSeleccionada => {
+                if (pantallaSeleccionada.key !== undefined) {
+                    this.rol.pantallas.push(pantallaSeleccionada.key);
+                }            });
+            console.log(this.rol.pantallas);
+    
+            this.rolService.Insert(this.rol).then((response => {
+                console.log(response)
+                if(response.success){
+                        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'rol creado.', life: 3000 });
+                        this.rol = {};
+                        this.ngOnInit();
+                        //this.router.navigate(['/home/pages/rol']);
+                }else{
+                    this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
+                }
+            }));
+        }
+    }
+
+    eliminar() {
+        console.log(this.rol);
+    
+            this.pantallasdeseleccionadas.forEach(pantallaDeseleccionada => {
+                if (pantallaDeseleccionada.key !== undefined) {
+                    this.rol.pantallasD.push(pantallaDeseleccionada.key);
+                }            });
+            console.log(this.rol.pantallasD);
+    
+            this.rolService.Elimparo(this.rol).then((response => {
+                console.log(response)
+                if(response.success){
+                        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Pantalla eliminada.', life: 3000 });
+                        this.rol = {};
+                        this.ngOnInit();
+                        this.router.navigate(['/home/pages/rol']);
+                }else{
+                    this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
+                }
+            }));
+        
     }
     
-    construir(pantallas: Pantalla[]): any {
-      const datos: any = [];
-      const pantallaMap: any = {};
-  
-      pantallas.forEach(pantalla => {
-          pantallaMap[pantalla.panta_Id] = pantalla;
-      });
-  
-      const padre = {
-          label: 'Todas las pantallas',
-          children: []
-      };
-  
-      datos.push(padre);
-  
-      const acceso = {
-          label: 'Acceso',
-          children: []
-      };
-  
-      const general = {
-          label: 'General',
-          children: []
-      };
-  
-      const supermercado = {
-          label: 'Supermercado',
-          children: []
-      };
-  
-      const ventas = {
-          label: 'Ventas',
-          children: []
-      };
-  
-      padre.children.push(acceso, general, supermercado, ventas);
-  
-      pantallas.forEach(pantalla => {
-          switch (pantalla.panta_Esquema) {
-              case 1:
-                  acceso.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
-                  break;
-              case 2:
-                  general.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
-                  break;
-              case 3:
-                  supermercado.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
-                  break;
-              case 4:
-                  ventas.children.push({ label: pantalla.panta_Descripcion, data: pantalla.panta_Id });
-                  break;
-          }
-      });
-  
-      return datos;
-  }
-  
-
-  async guardar() {
-    this.submitted = true;
-    this.rol.roles_UsuarioCreacion = 1;
-
-    if (this.rol.roles_Descripcion?.toString().trim() && this.pantallasSeleccionadas.length > 0) {
-        console.log('entra', this.rol);
-
-        await this.guardarPantallasSeleccionadas(this.rol.roles_Descripcion, this.pantallasSeleccionadas, this.rol.roles_UsuarioCreacion);
-        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Rol creado.', life: 3000 });
-
-        this.ngOnInit();
-        this.router.navigate(['/home/pages/rol']);
-    } else {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Escriba el rol.', life: 3000 });
+    onNodeSelected(event) {
+        this.guardar();
     }
-}
-
-async guardarPantallasSeleccionadas(rol, pantallasSeleccionadas,creador) {
-    console.log('seleccionadas ' + pantallasSeleccionadas);
-    const response = await fetch('http://www.proyectosupermercado.somee.com/Api/Rol/Insertar', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ Roles_Descripcion: rol, Pantallas: pantallasSeleccionadas, Roles_UsuarioCreacion: creador}),
-    });
-
-    if (!response.ok) {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Escriba el rol.', life: 3000 });
-      return;
-    }
-
-    const data = await response.json();
-}
-
     
+    Deseleccionadas(event) {
+        this.eliminar();
+    }
 }

@@ -41,6 +41,14 @@ namespace SistemaSupermercado.API.Controllers
             return Ok(list);
         }
 
+        [HttpGet("Genero/{sucursal}/{inicio}/{fin}")]
+        public IActionResult Genero(int sucursal,string inicio, string fin)
+        {
+            var estado = _ventaServicio.Genero(sucursal, inicio, fin);
+            return Ok(estado);
+
+        }
+
         [HttpPost("Insertar")]
         public IActionResult Insertar(ClienteViewModel item)
         {

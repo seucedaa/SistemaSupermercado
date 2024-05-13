@@ -117,8 +117,63 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbProductos> result = new List<tbProductos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Sucur_Id = sucursal };
+                var parameters = new { Sucur_Id = sucursal, FiltroSucursal = 1};
                 result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Existencia, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
+        public IEnumerable<tbProductos> ExisTodas()
+        {
+            List<tbProductos> result = new List<tbProductos>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { FiltroSucursal = 0 };
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Existencia, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
+        public IEnumerable<tbProductos> Top(int sucursal)
+        {
+            List<tbProductos> result = new List<tbProductos>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { Sucur_Id = sucursal };
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Top, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        } 
+        
+        public IEnumerable<tbProductos> Principal(int sucursal)
+        {
+            List<tbProductos> result = new List<tbProductos>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { Sucur_Id = sucursal };
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Principal, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
+        public IEnumerable<tbProductos> Ventas(int sucursal, string inicio, string fin)
+        {
+            List<tbProductos> result = new List<tbProductos>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { Sucur_Id = sucursal, FiltroSucursal = 1, FechaInicio = inicio, FechaFin = fin };
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Total, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
+        public IEnumerable<tbProductos> Todas(string inicio, string fin)
+        {
+            List<tbProductos> result = new List<tbProductos>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { FiltroSucursal = 0, FechaInicio = inicio, FechaFin = fin };
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Total, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }

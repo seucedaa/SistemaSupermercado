@@ -150,3 +150,10 @@ C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermerca
 C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.API\obj\Release\net5.0\ref\SistemaSupermercado.API.dll
 C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.API\obj\Release\net5.0\SistemaSupermercado.API.pdb
 C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.API\obj\Release\net5.0\SistemaSupermercado.API.genruntimeconfig.cache
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.API\bin\Release\net5.0\libman.json
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.API\bin\Release\net5.0\PdfSharpCore.dll
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.API\bin\Release\net5.0\HtmlRenderer.Core.dll
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.API\bin\Release\net5.0\HtmlRenderer.PdfSharp.Core.dll
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.API\bin\Release\net5.0\SixLabors.Core.dll
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.API\bin\Release\net5.0\SixLabors.Fonts.dll
+C:\repositorio\SistemaSupermercado\Backend\SistemaSupermercado\SistemaSupermercado.API\bin\Release\net5.0\SixLabors.ImageSharp.dll

@@ -14,6 +14,11 @@ namespace SistemaSupermercado.Entities.Entities
         [NotMapped]
         public string UsuarioModificacion { get; set; }
         [NotMapped]
+        public string Genero { get; set; }
+
+        [NotMapped]
+        public string CantidadVentas { get; set; }
+        [NotMapped]
         public string Usuar_Usuario { get; set; }
 
         [NotMapped]

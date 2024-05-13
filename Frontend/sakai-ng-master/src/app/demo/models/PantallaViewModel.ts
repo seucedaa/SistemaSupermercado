@@ -1,5 +1,4 @@
 export interface Pantalla{
-    data: any;
     panta_Id?:number;
     panta_Descripcion?:String;
     panta_Esquema?:number;

@@ -27,6 +27,18 @@ namespace SistemaSupermercado.Entities.Entities
         public string Producto { get; set; }
         [NotMapped]
         public string Cantidad { get; set; }
+        [NotMapped]
+        public string TotalVendidoActual { get; set; }
+        [NotMapped]
+        public string PorcentajeCambio { get; set; }
+        [NotMapped]
+        public string Categoriaa { get; set; }
+        [NotMapped]
+        public string Productoo { get; set; }
+        [NotMapped]
+        public string TotalVentas { get; set; }
+        [NotMapped]
+        public string Semana { get; set; }
         public int Subca_Id { get; set; }
         [NotMapped]
         public string Subca_Descripcion { get; set; }

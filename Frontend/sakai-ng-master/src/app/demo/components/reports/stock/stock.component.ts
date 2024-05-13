@@ -1,13 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Table } from 'primeng/table';
-import { Categoria } from 'src/app/demo/models/CategoriaViewModel';
 import { Producto } from 'src/app/demo/models/ProductoViewModel';
-import { Subcategoria } from 'src/app/demo/models/SubcategoriaViewModel';
-import { CategoriaService } from 'src/app/demo/service/categoria.service';
 import { ReporteService } from 'src/app/demo/service/reporte.service';
-import { SubcategoriaService } from 'src/app/demo/service/subcategoria.service';
-
+import { SucursalService } from 'src/app/demo/service/sucursal.service';
+import { Sucursal } from 'src/app/demo/models/SucursalViewModel';
 
 interface expandedRows {
     [key: string]: boolean;
@@ -22,48 +18,87 @@ export class StockComponent implements OnInit {
 
     productos: Producto[] = [];
 
-    filteredProductos: any[] = [];
+    pdf='';
+    id: any;
 
-    loading: boolean = true;
-
-    categorias: Categoria[] = [];
-
-    subcategorias: Subcategoria[] = [];
+    sucursales: Sucursal[] = [];
+    sucursalid: any;
 
     @ViewChild('filter') filter!: ElementRef;
 
-    constructor(private reporteService: ReporteService,private categoriaService: CategoriaService, 
-                private subcategoriaService: SubcategoriaService, private messageService: MessageService) { }
+    constructor(private reporteService: ReporteService,
+      private sucursalService: SucursalService, private messageService: MessageService) { }
 
-    async ngOnInit(){
-        await this.reporteService.Stock(2).then(data => {
-            console.log(data)
-            this.productos = data;
-            console.log(this.productos, "this.productos")
-            this.loading = false;
-        });
-
-        await this.categoriaService.getList().then((data => {
-            this.categorias = data;
-        }))
-          console.log(this.categorias)
-          
-        await this.subcategoriaService.getList().then((data => {
-            this.subcategorias = data;
-        }))
+      onSucursalChange(sucur_Id: any) {
+        this.sucursalid = sucur_Id.sucur_Id;
+        console.log(this.sucursalid);
+        this.cambio();
     }
 
-    onFiltered(){
-        this.filteredProductos = [];
-        this.filteredProductos = this.productos;
+    todas(){
+      this.reporteService.Generarpdf2().subscribe(res => {
+        let blob: Blob = res.body as Blob;
+        let url = window.URL.createObjectURL(blob);
+        this.pdf = url;
+      });
     }
 
-    onGlobalFilter(table: Table, event: Event) {
-        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+    cambio(){
+      this.reporteService.Generarpdf(this.sucursalid).subscribe(res => {
+        let blob: Blob = res.body as Blob;
+        let url = window.URL.createObjectURL(blob);
+        this.pdf = url;
+      });
     }
 
-    clear(table: Table) {
-        table.clear();
-        this.filter.nativeElement.value = '';
+     ngOnInit(){
+      this.sucursalService.getList().then(data => this.sucursales = data);
+
+      this.reporteService.Generarpdf2().subscribe(res => {
+        let blob: Blob = res.body as Blob;
+        let url = window.URL.createObjectURL(blob);
+        this.pdf = url;
+      });
+       
     }
+
+    mostrartodas(){
+
+      this.todas();
+      
+   }
+  
+    
+    // Imprimir(id) {
+    //     this.reporteService.Generarpdf(id).subscribe(res => {
+    //       let blob: Blob = res.body as Blob;
+    //       let url = window.URL.createObjectURL(blob);
+    //       window.open(url);
+    //     });
+    // }
+
+    // Preview(id) {
+    //     this.reporteService.Generarpdf(id).subscribe(res => {
+    //       let blob: Blob = res.body as Blob;
+    //       let url = window.URL.createObjectURL(blob);
+    //       this.pdf = url;
+    //       console.log('PDF URL:', url); // Imprime la URL en la consola
+    //       this.mostrar = true;
+    //     });
+    //   }
+      
+      
+
+    // Descargar(id) {
+    //     this.reporteService.Generarpdf(id).subscribe(res => {
+    //       let blob: Blob = res.body as Blob;
+    //       let url = window.URL.createObjectURL(blob);
+
+    //       let a=document.createElement('a');
+    //       a.download = id;
+    //       a.href=url;
+    //       a.click();
+    //     });
+    // }
+
 }

@@ -1,7 +1,10 @@
 <div class="card">
 <div class="grid p-fluid">
-    
-    <div class="field col-12 md:col-4">
+    <div class="field col-12 md:col-2">
+        <button pButton type="button" label="Mostrar todas" (click)="mostrartodas()" icon="pi pi-chart-bar" class="p-element p-ripple p-button-raised p-button-success p-button p-component"></button>
+
+    </div>
+    <div class="field col-12 md:col-3">
         <span class="p-float-label">
             <p-dropdown
                 inputId="dropdown"
@@ -14,7 +17,7 @@
             <label for="dropdown">Sucursal</label>
         </span>
     </div>
-    <div class="field col-12 md:col-4">
+    <div class="field col-12 md:col-3">
         <span class="p-float-label">
             <p-calendar
                 inputId="calendar"
@@ -38,7 +41,7 @@
     <div class="col-12 lg:col-6">
         
         <div class="card">
-            <h5>Linear Chart</h5>
+            <h5>Total ventas</h5>
             <p-chart type="line" [data]="lineData" [options]="lineOptions"></p-chart>
         </div>
 
@@ -50,14 +53,15 @@
 
     </div>
     <div class="col-12 lg:col-6">
-        <div class="card flex flex-column align-items-center">
-            <h5 class="text-left w-full">Cantidad de existencia de productos</h5>
-            <p-chart type="doughnut" [data]="siData" [options]="pieOptions"></p-chart>
-        </div>
         <div class="card">
             <h5>Sub-Categorias mas vendidas</h5>
             <p-chart type="bar" [data]="barData" [options]="barOptions"></p-chart>
         </div>
+        <div class="card flex flex-column align-items-center">
+            <h5 class="text-left w-full">Cantidad de existencia de productos</h5>
+            <p-chart type="doughnut" [data]="siData" [options]="pieOptions"></p-chart>
+        </div>
+        
 
        
 

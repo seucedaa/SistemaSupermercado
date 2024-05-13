@@ -50,7 +50,7 @@
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-success mr-2" routerLink="editar/{{rol.roles_Id}}"> Editar</button>
                                 <button pButton pRipple icon="pi pi-ellipsis-h"  class="p-element p-ripple p-button-rounded p-button-info p-button p-component" routerLink="detalle/{{rol.roles_Id}}"> Detalles</button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"(click)="deleteRol(cliente)"> Eliminar</button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"(click)="deleteRol(rol)"> Eliminar</button>
                             </div>
                         </td>
                     </tr>
@@ -58,6 +58,15 @@
             </p-table>
         </div>
 
-      
+        <p-dialog [(visible)]="deleterolDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="rol">¿Estas seguro que deseas eliminar <b>{{rol.roles_Descripcion}}</b>?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleterolDialog = false" ></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
     </div>
 </div>

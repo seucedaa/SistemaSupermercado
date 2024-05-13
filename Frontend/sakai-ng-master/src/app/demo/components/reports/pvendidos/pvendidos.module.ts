@@ -12,14 +12,16 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
 import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
-import { StockComponent } from './stock.component';
-import { StockRoutingModule } from './stock-routing.module';
+import { PvendidosComponent } from './pvendidos.component';
+import { PvendidosRoutingModule } from './pvendidos-routing.module';
+import { CalendarModule } from "primeng/calendar";
 import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
 
 @NgModule({
 	imports: [
 		CommonModule,
-		StockRoutingModule,
+		CalendarModule,
+		PvendidosRoutingModule,
 		NgxExtendedPdfViewerModule,
 		FormsModule,
 		TableModule,
@@ -34,6 +36,6 @@ import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
 		ProgressBarModule,
 		ToastModule
 	],
-	declarations: [StockComponent]
+	declarations: [PvendidosComponent]
 })
-export class StockModule { }
+export class PvendidosModule { }

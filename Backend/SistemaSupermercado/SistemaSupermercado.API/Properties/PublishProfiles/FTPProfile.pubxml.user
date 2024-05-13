@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-This file is used by the publish/package process of your Web project. You can customize the behavior of this process
-by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+Este archivo se usa en el proceso de publicación y empaquetado del proyecto web. Para personalizar el comportamiento de este proceso,
+edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 para obtener más información. 
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAlTfTQ4EzcEu3MsTKNGcpRgAAAAACAAAAAAAQZgAAAAEAACAAAADxFCTdU7JFx4L+s7flrqLGyAEOu6Dn/c3F/iGTdmxiOwAAAAAOgAAAAAIAACAAAAAE5nmUHO/UlP742IbC45wU6/zY7Bc2bdk0r753IsSzbSAAAABYlohmOlnOy0h4/BjTaaLW3WUsOFIlLQlEr+kESTIYMkAAAAB9n4keyklusIGl1QykkITA/2Szb1U+0ROOaOksTn8uo2M2CDFn9SdUoSvNe3IcZK5af/FItVcOMj3POZVuWTKP</EncryptedPassword>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAHbr+/+FTIUi+jbWIVYnXhwAAAAACAAAAAAAQZgAAAAEAACAAAADAI7u5hagfMgs6K7PJujNCHKaiIALcjHNwrg2rvFpKQwAAAAAOgAAAAAIAACAAAADXrgdSfx8GCNNI9WXb4q6XniFYXWrIA21UrbEf0I4jziAAAAAqTa5LP+/0JcKGko1xxwGYnjfdMje0gSmDjPEbcfzL3kAAAABv5QwA9ftanRtA6YVfoFSLtKUaQ3PBYnNOyyHwQj48YMuLXKS8Ij6XqQRaMKa7teBbfgY/I5KZjnsHc3Gzaj0a</EncryptedPassword>
     <_PublishTargetUrl>ftp://198.37.116.42/www.proyectosupermercado.somee.com</_PublishTargetUrl>
-    <History>True|2024-05-08T05:53:55.0092699Z;</History>
+    <History>True|2024-05-10T14:36:05.6556652Z;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
-      <publishTime>04/29/2024 15:43:41</publishTime>
+      <publishTime>05/02/2024 08:15:00</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>04/29/2024 19:16:30</publishTime>
+      <publishTime>05/02/2024 08:15:00</publishTime>
     </File>
     <File Include="AutoMapper.dll">
       <publishTime>01/05/2022 09:27:54</publishTime>
@@ -77,6 +77,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="fr/Microsoft.CodeAnalysis.Workspaces.resources.dll">
       <publishTime>11/11/2020 18:16:28</publishTime>
     </File>
+    <File Include="HtmlRenderer.Core.dll">
+      <publishTime>03/03/2020 06:16:28</publishTime>
+    </File>
+    <File Include="HtmlRenderer.PdfSharp.Core.dll">
+      <publishTime>03/03/2020 06:16:38</publishTime>
+    </File>
     <File Include="Humanizer.dll">
       <publishTime>06/02/2020 07:07:58</publishTime>
     </File>
@@ -115,6 +121,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="ko/Microsoft.CodeAnalysis.Workspaces.resources.dll">
       <publishTime>11/11/2020 18:16:28</publishTime>
+    </File>
+    <File Include="libman.json">
+      <publishTime>05/10/2024 07:56:58</publishTime>
     </File>
     <File Include="MailKit.dll">
       <publishTime>04/13/2024 14:48:48</publishTime>
@@ -212,6 +221,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Newtonsoft.Json.dll">
       <publishTime>03/24/2018 11:44:14</publishTime>
     </File>
+    <File Include="PdfSharpCore.dll">
+      <publishTime>01/26/2020 04:13:28</publishTime>
+    </File>
     <File Include="pl/Microsoft.CodeAnalysis.CSharp.resources.dll">
       <publishTime>11/11/2020 18:15:14</publishTime>
     </File>
@@ -285,43 +297,52 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/15/2019 02:53:46</publishTime>
     </File>
     <File Include="SistemaSupermercado.API.deps.json">
-      <publishTime>05/07/2024 23:50:34</publishTime>
+      <publishTime>05/10/2024 08:33:17</publishTime>
     </File>
     <File Include="SistemaSupermercado.API.dll">
-      <publishTime>05/07/2024 23:50:34</publishTime>
+      <publishTime>05/10/2024 08:33:14</publishTime>
     </File>
     <File Include="SistemaSupermercado.API.exe">
-      <publishTime>05/07/2024 23:50:34</publishTime>
+      <publishTime>05/10/2024 08:33:14</publishTime>
     </File>
     <File Include="SistemaSupermercado.API.pdb">
-      <publishTime>05/07/2024 23:50:34</publishTime>
+      <publishTime>05/10/2024 08:33:14</publishTime>
     </File>
     <File Include="SistemaSupermercado.API.runtimeconfig.json">
-      <publishTime>05/07/2024 21:12:00</publishTime>
+      <publishTime>05/10/2024 08:33:14</publishTime>
     </File>
     <File Include="SistemaSupermercado.BusinessLogic.dll">
-      <publishTime>05/07/2024 23:50:31</publishTime>
+      <publishTime>05/10/2024 08:33:14</publishTime>
     </File>
     <File Include="SistemaSupermercado.BusinessLogic.pdb">
-      <publishTime>05/07/2024 23:50:31</publishTime>
+      <publishTime>05/10/2024 08:33:14</publishTime>
     </File>
     <File Include="SistemaSupermercado.Common.dll">
-      <publishTime>05/07/2024 21:13:31</publishTime>
+      <publishTime>05/10/2024 08:33:12</publishTime>
     </File>
     <File Include="SistemaSupermercado.Common.pdb">
-      <publishTime>05/07/2024 21:13:31</publishTime>
+      <publishTime>05/10/2024 08:33:12</publishTime>
     </File>
     <File Include="SistemaSupermercado.DataAccess.dll">
-      <publishTime>05/07/2024 23:50:30</publishTime>
+      <publishTime>05/10/2024 08:33:13</publishTime>
     </File>
     <File Include="SistemaSupermercado.DataAccess.pdb">
-      <publishTime>05/07/2024 23:50:30</publishTime>
+      <publishTime>05/10/2024 08:33:13</publishTime>
     </File>
     <File Include="SistemaSupermercado.Entities.dll">
-      <publishTime>05/07/2024 23:50:29</publishTime>
+      <publishTime>05/10/2024 08:33:12</publishTime>
     </File>
     <File Include="SistemaSupermercado.Entities.pdb">
-      <publishTime>05/07/2024 23:50:29</publishTime>
+      <publishTime>05/10/2024 08:33:12</publishTime>
+    </File>
+    <File Include="SixLabors.Core.dll">
+      <publishTime>09/01/2019 05:39:54</publishTime>
+    </File>
+    <File Include="SixLabors.Fonts.dll">
+      <publishTime>09/01/2019 06:21:08</publishTime>
+    </File>
+    <File Include="SixLabors.ImageSharp.dll">
+      <publishTime>01/25/2019 00:08:54</publishTime>
     </File>
     <File Include="Swashbuckle.AspNetCore.Swagger.dll">
       <publishTime>01/11/2023 00:48:20</publishTime>
@@ -387,7 +408,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/11/2020 18:16:28</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>05/07/2024 23:50:35</publishTime>
+      <publishTime>05/10/2024 08:33:17</publishTime>
     </File>
     <File Include="zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll">
       <publishTime>11/11/2020 18:15:14</publishTime>
