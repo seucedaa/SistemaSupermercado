@@ -38,7 +38,9 @@ export class LoginComponent {
         if(this.submitted && this.username?.trim() && this.contrasena?.trim()){
             this.usuarioService.Login(this.username, this.contrasena).then((response => {
                 if(response.success){
-                    this.router.navigate(['/home'])
+                    const dataa = response.data;
+                    console.log(dataa);
+                    //this.router.navigate(['/home'])
                 }else{
                     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Credenciales Incorrectas', life: 3000 });
                     console.log('credenciales erroneas')
