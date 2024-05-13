@@ -48,19 +48,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
         this.clienteService.getTotal().then(data => {
             this.clientes = data;
-            console.log(this.clientes);
         });
 
         this.ventaencabezadoService.getTotal().then(data => {
             this.ventas = data;
-            console.log(this.ventas);
         });
 
         const sucursalid = 2;
 
         this.productoService.Principal(sucursalid).then(data => {
             this.productos = data.data;
-            console.log(this.productos);
             this.chartLineChart();
         });
 
