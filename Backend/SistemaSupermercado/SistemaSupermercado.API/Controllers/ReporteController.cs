@@ -31,7 +31,7 @@ namespace SistemaSupermercado.API.Controllers
             return Ok(list);
         }
 
-        [HttpGet("Generarpdf/{Sucur_Id}/{usuario}/{nombre}")]
+        [HttpGet("Generarpdf/{Sucur_Id}/{nombre}")]
         public async Task<IActionResult> Generarpdf(int Sucur_Id, string nombre)
         {
             var documento = new PdfDocument();
@@ -48,7 +48,11 @@ namespace SistemaSupermercado.API.Controllers
             htmlcontenido += "<tr>";
             htmlcontenido += "<td>";
             //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><b>REPORTE DE INVENTARIO</b></h3>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Inventario</br></h3>";
+            htmlcontenido += "</td>";
+            htmlcontenido += "<td style='width: 30%; text-align: right;'>";
+            htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
+            htmlcontenido += "<p style='margin: 0; font-weight: bold; color: black;'> " + DateTime.Now.ToString("dd/MM/yyyy") + "</p>";
             htmlcontenido += "</td>";
             htmlcontenido += "</tr>";
             htmlcontenido += "</table>";

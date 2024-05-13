@@ -18,9 +18,11 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Inicio',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/home/'] }
+                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/home/'] },
+                    
                 ]
             },
+            
             {
                 label: 'Reportes',
                 items:[
@@ -68,6 +70,11 @@ export class AppMenuComponent implements OnInit {
                 label: 'Pages',
                 icon: 'pi pi-fw pi-briefcase',
                 items: [
+                  {
+                    label: 'Comprar',
+                    icon: 'pi pi-fw pi-shopping-cart',
+                    routerLink: ['/home/pages/comprar'],
+                  },
                        
                     {
                         label: 'Acceso',

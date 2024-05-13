@@ -66,6 +66,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
             console.log(this.productos);
 
         });
+
+        const sucursalid = 2;
+
+        this.productoService.Principal(sucursalid).then(data => {
+            this.productos = data.data;
+            console.log(this.productos);
+            this.chartLineChart();
+        });
+
+        this.productoService.Top(sucursalid).then(data => {
+            this.productos = data.data;
+            console.log(this.productos);
+
+        });
     }
 
     chartLineChart() {

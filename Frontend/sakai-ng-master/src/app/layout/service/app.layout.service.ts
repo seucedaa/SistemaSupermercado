@@ -47,6 +47,8 @@ export class LayoutService {
 
     private overlayOpen = new Subject<any>();
 
+    visibleSidebar2: boolean
+
     configUpdate$ = this.configUpdate.asObservable();
 
     overlayOpen$ = this.overlayOpen.asObservable();
@@ -155,5 +157,9 @@ export class LayoutService {
 
     changeScale(value: number) {
         document.documentElement.style.fontSize = `${value}px`;
+    }
+
+    onCartChange() {
+      this.visibleSidebar2 = true
     }
 }

@@ -180,6 +180,13 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string VentaDetalle_Desactivar = "Venta.SP_VentaDetalle_Desactivar";
         public static string VentaDetalle_Buscar = "Venta.SP_VentaDetalle_Buscar";
         #endregion
+
+        #region cart
+        public static string listarLotes = "Venta.sp_Lotes_list";
+        public static string CrearFacturaEncabezado = "Venta.sp_FacturaEncabezado_crear";
+        public static string CrearFacturaDetalle = "Venta.sp_FacturaDetalle_crear";
+        public static string FacturaBuscar = "Venta.sp_Factura_buscar";
+        #endregion
         #endregion
 
         #region Reporte
