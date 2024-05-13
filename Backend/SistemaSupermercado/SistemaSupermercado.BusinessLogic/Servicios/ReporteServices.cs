@@ -82,5 +82,31 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
 
+        public IEnumerable<tbVentasEncabezado> PDFVentas(int sucursal, string inicio, string fin)
+        {
+            try
+            {
+                var productos = _reporteRepository.PDFVentas(sucursal,inicio, fin);
+                return productos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al generar el reporte de stock", ex);
+            }
+        } 
+        
+        public IEnumerable<tbVentasEncabezado> PDFVentas2(string inicio, string fin)
+        {
+            try
+            {
+                var productos = _reporteRepository.PDFVentas2(inicio, fin);
+                return productos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al generar el reporte de stock", ex);
+            }
+        }
+
     }
 }

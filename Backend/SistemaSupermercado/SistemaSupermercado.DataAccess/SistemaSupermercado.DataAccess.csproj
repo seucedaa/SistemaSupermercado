@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SistemaSupermercado.Common\SistemaSupermercado.Common.csproj" />
     <ProjectReference Include="..\SistemaSupermercado.Entities\SistemaSupermercado.Entities.csproj" />
   </ItemGroup>
 

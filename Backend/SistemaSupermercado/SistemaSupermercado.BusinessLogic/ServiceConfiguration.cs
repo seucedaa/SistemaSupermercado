@@ -34,7 +34,7 @@ namespace SistemaSupermercado.BusinessLogic
             service.AddScoped<VentaDetalleRepository>();
             service.AddScoped<VentaEncabezadoRepository>();
             service.AddScoped<ReporteRepository>();
-
+            service.AddScoped<CartRepository>();
 
             SistemaSupermercadoContext.BuildConnectionString(conn);
         }
