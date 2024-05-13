@@ -30,6 +30,24 @@ export class ReporteEndPoints{
   public Generarpdf2():string{
     return `${this.api.baseUrl}/Reporte/Generarpdf2`;
   }
+
+  public PDFProductos(Sucur_Id: number, inicio:string, fin:string):string{
+    return `${this.api.baseUrl}/Reporte/PDFProductos/${Sucur_Id}/${inicio}/${fin}`;
+  }
+  public PDFProductos2(inicio:string, fin:string):string{
+    return `${this.api.baseUrl}/Reporte/PDFProductos2/${inicio}/${fin}`;
+  }
+
+  public PDFClientes(inicio:string, fin:string):string{
+    return `${this.api.baseUrl}/Reporte/PDFClientes/${inicio}/${fin}`;
+  }
+
+  public PDFVentas(Sucur_Id: number, inicio:string, fin:string):string{
+    return `${this.api.baseUrl}/Reporte/PDFVentas/${Sucur_Id}/${inicio}/${fin}`;
+  }
+  public PDFVentas2(inicio:string, fin:string):string{
+    return `${this.api.baseUrl}/Reporte/PDFVentas2/${inicio}/${fin}`;
+  }
 }
 
 export class RolEndPoints{

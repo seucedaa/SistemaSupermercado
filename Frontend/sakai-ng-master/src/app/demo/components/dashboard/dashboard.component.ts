@@ -66,6 +66,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
         this.productoService.Top(sucursalid).then(data => {
             this.productos = data.data;
+            console.log(this.productos);
+
         });
     }
 

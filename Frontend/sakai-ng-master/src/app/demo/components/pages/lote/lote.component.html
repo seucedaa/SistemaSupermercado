@@ -77,7 +77,7 @@
                 <div class="p-formgrid grid">
                     <div class="field col-6">
                         <label for="produid">Producto</label>
-                        <p-dropdown [(ngModel)]="produid"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !lote.produ_Id}" [options]="productos" optionLabel="produ_Descripcion" placeholder="Seleccione"></p-dropdown>
+                        <p-dropdown [(ngModel)]="produid" optionValue="produ_Id"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !lote.produ_Id}" [options]="productos" optionLabel="produ_Descripcion" placeholder="Seleccione"></p-dropdown>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !lote.produ_Id">El producto es requerido.</small>
                     </div>
                     
@@ -94,6 +94,7 @@
                             <p-calendar
                                 inputId="calendar"
                                 [(ngModel)]="fecha"
+                                optionValue="lotes_FechaVencimiento"
                             ></p-calendar>
                             <small class="ng-dirty ng-invalid" *ngIf="submitted && !lote.lotes_FechaVencimiento">Fecha de vencimiento es requerida.</small>
                         </span>
@@ -101,7 +102,7 @@
                     
                     <div class="field col-6">
                         <label for="sucurid">Sucursal</label>
-                        <p-dropdown [(ngModel)]="sucurid"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !lote.sucur_Id}" [options]="sucursales" optionLabel="sucur_Descripcion" placeholder="Seleccione"></p-dropdown>
+                        <p-dropdown [(ngModel)]="sucurid" optionValue="sucur_Id"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !lote.sucur_Id}" [options]="sucursales" optionLabel="sucur_Descripcion" placeholder="Seleccione"></p-dropdown>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !lote.sucur_Id">La sucrusal es requerida.</small>
                     </div>
                 </div>

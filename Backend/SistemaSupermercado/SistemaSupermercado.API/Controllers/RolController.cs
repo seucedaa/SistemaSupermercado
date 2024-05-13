@@ -49,7 +49,7 @@ namespace SistemaSupermercado.Controllers
 
 
 
-        [HttpPost("Actualizar")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(RolViewModel item)
         {
 
@@ -66,7 +66,7 @@ namespace SistemaSupermercado.Controllers
             return Json(new { success = true, message = "Rol editadro con exito!" });
         }
 
-        [HttpPost("EliminarPantalladelRol")]
+        [HttpPut("EliminarPantalladelRol")]
         public IActionResult EliminarPantalladelRol(RolViewModel item)
         {
 
@@ -83,7 +83,7 @@ namespace SistemaSupermercado.Controllers
         }
 
 
-        [HttpPost("EliminarPantallaRol")]
+        [HttpPut("EliminarPantallaRol")]
         public IActionResult EliminarPantallaRol(RolViewModel item)
         {
 

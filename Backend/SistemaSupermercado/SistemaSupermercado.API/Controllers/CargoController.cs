@@ -46,6 +46,20 @@ namespace SistemaSupermercado.API.Controllers
             var list = _ServiciosGenerales.CrearCargo(modelo);
             return Ok(list);
         }
+        [HttpPut("Actualizar")]
+        public IActionResult Actualizar(CargoViewModel item)
+        {
+            var model = _mapper.Map<tbCargos>(item);
+            var modelo = new tbCargos()
+            {
+                Cargo_Id = item.Cargo_Id,
+                Cargo_Descripcion = item.Cargo_Descripcion,
+                Cargo_UsuarioModificacion = item.Cargo_UsuarioModificacion
+            };
+
+            var list = _ServiciosGenerales.ModificarCargo(modelo);
+            return Ok(list);
+        }
 
         [HttpGet("ObtenerCargID/{id}")]
         public IActionResult ObtenerCargID(int id)
@@ -67,20 +81,7 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpPut("Actualizar")]
-        public IActionResult Actualizar(CargoViewModel item)
-        {
-            var model = _mapper.Map<tbCargos>(item);
-            var modelo = new tbCargos()
-            {
-                Cargo_Id = item.Cargo_Id,
-                Cargo_Descripcion = item.Cargo_Descripcion,
-                Cargo_UsuarioModificacion = item.Cargo_UsuarioModificacion
-            };
-
-            var list = _ServiciosGenerales.ModificarCargo(modelo);
-            return Ok(list);
-        }
+      
 
         [HttpDelete("Eliminar/{id}")]
         public IActionResult Eliminar(int id)

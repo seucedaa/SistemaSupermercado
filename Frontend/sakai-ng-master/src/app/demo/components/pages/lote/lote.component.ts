@@ -57,8 +57,12 @@ export class LoteComponent implements OnInit {
     }
 
     editLote(lote: Lote) {
-        this.lote = { ...lote };
+        this.lote = {...lote };
+        this.produid = lote.produ_Id; 
+        this.sucurid = lote.sucur_Id; 
+        this.fecha = lote.lotes_FechaVencimiento;
         this.loteDialog = true;
+        console.log(lote);
     }
     
 

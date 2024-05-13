@@ -12,11 +12,11 @@ interface expandedRows {
 }
 
 @Component({
-    templateUrl: './pvendidos.component.html',
+    templateUrl: './ventas.component.html',
     providers: [MessageService]
 })
 
-export class PvendidosComponent implements OnInit {
+export class VentasComponent implements OnInit {
 
     productos: Producto[] = [];
 
@@ -58,7 +58,7 @@ export class PvendidosComponent implements OnInit {
       formattedInicio = this.formatDate(this.inicio);
       formattedFin = this.formatDate(this.fin);
       
-      this.reporteService.PDFProductos(this.sucursalid,formattedInicio, formattedFin).subscribe(res => {
+      this.reporteService.PDFVentas(this.sucursalid,formattedInicio, formattedFin).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;
@@ -93,7 +93,7 @@ export class PvendidosComponent implements OnInit {
         console.log(this.sucursales);
      });
 
-        this.reporteService.PDFProductos(2, formattedInicio, formattedFin).subscribe(res => {
+        this.reporteService.PDFVentas(2, formattedInicio, formattedFin).subscribe(res => {
           let blob: Blob = res.body as Blob;
           let url = window.URL.createObjectURL(blob);
           this.pdf = url;
@@ -107,7 +107,7 @@ export class PvendidosComponent implements OnInit {
       formattedInicio = this.formatDate(this.inicio);
       formattedFin = this.formatDate(this.fin);
   
-      this.reporteService.PDFProductos2(formattedInicio, formattedFin).subscribe(res => {
+      this.reporteService.PDFVentas2(formattedInicio, formattedFin).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;
