@@ -69,5 +69,27 @@ namespace SistemaSupermercado.DataAccess.Repository
                 return result;
             }
         }
+
+        public IEnumerable<tbVentasEncabezado> PDFVentas(int sucursal, string inicio, string fin)
+        {
+            List<tbVentasEncabezado> result = new List<tbVentasEncabezado>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new {Sucur_Id = sucursal, FiltroSucursal = 1, FechaInicio = inicio, FechaFin = fin };
+                result = db.Query<tbVentasEncabezado>(ScriptBaseDeDatos.Reporte_Ventas, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        } 
+        
+        public IEnumerable<tbVentasEncabezado> PDFVentas2(string inicio, string fin)
+        {
+            List<tbVentasEncabezado> result = new List<tbVentasEncabezado>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new {FiltroSucursal = 0, FechaInicio = inicio, FechaFin = fin };
+                result = db.Query<tbVentasEncabezado>(ScriptBaseDeDatos.Reporte_Ventas, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
     }
 }

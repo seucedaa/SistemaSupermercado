@@ -17,6 +17,12 @@ namespace SistemaSupermercado.Entities.Entities
         public int Venen_Id { get; set; }
         public int Sucur_Id { get; set; }
         [NotMapped]
+        public string Persona { get; set; }
+        [NotMapped]
+        public string Tipo { get; set; }
+        [NotMapped]
+        public string Tipo_Descripcion { get; set; }
+        [NotMapped]
         public string Sucur_Descripcion { get; set; }
         public int Usuar_Id { get; set; }
         [NotMapped]
