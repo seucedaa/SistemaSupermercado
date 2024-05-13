@@ -1,336 +1,393 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment'; // Import the environment
+import { Injectable } from '@angular/core'
+import { environment } from '../../../environments/environment' // Import the environment
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
-  public baseUrl = environment.apiBaseUrl; // Use the base URL from environment
+  public baseUrl = environment.apiBaseUrl // Use the base URL from environment
 
   constructor() {}
 }
 
-export class UsuarioEndPoints{
-  public api = new ApiService();
+export class UsuarioEndPoints {
+  public api = new ApiService()
 
-  public List():string{
-    return `${this.api.baseUrl}/Usuario/List`;
+  public List(): string {
+    return `${this.api.baseUrl}/Usuario/List`
   }
 
-  public Login(usuario: string, contrasena: string):string{
-    return `${this.api.baseUrl}/Usuario/Login/${usuario}/${contrasena}`; 
-  }
-}
-export class ReporteEndPoints{
-  public api = new ApiService();
-
-  public Stock(Sucur_Id: number):string{
-    return `${this.api.baseUrl}/Reporte/Stock/${Sucur_Id}`;
+  public Login(usuario: string, contrasena: string): string {
+    return `${this.api.baseUrl}/Usuario/Login/${usuario}/${contrasena}`
   }
 }
+export class ReporteEndPoints {
+  public api = new ApiService()
 
-export class RolEndPoints{
-  public api = new ApiService();
-
-  public List():string{
-    return `${this.api.baseUrl}/Rol/List`;
-  }
-
-  public Insert():string{
-    return `${this.api.baseUrl}/Lote/Insertar`; 
-  }
-
-  public Update():string{
-    return `${this.api.baseUrl}/Lote/Actualizar`; 
-  }
-
-  public Details(id: string):string{
-    return `${this.api.baseUrl}/Lote/Detalle/${id}`; 
-  }
-
-  public Delete(id: string):string{
-    return `${this.api.baseUrl}/Lote/Eliminar/${id}`; 
-  }
-  public PantdelRol(id: string):string{
-    return `${this.api.baseUrl}/Pantalla/ListPantallasDelRol?id=${id}`;
+  public Stock(Sucur_Id: number): string {
+    return `${this.api.baseUrl}/Reporte/Stock/${Sucur_Id}`
   }
 }
 
-export class PantallaEndPoints{
-  public api = new ApiService();
+export class RolEndPoints {
+  public api = new ApiService()
 
-  public List():string{
-    return `${this.api.baseUrl}/Pantalla/List`;
+  public List(): string {
+    return `${this.api.baseUrl}/Rol/List`
   }
 
- 
-}
-
-export class PantallaporRolEndPoints{
-  public api = new ApiService();
-
-  public List(id:string):string{
-    return `${this.api.baseUrl}/PantallaporRol/PantallaporRol/${id}`;
-  }
- 
-}
-
-export class CargoEndPoints{
-  public api = new ApiService();
-
-  public List():string{
-    return `${this.api.baseUrl}/Cargo/List`;
+  public Insert(): string {
+    return `${this.api.baseUrl}/Lote/Insertar`
   }
 
-  public Insert():string{
-    return `${this.api.baseUrl}/Cargo/Insertar`; 
+  public Update(): string {
+    return `${this.api.baseUrl}/Lote/Actualizar`
   }
 
-  public Update():string{
-    return `${this.api.baseUrl}/Cargo/Actualizar`; 
+  public Details(id: string): string {
+    return `${this.api.baseUrl}/Lote/Detalle/${id}`
   }
 
-  public Delete(id: string):string{
-    return `${this.api.baseUrl}/Cargo/Eliminar/${id}`; 
+  public Delete(id: string): string {
+    return `${this.api.baseUrl}/Lote/Eliminar/${id}`
+  }
+  public PantdelRol(id: string): string {
+    return `${this.api.baseUrl}/Pantalla/ListPantallasDelRol?id=${id}`
   }
 }
 
-export class ClienteEndPoints{
-  public api = new ApiService();
+export class PantallaEndPoints {
+  public api = new ApiService()
 
-  public List():string{
-    return `${this.api.baseUrl}/Cliente/List`;
-  }
-
-  public Total():string{
-    return `${this.api.baseUrl}/Cliente/Total`;
-  }
-
-  public Insert():string{
-    return `${this.api.baseUrl}/Cliente/Insertar`; 
-  }
-
-  public Update():string{
-    return `${this.api.baseUrl}/Cliente/Actualizar`; 
-  }
-
-  public Details(id: string):string{
-    return `${this.api.baseUrl}/Cliente/Detalle/${id}`; 
-  }
-
-  public Delete(id: string):string{
-    return `${this.api.baseUrl}/Cliente/Eliminar/${id}`; 
+  public List(): string {
+    return `${this.api.baseUrl}/Pantalla/List`
   }
 }
 
-export class CategoriaEndPoints{
-  public api = new ApiService();
+export class PantallaporRolEndPoints {
+  public api = new ApiService()
 
-  public List():string{
-    return `${this.api.baseUrl}/Categoria/List`;
-  }
-
-  public CategoriaTotal(sucursal: number, inicio: string , fin: string):string{
-    return `${this.api.baseUrl}/Categoria/Total/${sucursal}/${inicio}/${fin}`; 
-  }
-
-  public Insert():string{
-    return `${this.api.baseUrl}/Categoria/Insertar`; 
-  }
-
-  public Update():string{
-    return `${this.api.baseUrl}/Categoria/Actualizar`; 
-  }
-
-  public Details(id: string):string{
-    return `${this.api.baseUrl}/Categoria/Detalle/${id}`; 
-  }
-
-  public Delete(id: string):string{
-    return `${this.api.baseUrl}/Categoria/Eliminar/${id}`; 
+  public List(id: string): string {
+    return `${this.api.baseUrl}/PantallaporRol/PantallaporRol/${id}`
   }
 }
 
-export class DepartamentoEndPoints{
-  public api = new ApiService();
+export class CargoEndPoints {
+  public api = new ApiService()
 
-  public List():string{
-    return `${this.api.baseUrl}/Departamento/List`;
+  public List(): string {
+    return `${this.api.baseUrl}/Cargo/List`
   }
 
-  public Insert():string{
-    return `${this.api.baseUrl}/Departamento/Insertar`; 
+  public Insert(): string {
+    return `${this.api.baseUrl}/Cargo/Insertar`
   }
 
-  public Update():string{
-    return `${this.api.baseUrl}/Departamento/Actualizar`; 
+  public Update(): string {
+    return `${this.api.baseUrl}/Cargo/Actualizar`
   }
 
-  public Details(id: string):string{
-    return `${this.api.baseUrl}/Departamento/Detalle/${id}`; 
-  }
-
-  public Delete(id: string):string{
-    return `${this.api.baseUrl}/Departamento/Eliminar/${id}`; 
+  public Delete(id: string): string {
+    return `${this.api.baseUrl}/Cargo/Eliminar/${id}`
   }
 }
 
-export class EmpleadoEndPoints{
-  public api = new ApiService();
+export class ClienteEndPoints {
+  public api = new ApiService()
 
-  public List():string{
-    return `${this.api.baseUrl}/Empleado/List`;
+  public List(): string {
+    return `${this.api.baseUrl}/Cliente/List`
   }
 
-  public Insert():string{
-    return `${this.api.baseUrl}/Empleado/Insertar`; 
+  public Total(): string {
+    return `${this.api.baseUrl}/Cliente/Total`
   }
 
-  public Update():string{
-    return `${this.api.baseUrl}/Empleado/Actualizar`; 
+  public Insert(): string {
+    return `${this.api.baseUrl}/Cliente/Insertar`
   }
 
-  public Details(id: string):string{
-    return `${this.api.baseUrl}/Empleado/Detalle/${id}`; 
+  public Update(): string {
+    return `${this.api.baseUrl}/Cliente/Actualizar`
   }
 
-  public Delete(id: string):string{
-    return `${this.api.baseUrl}/Empleado/Eliminar/${id}`; 
-  }
-}
-
-export class EstadoCivilEndPoints{
-  public api = new ApiService();
-
-  public List():string{
-    return `${this.api.baseUrl}/EstadoCivil/List`;
+  public Details(id: string): string {
+    return `${this.api.baseUrl}/Cliente/Detalle/${id}`
   }
 
-  public Insert():string{
-    return `${this.api.baseUrl}/EstadoCivil/Insertar`; 
-  }
-
-  public Update():string{
-    return `${this.api.baseUrl}/EstadoCivil/Actualizar`; 
-  }
-
-  public Details(id: string):string{
-    return `${this.api.baseUrl}/EstadoCivil/Detalle/${id}`; 
-  }
-
-  public Delete(id: string):string{
-    return `${this.api.baseUrl}/EstadoCivil/Eliminar/${id}`; 
+  public Delete(id: string): string {
+    return `${this.api.baseUrl}/Cliente/Eliminar/${id}`
   }
 }
 
-export class ImpuestoEndPoints{
-  public api = new ApiService();
+export class CategoriaEndPoints {
+  public api = new ApiService()
 
-  public List():string{
-    return `${this.api.baseUrl}/Impuesto/List`;
+  public List(): string {
+    return `${this.api.baseUrl}/Categoria/List`
   }
 
-  public Insert():string{
-    return `${this.api.baseUrl}/Impuesto/Insertar`; 
+  public CategoriaTotal(sucursal: number, inicio: string, fin: string): string {
+    return `${this.api.baseUrl}/Categoria/Total/${sucursal}/${inicio}/${fin}`
   }
 
-  public Update():string{
-    return `${this.api.baseUrl}/Impuesto/Actualizar`; 
+  public Insert(): string {
+    return `${this.api.baseUrl}/Categoria/Insertar`
   }
 
-  public Details(id: string):string{
-    return `${this.api.baseUrl}/Impuesto/Detalle/${id}`; 
+  public Update(): string {
+    return `${this.api.baseUrl}/Categoria/Actualizar`
   }
 
-  public Delete(id: string):string{
-    return `${this.api.baseUrl}/Impuesto/Eliminar/${id}`; 
-  }
-}
-
-export class LoteEndPoints{
-  public api = new ApiService();
-
-  public List():string{
-    return `${this.api.baseUrl}/Lote/List`;
+  public Details(id: string): string {
+    return `${this.api.baseUrl}/Categoria/Detalle/${id}`
   }
 
-  public Insert():string{
-    return `${this.api.baseUrl}/Lote/Insertar`; 
-  }
-
-  public Update():string{
-    return `${this.api.baseUrl}/Lote/Actualizar`; 
-  }
-
-  public Details(id: string):string{
-    return `${this.api.baseUrl}/Lote/Detalle/${id}`; 
-  }
-
-  public Delete(id: string):string{
-    return `${this.api.baseUrl}/Lote/Eliminar/${id}`; 
+  public Delete(id: string): string {
+    return `${this.api.baseUrl}/Categoria/Eliminar/${id}`
   }
 }
 
-export class MunicipioEndPoints{
-  public api = new ApiService();
+export class DepartamentoEndPoints {
+  public api = new ApiService()
 
-  public List():string{
-    return `${this.api.baseUrl}/Municipio/List`;
+  public List(): string {
+    return `${this.api.baseUrl}/Departamento/List`
   }
 
-  public ListporDept(id: string):string{
-    return `${this.api.baseUrl}/Municipio/ListporDept/${id}`;
+  public Insert(): string {
+    return `${this.api.baseUrl}/Departamento/Insertar`
   }
 
-  public Insert():string{
-    return `${this.api.baseUrl}/Municipio/Insertar`; 
+  public Update(): string {
+    return `${this.api.baseUrl}/Departamento/Actualizar`
   }
 
-  public Update():string{
-    return `${this.api.baseUrl}/Municipio/Actualizar`; 
+  public Details(id: string): string {
+    return `${this.api.baseUrl}/Departamento/Detalle/${id}`
   }
 
-  public Details(id: string):string{
-    return `${this.api.baseUrl}/Municipio/Detalle/${id}`; 
-  }
-
-  public Delete(id: string):string{
-    return `${this.api.baseUrl}/Municipio/Eliminar/${id}`; 
+  public Delete(id: string): string {
+    return `${this.api.baseUrl}/Departamento/Eliminar/${id}`
   }
 }
 
-export class ProductoEndPoints{
-  public api = new ApiService();
+export class EmpleadoEndPoints {
+  public api = new ApiService()
 
-  public List():string{
-    return `${this.api.baseUrl}/Producto/List`;
+  public List(): string {
+    return `${this.api.baseUrl}/Empleado/List`
   }
 
-  public Existencia(sucursal: number):string{
-    return `${this.api.baseUrl}/Producto/Existencia/${sucursal}`; 
+  public Insert(): string {
+    return `${this.api.baseUrl}/Empleado/Insertar`
+  }
+
+  public Update(): string {
+    return `${this.api.baseUrl}/Empleado/Actualizar`
+  }
+
+  public Details(id: string): string {
+    return `${this.api.baseUrl}/Empleado/Detalle/${id}`
+  }
+
+  public Delete(id: string): string {
+    return `${this.api.baseUrl}/Empleado/Eliminar/${id}`
   }
 }
 
-export class SubCategoriaEndPoints{
-  public api = new ApiService();
+export class EstadoCivilEndPoints {
+  public api = new ApiService()
 
-  public List():string{
-    return `${this.api.baseUrl}/SubCategoria/List`;
+  public List(): string {
+    return `${this.api.baseUrl}/EstadoCivil/List`
   }
 
-  public SubCategoriaTotal(sucursal: number, inicio: string, fin: string):string{
-    return `${this.api.baseUrl}/SubCategoria/TotalSub/${sucursal}/${inicio}/${fin}`; 
+  public Insert(): string {
+    return `${this.api.baseUrl}/EstadoCivil/Insertar`
+  }
+
+  public Update(): string {
+    return `${this.api.baseUrl}/EstadoCivil/Actualizar`
+  }
+
+  public Details(id: string): string {
+    return `${this.api.baseUrl}/EstadoCivil/Detalle/${id}`
+  }
+
+  public Delete(id: string): string {
+    return `${this.api.baseUrl}/EstadoCivil/Eliminar/${id}`
   }
 }
 
-export class VentaEncabezadoEndPoints{
-  public api = new ApiService();
+export class ImpuestoEndPoints {
+  public api = new ApiService()
 
-  public List():string{
-    return `${this.api.baseUrl}/Cliente/List`;
+  public List(): string {
+    return `${this.api.baseUrl}/Impuesto/List`
   }
 
-  public Total():string{
-    return `${this.api.baseUrl}/VentaEncabezado/Total`;
+  public Insert(): string {
+    return `${this.api.baseUrl}/Impuesto/Insertar`
+  }
+
+  public Update(): string {
+    return `${this.api.baseUrl}/Impuesto/Actualizar`
+  }
+
+  public Details(id: string): string {
+    return `${this.api.baseUrl}/Impuesto/Detalle/${id}`
+  }
+
+  public Delete(id: string): string {
+    return `${this.api.baseUrl}/Impuesto/Eliminar/${id}`
+  }
+}
+
+export class LoteEndPoints {
+  public api = new ApiService()
+
+  public List(): string {
+    return `${this.api.baseUrl}/Lote/List`
+  }
+
+  public Insert(): string {
+    return `${this.api.baseUrl}/Lote/Insertar`
+  }
+
+  public Update(): string {
+    return `${this.api.baseUrl}/Lote/Actualizar`
+  }
+
+  public Details(id: string): string {
+    return `${this.api.baseUrl}/Lote/Detalle/${id}`
+  }
+
+  public Delete(id: string): string {
+    return `${this.api.baseUrl}/Lote/Eliminar/${id}`
+  }
+}
+
+export class MunicipioEndPoints {
+  public api = new ApiService()
+
+  public List(): string {
+    return `${this.api.baseUrl}/Municipio/List`
+  }
+
+  public ListporDept(id: string): string {
+    return `${this.api.baseUrl}/Municipio/ListporDept/${id}`
+  }
+
+  public Insert(): string {
+    return `${this.api.baseUrl}/Municipio/Insertar`
+  }
+
+  public Update(): string {
+    return `${this.api.baseUrl}/Municipio/Actualizar`
+  }
+
+  public Details(id: string): string {
+    return `${this.api.baseUrl}/Municipio/Detalle/${id}`
+  }
+
+  public Delete(id: string): string {
+    return `${this.api.baseUrl}/Municipio/Eliminar/${id}`
+  }
+}
+
+export class ProductoEndPoints {
+  public api = new ApiService()
+
+  public List(): string {
+    return `${this.api.baseUrl}/Producto/List`
+  }
+
+  public Insert(): string {
+    return `${this.api.baseUrl}/Producto/Insertar`
+  }
+
+  public Update(): string {
+    return `${this.api.baseUrl}/Producto/Actualizar`
+  }
+
+  public Details(id: string): string {
+    return `${this.api.baseUrl}/Producto/Detalle/${id}`
+  }
+
+  public Delete(id: string): string {
+    return `${this.api.baseUrl}/Producto/Eliminar/${id}`
+  }
+
+  public Existencia(sucursal: number): string {
+    return `${this.api.baseUrl}/Producto/Existencia/${sucursal}`
+  }
+}
+
+export class SubCategoriaEndPoints {
+  public api = new ApiService()
+
+  public List(): string {
+    return `${this.api.baseUrl}/SubCategoria/List`
+  }
+
+  public Insert(): string {
+    return `${this.api.baseUrl}/SubCategoria/Insertar/`
+  }
+
+  public Update(): string {
+    return `${this.api.baseUrl}/SubCategoria/Actualizar`
+  }
+
+  public Details(id: string): string {
+    return `${this.api.baseUrl}/SubCategoria/Detalle/${id}`
+  }
+
+  public Delete(id: string): string {
+    return `${this.api.baseUrl}/SubCategoria/Eliminar/${id}`
+  }
+
+  public SubCategoriaTotal(
+    sucursal: number,
+    inicio: string,
+    fin: string
+  ): string {
+    return `${this.api.baseUrl}/SubCategoria/TotalSub/${sucursal}/${inicio}/${fin}`
+  }
+}
+
+export class VentaEncabezadoEndPoints {
+  public api = new ApiService()
+
+  public List(): string {
+    return `${this.api.baseUrl}/Cliente/List`
+  }
+
+  public Total(): string {
+    return `${this.api.baseUrl}/VentaEncabezado/Total`
+  }
+}
+
+export class ProveedorEndPoints {
+  public api = new ApiService()
+  url = 'http://www.proyectosupermercado.somee.com'
+  public List(): string {
+    return `${this.url}/List`
+  }
+
+  public Insert(): string {
+    return `${this.url}/Insertar`
+  }
+
+  public Update(): string {
+    return `${this.url}/Actualizar`
+  }
+
+  public Details(id: string): string {
+    return `${this.url}/Detalle/${id}`
+  }
+
+  public Delete(id: string): string {
+    return `${this.url}/Eliminar/${id}`
   }
 }

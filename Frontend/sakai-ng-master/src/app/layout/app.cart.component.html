@@ -1,0 +1,95 @@
+<p-sidebar
+  [(visible)]="visible"
+  position="right"
+  [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'"
+  styleClass="layout-config-sidebar w-25rem">
+  <ng-template pTemplate="header">
+    <span class="font-semibold text-xl">
+      <i class="pi pi-shopping-cart font-semibold text-xl"></i> Carrito de
+      Compra</span
+    >
+  </ng-template>
+
+  <ng-container *ngIf="cartService.productos.length === 0">
+    <div
+      class="flex justify-content-center align-items-center"
+      style="height: calc(100% - 3.25rem)">
+      <div class="text-center">
+        <span class="text-secondary block mb-3"
+          >Agrega Productos a tu carrito</span
+        >
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Comprar"
+          icon="pi pi-shopping-cart"
+          [raised]="true"
+          [routerLink]="['/home/pages/comprar']"
+          class="p-button font-bold"
+          (click)="visible = false"></button>
+      </div>
+    </div>
+  </ng-container>
+  <div *ngIf="cartService.productos.length > 0" #listaProductos>
+    <!-- test list -->
+
+    <h5>Productos</h5>
+    <ul
+      class="list-none p-0 m-0"
+      style="max-width: 350px; height: 691px; overflow-y: auto">
+      <li
+        class="flex align-items-center justify-content-between p-4 border-bottom"
+        style="min-height: 96px"
+        *ngFor="let producto of cartService.productos; let index = index">
+        <div class="flex align-items-center">
+          <div
+            class="w-6rem h-6rem overflow-hidden border-circle mr-3"
+            style="
+              background-image: url('assets/demo/images/product/game-controller.jpg');
+              background-size: cover;
+              background-position: center;
+            "></div>
+          <div class="text-left pl-4">
+            <span class="text-bold">{{ producto.produ_Descripcion }}</span>
+            <div class="text-secondary">
+              Lps. {{ producto.produ_PrecioVenta }}
+            </div>
+          </div>
+        </div>
+        <button
+          pButton
+          type="button"
+          pRipple
+          icon="pi pi-trash"
+          [loading]="isLoading"
+          (click)="eliminarProducto(producto, index)"
+          class="p-button-sm p-button-danger"></button>
+      </li>
+    </ul>
+    <div
+      class="p-sidebar-footer"
+      style="
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #8f8f8f;
+        color: white;
+      ">
+      <div class="flex justify-content-between">
+        <div class="text-left pl-4">
+          <span>SubTotal: Lps. {{ cartService.subtotal.toFixed(2) }}</span>
+          <div>Total: Lps. {{ cartService.total.toFixed(2) }}</div>
+        </div>
+        <p-button
+          label="Pagar"
+          [raised]="true"
+          icon="pi pi-credit-card"
+          [loading]="isLoading"
+          (click)="pagar()" />
+      </div>
+    </div>
+  </div>
+</p-sidebar>
+<p-toast />
