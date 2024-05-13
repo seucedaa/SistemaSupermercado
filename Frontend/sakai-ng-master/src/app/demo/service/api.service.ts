@@ -391,3 +391,23 @@ export class ProveedorEndPoints {
     return `${this.url}/Eliminar/${id}`
   }
 }
+
+export class CartEndPoints {
+  public api = new ApiService()
+
+  public ListarLotes(): string {
+    return `${this.api.baseUrl}/Cart/ListarLotes`
+  }
+
+  public Buscarfactura(id: number): string {
+    return `${this.api.baseUrl}/Cart/Buscar/BuscarFactura?id=${id}`
+  }
+
+  public CrearFacturaEncabezado(): string {
+    return `${this.api.baseUrl}/Cart/CrearFacturaEncabezado`
+  }
+
+  public CrearFacturaDetalle(): string {
+    return `${this.api.baseUrl}/Cart/CrearFacturaDetalle`
+  }
+}

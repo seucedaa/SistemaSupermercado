@@ -4,6 +4,7 @@ import { Producto } from 'src/app/demo/models/ProductoViewModel'
 import { CartService } from 'src/app/layout/service/app.cart.service'
 import { MessageService } from 'primeng/api'
 import { dE } from '@fullcalendar/core/internal-common'
+import { Cart } from 'src/app/demo/models/CartViewModel'
 @Component({
   templateUrl: './comprar.component.html',
   providers: [MessageService],
@@ -23,28 +24,26 @@ export class ComprarComponent {
 
   //?METODOS
   ngOnInit() {
-    this.ProductoService.getAlimentos().then((data) => {
+    this.cartService.getAlimentos().then((data) => {
       this.alimentos = data
-      console.log(this.alimentos)
     })
 
-    this.ProductoService.getBebidas().then((data) => {
+    this.cartService.getBebidas().then((data) => {
       this.bebidas = data
-      console.log(this.bebidas)
     })
 
-    this.ProductoService.getLimpieza().then((data) => {
+    this.cartService.getLimpieza().then((data) => {
       this.limpieza = data
-      console.log(this.limpieza)
     })
   }
 
-  agreagar(producto: Producto) {
+  agreagar(producto: Cart) {
     this.cartService.agregarProducto(producto)
     this.messageService.add({
       severity: 'info',
       summary: 'Info',
       detail: 'se agrego al carrito .',
+      
     })
   }
 }
