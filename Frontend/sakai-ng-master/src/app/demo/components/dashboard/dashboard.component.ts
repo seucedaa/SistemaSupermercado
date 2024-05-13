@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.ventas = data;
         });
 
-        const sucursalid = 2;
+        const sucursalid =  parseInt(localStorage.getItem('sucursal'));
 
         this.productoService.Principal(sucursalid).then(data => {
             this.productos = data.data;

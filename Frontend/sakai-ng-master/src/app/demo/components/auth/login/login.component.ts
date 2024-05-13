@@ -40,7 +40,10 @@ export class LoginComponent {
                 if(response.success){
                     const dataa = response.data;
                     console.log(dataa);
-                    //this.router.navigate(['/home'])
+                    localStorage.setItem('sucursal', dataa.sucur_Id);
+                    localStorage.setItem('nombre', dataa.perso_NombreCompleto);
+                    
+                   // this.router.navigate(['/home'])
                 }else{
                     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Credenciales Incorrectas', life: 3000 });
                     console.log('credenciales erroneas')

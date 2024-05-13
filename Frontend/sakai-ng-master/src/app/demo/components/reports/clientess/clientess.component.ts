@@ -49,8 +49,10 @@ export class ClientessComponent implements OnInit {
 
       formattedInicio = this.formatDate(this.inicio);
       formattedFin = this.formatDate(this.fin);
+      const nombre = localStorage.getItem('nombre');
+
       
-      this.reporteService.PDFClientes(formattedInicio, formattedFin).subscribe(res => {
+      this.reporteService.PDFClientes(formattedInicio, formattedFin,nombre).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;
@@ -76,11 +78,12 @@ export class ClientessComponent implements OnInit {
      ngOnInit(){
       let formattedInicio = null;
       let formattedFin = null;
+      const nombre = localStorage.getItem('nombre');
 
       formattedInicio = this.formatDate(this.inicio);
       formattedFin = this.formatDate(this.fin);
 
-        this.reporteService.PDFClientes(formattedInicio, formattedFin).subscribe(res => {
+        this.reporteService.PDFClientes(formattedInicio, formattedFin,nombre).subscribe(res => {
           let blob: Blob = res.body as Blob;
           let url = window.URL.createObjectURL(blob);
           this.pdf = url;
@@ -104,8 +107,9 @@ export class ClientessComponent implements OnInit {
 
       formattedInicio = this.formatDate(this.inicio);
       formattedFin = this.formatDate(this.fin);
+      const nombre = localStorage.getItem('nombre');
   
-      this.reporteService.PDFClientes(formattedInicio, formattedFin).subscribe(res => {
+      this.reporteService.PDFClientes(formattedInicio, formattedFin,nombre).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;

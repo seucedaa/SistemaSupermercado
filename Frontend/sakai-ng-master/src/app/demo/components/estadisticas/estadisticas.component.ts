@@ -155,7 +155,30 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
         this.initCharts();
         this.sucursalService.getList().then(data => this.sucursales = data);
 
-        this.todas();
+        const sucursalid =  parseInt(localStorage.getItem('sucursal'));
+
+        let iniciofecha = this.formatDate(this.inicio);
+        let finfecha = this.formatDate(this.fin)
+
+        this.categoriaService.CategoriaTotal(sucursalid,iniciofecha, finfecha).then(data => {
+            this.categorias = data.data;
+            this.chartPieChart();
+        });
+
+        this.subcategoriaService.SubcategoriaTotal(sucursalid,iniciofecha, finfecha).then(data => {
+            this.subcategorias = data.data;
+            this.chartBarChart();
+        });
+        
+        this.productoService.Existencia(sucursalid).then(data => {
+            this.productos = data.data;
+            this.chartDoughnutChart();
+        });
+
+        this.productoService.Ventas(sucursalid,iniciofecha, finfecha).then(data => {
+            this.productos = data.data;
+            this.chartLineChart();
+        });
     }
 
     chartLineChart() {

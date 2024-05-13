@@ -62,6 +62,8 @@ namespace SistemaSupermercado.Entities.Entities
         public bool Perso_Tipo { get; set; }
         public int Roles_Id { get; set; }
         [NotMapped]
+        public int Sucur_Id { get; set; }
+        [NotMapped]
         public string Roles_Descripcion { get; set; }
         public bool Usuar_Admin { get; set; }
         [NotMapped]

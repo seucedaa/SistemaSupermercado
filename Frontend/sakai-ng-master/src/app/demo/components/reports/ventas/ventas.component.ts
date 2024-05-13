@@ -57,8 +57,10 @@ export class VentasComponent implements OnInit {
 
       formattedInicio = this.formatDate(this.inicio);
       formattedFin = this.formatDate(this.fin);
+      const nombre = localStorage.getItem('nombre');
+
       
-      this.reporteService.PDFVentas(this.sucursalid,formattedInicio, formattedFin).subscribe(res => {
+      this.reporteService.PDFVentas(this.sucursalid,formattedInicio, formattedFin,nombre).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;
@@ -92,8 +94,11 @@ export class VentasComponent implements OnInit {
         this.sucursales = data;
         console.log(this.sucursales);
      });
+     const sucursa = parseInt(localStorage.getItem('sucursal'));
+     const nombre = localStorage.getItem('nombre');
 
-        this.reporteService.PDFVentas(2, formattedInicio, formattedFin).subscribe(res => {
+
+        this.reporteService.PDFVentas(sucursa, formattedInicio, formattedFin, nombre).subscribe(res => {
           let blob: Blob = res.body as Blob;
           let url = window.URL.createObjectURL(blob);
           this.pdf = url;
@@ -106,8 +111,9 @@ export class VentasComponent implements OnInit {
 
       formattedInicio = this.formatDate(this.inicio);
       formattedFin = this.formatDate(this.fin);
+      const nombre = localStorage.getItem('nombre');
   
-      this.reporteService.PDFVentas2(formattedInicio, formattedFin).subscribe(res => {
+      this.reporteService.PDFVentas2(formattedInicio, formattedFin,nombre).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;

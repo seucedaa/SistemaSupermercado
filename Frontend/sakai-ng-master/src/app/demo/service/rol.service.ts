@@ -24,17 +24,17 @@ export class RolService {
   }
 
   Elimparo(model: Rol){
-    return this.http.post<any>(this.endpoint.Elimparo(), model) 
+    return this.http.put<any>(this.endpoint.Elimparo(), model) 
       .toPromise()  
   }
 
   Elimparol(model: Rol){
-    return this.http.post<any>(this.endpoint.Elimparol(), model) 
+    return this.http.put<any>(this.endpoint.Elimparol(), model) 
       .toPromise()  
   }
 
   Update(model: Rol){
-    return this.http.post<any>(this.endpoint.Update(), model) 
+    return this.http.put<any>(this.endpoint.Update(), model) 
       .toPromise()  
   }
 

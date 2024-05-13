@@ -37,7 +37,8 @@ export class StockComponent implements OnInit {
     }
 
     todas(){
-      this.reporteService.Generarpdf2().subscribe(res => {
+      const nombre = localStorage.getItem('nombre');
+      this.reporteService.Generarpdf2(nombre).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;
@@ -45,7 +46,9 @@ export class StockComponent implements OnInit {
     }
 
     cambio(){
-       this.reporteService.Generarpdf(this.sucursalid).subscribe(res => {
+      const nombre = localStorage.getItem('nombre');
+
+       this.reporteService.Generarpdf(this.sucursalid, nombre).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;
@@ -54,8 +57,10 @@ export class StockComponent implements OnInit {
 
      ngOnInit(){
       this.sucursalService.getList().then(data => this.sucursales = data);
+      const sucursa = parseInt(localStorage.getItem('sucursal'));
+      const nombre = localStorage.getItem('nombre');
 
-      this.reporteService.Generarpdf(2).subscribe(res => {
+      this.reporteService.Generarpdf(sucursa,nombre).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;

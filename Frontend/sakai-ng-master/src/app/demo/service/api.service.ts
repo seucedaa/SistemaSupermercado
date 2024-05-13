@@ -24,29 +24,29 @@ export class UsuarioEndPoints{
 export class ReporteEndPoints{
   public api = new ApiService();
 
-  public Generarpdf(Sucur_Id: number):string{
-    return `${this.api.baseUrl}/Reporte/Generarpdf/${Sucur_Id}`;
+  public Generarpdf(Sucur_Id: number,nombre:string):string{
+    return `${this.api.baseUrl}/Reporte/Generarpdf/${Sucur_Id}/${nombre}`;
   }
-  public Generarpdf2():string{
-    return `${this.api.baseUrl}/Reporte/Generarpdf2`;
-  }
-
-  public PDFProductos(Sucur_Id: number, inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFProductos/${Sucur_Id}/${inicio}/${fin}`;
-  }
-  public PDFProductos2(inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFProductos2/${inicio}/${fin}`;
+  public Generarpdf2(nombre:string):string{
+    return `${this.api.baseUrl}/Reporte/Generarpdf2/${nombre}`;
   }
 
-  public PDFClientes(inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFClientes/${inicio}/${fin}`;
+  public PDFProductos(Sucur_Id: number, inicio:string, fin:string,nombre:string):string{
+    return `${this.api.baseUrl}/Reporte/PDFProductos/${Sucur_Id}/${inicio}/${fin}/${nombre}`;
+  }
+  public PDFProductos2(inicio:string, fin:string,nombre:string):string{
+    return `${this.api.baseUrl}/Reporte/PDFProductos2/${inicio}/${fin}/${nombre}`;
   }
 
-  public PDFVentas(Sucur_Id: number, inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFVentas/${Sucur_Id}/${inicio}/${fin}`;
+  public PDFClientes(inicio:string, fin:string,nombre:string):string{
+    return `${this.api.baseUrl}/Reporte/PDFClientes/${inicio}/${fin}/${nombre}`;
   }
-  public PDFVentas2(inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFVentas2/${inicio}/${fin}`;
+
+  public PDFVentas(Sucur_Id: number, inicio:string, fin:string,nombre:string):string{
+    return `${this.api.baseUrl}/Reporte/PDFVentas/${Sucur_Id}/${inicio}/${fin}/${nombre}`;
+  }
+  public PDFVentas2(inicio:string, fin:string,nombre:string):string{
+    return `${this.api.baseUrl}/Reporte/PDFVentas2/${inicio}/${fin}/${nombre}`;
   }
 }
 
