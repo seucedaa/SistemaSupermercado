@@ -184,6 +184,8 @@ namespace SistemaSupermercado.DataAcceess.Repository
 
         #region Reporte
         public static string Reporte_Stock = "[Rptes].[SP_Reportes_StockTotal]";
+        public static string Reporte_Productos = "[Rptes].[SP_Reportes_Productos]";
+        public static string Reporte_Cliente = "[Rptes].[SP_Reportes_Clientes]";
 
         #endregion
 

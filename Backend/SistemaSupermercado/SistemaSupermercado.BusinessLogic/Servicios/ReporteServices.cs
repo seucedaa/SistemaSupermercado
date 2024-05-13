@@ -43,11 +43,11 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }  
         
-        public IEnumerable<tbProductos> PDFVentas(int Sucur_Id, string inicio, string fin)
+        public IEnumerable<tbProductos> PDFProductos(int Sucur_Id, string inicio, string fin)
         {
             try
             {
-                var productos = _reporteRepository.PDFVentas(Sucur_Id, inicio, fin);
+                var productos = _reporteRepository.PDFProductos(Sucur_Id, inicio, fin);
                 return productos;
             }
             catch (Exception ex)
@@ -56,11 +56,24 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
 
-        public IEnumerable<tbProductos> PDFVentas2(string inicio, string fin)
+        public IEnumerable<tbProductos> PDFProductos2(string inicio, string fin)
         {
             try
             {
-                var productos = _reporteRepository.PDFVentas2(inicio, fin);
+                var productos = _reporteRepository.PDFProductos2(inicio, fin);
+                return productos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al generar el reporte de stock", ex);
+            }
+        }
+
+        public IEnumerable<tbClientes> PDFClientes(string inicio, string fin)
+        {
+            try
+            {
+                var productos = _reporteRepository.PDFClientes(inicio, fin);
                 return productos;
             }
             catch (Exception ex)
