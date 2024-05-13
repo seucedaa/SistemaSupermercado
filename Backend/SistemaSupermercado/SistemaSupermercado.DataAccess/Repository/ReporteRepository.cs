@@ -36,5 +36,27 @@ namespace SistemaSupermercado.DataAccess.Repository
                 return result;
             }
         }
+
+        public IEnumerable<tbProductos> PDFVentas(int Sucur_Id, string inicio, string fin)
+        {
+            List<tbProductos> result = new List<tbProductos>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { Sucur_Id = Sucur_Id, FiltroSucursal = 1, FechaInicio = inicio, FechaFin = fin };
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Reporte_Stock, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+        
+        public IEnumerable<tbProductos> PDFVentas2(string inicio, string fin)
+        {
+            List<tbProductos> result = new List<tbProductos>();
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { FiltroSucursal = 0, FechaInicio = inicio, FechaFin = fin };
+                result = db.Query<tbProductos>(ScriptBaseDeDatos.Reporte_Stock, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
     }
 }

@@ -24,20 +24,11 @@ export class UsuarioEndPoints{
 export class ReporteEndPoints{
   public api = new ApiService();
 
-  public Stock(Sucur_Id: number):string{
-    return `${this.api.baseUrl}/Reporte/Stock/${Sucur_Id}`;
-  }
-  public Top(sucursal: number, inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/Productos/${sucursal}/${inicio}/${fin}`; 
-  }
   public Generarpdf(Sucur_Id: number):string{
     return `${this.api.baseUrl}/Reporte/Generarpdf/${Sucur_Id}`;
   }
-  public Generarpdf2(Sucur_Id: number):string{
-    return `${this.api.baseUrl}/Reporte/Generarpdf2/${Sucur_Id}`;
-  }
-  public Todas():string{
-    return `${this.api.baseUrl}/Reporte/Todas`;
+  public Generarpdf2():string{
+    return `${this.api.baseUrl}/Reporte/Generarpdf2`;
   }
 }
 

@@ -72,7 +72,7 @@ export class PvendidosComponent implements OnInit {
 
     mostrartodas(){
   
-      this.reporteService.Todas().subscribe(res => {
+      this.reporteService.Generarpdf2().subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;

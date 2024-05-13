@@ -161,7 +161,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             List<tbProductos> result = new List<tbProductos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Sucur_Id = sucursal, FechaInicio = inicio, FechaFin = fin };
+                var parameters = new { Sucur_Id = sucursal, FiltroSucursal = 1, FechaInicio = inicio, FechaFin = fin };
                 result = db.Query<tbProductos>(ScriptBaseDeDatos.Producto_Total, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }

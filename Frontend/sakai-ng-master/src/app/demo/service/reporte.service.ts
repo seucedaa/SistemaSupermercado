@@ -17,13 +17,8 @@ export class ReporteService {
     return this.http.get(url, { observe: 'response', responseType: 'blob' });
   }
 
-  Generarpdf2(Sucur_Id: number) {
-    const url = this.endpoint.Generarpdf(Sucur_Id);
-    return this.http.get(url, { observe: 'response', responseType: 'blob' });
-  }
-
-  Todas() {
-    const url = this.endpoint.Todas();
+  Generarpdf2() {
+    const url = this.endpoint.Generarpdf2();
     return this.http.get(url, { observe: 'response', responseType: 'blob' });
   }
 

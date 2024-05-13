@@ -36,7 +36,7 @@ export class StockComponent implements OnInit {
     }
 
     todas(){
-      this.reporteService.Todas().subscribe(res => {
+      this.reporteService.Generarpdf2().subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;
@@ -54,7 +54,7 @@ export class StockComponent implements OnInit {
      ngOnInit(){
       this.sucursalService.getList().then(data => this.sucursales = data);
 
-      this.reporteService.Todas().subscribe(res => {
+      this.reporteService.Generarpdf2().subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;
