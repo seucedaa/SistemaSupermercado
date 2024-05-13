@@ -1,0 +1,36 @@
+<div class="card">
+    <h3>Clientes</h3>
+    <div class="grid p-fluid">
+        <div class="field col-12 md:col-2">
+            <button pButton type="button" label="Mostrar todas" (click)="mostrartodas()" icon="pi pi-chart-bar" class="p-element p-ripple p-button-raised p-button-success p-button p-component"></button>
+    
+        </div>
+        <div class="field col-12 md:col-5">
+            <span class="p-float-label">
+                <p-calendar
+                    inputId="calendar"
+                    [(ngModel)]="inicio"
+                    (onSelect)="onFechaChange('inicio', $event)"
+                ></p-calendar>
+                <label for="calendar">Fecha Inicio</label>
+            </span>
+        </div>
+        <div class="field col-12 md:col-4">
+            <span class="p-float-label">
+                <p-calendar
+                    inputId="calendar"
+                    [(ngModel)]="fin"
+                    (onSelect)="onFechaChange('fin', $event)"
+                ></p-calendar>
+                <label for="calendar">Fecha Fin</label>
+            </span>
+        </div>
+       
+       
+    </div>
+    <div class="field col-12">
+        <ngx-extended-pdf-viewer [height]="'1000px'" [src]="pdf"></ngx-extended-pdf-viewer>
+    </div>
+</div>
+
+

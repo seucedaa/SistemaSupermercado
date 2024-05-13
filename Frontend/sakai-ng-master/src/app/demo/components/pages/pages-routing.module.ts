@@ -1,26 +1,10 @@
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 
+
 @NgModule({
   imports: [
     RouterModule.forChild([
-      {
-        path: 'crud',
-        loadChildren: () =>
-          import('./crud/crud.module').then((m) => m.CrudModule),
-      },
-      {
-        path: 'comprar',
-        loadChildren: () =>
-          import('./comprar/comprar.module').then((m) => m.ComprarModule),
-      },
-      {
-        path: 'estadisticas',
-        loadChildren: () =>
-          import('./estadisticas/estadisticas.module').then(
-            (m) => m.EstadisticasModule
-          ),
-      },
       {
         path: 'rol',
         loadChildren: () => import('./rol/rol.module').then((m) => m.RolModule),
@@ -107,16 +91,16 @@ import { RouterModule } from '@angular/router'
           import('./cliente/cliente.module').then((m) => m.ClienteModule),
       },
       {
-        path: 'empty',
-        loadChildren: () =>
-          import('./empty/emptydemo.module').then((m) => m.EmptyDemoModule),
-      },
-      {
         path: 'timeline',
         loadChildren: () =>
           import('./timeline/timelinedemo.module').then(
             (m) => m.TimelineDemoModule
           ),
+      },
+      {
+        path: 'comprar',
+        loadChildren: () =>
+          import('./comprar/comprar.module').then((m) => m.ComprarModule),
       },
       { path: '**', redirectTo: '/notfound' },
     ]),

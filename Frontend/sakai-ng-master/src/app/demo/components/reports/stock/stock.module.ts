@@ -14,12 +14,13 @@ import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 import { StockComponent } from './stock.component';
 import { StockRoutingModule } from './stock-routing.module';
-import { NgxPrintModule } from 'ngx-print';
+import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		StockRoutingModule,
+		NgxExtendedPdfViewerModule,
 		FormsModule,
 		TableModule,
 		RatingModule,
@@ -31,8 +32,7 @@ import { NgxPrintModule } from 'ngx-print';
 		MultiSelectModule,
 		DropdownModule,
 		ProgressBarModule,
-		ToastModule,
-		NgxPrintModule
+		ToastModule
 	],
 	declarations: [StockComponent]
 })

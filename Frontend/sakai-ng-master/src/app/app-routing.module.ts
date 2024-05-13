@@ -16,7 +16,8 @@ import { LoginComponent } from './demo/components/auth/login/login.component';
                     { path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },
                     { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) },
-                    { path: 'reports', loadChildren: () => import('./demo/components/reports/reports.module').then(m => m.ReportsModule) }
+                    { path: 'reports', loadChildren: () => import('./demo/components/reports/reports.module').then(m => m.ReportsModule) },
+                    { path: 'estadisticas', loadChildren: () => import('./demo/components/estadisticas/estadisticas.module').then(m => m.EstadisticasModule) }
                 ]
             },
             {path: '', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },

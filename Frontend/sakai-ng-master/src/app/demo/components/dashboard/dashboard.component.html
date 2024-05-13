@@ -40,71 +40,79 @@
         
         <div class="card">
             <div class="flex justify-content-between align-items-center mb-5">
-                <h5>Productos mas vendidos</h5>
-                <div>
-                    <button pButton type="button" icon="pi pi-ellipsis-v" class="p-button-rounded p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
-                    <p-menu #menu [popup]="true" [model]="items"></p-menu>
-                </div>
+                <h5>Top 5 productos mas vendidos</h5>
+                
             </div>
             <ul class="list-none p-0 m-0">
                 <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
                     <div>
-                        <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Space T-Shirt</span>
-                        <div class="mt-1 text-600">Clothing</div>
+                        <span class="text-900 font-medium mr-2 mb-1 md:mb-0">{{ productos[0]?.producto }}</span>
+                        <div class="mt-1 text-600">{{productos[0]?.categoriaa}}</div>
+                        <div class="mt-1 text-600">{{ productos[0]?.totalVendidoActual }}</div>
                     </div>
-                    <div class="mt-2 md:mt-0 flex align-items-center">
+                    <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
                         <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                            <div class="bg-orange-500 h-full" [ngStyle]="{width: '50%'}"></div>
+                            <div class="bg-cyan-500 h-full" [ngStyle]="{width: '63%'}"></div>
                         </div>
-                        <span class="text-orange-500 ml-3 font-medium">%50</span>
+                        <span class="text-cyan-500 ml-3 font-medium">%63</span>
+                    </div>
+                    <!-- <div class="mt-2 md:mt-0 flex align-items-center">
+                        <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
+                            <div class="bg-orange-500 h-full" [ngStyle]="{width: `${productos[0]?.porcentajeCambio}%`}"></div>
+                        </div>
+                        <span class="text-orange-500 ml-3 font-medium">{{productos[0]?.porcentajeCambio}}%</span>
+                    </div> -->
+                </li>
+                <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
+                    <div>
+                        <span class="text-900 font-medium mr-2 mb-1 md:mb-0">{{ productos[1]?.producto }}</span>
+                        <div class="mt-1 text-600">{{ productos[1]?.categoriaa }}</div>
+                        <div class="mt-1 text-600">{{ productos[1]?.totalVendidoActual }}</div>
+                    </div>
+                    <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
+                        <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
+                            <div class="bg-cyan-500 h-full" [ngStyle]="{width: '54%'}"></div>
+                        </div>
+                        <span class="text-cyan-500 ml-3 font-medium">%54</span>
                     </div>
                 </li>
                 <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
                     <div>
-                        <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Portal Sticker</span>
-                        <div class="mt-1 text-600">Accessories</div>
+                        <span class="text-900 font-medium mr-2 mb-1 md:mb-0">{{ productos[2]?.producto }}</span>
+                        <div class="mt-1 text-600">{{ productos[2]?.categoriaa }}</div>
+                        <div class="mt-1 text-600">{{ productos[2]?.totalVendidoActual }}</div>
                     </div>
                     <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
                         <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                            <div class="bg-cyan-500 h-full" [ngStyle]="{width: '16%'}"></div>
+                            <div class="bg-pink-500 h-full" [ngStyle]="{width: '0%'}"></div>
                         </div>
-                        <span class="text-cyan-500 ml-3 font-medium">%16</span>
+                        <span class="text-pink-500 ml-3 font-medium">%0</span>
                     </div>
                 </li>
                 <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
                     <div>
-                        <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Supernova Sticker</span>
-                        <div class="mt-1 text-600">Accessories</div>
+                        <span class="text-900 font-medium mr-2 mb-1 md:mb-0">{{ productos[3]?.producto }}</span>
+                        <div class="mt-1 text-600">{{ productos[3]?.categoriaa }}</div>
+                        <div class="mt-1 text-600">{{ productos[3]?.totalVendidoActual }}</div>
                     </div>
                     <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
                         <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                            <div class="bg-pink-500 h-full" [ngStyle]="{width: '67%'}"></div>
+                            <div class="bg-green-500 h-full" [ngStyle]="{width: '0%'}"></div>
                         </div>
-                        <span class="text-pink-500 ml-3 font-medium">%67</span>
+                        <span class="text-green-500 ml-3 font-medium">%0</span>
                     </div>
                 </li>
                 <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
                     <div>
-                        <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Wonders Notebook</span>
-                        <div class="mt-1 text-600">Office</div>
+                        <span class="text-900 font-medium mr-2 mb-1 md:mb-0">{{ productos[4]?.producto }}</span>
+                        <div class="mt-1 text-600">{{ productos[4]?.categoriaa }}</div>
+                        <div class="mt-1 text-600">{{ productos[4]?.totalVendidoActual }}</div>
                     </div>
                     <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
                         <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                            <div class="bg-green-500 h-full" [ngStyle]="{width: '35%'}"></div>
+                            <div class="bg-purple-500 h-full" [ngStyle]="{width: '0%'}"></div>
                         </div>
-                        <span class="text-green-500 ml-3 font-medium">%35</span>
-                    </div>
-                </li>
-                <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
-                    <div>
-                        <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Mat Black Case</span>
-                        <div class="mt-1 text-600">Accessories</div>
-                    </div>
-                    <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
-                        <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                            <div class="bg-purple-500 h-full" [ngStyle]="{width: '75%'}"></div>
-                        </div>
-                        <span class="text-purple-500 ml-3 font-medium">%75</span>
+                        <span class="text-purple-500 ml-3 font-medium">%0</span>
                     </div>
                 </li>
             </ul>
@@ -113,8 +121,8 @@
 
     <div class="col-12 xl:col-6">
         <div class="card">
-            <h5>Sales Overview</h5>
-            <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
+            <h5>Ventas del mes</h5>
+            <p-chart type="line" [data]="lineData" [options]="lineOptions"></p-chart>
         </div>
 
 </div>
