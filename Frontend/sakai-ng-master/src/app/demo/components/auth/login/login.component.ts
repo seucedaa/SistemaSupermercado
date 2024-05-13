@@ -30,7 +30,7 @@ export class LoginComponent {
     usuario: Usuario = {};
 
 
-    constructor(public layoutService: LayoutService, public usuarioService: UsuarioService, public router: Router,  private messageService: MessageService) { }
+    constructor(public layoutService: LayoutService,  public usuarioService: UsuarioService, public router: Router,  private messageService: MessageService) { }
 
     login(){
         this.submitted = true;
@@ -42,8 +42,9 @@ export class LoginComponent {
                     console.log(dataa);
                     localStorage.setItem('sucursal', dataa.sucur_Id);
                     localStorage.setItem('nombre', dataa.perso_NombreCompleto);
+                    localStorage.setItem('usuario', dataa.usuar_Usuario);
                     
-                   // this.router.navigate(['/home'])
+                    this.router.navigate(['/home'])
                 }else{
                     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Credenciales Incorrectas', life: 3000 });
                     console.log('credenciales erroneas')

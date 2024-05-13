@@ -21,4 +21,8 @@ export class UsuarioService {
     return this.http.get<any>(this.endpoint.Login(usuario, contrasena))
         .toPromise()
   }
+
+  EstaLogueado(){
+    return localStorage.getItem('usuario')!=null;
+  }
 }
