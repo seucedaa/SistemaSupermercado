@@ -22,5 +22,28 @@ export class ReporteService {
     return this.http.get(url, { observe: 'response', responseType: 'blob' });
   }
 
-  
+  PDFProductos(Sucur_Id: number, inicio:string, fin:string) {
+    const url = this.endpoint.PDFProductos(Sucur_Id,inicio,fin);
+    return this.http.get(url, { observe: 'response', responseType: 'blob' });
+  }
+
+  PDFProductos2(inicio:string, fin:string) {
+    const url = this.endpoint.PDFProductos2(inicio,fin);
+    return this.http.get(url, { observe: 'response', responseType: 'blob' });
+  }
+
+  PDFVentas(Sucur_Id: number, inicio:string, fin:string) {
+    const url = this.endpoint.PDFVentas(Sucur_Id,inicio,fin);
+    return this.http.get(url, { observe: 'response', responseType: 'blob' });
+  }
+
+  PDFVentas2(inicio:string, fin:string) {
+    const url = this.endpoint.PDFVentas2(inicio,fin);
+    return this.http.get(url, { observe: 'response', responseType: 'blob' });
+  }
+
+  PDFClientes(inicio:string, fin:string) {
+    const url = this.endpoint.PDFClientes(inicio,fin);
+    return this.http.get(url, { observe: 'response', responseType: 'blob' });
+  }
 }

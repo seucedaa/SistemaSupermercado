@@ -2,8 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Producto } from 'src/app/demo/models/ProductoViewModel';
 import { ReporteService } from 'src/app/demo/service/reporte.service';
-import { SucursalService } from 'src/app/demo/service/sucursal.service';
-import { Sucursal } from 'src/app/demo/models/SucursalViewModel';
 import { Subscription, debounceTime } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
@@ -12,20 +10,18 @@ interface expandedRows {
 }
 
 @Component({
-    templateUrl: './pvendidos.component.html',
+    templateUrl: './clientess.component.html',
     providers: [MessageService]
 })
 
-export class PvendidosComponent implements OnInit {
+export class ClientessComponent implements OnInit {
 
     productos: Producto[] = [];
 
     pdf='';
     id: any;
     subscription: Subscription;
-
-    sucursales: Sucursal[] = [];
-    sucursalid: any;
+   
     inicio:any;
     fin:any;
 
@@ -33,7 +29,7 @@ export class PvendidosComponent implements OnInit {
     @ViewChild('filter') filter!: ElementRef;
 
     constructor(private layoutService: LayoutService,private reporteService: ReporteService,
-      private sucursalService: SucursalService, private messageService: MessageService) { 
+    private messageService: MessageService) { 
         this.subscription = this.layoutService.configUpdate$
         .pipe(debounceTime(25))
         .subscribe((config) => {
@@ -45,11 +41,7 @@ export class PvendidosComponent implements OnInit {
      this.inicio = firstDayOfMonth;
      this.fin = today;}
 
-      onSucursalChange(sucur_Id: any) {
-        this.sucursalid = sucur_Id.sucur_Id;
-        console.log(this.sucursalid);
-        this.cambio();
-    }
+      
 
     cambio(){
       let formattedInicio = null;
@@ -58,7 +50,7 @@ export class PvendidosComponent implements OnInit {
       formattedInicio = this.formatDate(this.inicio);
       formattedFin = this.formatDate(this.fin);
       
-      this.reporteService.PDFProductos(this.sucursalid,formattedInicio, formattedFin).subscribe(res => {
+      this.reporteService.PDFClientes(formattedInicio, formattedFin).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;
@@ -88,12 +80,7 @@ export class PvendidosComponent implements OnInit {
       formattedInicio = this.formatDate(this.inicio);
       formattedFin = this.formatDate(this.fin);
 
-      this.sucursalService.getList().then(data => {
-        this.sucursales = data;
-        console.log(this.sucursales);
-     });
-
-        this.reporteService.PDFProductos(2, formattedInicio, formattedFin).subscribe(res => {
+        this.reporteService.PDFClientes(formattedInicio, formattedFin).subscribe(res => {
           let blob: Blob = res.body as Blob;
           let url = window.URL.createObjectURL(blob);
           this.pdf = url;
@@ -104,10 +91,21 @@ export class PvendidosComponent implements OnInit {
       let formattedInicio = null;
       let formattedFin = null;
 
+      this.subscription = this.layoutService.configUpdate$
+      .pipe(debounceTime(25))
+      .subscribe((config) => {
+           this.ngOnInit();
+       });
+   
+   const today = new Date();
+   const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+   this.inicio = firstDayOfMonth;
+   this.fin = today;
+
       formattedInicio = this.formatDate(this.inicio);
       formattedFin = this.formatDate(this.fin);
   
-      this.reporteService.PDFProductos2(formattedInicio, formattedFin).subscribe(res => {
+      this.reporteService.PDFClientes(formattedInicio, formattedFin).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;

@@ -40,23 +40,18 @@ export class AppMenuComponent implements OnInit {
                             },
                             {
                                 label: 'Clientes',
-                                icon: 'pi pi-shopping-cart',
-                                routerLink: ['/home/reports/clientes']
+                                icon: 'pi pi-user',
+                                routerLink: ['/home/reports/clientess']
                             },
                             {
                                 label: 'Clientes con Promocion',
-                                icon: 'pi pi-shopping-cart',
+                                icon: 'pi pi-percentage',
                                 routerLink: ['/home/reports/cpromocion']
                             },
                             {
                                 label: 'Ventas',
                                 icon: 'pi pi-shopping-cart',
                                 routerLink: ['/home/reports/ventas']
-                            },
-                            {
-                                label: 'Productos',
-                                icon: 'pi pi-shopping-cart',
-                                routerLink: ['/home/reports/produ']
                             }
                         ]
                     },
@@ -74,11 +69,6 @@ export class AppMenuComponent implements OnInit {
                 icon: 'pi pi-fw pi-briefcase',
                 items: [
                        
-                    {
-                        label: 'Crud',
-                        icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/home/pages/crud']
-                    },
                     {
                         label: 'Acceso',
                         icon: 'pi pi-fw pi-user',
@@ -195,11 +185,6 @@ export class AppMenuComponent implements OnInit {
                     //     icon: 'pi pi-fw pi-exclamation-circle',
                     //     routerLink: ['/notfound']
                     // },
-                    {
-                        label: 'Empty',
-                        icon: 'pi pi-fw pi-circle-off',
-                        routerLink: ['/home/pages/empty']
-                    },
                 ]
             },
             // {

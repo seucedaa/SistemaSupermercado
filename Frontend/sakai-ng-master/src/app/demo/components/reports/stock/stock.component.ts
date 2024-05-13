@@ -24,6 +24,7 @@ export class StockComponent implements OnInit {
     sucursales: Sucursal[] = [];
     sucursalid: any;
 
+
     @ViewChild('filter') filter!: ElementRef;
 
     constructor(private reporteService: ReporteService,
@@ -44,7 +45,7 @@ export class StockComponent implements OnInit {
     }
 
     cambio(){
-      this.reporteService.Generarpdf(this.sucursalid).subscribe(res => {
+       this.reporteService.Generarpdf(this.sucursalid).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;
@@ -54,7 +55,7 @@ export class StockComponent implements OnInit {
      ngOnInit(){
       this.sucursalService.getList().then(data => this.sucursales = data);
 
-      this.reporteService.Generarpdf2().subscribe(res => {
+      this.reporteService.Generarpdf(2).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;

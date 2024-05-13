@@ -48,7 +48,7 @@ namespace SistemaSupermercado.API.Controllers
             htmlcontenido += "<tr>";
             htmlcontenido += "<td>";
             //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Inventario</br></h3>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><b>REPORTE DE INVENTARIO</b></h3>";
             htmlcontenido += "</td>";
             htmlcontenido += "<td style='width: 30%; text-align: right;'>";
             htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
@@ -117,7 +117,7 @@ namespace SistemaSupermercado.API.Controllers
             htmlcontenido += "<tr>";
             htmlcontenido += "<td>";
             //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Inventario</br></h3>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><b>REPORTE DE INVENTARIO</b></h3>";
             htmlcontenido += "</td>";
             htmlcontenido += "<td style='width: 30%; text-align: right;'>";
             htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
@@ -185,7 +185,7 @@ namespace SistemaSupermercado.API.Controllers
             htmlcontenido += "<tr>";
             htmlcontenido += "<td>";
             //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Productos</br></h3>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><b>REPORTE DE PRODUCTOS</b></h3>";
             htmlcontenido += "</td>";
             htmlcontenido += "<td style='width: 30%; text-align: right;'>";
             htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
@@ -254,7 +254,7 @@ namespace SistemaSupermercado.API.Controllers
             htmlcontenido += "<tr>";
             htmlcontenido += "<td>";
             //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Productos</br></h3>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><b>REPORTE DE PRODUCTOS</b></h3>";
             htmlcontenido += "</td>";
             htmlcontenido += "<td style='width: 30%; text-align: right;'>";
             htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
@@ -322,7 +322,7 @@ namespace SistemaSupermercado.API.Controllers
             htmlcontenido += "<tr>";
             htmlcontenido += "<td>";
             //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Clientes</br></h3>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><b>REPORTE DE CLIENTES</b></h3>";
             htmlcontenido += "</td>";
             htmlcontenido += "<td style='width: 30%; text-align: right;'>";
             htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
@@ -392,7 +392,7 @@ namespace SistemaSupermercado.API.Controllers
             htmlcontenido += "<tr>";
             htmlcontenido += "<td>";
             //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Ventas</br></h3>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><b>REPORTE DE VENTAS</b></h3>";
             htmlcontenido += "</td>";
             htmlcontenido += "<td style='width: 30%; text-align: right;'>";
             htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
@@ -449,7 +449,7 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpGet("PDFVentas/{inicio}/{fin}")]
+        [HttpGet("PDFVentas2/{inicio}/{fin}")]
         public async Task<IActionResult> PDFVentas2(string inicio, string fin)
         {
             var documento = new PdfDocument();
@@ -466,7 +466,7 @@ namespace SistemaSupermercado.API.Controllers
             htmlcontenido += "<tr>";
             htmlcontenido += "<td>";
             //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Ventas</br></h3>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><b>REPORTE DE VENTAS</b></h3>";
             htmlcontenido += "</td>";
             htmlcontenido += "<td style='width: 30%; text-align: right;'>";
             htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
