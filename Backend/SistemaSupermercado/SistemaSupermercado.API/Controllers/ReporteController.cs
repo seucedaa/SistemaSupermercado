@@ -378,7 +378,7 @@ namespace SistemaSupermercado.API.Controllers
         }
 
         [HttpGet("PDFVentas/{sucursal}/{inicio}/{fin}/{nombre}")]
-        public async Task<IActionResult> PDFVentas(int sucursal,string inicio, string fin, string nombre
+        public async Task<IActionResult> PDFVentas(int sucursal,string inicio, string fin, string nombre)
         {
             var documento = new PdfDocument();
             string imagenurl = "https://seeklogo.com/images/S/supermercado-la-colonia-logo-5740E3DAFC-seeklogo.com.png";
