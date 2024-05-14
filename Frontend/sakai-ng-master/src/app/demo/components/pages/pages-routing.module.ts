@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
-
+import { RoleGuard } from '../auth/shared/role.guard';
 
 @NgModule({
   imports: [
@@ -8,21 +8,29 @@ import { RouterModule } from '@angular/router'
       {
         path: 'rol',
         loadChildren: () => import('./rol/rol.module').then((m) => m.RolModule),
+        data: {screen:'Rol'},
+        canActivate:[RoleGuard]
       },
       {
         path: 'usuario',
         loadChildren: () =>
           import('./usuario/usuario.module').then((m) => m.UsuarioModule),
+        data: {screen:'Usuario'},
+        canActivate:[RoleGuard]
       },
       {
         path: 'cargo',
         loadChildren: () =>
           import('./cargo/cargo.module').then((m) => m.CargoModule),
+        data: {screen:'Cargo'},
+        canActivate:[RoleGuard]
       },
       {
         path: 'categoria',
         loadChildren: () =>
           import('./categoria/categoria.module').then((m) => m.CategoriaModule),
+        data: {screen:'Categoria'},
+        canActivate:[RoleGuard]
       },
       {
         path: 'departamento',
@@ -30,6 +38,8 @@ import { RouterModule } from '@angular/router'
           import('./departamento/departamento.module').then(
             (m) => m.DepartamentoModule
           ),
+          data: {screen:'Departamento'},
+        canActivate:[RoleGuard]
       },
       {
         path: 'estadocivil',
@@ -37,16 +47,22 @@ import { RouterModule } from '@angular/router'
           import('./estadocivil/estadocivil.module').then(
             (m) => m.EstadoCivilModule
           ),
+          data: {screen:'Estado Civil'},
+        canActivate:[RoleGuard]
       },
       {
         path: 'impuesto',
         loadChildren: () =>
           import('./impuesto/impuesto.module').then((m) => m.ImpuestoModule),
+        data: {screen:'Impuesto'},
+        canActivate:[RoleGuard]
       },
       {
         path: 'municipio',
         loadChildren: () =>
           import('./municipio/municipio.module').then((m) => m.MunicipioModule),
+        data: {screen:'Municipio'},
+        canActivate:[RoleGuard]
       },
       {
         path: 'subcategoria',
@@ -54,6 +70,8 @@ import { RouterModule } from '@angular/router'
           import('./subcategoria/subcategoria.module').then(
             (m) => m.SubcategoriaModule
           ),
+          data: {screen:'SubCategoria'},
+        canActivate:[RoleGuard]
       },
       {
         path: 'empleado',

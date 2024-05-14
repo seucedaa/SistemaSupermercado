@@ -11,7 +11,7 @@ export class UsuarioService {
   constructor(private http:HttpClient,private route:Router) { }
 
   public endpoint = new UsuarioEndPoints();
-  pantallas:any;
+  pantallas: string[] = [];
 
   getList(){
     return this.http.get<Usuario[]>(this.endpoint.List()) 
@@ -32,40 +32,39 @@ export class UsuarioService {
     return localStorage.getItem('usuario') || '';
   }
 
-  TieneAcceso() {
+  TieneAcceso(screen: string): boolean {
     var logintoken = localStorage.getItem('usuario') || '';
     if (!logintoken) {
-        console.error('Token de usuario no encontrado');
-        this.route.navigate(['']);
-        return false;
+      console.error('Token de usuario no encontrado');
+      this.route.navigate(['']);
+      return false;
     }
     var _extraertoken = logintoken.split('.')[1];
-   
+    
     try {
-        var _atobdata = atob(_extraertoken);
-        console.log(_atobdata);
-        var _finaldata = JSON.parse(_atobdata);
-
-        _finaldata.forEach(item => {
-          this.pantallas.add(item.pant_Descripcion);
-          if(item.pant_Descripcion != null)
-            {
-              
-            }
-            else{
-              
-            }
-        });
-
-        if (_finaldata.usuar_Admin) {
-            return true;
+      var _atobdata = atob(_extraertoken);
+      console.log(_atobdata);
+      var _finaldata = JSON.parse(_atobdata);
+  
+      _finaldata.forEach(item => {
+        this.pantallas.push(item.pant_Descripcion);
+  
+        if (item.pant_Descripcion != null) {
+          this.pantallas.push(item.pant_Descripcion);
+        } else {
+          this.pantallas.push("Ninguna Pantalla");
         }
-        console.log(_finaldata);
-        return false;
+      });
+      localStorage.setItem('pantallas', JSON.stringify(this.pantallas));
+      console.log(this.pantallas);
+      if (_finaldata.usuar_Admin) {
+        return true; 
+      }
+  
+      return this.pantallas.includes(screen); 
     } catch (e) {
-        console.error('Error decodificando el token de usuario:', e);
-        return false;
+      console.error('Error:', e);
+      return false;
     }
   }
-
 }

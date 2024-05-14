@@ -7,17 +7,16 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class RoleGuard implements CanActivate {
- constructor(private service: UsuarioService, private route:Router){
-
- }
-    canActivate(){
-    if(this.service.TieneAcceso()){
-     return true;
-    }
-    else{
-     this.route.navigate(['']);
-     return false;
-         }
-    }
+ constructor(private service: UsuarioService, private route:Router){}
+ 
+ canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  const screen = (route.data as { screen: string }).screen || ''; 
+  if (this.service.TieneAcceso(screen)) {
+    return true;
+  } else {
+    this.route.navigate(['']);
+    return false;
+  }
+}
   
 }

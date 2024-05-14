@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from "./layout/app.layout.component";
 import { LoginComponent } from './demo/components/auth/login/login.component';
-import { AuthGuard } from './demo/components/auth/shared/auth.guard';
 import { RoleGuard } from './demo/components/auth/shared/role.guard';
 
 @NgModule({
