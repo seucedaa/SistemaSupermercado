@@ -30,7 +30,9 @@ export class LoginComponent {
     usuario: Usuario = {};
 
 
-    constructor(public layoutService: LayoutService,  public usuarioService: UsuarioService, public router: Router,  private messageService: MessageService) { }
+    constructor(public layoutService: LayoutService,  public usuarioService: UsuarioService, public router: Router,  private messageService: MessageService) { 
+        localStorage.clear();
+    }
 
     login(){
         this.submitted = true;
