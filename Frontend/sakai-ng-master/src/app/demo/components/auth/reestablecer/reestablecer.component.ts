@@ -22,7 +22,9 @@ import { MessageService } from 'primeng/api';
 export class ReestablecerComponent {
     public username: string;
     public contrasena: string;
+    public codigo: string;
     submitted: boolean = false;
+    mostrarreestablecer: boolean = false; 
 
 
     valCheck: string[] = ['remember'];
@@ -37,19 +39,26 @@ export class ReestablecerComponent {
     reestablecer(){
         this.submitted = true;
 
-        if(this.submitted && this.username?.trim() && this.contrasena?.trim()){
-            this.usuarioService.Reestablecer(this.username, this.contrasena).then((response => {
+        if(this.submitted && this.username?.trim()){
+            this.usuarioService.Recuperacion(this.username).then((response => {
+                if(response.success){
+                    // const dataa = response.data;
+                    // console.log(dataa);
+                    this.mostrarreestablecer = true;
+                }else{
+                    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Usuario Incorrecto', life: 3000 });
+                }
+            }));
+        }
+        else if(this.submitted && this.contrasena?.trim() && this.codigo.trim()){
+            this.usuarioService.Reestablecer(this.codigo,this.contrasena).then((response => {
                 if(response.success){
                     const dataa = response.data;
                     console.log(dataa);
-                    localStorage.setItem('sucursal', dataa.sucur_Id);
-                    localStorage.setItem('nombre', dataa.perso_NombreCompleto);
-                    localStorage.setItem('usuario', dataa.usuar_Usuario);
                     
-                    this.router.navigate(['/home'])
+                    this.router.navigate(['/login'])
                 }else{
-                    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Credenciales Incorrectas', life: 3000 });
-                    console.log('credenciales erroneas')
+                    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Datos Incorrectos', life: 3000 });
                 }
             }));
         }

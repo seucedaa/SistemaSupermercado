@@ -24,6 +24,19 @@ export class UsuarioService {
         .toPromise()
   }
 
+  Recuperacion(usuario: string){
+    return this.http.get<any>(this.endpoint.Recuperacion(usuario))
+        .toPromise()
+  }
+
+  Reestablecer(codigo: string, contrasena: string) {
+    return this.http.put<any>(
+      this.endpoint.Reestablecer(codigo, contrasena), 
+      null, 
+    ).toPromise();
+  }
+  
+
   EstaLogueado(){
     return localStorage.getItem('usuario')!=null;
   }

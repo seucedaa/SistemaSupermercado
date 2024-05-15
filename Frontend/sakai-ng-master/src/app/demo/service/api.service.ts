@@ -20,6 +20,13 @@ export class UsuarioEndPoints{
   public Login(usuario: string, contrasena: string):string{
     return `${this.api.baseUrl}/Usuario/Login/${usuario}/${contrasena}`; 
   }
+  public Recuperacion(usuario: string):string{
+    return `${this.api.baseUrl}/Usuario/StartRecovery/${usuario}`; 
+  }
+
+  public Reestablecer(codigo:string, contrasena:string):string{
+    return `${this.api.baseUrl}/Usuario/Reestablecer/${codigo},${contrasena}`; 
+  }
 }
 export class ReporteEndPoints{
   public api = new ApiService();
