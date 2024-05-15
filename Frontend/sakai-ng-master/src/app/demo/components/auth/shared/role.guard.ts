@@ -11,12 +11,12 @@ export class RoleGuard implements CanActivate {
  
  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
   const screen = (route.data as { screen: string }).screen || ''; 
-  if (this.service.TieneAcceso(screen)) {
+  // if (this.service.TieneAcceso(screen)) {
     return true;
-  } else {
-    this.route.navigate(['']);
-    return false;
-  }
+  // } else {
+  //   this.route.navigate(['']);
+  //   return false;
+  // }
 }
   
 }
