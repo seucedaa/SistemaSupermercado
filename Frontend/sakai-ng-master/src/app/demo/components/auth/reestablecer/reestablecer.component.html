@@ -1,0 +1,52 @@
+<div class="background-login" style="width: 100%; height: 100%;">
+</div>
+<p-toast></p-toast>
+
+<div class="flex align-items-center justify-content-center min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center" style="padding: 1.5rem">
+        <div style="border-radius:56px; padding:0.3rem;  background: linear-gradient(180deg, #40a72e 10%, rgba(33, 150, 243, 0) 75%);">
+
+            <div class="surface-card py-6 px-5" style="border-radius:53px">
+
+                <div class="text-center mb-5">
+                    <img src="assets/layout/images/lacolonia/logo.svg" alt="La Colonia logo" class="mb-4 w-6rem flex-shrink-0">                
+
+                    <div class="text-900 text-3xl font-medium mb-3">Bienvenido</div>
+                    <span class="text-600 font-medium">Inicia sesión para continuar</span>
+                </div>
+
+                <div>
+                    <div class="flex flex-column">
+                        <label for="Usuario" class="block text-900 text-xl font-medium mb-2">Usuario</label>
+                        <input id="Usuario" [(ngModel)]="username" type="text"  placeholder="Usuario" required autofocus pInputText class="w-full md:w-25rem mb-5" style="padding:1rem">
+
+                    </div>
+                    
+                    <div class="flex flex-column">
+                        <label for="Contrasena" class="block text-900 font-medium text-xl mb-2">Contraseña</label>
+                        <p-password id="Contrasena" [(ngModel)]="contrasena" [feedback]="false" required placeholder="Contraseña" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-25rem"></p-password>
+    
+                    </div>
+
+                    <div class="flex flex-column mb-3">
+
+                    <small style="color: red;" class="ng-dirty ng-invalid" *ngIf="submitted && !username">El Usuario es requerido.</small>
+                    <small style="color: red;" class="ng-dirty ng-invalid" *ngIf="submitted && !contrasena">La Contrasena es requerido.</small>
+                </div>
+
+                    
+                    <!-- <p-password id="Contrasena" [(ngModel)]="contrasena" promptLabel="Escoge una contraseña" weakLabel="Muy Simple" mediumLabel="complejidad media" strongLabel="Contraseña compleja" placeholder="Contraseña" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-25rem"></p-password> -->
+
+                    <div class="flex align-items-center justify-content-between mb-5 gap-5">
+                        <div class="flex align-items-center">
+                            <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
+                            <label for="rememberme1">Recuérdame</label>
+                        </div>
+                        <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: #40a72e">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    <!-- <button pButton label="Iniciar sesión" class="w-full p-3 text-xl" (click)="login()"></button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

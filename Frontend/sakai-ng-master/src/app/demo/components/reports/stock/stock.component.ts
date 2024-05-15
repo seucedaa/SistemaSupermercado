@@ -4,22 +4,20 @@ import { Producto } from 'src/app/demo/models/ProductoViewModel';
 import { ReporteService } from 'src/app/demo/service/reporte.service';
 import { SucursalService } from 'src/app/demo/service/sucursal.service';
 import { Sucursal } from 'src/app/demo/models/SucursalViewModel';
+import { Subscription } from 'rxjs';
 
-interface expandedRows {
-    [key: string]: boolean;
-}
 
 @Component({
     templateUrl: './stock.component.html',
     providers: [MessageService]
 })
 
-export class StockComponent implements OnInit {
+export class StockComponent implements OnInit  {
 
     productos: Producto[] = [];
 
-    pdf='';
     id: any;
+    pdfSrc:any;
 
     sucursales: Sucursal[] = [];
     sucursalid: any;
@@ -30,29 +28,29 @@ export class StockComponent implements OnInit {
     constructor(private reporteService: ReporteService,
       private sucursalService: SucursalService, private messageService: MessageService) { }
 
-      onSucursalChange(sucur_Id: any) {
-        this.sucursalid = sucur_Id.sucur_Id;
-        console.log(this.sucursalid);
-        this.cambio();
-    }
+      onSucursalChange(sucurid: any) {
+        if(sucurid === 0){
+          this.todas()
+        }else{
+          this.sucursalid = sucurid.sucur_Id;
+            console.log(this.sucursalid);
+            this.cambio();
+        }
+    } 
 
     todas(){
       const nombre = localStorage.getItem('nombre');
-      this.reporteService.Generarpdf2(nombre).subscribe(res => {
-        let blob: Blob = res.body as Blob;
-        let url = window.URL.createObjectURL(blob);
-        this.pdf = url;
-      });
+      // const blob = this.reporteService.Generarpdf(cuerpo, img, this.sucursalid,nombre,fechaC);
+      // const url = URL.createObjectURL(blob);
+      // this.pdfSrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
 
     cambio(){
       const nombre = localStorage.getItem('nombre');
 
-       this.reporteService.Generarpdf(this.sucursalid, nombre).subscribe(res => {
-        let blob: Blob = res.body as Blob;
-        let url = window.URL.createObjectURL(blob);
-        this.pdf = url;
-      });
+      // const blob = this.reporteService.Generarpdf(cuerpo, img, this.sucursalid,nombre,fechaC);
+      // const url = URL.createObjectURL(blob);
+      // this.pdfSrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
 
      ngOnInit(){
@@ -60,51 +58,11 @@ export class StockComponent implements OnInit {
       const sucursa = parseInt(localStorage.getItem('sucursal'));
       const nombre = localStorage.getItem('nombre');
 
-      this.reporteService.Generarpdf(sucursa,nombre).subscribe(res => {
-        let blob: Blob = res.body as Blob;
-        let url = window.URL.createObjectURL(blob);
-        this.pdf = url;
-      });
+      // const blob = this.reporteService.Generarpdf(cuerpo, img, sucursa,nombre,fechaC);
+      // const url = URL.createObjectURL(blob);
+      // this.pdfSrc = this.sanitizer.bypassSecurityTrustResourceUrl(url);
        
     }
 
-    mostrartodas(){
-
-      this.todas();
-      
-   }
   
-    
-    // Imprimir(id) {
-    //     this.reporteService.Generarpdf(id).subscribe(res => {
-    //       let blob: Blob = res.body as Blob;
-    //       let url = window.URL.createObjectURL(blob);
-    //       window.open(url);
-    //     });
-    // }
-
-    // Preview(id) {
-    //     this.reporteService.Generarpdf(id).subscribe(res => {
-    //       let blob: Blob = res.body as Blob;
-    //       let url = window.URL.createObjectURL(blob);
-    //       this.pdf = url;
-    //       console.log('PDF URL:', url); // Imprime la URL en la consola
-    //       this.mostrar = true;
-    //     });
-    //   }
-      
-      
-
-    // Descargar(id) {
-    //     this.reporteService.Generarpdf(id).subscribe(res => {
-    //       let blob: Blob = res.body as Blob;
-    //       let url = window.URL.createObjectURL(blob);
-
-    //       let a=document.createElement('a');
-    //       a.download = id;
-    //       a.href=url;
-    //       a.click();
-    //     });
-    // }
-
 }

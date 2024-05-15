@@ -14,13 +14,13 @@ import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 import { StockComponent } from './stock.component';
 import { StockRoutingModule } from './stock-routing.module';
-import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
+import {jsPDF } from "jspdf";
+import 'jspdf-autotable';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		StockRoutingModule,
-		NgxExtendedPdfViewerModule,
 		FormsModule,
 		TableModule,
 		RatingModule,
