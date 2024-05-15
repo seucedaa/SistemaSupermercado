@@ -29,10 +29,13 @@
       <i class="pi pi-calendar"></i>
       <span>Calendar</span>
     </button>
-    <button class="p-link layout-topbar-button">
-      <i class="pi pi-user"></i>
-      <span>Profile</span>
+    <button class="p-link layout-topbar-button" type="button"
+    (click)="salir($event)">
+      <i class="pi pi-sign-out"></i>
+      <span>Cerrar Sesion</span>
     </button>
+    <p-confirmPopup key="salir"></p-confirmPopup>
+
     <button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
       <i class="pi pi-cog"></i>
       <span>Settings</span>

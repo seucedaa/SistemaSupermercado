@@ -20,6 +20,8 @@ import { AppSidebarComponent } from './app.sidebar.component'
 import { AppLayoutComponent } from './app.layout.component'
 import { AppCartComponent } from './app.cart.component'
 import { ToastModule } from 'primeng/toast'
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { ToastModule } from 'primeng/toast'
     AppConfigModule,
     ButtonModule,
     ToastModule,
+    ConfirmPopupModule,
   ],
   exports: [AppLayoutComponent],
 })
