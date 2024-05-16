@@ -12,13 +12,11 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
     {
         private readonly UsuarioRepository _usuarioRepository;
         private readonly RolRepository _rolRepository;
-        private readonly pantallaRolesRepository _pantallaRolesRepository;
 
-        public AccesoServicios(UsuarioRepository usuariosRepositorio, RolRepository rolRepository, pantallaRolesRepository pantallaRolesRepository)
+        public AccesoServicios(UsuarioRepository usuariosRepositorio, RolRepository rolRepository)
         {
             _usuarioRepository = usuariosRepositorio;
             _rolRepository = rolRepository;
-            _pantallaRolesRepository = pantallaRolesRepository;
         }
 
 
@@ -66,60 +64,6 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
                 return result.Error(ex.Message);
             }
         }
-        public IEnumerable<tbUsuarios> obtenerCorreo(string usuario)
-        {
-            return _usuarioRepository.obtenerCorreo(usuario);
-        }
-
-        public ServiceResult Reestablecer(string codigo, string contraseña)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var lost = _usuarioRepository.Reestablecer(codigo, contraseña);
-
-                if (lost.CodeStatus > 0)
-                {
-                    return result.Ok(lost);
-                }
-                else
-                {
-                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
-                    return result.Error(lost);
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
-        public ServiceResult InsertarCodigo(string usuario, string codigo)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var lost = _usuarioRepository.InsertarCodigo(usuario, codigo);
-
-                if (lost.CodeStatus > 0)
-                {
-                    return result.Ok(lost);
-                }
-                else
-                {
-                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
-                    return result.Error(lost);
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
-
 
         public ServiceResult LoginUsuario(string usuario, string contraseña)
         {
@@ -128,11 +72,15 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             {
                 var lost = _usuarioRepository.Login(usuario, contraseña);
 
-  
-                
+                if (lost.Usuar_Id > 0)
+                {
                     return result.Ok(lost);
+                }
+                else
+                {
+                    return result.Error(lost);
 
-
+                }
             }
             catch (Exception ex)
             {
@@ -141,6 +89,33 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         }
 
 
+        public ServiceResult RegistrarUsu(tbUsuarios item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _usuarioRepository.RegistrarUsu(item);
+
+                if (lost.CodeStatus > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
+                    return result.Error(lost);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+
+        }
+
+       
 
         public IEnumerable<tbUsuarios> LlenarUsu(int id)
         {
@@ -531,237 +506,6 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             catch (Exception ex)
             {
                 return result.Error(ex.Message);
-            }
-        }
-        #endregion
-        #region yRoles
-        public ServiceResult ListRoles()
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var roles = _rolRepository.ListR();
-                return result.Ok(roles);
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
-
-        public ServiceResult ListadoRol()
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _rolRepository.ListR();
-                return result.Ok(list);
-            }
-
-            catch (Exception ex)
-            {
-
-                return result.Error(ex.Message);
-            }
-        }
-
-
-
-
-        public ServiceResult EditarRol(tbRoles item)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _rolRepository.Update(item);
-                if (list.CodeStatus > 0)
-                {
-                    return result.Ok("okis", list);
-                }
-                else
-                {
-                    return result.Error("Y existe un registro con ese nombre");
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex);
-            }
-        }
-        public ServiceResult EliminarRol(string Role_Id)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _rolRepository.Delete(Role_Id);
-                if (list.CodeStatus > 0)
-                {
-                    return result.Ok($"La accion ha sido existosa", list);
-                }
-                else
-                {
-                    return result.Error("No se pudo realizar la accion");
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex);
-            }
-        }
-
-        public string InsertarRol(tbRoles item)
-        {
-            string error = "";
-            try
-            {
-                int result = _rolRepository.Insert(item);
-                if (result == 0)
-                    error = "el codigo no es valido";
-                else error = result.ToString();
-            }
-            catch (Exception ex)
-            {
-                error = ex.Message;
-            }
-            return error;
-        }
-
-        public ServiceResult obterRol(int id)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _rolRepository.Fill(id);
-
-                return result.Ok(list);
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex);
-            }
-        }
-
-        public ServiceResult ListadoPantallas()
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _rolRepository.Listpantallas();
-                return result.Ok(list);
-            }
-
-            catch (Exception ex)
-            {
-
-                return result.Error(ex.Message);
-            }
-        }
-        #endregion
-
-        #region yRolesPantalla
-        public ServiceResult ListadoPantallaRoles()
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _pantallaRolesRepository.List();
-                return result.Ok(list);
-            }
-
-            catch (Exception ex)
-            {
-
-                return result.Error(ex.Message);
-            }
-        }
-
-        public ServiceResult EditarRolesPantalla(tbPantallasPorRoles item)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _pantallaRolesRepository.Update(item);
-                if (list.CodeStatus > 0)
-                {
-                    return result.Ok("okis", list);
-                }
-                else
-                {
-                    return result.Error("Y existe un registro con ese nombre");
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex);
-            }
-        }
-        public ServiceResult EliminarRolesPantalla(string Role_Id)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _pantallaRolesRepository.Delete(Role_Id);
-                if (list.CodeStatus > 0)
-                {
-                    return result.Ok($"La accion ha sido existosa", list);
-                }
-                else
-                {
-                    return result.Error("No se pudo realizar la accion");
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex);
-            }
-        }
-        public ServiceResult InsertarRolesPantalla(tbPantallasPorRoles item)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _pantallaRolesRepository.Insert(item);
-                if (list.CodeStatus > 0)
-                {
-                    return result.Ok(list);
-                }
-                else
-                {
-                    return result.Error(list);
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
-        public ServiceResult obterRolesPantalla(int id)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _pantallaRolesRepository.Fill(id);
-
-                return result.Ok(list);
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex);
-            }
-        }
-
-        public ServiceResult ObtenerRoles(int id)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _pantallaRolesRepository.Fill2(id);
-
-                return result.Ok(list);
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex);
             }
         }
         #endregion

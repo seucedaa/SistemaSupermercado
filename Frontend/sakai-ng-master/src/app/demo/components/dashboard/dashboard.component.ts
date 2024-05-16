@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     clientes: Cliente[] = [];
     ventas: VentaEncabezado[] = [];
     productos: Producto[] = [];
+    productoss:Producto[]=[];
 
 
 
@@ -39,13 +40,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.productService.getProductsSmall().then(data => this.products = data);
-
-        this.items = [
-            { label: 'Add New', icon: 'pi pi-fw pi-plus' },
-            { label: 'Remove', icon: 'pi pi-fw pi-minus' }
-        ];
-
         this.clienteService.getTotal().then(data => {
             this.clientes = data;
         });
@@ -54,10 +48,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.ventas = data;
         });
 
-        const sucursalid =  parseInt(localStorage.getItem('sucursal'));
+        const usuarioJson = sessionStorage.getItem('usuario');
+          const usuario = JSON.parse(usuarioJson);
+          const sucursalid = usuario.sucur_Id;
+
 
         this.productoService.Principal(sucursalid).then(data => {
-            this.productos = data.data;
+            this.productoss = data.data;
             this.chartLineChart();
         });
 
@@ -68,17 +65,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         });
 
 
-        this.productoService.Principal(sucursalid).then(data => {
-            this.productos = data.data;
-            console.log(this.productos);
-            this.chartLineChart();
-        });
-
-        this.productoService.Top(sucursalid).then(data => {
-            this.productos = data.data;
-            console.log(this.productos);
-
-        });
     }
 
     chartLineChart() {
@@ -87,13 +73,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
         const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
         
-        if (Array.isArray(this.productos)) {
+        if (Array.isArray(this.productoss)) {
             this.lineData = {
-                labels: this.productos.map(producto => producto.semana || 'No hay'),
+                labels: this.productoss.map(producto => producto.semana || 'No hay'),
                 datasets: [
                     {
                         label: 'Ventas',
-                        data: this.productos.map(producto => parseInt(producto.totalVentas)),
+                        data: this.productoss.map(producto => parseInt(producto.totalVentas)),
                         fill: false,
                         backgroundColor: documentStyle.getPropertyValue('--primary-500'),
                         borderColor: documentStyle.getPropertyValue('--primary-500'),

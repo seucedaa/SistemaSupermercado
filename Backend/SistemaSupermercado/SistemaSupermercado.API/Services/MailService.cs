@@ -35,10 +35,11 @@ namespace SistemaSupermercado.API.Services
                     emailBodyBuilder.TextBody = mailData.EmailBody;
 
                     emailMessage.Body = emailBodyBuilder.ToMessageBody();
+                    //this is the SmtpClient from the Mailkit.Net.Smtp namespace, not the System.Net.Mail one
                     using (SmtpClient mailClient = new SmtpClient())
                     {
                         mailClient.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                        mailClient.Authenticate("suarubioeuceda@gmail.com", "aini xdwe xnbh jfeq");
+                        mailClient.Authenticate("fer07sites@gmail.com", "mxmr ouyx zxdc dvzk");
                         mailClient.Send(emailMessage);
                         mailClient.Disconnect(true);
                     }

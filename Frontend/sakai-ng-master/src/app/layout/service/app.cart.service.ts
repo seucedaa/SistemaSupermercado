@@ -135,6 +135,14 @@ export class CartService {
       })
   }
 
+  getProdcutos(){
+    return this.http
+    .get<any>(this.URL_API + '/Cart/ListarLotes')
+    .toPromise()
+    .then((res) => res.data as Cart[])
+    .then((data) => data)
+  }
+
   CrearFacturaEncabezado(model: Cart) {
     return this.http
       .post<any>(this.URL_API + '/Cart/CrearFacturaEncabezado', model)

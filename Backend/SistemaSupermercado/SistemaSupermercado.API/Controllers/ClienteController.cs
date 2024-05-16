@@ -116,6 +116,27 @@ namespace SistemaSupermercado.API.Controllers
 
         }
 
-      
+        [HttpPost("Registrarse")]
+        public IActionResult Registrarse(ClienteViewModel item)
+        {
+            var modelo = new tbClientes()
+            {
+                Clien_Dni = item.Clien_Dni,
+                Clien_PrimerNombre = item.Clien_PrimerNombre,
+                Clien_SegundoNombre = item.Clien_SegundoNombre,
+                Clien_PrimerApellido = item.Clien_PrimerApellido,
+                Clien_SegundoApellido = item.Clien_SegundoApellido,
+                Clien_Sexo = item.Clien_Sexo,
+                Estad_Id = item.Estad_Id,
+                Clien_Telefono = item.Clien_Telefono,
+                Munic_Id = item.Munic_Id,
+                Clien_Direccion = item.Clien_Direccion,
+                Usuar_Usuario = item.Usuar_Usuario,
+                Usuar_Contrasena = item.Usuar_Contrasena
+            };
+
+            var list = _ventaServicio.Registrar(modelo);
+            return Ok(list);
+        }
     }
 }

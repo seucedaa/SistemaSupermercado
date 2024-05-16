@@ -40,7 +40,7 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     categorias: Categoria[] = [];
     subcategorias: Subcategoria[] = [];
     productos: Producto[] = [];
-    sucursales: Sucursal[] = [];
+    sucursales: any[] = [];
 
     sucursalid: any;
     inicio:any;
@@ -74,8 +74,12 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
 
     onSucursalChange(sucur_Id: any) {
         this.sucursalid = sucur_Id.sucur_Id;
+        if(this.sucursalid == 0){
+            this.mostrartodas();
+        }else{
+            this.updateData();
+        }
         console.log(this.sucursalid);
-        this.updateData();
     }
     
     onFechaChange(type: string, event: any) {
@@ -153,9 +157,24 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     
     ngOnInit() {
         this.initCharts();
-        this.sucursalService.getList().then(data => this.sucursales = data);
-
-        const sucursalid =  parseInt(localStorage.getItem('sucursal'));
+        this.sucursalService.getList().then(data => {
+            // Obtener la lista de sucursales y asignarla a la variable sucursales
+            this.sucursales = data;
+        
+            // Agregar un nuevo campo llamado sucursal_Titulo a cada objeto en el arreglo
+            this.sucursales = this.sucursales.map((sucursal: any) => ({
+                sucur_Id: sucursal.sucur_Id,
+                sucur_Descripcion: sucursal.sucur_Descripcion,
+                sucursal_Titulo: `${sucursal.sucur_Id} - ${sucursal.sucur_Descripcion}` // Puedes personalizar el título según tus necesidades
+            }));
+        
+            // Agregar la opción "Mostrar todas" al inicio del arreglo
+            this.sucursales.unshift({ sucur_Id: 0, sucur_Descripcion: 'Mostrar todas' });
+        });
+        
+        const usuarioJson = sessionStorage.getItem('usuario');
+        const usuario = JSON.parse(usuarioJson);
+        const sucursalid = usuario.sucur_Id;
 
         let iniciofecha = this.formatDate(this.inicio);
         let finfecha = this.formatDate(this.fin)
@@ -375,54 +394,8 @@ chartBarChart() {
     
 
     initCharts() {
-        const documentStyle = getComputedStyle(document.documentElement);
-        const textColor = documentStyle.getPropertyValue('--text-color');
-        const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-        const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-        
-       
-       
-
-        this.radarData = {
-            labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
-            datasets: [
-                {
-                    label: 'My First dataset',
-                    borderColor: documentStyle.getPropertyValue('--indigo-400'),
-                    pointBackgroundColor: documentStyle.getPropertyValue('--indigo-400'),
-                    pointBorderColor: documentStyle.getPropertyValue('--indigo-400'),
-                    pointHoverBackgroundColor: textColor,
-                    pointHoverBorderColor: documentStyle.getPropertyValue('--indigo-400'),
-                    data: [65, 59, 90, 81, 56, 55, 40]
-                },
-                {
-                    label: 'My Second dataset',
-                    borderColor: documentStyle.getPropertyValue('--purple-400'),
-                    pointBackgroundColor: documentStyle.getPropertyValue('--purple-400'),
-                    pointBorderColor: documentStyle.getPropertyValue('--purple-400'),
-                    pointHoverBackgroundColor: textColor,
-                    pointHoverBorderColor: documentStyle.getPropertyValue('--purple-400'),
-                    data: [28, 48, 40, 19, 96, 27, 100]
-                }
-            ]
-        };
-
-        this.radarOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        fontColor: textColor
-                    }
-                }
-            },
-            scales: {
-                r: {
-                    grid: {
-                        color: textColorSecondary
-                    }
-                }
-            }
-        };
+      
+      
     }
 
     ngOnDestroy() {

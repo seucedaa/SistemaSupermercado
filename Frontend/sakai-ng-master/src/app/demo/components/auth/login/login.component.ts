@@ -4,7 +4,7 @@ import { UsuarioService } from 'src/app/demo/service/usuario.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-login',
@@ -30,29 +30,35 @@ export class LoginComponent {
     usuario: Usuario = {};
 
 
-    constructor(public layoutService: LayoutService,  public usuarioService: UsuarioService, public router: Router,  private messageService: MessageService) { 
+
+    constructor(public layoutService: LayoutService,  public usuarioService: UsuarioService, public router: Router,  private messageService: MessageService,private cookieService : CookieService) { 
         localStorage.clear();
     }
 
-    login(){
+    login() {
         this.submitted = true;
-
-        if(this.submitted && this.username?.trim() && this.contrasena?.trim()){
-            this.usuarioService.Login(this.username, this.contrasena).then((response => {
-                if(response.success){
-                    const dataa = response.data;
-                    console.log(dataa);
-                    localStorage.setItem('sucursal', dataa.sucur_Id);
-                    localStorage.setItem('nombre', dataa.perso_NombreCompleto);
-                    localStorage.setItem('usuario', dataa.usuar_Usuario);
+    
+        if (this.submitted && this.username?.trim() && this.contrasena?.trim()) {
+            this.usuarioService.Login(this.username, this.contrasena).then(response => {
+                if (response.success && response.data.length > 0) {
+                    const usuarioData = response.data[0]; 
+                    console.log('Login exitoso', usuarioData);
+    
+                    sessionStorage.setItem('usuario', JSON.stringify(usuarioData));
                     
-                    this.router.navigate(['/home'])
-                }else{
+                    this.cookieService.set('roleID', usuarioData.roles_Id);
+                    this.cookieService.set('esAdmin', usuarioData.usuar_Admin);
+    
+                    this.router.navigate(['/home']);
+                } else {
                     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Credenciales Incorrectas', life: 3000 });
-                    console.log('credenciales erroneas')
+                    console.log('Credenciales incorrectas');
                 }
-            }));
+            }).catch(error => {
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error de conexión o del servidor', life: 3000 });
+                console.error('Error en el login:', error);
+            });
         }
-       
     }
+    
 }

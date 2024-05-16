@@ -14,6 +14,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace SistemaSupermercado.API
 {
@@ -79,7 +81,12 @@ namespace SistemaSupermercado.API
                 }
                 await next.Invoke();
             });
-
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads")),
+                RequestPath = "/uploads"
+            });
             app.UseCors("AllowAllOrigins");
 
             app.UseHttpsRedirection();
