@@ -12,10 +12,10 @@ import { RoleGuard } from '../auth/shared/role.guard';
         canActivate:[RoleGuard]
       },*/
       {
-        path: 'usuario',
+        path: 'usuarios',
         loadChildren: () =>
           import('./usuario/usuario.module').then((m) => m.UsuarioModule),
-        data: {screen:'Usuario'},
+        data: {screen:'Usuarios'},
         canActivate:[RoleGuard]
       },
       {

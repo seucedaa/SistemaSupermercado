@@ -23,6 +23,10 @@ export class UsuarioService {
     return this.http.get<any>(this.endpoint.Login(usuario, contrasena))
         .toPromise()
   }
+  // login(usuario: string, contrasena: string): Promise<any> {
+  //   const url = this.endpoint.getLoginUrl(usuario, contrasena);
+  //   return this.http.get<any>(url).toPromise();
+  // }
 
   Recuperacion(usuario: string){
     return this.http.get<any>(this.endpoint.Recuperacion(usuario))

@@ -5,9 +5,20 @@ import { BASE_URL } from './ulrsettings';
 import { Rol,Fill } from '../models/RolViewModel';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
-import { Pantalla } from '../models/PantallaViewModel';
+//import { Pantalla } from '../models/PantallaViewModel';
 
+interface ApiResponse {
+  code: number;
+  success: boolean;
+  message: string;
+  data: Pantalla[];
+}
 
+interface Pantalla {
+  panta_Id: number;
+  panta_Descripcion: string;
+  // Incluye otras propiedades según necesites
+}
 
 
 @Injectable({
@@ -32,8 +43,8 @@ export class ServiceService {
       }),
     );
   }
-  getPantallasDeRol(idRoll: Number) {
-    return this.http.get<Pantalla[]>(`${BASE_URL + 'Api/PantallaporRol/PantdelRol/' + idRoll}`);
+  getPantallasDeRol(idRoll: number): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${BASE_URL + 'API/PantallaporRol/PantdelRol/' + idRoll}`);
   }
   getFill(codigo: string): Observable<Fill> {
     return this.http.get<Fill>(`${BASE_URL + 'Api/Rol/Fill/' + codigo}`);

@@ -194,50 +194,38 @@ export class AppMenuComponent implements OnInit {
 
 
     ngOnInit() {
-        const admin = this.cookieService.get('esAdmin').toString()
-        console.log(admin)
-        if (admin != "true")
-        {
+        const admin = this.cookieService.get('esAdmin').toString();
+        console.log("Admin status:", admin);
+        if (admin !== "true") {
             const roleId = Number.parseInt(this.cookieService.get('roleID'));
+            this.servicioLogin.getPantallasDeRol(roleId).subscribe({
+                next: (response) => {
+                    if (response && response.data && Array.isArray(response.data)) {
+                        const pantallasPermitidas = response.data;
+                        const nombresPermitidos = new Set(pantallasPermitidas.map(pant => pant.panta_Descripcion.toLowerCase().trim()));
+                        console.log('Permitted screens:', nombresPermitidos);
 
-            this.servicioLogin.getPantallasDeRol(roleId).subscribe(pantallasPermitidas => {
-                console.log('ENTRO?', roleId);
-                const nombresPermitidos = new Set(pantallasPermitidas.map(pant => pant.panta_Descripcion.toLowerCase().trim()));
-                console.log('Los NOMBRES SON')
-                console.log(nombresPermitidos)
-                const filtrarSubitems = (subitems) => {
-                    return subitems.filter(opcion => {
-                        const nombreLowerCase = opcion.label.toLowerCase().trim();
-                        return nombresPermitidos.has(nombreLowerCase);
-                    });
-                };
-
-                this.model = this.menuCompleto
-                    .map(section => {
-                        const itemsFiltrados = section.items.map(subSection => {
-                            const subItemsFiltrados = filtrarSubitems(subSection.items || []);
-                            return {
+                        const filtrarSubitems = (subitems) => subitems.filter(opcion => nombresPermitidos.has(opcion.label.toLowerCase().trim()));
+                        this.model = this.menuCompleto.map(section => {
+                            const itemsFiltrados = section.items.map(subSection => ({
                                 ...subSection,
-                                items: subItemsFiltrados
-                            };
-                        }).filter(subSection => subSection.items.length > 0);
+                                items: filtrarSubitems(subSection.items || [])
+                            })).filter(subSection => subSection.items.length > 0);
 
-                        return {
-                            ...section,
-                            items: itemsFiltrados
-                        };
-                    })
-                    .filter(section => section.items.length > 0);
+                            return { ...section, items: itemsFiltrados };
+                        }).filter(section => section.items.length > 0);
+                    } else {
+                        console.error('Invalid response structure:', response);
+                    }
+                },
+                error: (err) => {
+                    console.error('Error fetching role screens:', err);
+                }
             });
-
-
+        } else {
+            this.model = this.menuCompleto; // Admin gets the full menu
         }
-        else
-        {
-            this.model = this.menuCompleto;
-
-        }
-        }
+    }
     menuCompleto = [
         {
             items: [
@@ -309,12 +297,12 @@ export class AppMenuComponent implements OnInit {
                                             {
                                                 label: 'Roles',
                                                 icon: 'pi pi-fw pi-cog',
-                                                routerLink: ['/home/acceso/rol']
+                                                routerLink: ['/home/acceso/roles']
                                             },
                                             {
                                                 label: 'Usuarios',
                                                 icon: 'pi pi-fw pi-user',
-                                                routerLink: ['/home/pages/usuario']
+                                                routerLink: ['/home/pages/usuarios']
                                             }
                                         ]
                                     },
