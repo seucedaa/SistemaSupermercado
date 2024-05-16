@@ -4,7 +4,7 @@ import { UsuarioService } from 'src/app/demo/service/usuario.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-login',
@@ -30,7 +30,8 @@ export class LoginComponent {
     usuario: Usuario = {};
 
 
-    constructor(public layoutService: LayoutService,  public usuarioService: UsuarioService, public router: Router,  private messageService: MessageService) { 
+
+    constructor(public layoutService: LayoutService,  public usuarioService: UsuarioService, public router: Router,  private messageService: MessageService,private cookieService : CookieService) { 
         localStorage.clear();
     }
 
@@ -43,6 +44,11 @@ export class LoginComponent {
                     const dataa = response.data;
                     console.log('data',dataa);
                     sessionStorage.setItem('usuario', JSON.stringify(dataa[0])); 
+                    
+                    
+                    this.cookieService.set('roleID', dataa[0].roles_Id); 
+                    this.cookieService.set('esAdmin', dataa[0].usuar_Admin);
+                    
                     console.log('Usuario guardado:', dataa[0]);
 
                     this.router.navigate(['/home'])
