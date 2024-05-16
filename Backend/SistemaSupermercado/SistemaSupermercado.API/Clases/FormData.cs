@@ -8,7 +8,7 @@ namespace SistemaSupermercado.API.Clases
 {
     public class FormData
     {
-        public int Rol_Id { get; set; }
+        public int Roles_Id { get; set; }
         [Required(ErrorMessage = "El Campo {0} es requerido")]
 
         public string txtRol { get; set; }

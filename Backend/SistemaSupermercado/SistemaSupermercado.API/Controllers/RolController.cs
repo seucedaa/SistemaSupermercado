@@ -221,7 +221,7 @@ namespace SistemaSupermercado.Controllers
 
             var modelo = new tbRoles()
             {
-                Roles_Id = formData.Rol_Id,
+                Roles_Id = formData.Roles_Id,
                 Roles_Descripcion = formData.txtRol,
                 Roles_UsuarioModificacion = 1,
                 Roles_FechaModificacion = DateTime.Now
@@ -229,7 +229,7 @@ namespace SistemaSupermercado.Controllers
             };
             var list = _serviciosAcceso.EditarRol(modelo);
 
-            var idRol = formData.Rol_Id;
+            var idRol = formData.Roles_Id;
 
             var res = _serviciosAcceso.EliminarRolesPantalla(idRol.ToString());
 
