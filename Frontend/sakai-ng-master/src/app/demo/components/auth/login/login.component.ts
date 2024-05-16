@@ -41,11 +41,10 @@ export class LoginComponent {
             this.usuarioService.Login(this.username, this.contrasena).then((response => {
                 if(response.success){
                     const dataa = response.data;
-                    console.log(dataa);
-                    localStorage.setItem('sucursal', dataa.sucur_Id);
-                    localStorage.setItem('nombre', dataa.perso_NombreCompleto);
-                    localStorage.setItem('usuario', dataa.usuar_Usuario);
-                    
+                    console.log('data',dataa);
+                    sessionStorage.setItem('usuario', JSON.stringify(dataa[0])); 
+                    console.log('Usuario guardado:', dataa[0]);
+
                     this.router.navigate(['/home'])
                 }else{
                     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Credenciales Incorrectas', life: 3000 });
