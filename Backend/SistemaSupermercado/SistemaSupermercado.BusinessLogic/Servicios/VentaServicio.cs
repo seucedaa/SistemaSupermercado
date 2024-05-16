@@ -102,6 +102,58 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         }
 
 
+        public ServiceResult Registrar(tbClientes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var nuevocliente = new tbClientes()
+                {
+                    Clien_Dni = item.Clien_Dni,
+                    Clien_PrimerNombre = item.Clien_PrimerNombre,
+                    Clien_SegundoNombre = item.Clien_SegundoNombre,
+                    Clien_PrimerApellido = item.Clien_PrimerApellido,
+                    Clien_SegundoApellido = item.Clien_SegundoApellido,
+                    Clien_Sexo = item.Clien_Sexo,
+                    Estad_Id = item.Estad_Id,
+                    Clien_Telefono = item.Clien_Telefono,
+                    Munic_Id = item.Munic_Id,
+                    Clien_Direccion = item.Clien_Direccion
+                };
+
+                int clienteid = 0;
+
+                var insertar = InsertarClien(nuevocliente);
+                if (!insertar.Success)
+                {
+                    return insertar.Error();
+                }
+                else
+                {
+
+                    nuevocliente.Clien_Id = _clienteRepository.ClienteNuevoId();
+                    clienteid = nuevocliente.Clien_Id;
+                }
+
+                var nuevousuario = new tbUsuarios()
+                {
+                    Usuar_Usuario = item.Usuar_Usuario,
+                    Usuar_Contrasena = item.Usuar_Contrasena,
+                    Perso_Id = clienteid,
+                };
+
+                var registrar = _accesoServicios.RegistrarUsu(nuevousuario);
+
+
+                return result.Ok(registrar);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+
         public IEnumerable<tbClientes> DetallesClien(int id)
         {
             return _clienteRepository.Buscar(id);

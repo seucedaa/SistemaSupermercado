@@ -18,8 +18,6 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Usuario_Login = "Acce.SP_Usuario_Login";
         public static string Usuario_ReestablecerContrasena = "Acce.SP_Usuario_ReestablecerContrasena";
         public static string Usuario_CambiarContrasena = "Acce.SP_Usuario_CambiarContrasena";
-        public static string Usuario_ObtenerCorreo = "[Acce].[SP_Usuario_ObtenerCorreo]";
-        public static string Usuario_InsertarCodigo = "[Acce].[SP_Usuarios_InsertarValidar]";
         #endregion
 
         #region Roles
@@ -199,22 +197,8 @@ namespace SistemaSupermercado.DataAcceess.Repository
 
         #endregion
 
-        #region roles
-        public static string RolesListar = "Acce.sp_Roles_listar";
-        public static string Rolesllenar = "Acce.sp_Roles_buscar";
-        public static string RolesActualizar = "Acce.sp_Roles_actualizar";
-        public static string RolesEliminar = "Acce.sp_Roles_eliminar";
-        #endregion
 
-        #region RolesPorPantalla
 
-        public static string PantallasRolesListar = "[Acce].[sp_PantallasRoles_listar]";
-        public static string PantallasRolesllenar2 = "[Acce].[sp_Roles_buscar]";
-        public static string PantallasRolesllenar = "[Acce].[sp_PantallasPorRol2_buscar]";
-        public static string PantallasRolesActualizar = "[Acce].[sp_PantallasPorRoles_actualizar]";
-        public static string PantallasRolesEliminar = "[Acce].[sp_PantallasPorRoles_eliminar]";
-
-        #endregion
 
 
 

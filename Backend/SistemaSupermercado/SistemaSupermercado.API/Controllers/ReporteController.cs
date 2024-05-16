@@ -31,19 +31,13 @@ namespace SistemaSupermercado.API.Controllers
             return Ok(list);
         }
 
-        //[HttpGet("Generarpdf/{Sucur_Id}/{nombre}")]
-        //public async Task<IActionResult> Generarpdf(int Sucur_Id, string nombre)
-        //{
-        //}
-
-
-        [HttpGet("Generarpdf2/{nombre}")]
-        public async Task<IActionResult> Generarpdf2(string nombre)
+        [HttpGet("Generarpdf/{Sucur_Id}")]
+        public async Task<IActionResult> Generarpdf(int Sucur_Id)
         {
             var documento = new PdfDocument();
             string imagenurl = "https://seeklogo.com/images/S/supermercado-la-colonia-logo-5740E3DAFC-seeklogo.com.png";
 
-            var productos = _reporteServices.TodasStock();
+            var productos = _reporteServices.reporteStock(Sucur_Id);
 
             string htmlcontenido = "<div style='width:100%;'>";
             htmlcontenido += "<div style='text-align: center;'>";
@@ -54,7 +48,7 @@ namespace SistemaSupermercado.API.Controllers
             htmlcontenido += "<tr>";
             htmlcontenido += "<td>";
             //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><b>REPORTE DE INVENTARIO</b></h3>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Inventario</b></h3>";
             htmlcontenido += "</td>";
             htmlcontenido += "<td style='width: 30%; text-align: right;'>";
             htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
@@ -105,8 +99,77 @@ namespace SistemaSupermercado.API.Controllers
             return File(response, "application/pdf", titulo);
         }
 
-        [HttpGet("PDFProductos/{Sucur_Id}/{inicio}/{fin}/{nombre}")]
-        public async Task<IActionResult> PDFProductos(int Sucur_Id, string inicio, string fin,string nombre)
+
+        [HttpGet("Generarpdf2")]
+        public async Task<IActionResult> Generarpdf2()
+        {
+            var documento = new PdfDocument();
+            string imagenurl = "https://seeklogo.com/images/S/supermercado-la-colonia-logo-5740E3DAFC-seeklogo.com.png";
+
+            var productos = _reporteServices.TodasStock();
+
+            string htmlcontenido = "<div style='width:100%;'>";
+            htmlcontenido += "<div style='text-align: center;'>";
+            htmlcontenido += "<img style='width: 200px;' src='" + imagenurl + "'/>";
+            htmlcontenido += "</div>";
+
+            htmlcontenido += "<table style='width:100%; border:none;'>";
+            htmlcontenido += "<tr>";
+            htmlcontenido += "<td>";
+            //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Inventario</b></h3>";
+            htmlcontenido += "</td>";
+            htmlcontenido += "<td style='width: 30%; text-align: right;'>";
+            htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
+            htmlcontenido += "<p style='margin: 0; font-weight: bold; color: black;'> " + DateTime.Now.ToString("dd/MM/yyyy") + "</p>";
+            htmlcontenido += "</td>";
+            htmlcontenido += "</tr>";
+            htmlcontenido += "</table>";
+            htmlcontenido += "<hr/>";
+
+            htmlcontenido += "<table style='width:100%; border:1px #000; margin-top:20px'>";
+            htmlcontenido += "<thead style='font-weight:bold; color: white;'>";
+            htmlcontenido += "<tr>";
+            htmlcontenido += "<td style='border:1px #000; padding: 8px; background-color:green;'><b>Codigo Producto</b></td>";
+            htmlcontenido += "<td style='border:1px #000; padding: 8px; background-color:green;'><b>Descripcion</b></td>";
+            htmlcontenido += "<td style='border:1px #000; padding: 8px; background-color:green;'><b>Existencia</b></td>";
+            htmlcontenido += "<td style='border:1px #000; padding: 8px; background-color:green;'><b>Precio Compra</b></td>";
+            htmlcontenido += "<td style='border:1px #000; padding: 8px; background-color:green;'><b>Precio Venta</b></td>";
+            htmlcontenido += "<td style='border:1px #000; padding: 8px; background-color:green;'><b>Categoria</b></td>";
+            htmlcontenido += "<td style='border:1px #000; padding: 8px; background-color:green;'><b>Sub-Categoria</b></td>";
+            htmlcontenido += "</tr>";
+            htmlcontenido += "</thead>";
+
+            htmlcontenido += "<tbody>";
+            foreach (var producto in productos)
+            {
+                htmlcontenido += "<tr>";
+                htmlcontenido += "<td style='border:1px #000; padding: 8px; color: black;'>" + producto.Produ_Id + "</td>";
+                htmlcontenido += "<td style='border:1px #000; padding: 8px; color: black;'>" + producto.Produ_Descripcion + "</td>";
+                htmlcontenido += "<td style='border:1px #000; padding: 8px; color: black;'>" + producto.Produ_Existencia + "</td>";
+                htmlcontenido += "<td style='border:1px #000; padding: 8px; color: black;'>" + producto.Produ_PrecioCompra + "</td>";
+                htmlcontenido += "<td style='border:1px #000; padding: 8px; color: black;'>" + producto.Produ_PrecioVenta + "</td>";
+                htmlcontenido += "<td style='border:1px #000; padding: 8px; color: black;'>" + producto.Categ_Descripcion + "</td>";
+                htmlcontenido += "<td style='border:1px #000; padding: 8px; color: black;'>" + producto.Subca_Descripcion + "</td>";
+                htmlcontenido += "</tr>";
+            }
+            htmlcontenido += "</tbody>";
+
+            htmlcontenido += "</table>";
+
+            PdfGenerator.AddPdfPages(documento, htmlcontenido, PageSize.A4);
+            byte[]? response = null;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                documento.Save(ms);
+                response = ms.ToArray();
+            }
+            string titulo = "Reporte Inventario.pdf";
+            return File(response, "application/pdf", titulo);
+        }
+
+        [HttpGet("PDFProductos/{Sucur_Id}/{inicio}/{fin}")]
+        public async Task<IActionResult> PDFProductos(int Sucur_Id, string inicio, string fin)
         {
             var documento = new PdfDocument();
             string imagenurl = "https://seeklogo.com/images/S/supermercado-la-colonia-logo-5740E3DAFC-seeklogo.com.png";
@@ -122,7 +185,7 @@ namespace SistemaSupermercado.API.Controllers
             htmlcontenido += "<tr>";
             htmlcontenido += "<td>";
             //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><b>REPORTE DE PRODUCTOS</b></h3>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Productos</b></h3>";
             htmlcontenido += "</td>";
             htmlcontenido += "<td style='width: 30%; text-align: right;'>";
             htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
@@ -174,8 +237,8 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpGet("PDFProductos2/{inicio}/{fin}/{nombre}")]
-        public async Task<IActionResult> PDFProductos2(string inicio, string fin,string nombre)
+        [HttpGet("PDFProductos2/{inicio}/{fin}")]
+        public async Task<IActionResult> PDFProductos2(string inicio, string fin)
         {
             var documento = new PdfDocument();
             string imagenurl = "https://seeklogo.com/images/S/supermercado-la-colonia-logo-5740E3DAFC-seeklogo.com.png";
@@ -191,7 +254,7 @@ namespace SistemaSupermercado.API.Controllers
             htmlcontenido += "<tr>";
             htmlcontenido += "<td>";
             //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><b>REPORTE DE PRODUCTOS</b></h3>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Productos</b></h3>";
             htmlcontenido += "</td>";
             htmlcontenido += "<td style='width: 30%; text-align: right;'>";
             htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
@@ -242,8 +305,8 @@ namespace SistemaSupermercado.API.Controllers
             return File(response, "application/pdf", titulo);
         }
 
-        [HttpGet("PDFClientes/{inicio}/{fin}/{nombre}")]
-        public async Task<IActionResult> PDFClientes(string inicio, string fin,string nombre)
+        [HttpGet("PDFClientes/{inicio}/{fin}")]
+        public async Task<IActionResult> PDFClientes(string inicio, string fin)
         {
             var documento = new PdfDocument();
             string imagenurl = "https://seeklogo.com/images/S/supermercado-la-colonia-logo-5740E3DAFC-seeklogo.com.png";
@@ -259,7 +322,7 @@ namespace SistemaSupermercado.API.Controllers
             htmlcontenido += "<tr>";
             htmlcontenido += "<td>";
             //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><b>REPORTE DE CLIENTES</b></h3>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Clientes</b></h3>";
             htmlcontenido += "</td>";
             htmlcontenido += "<td style='width: 30%; text-align: right;'>";
             htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
@@ -312,8 +375,8 @@ namespace SistemaSupermercado.API.Controllers
             return File(response, "application/pdf", titulo);
         }
 
-        [HttpGet("PDFVentas/{sucursal}/{inicio}/{fin}/{nombre}")]
-        public async Task<IActionResult> PDFVentas(int sucursal,string inicio, string fin, string nombre)
+        [HttpGet("PDFVentas/{sucursal}/{inicio}/{fin}")]
+        public async Task<IActionResult> PDFVentas(int sucursal,string inicio, string fin)
         {
             var documento = new PdfDocument();
             string imagenurl = "https://seeklogo.com/images/S/supermercado-la-colonia-logo-5740E3DAFC-seeklogo.com.png";
@@ -329,7 +392,7 @@ namespace SistemaSupermercado.API.Controllers
             htmlcontenido += "<tr>";
             htmlcontenido += "<td>";
             //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><b>REPORTE DE VENTAS</b></h3>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Ventas</b></h3>";
             htmlcontenido += "</td>";
             htmlcontenido += "<td style='width: 30%; text-align: right;'>";
             htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
@@ -386,8 +449,8 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpGet("PDFVentas2/{inicio}/{fin}/{nombre}")]
-        public async Task<IActionResult> PDFVentas2(string inicio, string fin, string nombre)
+        [HttpGet("PDFVentas2/{inicio}/{fin}")]
+        public async Task<IActionResult> PDFVentas2(string inicio, string fin)
         {
             var documento = new PdfDocument();
             string imagenurl = "https://seeklogo.com/images/S/supermercado-la-colonia-logo-5740E3DAFC-seeklogo.com.png";
@@ -403,7 +466,7 @@ namespace SistemaSupermercado.API.Controllers
             htmlcontenido += "<tr>";
             htmlcontenido += "<td>";
             //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><b>REPORTE DE VENTAS</b></h3>";
+            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Ventas</b></h3>";
             htmlcontenido += "</td>";
             htmlcontenido += "<td style='width: 30%; text-align: right;'>";
             htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";

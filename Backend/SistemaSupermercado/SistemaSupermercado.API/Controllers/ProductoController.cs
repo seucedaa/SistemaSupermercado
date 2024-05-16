@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace SistemaSupermercado.API.Controllers
 {
@@ -25,6 +27,45 @@ namespace SistemaSupermercado.API.Controllers
 
 
         }
+
+        [HttpPost("Subir")]
+        public async Task<IActionResult> UploadImage(IFormFile file)
+        {
+            var allowedExtensions = new HashSet<string> { ".png", ".jpeg", ".svg", ".jpg", ".gif" };
+            var fileExtension = Path.GetExtension(file.FileName).ToLower();
+            if (!allowedExtensions.Contains(fileExtension))
+            {
+                return Ok(new { message = "Error", detail = "Extensión de archivo no permitida." });
+            }
+
+            var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+
+            if (!Directory.Exists(uploadsFolderPath))
+            {
+                Directory.CreateDirectory(uploadsFolderPath);
+            }
+
+
+
+            // Crea la ruta completa del archivo en el servidor
+            var filePath = Path.Combine(uploadsFolderPath, file.FileName);
+
+            try
+            {
+                // Copia el archivo a la carpeta especificada
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                return Ok(new { message = "Exito" });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, $"General error: {e.ToString()}");
+            }
+        }
+
         [HttpGet("Existencia/{sucursal}")]
         public IActionResult Total(int sucursal)
         {
