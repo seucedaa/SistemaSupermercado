@@ -35,29 +35,30 @@ export class LoginComponent {
         localStorage.clear();
     }
 
-    login(){
+    login() {
         this.submitted = true;
-
-        if(this.submitted && this.username?.trim() && this.contrasena?.trim()){
-            this.usuarioService.Login(this.username, this.contrasena).then((response => {
-                if(response.success){
-                    console.log(response);
-                    const dataa = response.data;
-                    sessionStorage.setItem('usuario', JSON.stringify(dataa[0])); 
+    
+        if (this.submitted && this.username?.trim() && this.contrasena?.trim()) {
+            this.usuarioService.Login(this.username, this.contrasena).then(response => {
+                if (response.success && response.data.length > 0) {
+                    const usuarioData = response.data[0]; 
+                    console.log('Login exitoso', usuarioData);
+    
+                    sessionStorage.setItem('usuario', JSON.stringify(usuarioData));
                     
-                    
-                    this.cookieService.set('roleID', dataa[0].roles_Id); 
-                    this.cookieService.set('esAdmin', dataa[0].usuar_Admin);
-                    
-                    console.log('Usuario guardado:', dataa[0]);
-
-                    this.router.navigate(['/home'])
-                }else{
+                    this.cookieService.set('roleID', usuarioData.roles_Id);
+                    this.cookieService.set('esAdmin', usuarioData.usuar_Admin);
+    
+                    this.router.navigate(['/home']);
+                } else {
                     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Credenciales Incorrectas', life: 3000 });
-                    console.log('credenciales erroneas')
+                    console.log('Credenciales incorrectas');
                 }
-            }));
+            }).catch(error => {
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error de conexión o del servidor', life: 3000 });
+                console.error('Error en el login:', error);
+            });
         }
-       
     }
+    
 }

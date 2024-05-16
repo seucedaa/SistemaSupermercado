@@ -1,7 +1,6 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
-import { RouterLink } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ServiceService } from '../demo/service/rol.service';
 
@@ -17,7 +16,6 @@ export class AppMenuComponent implements OnInit {
 
     constructor(private servicioLogin: ServiceService,public layoutService: LayoutService,private cookieService: CookieService) { }
 
-    // ngOnInit() {
     //     this.model = [
     //         {
     //             label: 'Inicio',
@@ -197,15 +195,13 @@ export class AppMenuComponent implements OnInit {
 
     ngOnInit() {
         const admin = this.cookieService.get('esAdmin').toString()
-        console.log("AVEER")
         console.log(admin)
         if (admin != "true")
         {
-            console.log("Ento AQUII LOCOOOOO")
             const roleId = Number.parseInt(this.cookieService.get('roleID'));
 
             this.servicioLogin.getPantallasDeRol(roleId).subscribe(pantallasPermitidas => {
-                console.log('ENTRO?')
+                console.log('ENTRO?', roleId);
                 const nombresPermitidos = new Set(pantallasPermitidas.map(pant => pant.panta_Descripcion.toLowerCase().trim()));
                 console.log('Los NOMBRES SON')
                 console.log(nombresPermitidos)

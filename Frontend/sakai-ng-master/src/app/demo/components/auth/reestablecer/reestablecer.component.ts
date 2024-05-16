@@ -49,7 +49,7 @@ export class ReestablecerComponent {
                     this.mostrarreestablecer = true;
                     this.ocultr = false;
                     this.username = ''; 
-                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Correo enviado exitosamente.', life: 3000 });
+                    this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Correo de recuperacion enviado.', life: 3000 });
                 } else {
                     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Usuario Incorrecto', life: 3000 });
                 }
@@ -57,7 +57,7 @@ export class ReestablecerComponent {
         } else if (this.contrasena?.trim() && this.codigo.trim()) {
             this.usuarioService.Reestablecer(this.codigo, this.contrasena).then(response => {
                 if (response.success) {
-                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Contraseña reestablecida.', life: 3000 });
+                    this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Contraseña reestablecida.', life: 3000 });
 
                     const dataa = response.data;
                     console.log(dataa);
