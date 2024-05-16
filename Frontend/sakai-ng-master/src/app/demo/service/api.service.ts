@@ -31,6 +31,10 @@ export class UsuarioEndPoints{
 export class ReporteEndPoints{
   public api = new ApiService();
 
+  public Stock(Sucur_Id: number):string{
+    return `${this.api.baseUrl}/Reporte/Stock/${Sucur_Id}`;
+  }
+
   public Generarpdf(Sucur_Id: number,nombre:string):string{
     return `${this.api.baseUrl}/Reporte/Generarpdf/${Sucur_Id}/${nombre}`;
   }

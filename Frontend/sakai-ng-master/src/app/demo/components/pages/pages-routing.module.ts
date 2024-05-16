@@ -5,12 +5,12 @@ import { RoleGuard } from '../auth/shared/role.guard';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      {
+      /*{
         path: 'rol',
         loadChildren: () => import('./rol/rol.module').then((m) => m.RolModule),
         data: {screen:'Rol'},
         canActivate:[RoleGuard]
-      },
+      },*/
       {
         path: 'usuario',
         loadChildren: () =>

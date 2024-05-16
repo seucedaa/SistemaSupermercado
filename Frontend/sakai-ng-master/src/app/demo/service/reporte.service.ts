@@ -12,6 +12,10 @@ export class ReporteService {
   public endpoint = new ReporteEndPoints();
 
   
+  Stock(Sucur_Id: number) {
+    const url = this.endpoint.Stock(Sucur_Id);
+    return this.http.get(url, { observe: 'response', responseType: 'blob' });
+  }
   Generarpdf(Sucur_Id: number, nombre:string) {
     const url = this.endpoint.Generarpdf(Sucur_Id,nombre);
     return this.http.get(url, { observe: 'response', responseType: 'blob' });

@@ -73,7 +73,7 @@ namespace SistemaSupermercado.API.Controllers
         public IActionResult loginUsuario(string usuario, string contrasena)
         {
             var estado = _accesoservicios.LoginUsuario(usuario, contrasena);
-            return Ok(estado);
+            return Ok(estado.Data);
 
         }
 

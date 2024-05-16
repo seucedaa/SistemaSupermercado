@@ -30,6 +30,7 @@ namespace SistemaSupermercado.API.Extensions
             CreateMap<SucursalViewModel, tbSucursales>().ReverseMap();
             CreateMap<VentasDetalleViewModel, tbVentasDetalle>().ReverseMap();
             CreateMap<tbVentasEncabezado, tbVentasEncabezado>().ReverseMap();
+            CreateMap<PantallaporRolViewModel, tbPantallasPorRoles>().ReverseMap();
 
         }
     }

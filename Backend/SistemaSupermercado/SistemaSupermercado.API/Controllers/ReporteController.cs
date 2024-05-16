@@ -31,75 +31,10 @@ namespace SistemaSupermercado.API.Controllers
             return Ok(list);
         }
 
-        [HttpGet("Generarpdf/{Sucur_Id}/{nombre}")]
-        public async Task<IActionResult> Generarpdf(int Sucur_Id, string nombre)
-        {
-            var documento = new PdfDocument();
-            string imagenurl = "https://seeklogo.com/images/S/supermercado-la-colonia-logo-5740E3DAFC-seeklogo.com.png";
-
-            var productos = _reporteServices.reporteStock(Sucur_Id);
-
-            string htmlcontenido = "<div style='width:100%;'>";
-            htmlcontenido += "<div style='text-align: center;'>";
-            htmlcontenido += "<img style='width: 200px;' src='" + imagenurl + "'/>";
-            htmlcontenido += "</div>";
-
-            htmlcontenido += "<table style='width:100%; border:none;'>";
-            htmlcontenido += "<tr>";
-            htmlcontenido += "<td>";
-            //htmlcontenido += "<h2 style='margin: 0; font-weight: bold; color: green;'><b>LA COLONIA</b></h2>";
-            htmlcontenido += "<h3 style='margin: 0; color: black; text-align: right;'><br>Reporte de Inventario</br></h3>";
-            htmlcontenido += "</td>";
-            htmlcontenido += "<td style='width: 30%; text-align: right;'>";
-            htmlcontenido += "<p style='margin: 0; font-weight: bold; color: green;'>Fecha: </p>";
-            htmlcontenido += "<p style='margin: 0; font-weight: bold; color: black;'> " + DateTime.Now.ToString("dd/MM/yyyy") + "</p>";
-            htmlcontenido += "</td>";
-            htmlcontenido += "</tr>";
-            htmlcontenido += "</table>";
-            htmlcontenido += "<hr/>";
-
-            htmlcontenido += "<table style='width:100%; border:1px #000; margin-top:20px'>";
-            htmlcontenido += "<thead style='font-weight:bold; color: white;'>";
-            htmlcontenido += "<tr>";
-            htmlcontenido += "<td style='border:1px #000; padding: 8px; background-color:green;'><b>Codigo Producto</b></td>";
-            htmlcontenido += "<td style='border:1px #000; padding: 8px; background-color:green;'><b>Descripcion</b></td>";
-            htmlcontenido += "<td style='border:1px #000; padding: 8px; background-color:green;'><b>Existencia</b></td>";
-            htmlcontenido += "<td style='border:1px #000; padding: 8px; background-color:green;'><b>Precio Compra</b></td>";
-            htmlcontenido += "<td style='border:1px #000; padding: 8px; background-color:green;'><b>Precio Venta</b></td>";
-            htmlcontenido += "<td style='border:1px #000; padding: 8px; background-color:green;'><b>Categoria</b></td>";
-            htmlcontenido += "<td style='border:1px #000; padding: 8px; background-color:green;'><b>Sub-Categoria</b></td>";
-            htmlcontenido += "</tr>";
-            htmlcontenido += "</thead>";
-
-            htmlcontenido += "<tbody>";
-            foreach (var producto in productos)
-            {
-                htmlcontenido += "<tr>";
-                htmlcontenido += "<td style='border:1px #000; padding: 8px; color: black;'>" + producto.Produ_Id + "</td>";
-                htmlcontenido += "<td style='border:1px #000; padding: 8px; color: black;'>" + producto.Produ_Descripcion + "</td>";
-                htmlcontenido += "<td style='border:1px #000; padding: 8px; color: black;'>" + producto.Produ_Existencia + "</td>";
-                htmlcontenido += "<td style='border:1px #000; padding: 8px; color: black;'>" + producto.Produ_PrecioCompra + "</td>";
-                htmlcontenido += "<td style='border:1px #000; padding: 8px; color: black;'>" + producto.Produ_PrecioVenta + "</td>";
-                htmlcontenido += "<td style='border:1px #000; padding: 8px; color: black;'>" + producto.Categ_Descripcion + "</td>";
-                htmlcontenido += "<td style='border:1px #000; padding: 8px; color: black;'>" + producto.Subca_Descripcion + "</td>";
-                htmlcontenido += "</tr>";
-            }
-            htmlcontenido += "<p style='margin: 0; font-weight: bold;'> Emitido por: " + nombre + " </p>";
-            htmlcontenido += "<p style='margin: 0; font-weight: bold;'> En la fecha" + DateTime.Now.ToString("dd/MM/yyyy") + "</p>";
-            htmlcontenido += "</tbody>";
-
-            htmlcontenido += "</table>";
-
-            PdfGenerator.AddPdfPages(documento, htmlcontenido, PageSize.A4);
-            byte[]? response = null;
-            using (MemoryStream ms = new MemoryStream())
-            {
-                documento.Save(ms);
-                response = ms.ToArray();
-            }
-            string titulo = "Reporte Inventario.pdf";
-            return File(response, "application/pdf", titulo);
-        }
+        //[HttpGet("Generarpdf/{Sucur_Id}/{nombre}")]
+        //public async Task<IActionResult> Generarpdf(int Sucur_Id, string nombre)
+        //{
+        //}
 
 
         [HttpGet("Generarpdf2/{nombre}")]
