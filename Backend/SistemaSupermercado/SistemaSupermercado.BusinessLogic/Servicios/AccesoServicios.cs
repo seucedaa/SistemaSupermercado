@@ -72,15 +72,8 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             {
                 var lost = _usuarioRepository.Login(usuario, contraseña);
 
-                if (lost.Usuar_Id > 0)
-                {
-                    return result.Ok(lost);
-                }
-                else
-                {
-                    return result.Error(lost);
+                return result.Ok(lost);
 
-                }
             }
             catch (Exception ex)
             {
