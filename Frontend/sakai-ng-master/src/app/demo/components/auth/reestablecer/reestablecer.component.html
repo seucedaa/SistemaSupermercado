@@ -11,7 +11,7 @@
                 <div class="text-center mb-5">
                     <img src="assets/layout/images/lacolonia/logo.svg" alt="La Colonia logo" class="mb-4 w-6rem flex-shrink-0">                
 
-                    <span class="text-600 font-medium">Reestablecer Contraseña </span>
+                    <div class="text-900 text-3xl font-medium mb-3">Reestablecer Contraseña</div>
                 </div>
 
                 <div>
@@ -34,16 +34,18 @@
                     <div class="flex flex-column mb-3">
 
                     <small  style="color: red;" class="ng-dirty ng-invalid" *ngIf="submitted && !username && !mostrarreestablecer">El Usuario es requerido.</small>
-                    <small  style="color: red;" class="ng-dirty ng-invalid" *ngIf="submitted && !codigo && mostrarreestablecer">El Codigo es requerido.</small>
-                    <small style="color: red;" class="ng-dirty ng-invalid" *ngIf="submitted && !contrasena && mostrarreestablecer">La Contraseña es requerida.</small>
+                    <small  style="color: red;" class="ng-dirty ng-invalid" *ngIf="submitted && !codigo && mostrarreestablecer && ocultr">El Codigo es requerido.</small>
+                    <small style="color: red;" class="ng-dirty ng-invalid" *ngIf="submitted && !contrasena && mostrarreestablecer && ocultr">La Contraseña es requerida.</small>
                 </div>
 
                     
 
                     <div class="flex align-items-center justify-content-between mb-5 gap-5">
                        
-                        <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: #40a72e" routerLink="/login">¿Olvidaste tu contraseña?</a>
+                        <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: #40a72e" routerLink="/login">Volver al login</a>
                     </div>
+                    <button pButton label="Reestablecer" class="w-full p-3 text-xl" (click)="reestablecer()"></button>
+
                 </div>
             </div>
         </div>

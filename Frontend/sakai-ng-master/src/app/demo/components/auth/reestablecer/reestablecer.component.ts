@@ -25,7 +25,7 @@ export class ReestablecerComponent {
     public codigo: string;
     submitted: boolean = false;
     mostrarreestablecer: boolean = false; 
-
+    ocultr:boolean=true;
 
     valCheck: string[] = ['remember'];
 
@@ -38,30 +38,36 @@ export class ReestablecerComponent {
 
     reestablecer(){
         this.submitted = true;
+        this.ocultr=true;
 
-        if(this.submitted && this.username?.trim()){
-            this.usuarioService.Recuperacion(this.username).then((response => {
-                if(response.success){
-                    // const dataa = response.data;
-                    // console.log(dataa);
+    
+        if (this.username?.trim() && !this.mostrarreestablecer) {
+            this.usuarioService.Recuperacion(this.username).then(response => {
+                console.log(response);
+                if (response) {
+                    console.log('entr');
                     this.mostrarreestablecer = true;
-                }else{
+                    this.ocultr = false;
+                    this.username = ''; 
+                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Correo enviado exitosamente.', life: 3000 });
+                } else {
                     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Usuario Incorrecto', life: 3000 });
                 }
-            }));
-        }
-        else if(this.submitted && this.contrasena?.trim() && this.codigo.trim()){
-            this.usuarioService.Reestablecer(this.codigo,this.contrasena).then((response => {
-                if(response.success){
+            });
+        } else if (this.contrasena?.trim() && this.codigo.trim()) {
+            this.usuarioService.Reestablecer(this.codigo, this.contrasena).then(response => {
+                if (response.success) {
+                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Contraseña reestablecida.', life: 3000 });
+
                     const dataa = response.data;
                     console.log(dataa);
-                    
-                    this.router.navigate(['/login'])
-                }else{
+    
+                    this.router.navigate(['/login']);
+                } else {
                     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Datos Incorrectos', life: 3000 });
                 }
-            }));
+            });
         }
-       
     }
+    
 }

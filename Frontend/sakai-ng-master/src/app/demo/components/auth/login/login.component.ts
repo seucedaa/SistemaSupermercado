@@ -40,10 +40,9 @@ export class LoginComponent {
         if(this.submitted && this.username?.trim() && this.contrasena?.trim()){
             this.usuarioService.Login(this.username, this.contrasena).then((response => {
                 if(response.success){
+                    console.log(response);
                     const dataa = response.data;
-                    console.log('data',dataa);
                     sessionStorage.setItem('usuario', JSON.stringify(dataa[0])); 
-                    console.log('Usuario guardado:', dataa[0]);
 
                     this.router.navigate(['/home'])
                 }else{

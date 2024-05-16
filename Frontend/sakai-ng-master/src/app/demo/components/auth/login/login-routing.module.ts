@@ -6,7 +6,7 @@ import { ReestablecerComponent } from '../reestablecer/reestablecer.component';
 @NgModule({
     imports: [RouterModule.forChild([
         { path: '', component: LoginComponent },
-        {path: 'reestablecer', component: ReestablecerComponent}
+        {path: 'reestablecer', component: ReestablecerComponent},
     ])],
     exports: [RouterModule]
 })
