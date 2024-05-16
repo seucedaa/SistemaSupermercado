@@ -9,11 +9,11 @@ namespace SistemaSupermercado.Entities.Entities
 {
     public partial class tbPantallasPorRoles
     {
-        [NotMapped]
-        public int? Pantalla { get; set; }
         public int Papro_Id { get; set; }
         public int Panta_Id { get; set; }
-        public int Roles_Id { get; set; }
+        public int? Roles_Id { get; set; }
+        [NotMapped]
+        public int? Pantalla { get; set; }
         public int Papro_UsuarioCreacion { get; set; }
         public DateTime Papro_FechaCreacion { get; set; }
         public int? Papro_UsuarioModificacion { get; set; }

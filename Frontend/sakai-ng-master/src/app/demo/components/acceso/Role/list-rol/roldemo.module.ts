@@ -18,6 +18,7 @@ import { DropdownModule } from "primeng/dropdown";
 import { TreeModule } from 'primeng/tree';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TreeTableModule } from 'primeng/treetable';
+import { ToolbarModule } from 'primeng/toolbar';
 @NgModule({
 	imports: [
 		CommonModule,
@@ -38,7 +39,7 @@ import { TreeTableModule } from 'primeng/treetable';
 		TreeModule,
 		TreeTableModule,
 		ReactiveFormsModule,
-		
+		ToolbarModule
 		
 		
 	],

@@ -1,11 +1,12 @@
 <p-toast ></p-toast>
 <div class="main-card mb-3 card"> 
     <div class="card-header">
-        <h1 class="card-title">Roles</h1>
+        <h3 class="card-title">Administracion de Roles</h3>
     </div>
     <div class="card-body">
-        <button (click)="collapse()" pButton class="p-button-warning" icon="pi pi-plus" style="margin-bottom: 10px ;" [class.hidden]="!Agregar">Agregar</button>
-     
+        <p-toolbar styleClass="mb-4">
+            <button (click)="collapse()" pButton pRipple class="p-button-success mr-2" icon="pi pi-plus" style="margin-bottom: 10px ;" [class.hidden]="!Agregar">Agregar</button>
+        </p-toolbar>
 
         <div [class.hidden]="!Collapse" style="margin-top: 20px;">
             <form [formGroup]="rolForm">
@@ -74,9 +75,9 @@
                         {{rol.roles_Descripcion}}
                     </td>
                     <td style="display: flex; grid-gap: 20px;">
-                        <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="llenar(rol.roles_Id)" severity="warning" [raised]="true" [plain]="true"></p-button>
-                        <p-button  label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(rol.roles_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
-                        <p-button  label="Eliminar" icon="pi pi-trash" size="small" (click)="deleteSelectedProducts(rol.roles_Id)" severity="danger" [raised]="true" [plain]="true"></p-button>
+                        <button pButton pRipple  label="Editar"   class="p-button-rounded p-button-success mr-2"  icon="pi pi-pencil" size="small" (click)="llenar(rol.roles_Id)"  [raised]="true" [plain]="true"></button>
+                        <button pButton pRipple  label="Detalles"  class="p-element p-ripple p-button-rounded p-button-info p-button p-component" icon="pi pi-ellipsis-h" size="small" (click)="detalles(rol.roles_Id)" severity="secondary" [raised]="true" [plain]="true"></button>
+                        <button pButton pRipple  label="Eliminar" class="p-button-rounded p-button-warning" icon="pi pi-trash" size="small" (click)="deleteSelectedProducts(rol.roles_Id)"  [raised]="true" [plain]="true"></button>
                     </td>
                 </tr>
             </ng-template>
