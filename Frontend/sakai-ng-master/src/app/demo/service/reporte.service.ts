@@ -8,52 +8,43 @@ import { ReporteEndPoints } from './api.service';
 })
 export class ReporteService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
   public endpoint = new ReporteEndPoints();
 
 
-  getStock(Sucur_Id: number){
-    return this.http.get<any>(this.endpoint.Stock(Sucur_Id)) 
-      .toPromise()  
+  getStock(Sucur_Id: number) {
+    return this.http.get<any>(this.endpoint.Stock(Sucur_Id))
+      .toPromise()
   }
 
-  getTodasStock(){
-    return this.http.get<any>(this.endpoint.TodasStock()) 
-      .toPromise()  
+  getTodasStock() {
+    return this.http.get<any>(this.endpoint.TodasStock())
+      .toPromise()
   }
 
-  Generarpdf(Sucur_Id: number) {
-    const url = this.endpoint.Generarpdf(Sucur_Id);
-    return this.http.get(url, { observe: 'response', responseType: 'blob' });
+  getProductos(Sucur_Id: number, inicio: string, fin: string) {
+    return this.http.get<any>(this.endpoint.Productos(Sucur_Id, inicio, fin))
+      .toPromise()
   }
 
-  Generarpdf2() {
-    const url = this.endpoint.Generarpdf2();
-    return this.http.get(url, { observe: 'response', responseType: 'blob' });
+  getTodasProductos(inicio: string, fin: string) {
+    return this.http.get<any>(this.endpoint.TodasProductos(inicio,fin))
+      .toPromise()
   }
 
-  PDFProductos(Sucur_Id: number, inicio:string, fin:string) {
-    const url = this.endpoint.PDFProductos(Sucur_Id,inicio,fin);
-    return this.http.get(url, { observe: 'response', responseType: 'blob' });
+  getVentas(Sucur_Id: number, inicio: string, fin: string) {
+    return this.http.get<any>(this.endpoint.Ventas(Sucur_Id, inicio, fin))
+      .toPromise()
   }
 
-  PDFProductos2(inicio:string, fin:string) {
-    const url = this.endpoint.PDFProductos2(inicio,fin);
-    return this.http.get(url, { observe: 'response', responseType: 'blob' });
+  getTodasVentas(inicio: string, fin: string) {
+    return this.http.get<any>(this.endpoint.TodasVentas(inicio,fin))
+      .toPromise()
   }
 
-  PDFVentas(Sucur_Id: number, inicio:string, fin:string) {
-    const url = this.endpoint.PDFVentas(Sucur_Id,inicio,fin);
-    return this.http.get(url, { observe: 'response', responseType: 'blob' });
-  }
-
-  PDFVentas2(inicio:string, fin:string) {
-    const url = this.endpoint.PDFVentas2(inicio,fin);
-    return this.http.get(url, { observe: 'response', responseType: 'blob' });
-  }
-
-  PDFClientes(inicio:string, fin:string) {
-    const url = this.endpoint.PDFClientes(inicio,fin);
-    return this.http.get(url, { observe: 'response', responseType: 'blob' });
+  
+  getClientes(inicio: string, fin: string) {
+    return this.http.get<any>(this.endpoint.Clientes(inicio,fin))
+      .toPromise()
   }
 }

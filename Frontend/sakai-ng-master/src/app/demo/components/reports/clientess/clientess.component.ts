@@ -4,10 +4,8 @@ import { Producto } from 'src/app/demo/models/ProductoViewModel';
 import { ReporteService } from 'src/app/demo/service/reporte.service';
 import { Subscription, debounceTime } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
-
-interface expandedRows {
-    [key: string]: boolean;
-}
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
     templateUrl: './clientess.component.html',
@@ -17,16 +15,12 @@ interface expandedRows {
 export class ClientessComponent implements OnInit {
 
     productos: Producto[] = [];
-
-    pdf='';
-    id: any;
     subscription: Subscription;
-   
     inicio:any;
     fin:any;
 
 
-    @ViewChild('filter') filter!: ElementRef;
+    @ViewChild('pdfViewer', { static: false }) pdfViewer!: ElementRef;
 
     constructor(private layoutService: LayoutService,private reporteService: ReporteService,
     private messageService: MessageService) { 
@@ -52,10 +46,8 @@ export class ClientessComponent implements OnInit {
       const nombre = localStorage.getItem('nombre');
 
       
-      this.reporteService.PDFClientes(formattedInicio, formattedFin).subscribe(res => {
-        let blob: Blob = res.body as Blob;
-        let url = window.URL.createObjectURL(blob);
-        this.pdf = url;
+      this.reporteService.getClientes(formattedInicio, formattedFin).then(res => {
+        
       });
    }
 

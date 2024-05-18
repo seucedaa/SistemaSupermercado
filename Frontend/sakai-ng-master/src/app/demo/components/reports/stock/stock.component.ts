@@ -27,7 +27,11 @@ export class StockComponent implements OnInit {
 
     onSucursalChange(sucur_Id: any) {
         this.sucursalid = sucur_Id.sucur_Id;
-        this.cambio();
+        if(this.sucursalid == 0){
+            this.todas();
+        }else{
+            this.cambio();
+        }   
     }
 
     todas() {
@@ -45,8 +49,17 @@ export class StockComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.sucursalService.getList().then(data => this.sucursales = data);
-
+        this.sucursalService.getList().then(data => {
+            this.sucursales = data;
+        
+            this.sucursales = this.sucursales.map((sucursal: any) => ({
+                sucur_Id: sucursal.sucur_Id,
+                sucur_Descripcion: sucursal.sucur_Descripcion,
+                sucursal_Titulo: `${sucursal.sucur_Id} - ${sucursal.sucur_Descripcion}` // Puedes personalizar el título según tus necesidades
+            }));
+        
+            this.sucursales.unshift({ sucur_Id: 0, sucur_Descripcion: 'Mostrar todas' });
+        });
         const usuarioJson = sessionStorage.getItem('usuario');
         const usuario = JSON.parse(usuarioJson);
         this.sucursa = usuario.sucur_Id;

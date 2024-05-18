@@ -44,29 +44,22 @@ export class ReporteEndPoints{
     return `${this.api.baseUrl}/Reporte/TodasStock`; 
   }
 
-  public Generarpdf(Sucur_Id: number):string{
-    return `${this.api.baseUrl}/Reporte/Generarpdf/${Sucur_Id}`;
-  }
-  public Generarpdf2():string{
-    return `${this.api.baseUrl}/Reporte/Generarpdf2`;
+  public Productos(Sucur_Id: number,inicio:string,fin:string):string{
+    return `${this.api.baseUrl}/Reporte/Productos/${Sucur_Id}/${inicio}/${fin}`; 
   }
 
-  public PDFProductos(Sucur_Id: number, inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFProductos/${Sucur_Id}/${inicio}/${fin}`;
+  public TodasProductos(inicio:string,fin:string):string{
+    return `${this.api.baseUrl}/Reporte/TodasProductos/${inicio}/${fin}`; 
   }
-  public PDFProductos2(inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFProductos2/${inicio}/${fin}`;
+  public Clientes(inicio:string,fin:string):string{
+    return `${this.api.baseUrl}/Reporte/Clientes/${inicio}/${fin}`; 
+  }
+  public Ventas(Sucur_Id: number,inicio:string,fin:string):string{
+    return `${this.api.baseUrl}/Reporte/Ventas/${Sucur_Id}/${inicio}/${fin}`; 
   }
 
-  public PDFClientes(inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFClientes/${inicio}/${fin}`;
-  }
-
-  public PDFVentas(Sucur_Id: number, inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFVentas/${Sucur_Id}/${inicio}/${fin}`;
-  }
-  public PDFVentas2(inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFVentas2/${inicio}/${fin}`;
+  public TodasVentas(inicio:string,fin:string):string{
+    return `${this.api.baseUrl}/Reporte/Ventas/${inicio}/${fin}`; 
   }
 }
 
