@@ -60,7 +60,7 @@ export class PvendidosComponent implements OnInit {
       const nombre = localStorage.getItem('nombre');
 
       
-      this.reporteService.PDFProductos(this.sucursalid,formattedInicio, formattedFin,nombre).subscribe(res => {
+      this.reporteService.PDFProductos(this.sucursalid,formattedInicio, formattedFin).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;
@@ -97,7 +97,7 @@ export class PvendidosComponent implements OnInit {
      const nombre = localStorage.getItem('nombre');
 
 
-        this.reporteService.PDFProductos(2, formattedInicio, formattedFin,nombre).subscribe(res => {
+        this.reporteService.PDFProductos(2, formattedInicio, formattedFin).subscribe(res => {
           let blob: Blob = res.body as Blob;
           let url = window.URL.createObjectURL(blob);
           this.pdf = url;
@@ -112,7 +112,7 @@ export class PvendidosComponent implements OnInit {
       formattedFin = this.formatDate(this.fin);
       const nombre = localStorage.getItem('nombre');
   
-      this.reporteService.PDFProductos2(formattedInicio, formattedFin,nombre).subscribe(res => {
+      this.reporteService.PDFProductos2(formattedInicio, formattedFin).subscribe(res => {
         let blob: Blob = res.body as Blob;
         let url = window.URL.createObjectURL(blob);
         this.pdf = url;
