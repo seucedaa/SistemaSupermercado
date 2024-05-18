@@ -1,11 +1,12 @@
 export class Cliente{
     clien_Id?:number;
-    clien_Dni?:String;
-    clien_PrimerNombre?:String;
-    clien_SegundoNombre?:String;
-    clien_PrimerApellido?:String;
-    clien_SegundoApellido?:String;
-    clien_Sexo?:String;
+    clien_Dni?:string;
+    clien_PrimerNombre?:string;
+    clien_SegundoNombre?:string;
+    clien_PrimerApellido?:string;
+    clien_SegundoApellido?:string;
+    clien_NombreCompleto?:string;
+    clien_Sexo?:string;
     sexo?:string;
     estad_Id?: number;
     clien_Telefono?: string;

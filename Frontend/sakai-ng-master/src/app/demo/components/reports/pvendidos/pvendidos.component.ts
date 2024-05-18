@@ -27,7 +27,7 @@ export class PvendidosComponent implements OnInit {
     sucursalid: any;
     inicio:any;
     fin:any;
-
+    sucursa:any;
 
     @ViewChild('pdfViewer', { static: false }) pdfViewer!: ElementRef;
 
@@ -59,7 +59,6 @@ export class PvendidosComponent implements OnInit {
 
       formattedInicio = this.formatDate(this.inicio);
       formattedFin = this.formatDate(this.fin);
-      const nombre = localStorage.getItem('nombre');
   
       this.reporteService.getTodasProductos(formattedInicio, formattedFin).then(data => {
         this.productos = data;
@@ -73,7 +72,6 @@ export class PvendidosComponent implements OnInit {
 
       formattedInicio = this.formatDate(this.inicio);
       formattedFin = this.formatDate(this.fin);
-      const nombre = localStorage.getItem('nombre');
 
       
       this.reporteService.getProductos(this.sucursalid,formattedInicio, formattedFin).then(data => {
@@ -117,7 +115,11 @@ export class PvendidosComponent implements OnInit {
         this.sucursales.unshift({ sucur_Id: 0, sucur_Descripcion: 'Mostrar todas' });
     });
 
-        this.reporteService.getProductos(2, formattedInicio, formattedFin).then(data => {
+    const usuarioJson = sessionStorage.getItem('usuario');
+        const usuario = JSON.parse(usuarioJson);
+        this.sucursa = usuario.sucur_Id;
+
+        this.reporteService.getProductos(this.sucursa, formattedInicio, formattedFin).then(data => {
           this.productos = data;
           this.generatePDF();
         });
@@ -182,13 +184,13 @@ export class PvendidosComponent implements OnInit {
       doc.text(ProductosSuma.toString(), pageWidth - 40, 130);
 
       autoTable(doc, {
-          head: [['Código', 'Descripción', 'Existencia', 'Precio Compra', 'Precio Venta', 'Categoría', 'Sub-Categoría']],
+          head: [['Código', 'Descripción', 'Precio Venta', 'Cantidad', 'Proveedor', 'Categoría', 'Sub-Categoría']],
           body: this.productos.map(producto => [
               producto.produ_Id,
               producto.produ_Descripcion,
-              producto.produ_Existencia,
-              producto.produ_PrecioCompra,
               producto.produ_PrecioVenta,
+              producto.cantidad,
+              producto.prove_Marca,
               producto.categ_Descripcion,
               producto.subca_Descripcion
           ]),

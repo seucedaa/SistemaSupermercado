@@ -18,6 +18,8 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Usuario_Login = "Acce.SP_Usuario_Login";
         public static string Usuario_ReestablecerContrasena = "Acce.SP_Usuario_ReestablecerContrasena";
         public static string Usuario_CambiarContrasena = "Acce.SP_Usuario_CambiarContrasena";
+        public static string Usuario_ObtenerCorreo = "[Acce].[SP_Usuario_ObtenerCorreo]";
+        public static string Usuario_InsertarCodigo = "[Acce].[SP_Usuarios_InsertarValidar]";
         #endregion
 
         #region Roles
