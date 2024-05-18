@@ -74,6 +74,62 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
+        public RequestStatus Reestablecer(string codigo, string contraseña)
+        {
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("Usua_VerificarCorreo", codigo);
+                parametro.Add("Usuar_Contrasena", contraseña);
+                parametro.Add("Usuar_UsuarioModificacion", 1);
+                parametro.Add("Usuar_FechaModificacion", DateTime.Now);
+
+                var result = db.Execute(ScriptBaseDeDatos.Usuario_ReestablecerContrasena,
+                    parametro,
+                     commandType: CommandType.StoredProcedure
+                    );
+
+                string mensaje = (result == 1) ? "Exito" : "Error";
+
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
+        }
+
+        public IEnumerable<tbUsuarios> obtenerCorreo(string? usuario)
+        {
+            string sql = ScriptBaseDeDatos.Usuario_ObtenerCorreo;
+            List<tbUsuarios> result = new List<tbUsuarios>();
+
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { Usuar_Usuario = usuario };
+                result = db.Query<tbUsuarios>(sql, parameters, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+
+            }
+        }
+
+
+        public RequestStatus InsertarCodigo(string usuario, string codigo)
+        {
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("Usuar_Usuario", usuario);
+                parametro.Add("Usua_ValidarCorreo", codigo);
+
+                var result = db.Execute(ScriptBaseDeDatos.Usuario_InsertarCodigo,
+                    parametro,
+                     commandType: CommandType.StoredProcedure
+                    );
+
+                string mensaje = (result == 1) ? "Exito" : "Error";
+
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
+        }
+
 
         public RequestStatus Eliminar(int? id)
         {

@@ -146,6 +146,60 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
 
+        public IEnumerable<tbUsuarios> obtenerCorreo(string usuario)
+        {
+            return _usuarioRepository.obtenerCorreo(usuario);
+        }
+
+        public ServiceResult Reestablecer(string codigo, string contraseña)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _usuarioRepository.Reestablecer(codigo, contraseña);
+
+                if (lost.CodeStatus > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
+                    return result.Error(lost);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        public ServiceResult InsertarCodigo(string usuario, string codigo)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _usuarioRepository.InsertarCodigo(usuario, codigo);
+
+                if (lost.CodeStatus > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de consulta" : lost.MessageStatus;
+                    return result.Error(lost);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
 
 
         public ServiceResult ElimUsua(int? id)
