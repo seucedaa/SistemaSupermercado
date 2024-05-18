@@ -17,8 +17,8 @@ export class UsuarioEndPoints{
     return `${this.api.baseUrl}/Usuario/List`;
   }
 
-  public Login(usuario: string, contrasena: string):string{
-    return `${this.api.baseUrl}/Usuario/Login/${usuario}/${contrasena}`; 
+  public Login(usuario: string, contrasena: string): string{
+    return `${this.api.baseUrl}/Usuario/Login/${usuario},${contrasena}`; 
   }
 
   // public getLoginUrl(usuario: string, contrasena: string): string {
