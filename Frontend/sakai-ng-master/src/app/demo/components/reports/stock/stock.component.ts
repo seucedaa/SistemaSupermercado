@@ -44,6 +44,7 @@ export class StockComponent implements OnInit {
     cambio() {
         this.reporteService.getStock(this.sucursalid).then(data => {
             this.productos = data;
+            console.log(this.sucursalid,this.productos);
             this.generatePDF();
         });
     }
