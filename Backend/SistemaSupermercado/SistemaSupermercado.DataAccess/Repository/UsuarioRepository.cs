@@ -15,15 +15,11 @@ namespace SistemaSupermercado.DataAccess.Repository
     {
         public IEnumerable<tbUsuarios> Login(string usuario, string contra)
         {
-
-
             List<tbUsuarios> result = new List<tbUsuarios>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Usuario = usuario, Contrasena = contra };
+                var parameters = new { Usuario = usuario, Contra = contra };
                 result = db.Query<tbUsuarios>(ScriptBaseDeDatos.Usuario_Login, parameters, commandType: CommandType.StoredProcedure).ToList();
-
-      
                 return result;
             }
         }

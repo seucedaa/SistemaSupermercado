@@ -44,7 +44,7 @@ export class ServiceService {
     );
   }
   getPantallasDeRol(idRoll: number): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(`${BASE_URL + 'API/PantallaporRol/PantdelRol/' + idRoll}`);
+    return this.http.get<ApiResponse>(`${BASE_URL + 'Api/PantallaporRol/PantdelRol/' + idRoll}`);
   }
   getFill(codigo: string): Observable<Fill> {
     return this.http.get<Fill>(`${BASE_URL + 'Api/Rol/Fill/' + codigo}`);

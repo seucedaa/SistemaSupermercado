@@ -23,7 +23,8 @@ namespace SistemaSupermercado.Common.Models
         public string Perso_NombreCompleto { get; set; }
         public bool Perso_Tipo { get; set; }
         public int Roles_Id { get; set; }
-
+        [NotMapped]
+        public int Sucur_Id { get; set; }
         [NotMapped]
         public string Roles_Descripcion { get; set; }
         [Display(Name = "Administrador")]
