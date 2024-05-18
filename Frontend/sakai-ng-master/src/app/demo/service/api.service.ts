@@ -59,7 +59,7 @@ export class ReporteEndPoints{
   }
 
   public TodasVentas(inicio:string,fin:string):string{
-    return `${this.api.baseUrl}/Reporte/Ventas/${inicio}/${fin}`; 
+    return `${this.api.baseUrl}/Reporte/TodasVentas/${inicio}/${fin}`; 
   }
 }
 

@@ -20,7 +20,6 @@ export class UsuarioService {
       .then(data => data);
   }
 
-  //-----------------------------esto lo inserto yordin 
 
 
   Login(usuario: string, contrasena: string): Observable<any> {
