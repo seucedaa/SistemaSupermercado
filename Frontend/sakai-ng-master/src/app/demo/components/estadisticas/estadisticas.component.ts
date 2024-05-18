@@ -158,17 +158,14 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.initCharts();
         this.sucursalService.getList().then(data => {
-            // Obtener la lista de sucursales y asignarla a la variable sucursales
             this.sucursales = data;
         
-            // Agregar un nuevo campo llamado sucursal_Titulo a cada objeto en el arreglo
             this.sucursales = this.sucursales.map((sucursal: any) => ({
                 sucur_Id: sucursal.sucur_Id,
                 sucur_Descripcion: sucursal.sucur_Descripcion,
                 sucursal_Titulo: `${sucursal.sucur_Id} - ${sucursal.sucur_Descripcion}` // Puedes personalizar el título según tus necesidades
             }));
         
-            // Agregar la opción "Mostrar todas" al inicio del arreglo
             this.sucursales.unshift({ sucur_Id: 0, sucur_Descripcion: 'Mostrar todas' });
         });
         

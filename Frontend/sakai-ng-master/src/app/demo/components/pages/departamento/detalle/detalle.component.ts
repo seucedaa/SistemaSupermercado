@@ -34,6 +34,7 @@ export class DetalleComponent implements OnInit {
             this.departamento = data;
             console.log(this.departamento);
         });
+        
         this.departamentoService.Details(id).then(data => {
             this.departamentoss.push(data);
         });

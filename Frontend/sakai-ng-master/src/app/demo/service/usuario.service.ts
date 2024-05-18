@@ -3,6 +3,7 @@ import { Usuario } from '../models/UsuarioViewModel';
 import { UsuarioEndPoints } from './api.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +20,16 @@ export class UsuarioService {
       .then(data => data);
   }
 
-  Login(usuario: string, contrasena: string){
-    return this.http.get<any>(this.endpoint.Login(usuario, contrasena))
-        .toPromise()
+  //-----------------------------esto lo inserto yordin 
+
+
+  Login(usuario: string, contrasena: string): Observable<any> {
+    return this.http.get<any>(this.endpoint.Login(usuario, contrasena));
   }
+  // login(usuario: string, contrasena: string): Promise<any> {
+  //   const url = this.endpoint.getLoginUrl(usuario, contrasena);
+  //   return this.http.get<any>(url).toPromise();
+  // }
 
   Recuperacion(usuario: string){
     return this.http.get<any>(this.endpoint.Recuperacion(usuario))

@@ -69,15 +69,13 @@ namespace SistemaSupermercado.API.Controllers
             return Ok(camp);
         }
 
-        [HttpGet("Login/{usuario}/{contrasena}")]
-        public IActionResult loginUsuario(string usuario, string contrasena)
+        [HttpGet("Login/{usuario},{contraseña}")]
+        public IActionResult loginUsuario(string usuario, string contraseña)
         {
-            var estado = _accesoservicios.LoginUsuario(usuario, contrasena);
-            return Ok(estado);
+            var estado = _accesoservicios.LoginUsuario(usuario, contraseña);
+            return Ok(estado.Data);
 
         }
-
-        
 
         [HttpGet("Detalle/{id}")]
         public IActionResult Detalle(int id)
