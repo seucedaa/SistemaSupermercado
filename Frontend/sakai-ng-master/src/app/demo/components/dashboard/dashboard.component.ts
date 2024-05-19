@@ -49,22 +49,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
         });
 
         const usuarioJson = sessionStorage.getItem('usuario');
-          const usuario = JSON.parse(usuarioJson);
-          const sucursalid = usuario.sucur_Id;
+        if (usuarioJson) {
+            const usuario = JSON.parse(usuarioJson);
+            const sucursalid = usuario.sucur_Id;
 
+            if (sucursalid) {
+                this.productoService.Principal(sucursalid).then(data => {
+                    this.productoss = data.data;
+                    this.chartLineChart();
+                }).catch(error => {
+                    console.error('Error fetching Principal products:', error);
+                });
 
-        this.productoService.Principal(sucursalid).then(data => {
-            this.productoss = data.data;
-            this.chartLineChart();
-        });
-
-        this.productoService.Top(sucursalid).then(data => {
-            this.productos = data.data;
-            console.log(this.productos);
-
-        });
-
-
+                this.productoService.Top(sucursalid).then(data => {
+                    this.productos = data.data;
+                    console.log(this.productos);
+                }).catch(error => {
+                    console.error('Error fetching Top products:', error);
+                });
+            } else {
+                console.error('Sucursal ID is undefined');
+            }
+        } else {
+            console.error('Usuario not found in sessionStorage');
+        }
     }
 
     chartLineChart() {

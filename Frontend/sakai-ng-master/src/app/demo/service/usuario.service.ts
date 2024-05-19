@@ -3,6 +3,7 @@ import { Usuario } from '../models/UsuarioViewModel';
 import { UsuarioEndPoints } from './api.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,10 @@ export class UsuarioService {
       .then(data => data);
   }
 
-  Login(usuario: string, contrasena: string){
-    return this.http.get<any>(this.endpoint.Login(usuario, contrasena))
-        .toPromise()
+
+
+  Login(usuario: string, contrasena: string): Observable<any> {
+    return this.http.get<any>(this.endpoint.Login(usuario, contrasena));
   }
 
   Recuperacion(usuario: string){

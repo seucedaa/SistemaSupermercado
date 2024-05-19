@@ -17,94 +17,115 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             _reporteRepository = reporteRepository;
         }
 
-        public IEnumerable<tbProductos> reporteStock(int Sucur_Id)
+        public ServiceResult Stock(int Sucur_Id)
         {
+            var result = new ServiceResult();
             try
             {
-                var productos = _reporteRepository.reporteStock(Sucur_Id);
-                return productos;
+                var lost = _reporteRepository.reporteStock(Sucur_Id);
+
+
+                return result.Ok(lost);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al generar el reporte de stock", ex);
+                return result.Error(ex.Message);
             }
         }
 
-        public IEnumerable<tbProductos> TodasStock()
+        public ServiceResult TodasStock()
         {
+            var result = new ServiceResult();
             try
             {
-                var productos = _reporteRepository.TodasStock();
-                return productos;
+                var lost = _reporteRepository.TodasStock();
+
+
+                return result.Ok(lost);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al generar el reporte de stock", ex);
-            }
-        }  
-        
-        public IEnumerable<tbProductos> PDFProductos(int Sucur_Id, string inicio, string fin)
-        {
-            try
-            {
-                var productos = _reporteRepository.PDFProductos(Sucur_Id, inicio, fin);
-                return productos;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al generar el reporte de stock", ex);
+                return result.Error(ex.Message);
             }
         }
 
-        public IEnumerable<tbProductos> PDFProductos2(string inicio, string fin)
+        public ServiceResult Productos(int Sucur_Id,string inicio,string fin)
         {
+            var result = new ServiceResult();
             try
             {
-                var productos = _reporteRepository.PDFProductos2(inicio, fin);
-                return productos;
+                var lost = _reporteRepository.Productos(Sucur_Id,inicio,fin);
+
+
+                return result.Ok(lost);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al generar el reporte de stock", ex);
+                return result.Error(ex.Message);
             }
         }
 
-        public IEnumerable<tbClientes> PDFClientes(string inicio, string fin)
+        public ServiceResult TodasProductos(string inicio,string fin)
         {
+            var result = new ServiceResult();
             try
             {
-                var productos = _reporteRepository.PDFClientes(inicio, fin);
-                return productos;
+                var lost = _reporteRepository.TodasProductos(inicio,fin);
+
+
+                return result.Ok(lost);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al generar el reporte de stock", ex);
+                return result.Error(ex.Message);
             }
         }
 
-        public IEnumerable<tbVentasEncabezado> PDFVentas(int sucursal, string inicio, string fin)
+        public ServiceResult Clientes(string inicio, string fin)
         {
+            var result = new ServiceResult();
             try
             {
-                var productos = _reporteRepository.PDFVentas(sucursal,inicio, fin);
-                return productos;
+                var lost = _reporteRepository.Clientes(inicio, fin);
+
+
+                return result.Ok(lost);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al generar el reporte de stock", ex);
+                return result.Error(ex.Message);
             }
-        } 
-        
-        public IEnumerable<tbVentasEncabezado> PDFVentas2(string inicio, string fin)
+        }
+
+        public ServiceResult Ventas(int sucursal, string inicio, string fin)
         {
+            var result = new ServiceResult();
             try
             {
-                var productos = _reporteRepository.PDFVentas2(inicio, fin);
-                return productos;
+                var lost = _reporteRepository.Ventas(sucursal, inicio, fin);
+
+
+                return result.Ok(lost);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al generar el reporte de stock", ex);
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult TodasVentas(string inicio, string fin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _reporteRepository.TodasVentas(inicio, fin);
+
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
             }
         }
 

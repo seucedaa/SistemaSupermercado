@@ -37,7 +37,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public IEnumerable<tbProductos> PDFProductos(int Sucur_Id, string inicio, string fin)
+        public IEnumerable<tbProductos> Productos(int Sucur_Id, string inicio, string fin)
         {
             List<tbProductos> result = new List<tbProductos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
@@ -48,7 +48,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
         
-        public IEnumerable<tbProductos> PDFProductos2(string inicio, string fin)
+        public IEnumerable<tbProductos> TodasProductos(string inicio, string fin)
         {
             List<tbProductos> result = new List<tbProductos>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
@@ -59,7 +59,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
         
-        public IEnumerable<tbClientes> PDFClientes(string inicio, string fin)
+        public IEnumerable<tbClientes> Clientes(string inicio, string fin)
         {
             List<tbClientes> result = new List<tbClientes>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
@@ -70,7 +70,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public IEnumerable<tbVentasEncabezado> PDFVentas(int sucursal, string inicio, string fin)
+        public IEnumerable<tbVentasEncabezado> Ventas(int sucursal, string inicio, string fin)
         {
             List<tbVentasEncabezado> result = new List<tbVentasEncabezado>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
@@ -81,7 +81,7 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         } 
         
-        public IEnumerable<tbVentasEncabezado> PDFVentas2(string inicio, string fin)
+        public IEnumerable<tbVentasEncabezado> TodasVentas(string inicio, string fin)
         {
             List<tbVentasEncabezado> result = new List<tbVentasEncabezado>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))

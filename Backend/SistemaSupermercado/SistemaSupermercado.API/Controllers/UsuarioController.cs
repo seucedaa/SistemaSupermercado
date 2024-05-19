@@ -69,15 +69,13 @@ namespace SistemaSupermercado.API.Controllers
             return Ok(camp);
         }
 
-        [HttpGet("Login/{usuario}/{contrasena}")]
-        public IActionResult loginUsuario(string usuario, string contrasena)
+        [HttpGet("Login/{usuario},{contraseña}")]
+        public IActionResult loginUsuario(string usuario, string contraseña)
         {
-            var estado = _accesoservicios.LoginUsuario(usuario, contrasena);
-            return Ok(estado);
+            var estado = _accesoservicios.LoginUsuario(usuario, contraseña);
+            return Ok(estado.Data);
 
         }
-
-        
 
         [HttpGet("Detalle/{id}")]
         public IActionResult Detalle(int id)
@@ -121,7 +119,40 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        
+
+        [HttpPut("Reestablecer/{codigo},{contrasena}")]
+        public IActionResult Reestablecer(string codigo, string contrasena)
+        {
+            var list = _accesoservicios.Reestablecer(codigo, contrasena);
+            return Ok(list);
+        }
+
+        [HttpGet("StartRecovery/{usuario}")]
+        public IActionResult StartRecovery(string usuario)
+        {
+            Random random = new Random();
+
+            string codigo = random.Next(10000, 100000).ToString();
+
+            var details = _accesoservicios.obtenerCorreo(usuario);
+
+            var detail = details.First();
+
+            string correo = detail.Usuar_Correo;
+
+            if (!string.IsNullOrEmpty(correo))
+            {
+                _accesoservicios.InsertarCodigo(usuario, codigo);
+                MailData mailData = new MailData();
+                mailData.EmailToId = correo;
+                mailData.EmailToName = "Correo de Reestablecimiento";
+                mailData.EmailSubject = "Codigo para reestablecer contraseña";
+                mailData.EmailBody = "Codigo " + codigo;
+                _mailService.SendMail(mailData);
+            }
+
+            return Ok(detail);
+        }
 
 
     }

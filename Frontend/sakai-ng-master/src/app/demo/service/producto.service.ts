@@ -30,6 +30,7 @@ export class ProductoService {
   Top(sucursal: number){
     return this.http.get<any>(this.endpoint.Top(sucursal))
         .toPromise()
+        
   }
   Ventas(sucursal: number, inicio: string, fin: string){
     return this.http.get<any>(this.endpoint.Ventas(sucursal, inicio,fin))

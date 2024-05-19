@@ -43,6 +43,7 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     sucursales: any[] = [];
 
     sucursalid: any;
+    prueba:any;
     inicio:any;
     fin:any;
 
@@ -73,13 +74,12 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     }
 
     onSucursalChange(sucur_Id: any) {
-        this.sucursalid = sucur_Id.sucur_Id;
-        if(this.sucursalid == 0){
+        this.prueba = sucur_Id.sucur_Id;
+        if(this.prueba == 0){
             this.mostrartodas();
         }else{
             this.updateData();
         }
-        console.log(this.sucursalid);
     }
     
     onFechaChange(type: string, event: any) {
@@ -103,23 +103,23 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
         this.chartDoughnutChart();
         this.chartLineChart();
     
-        this.categoriaService.CategoriaTotal(this.sucursalid, formattedInicio, formattedFin).then(data => {
+        this.categoriaService.CategoriaTotal(this.prueba, formattedInicio, formattedFin).then(data => {
             this.categorias = data.data;
             this.chartPieChart();
         });
     
-        this.subcategoriaService.SubcategoriaTotal(this.sucursalid, formattedInicio, formattedFin).then(data => {
+        this.subcategoriaService.SubcategoriaTotal(this.prueba, formattedInicio, formattedFin).then(data => {
             this.subcategorias = data.data;
             this.chartBarChart();
         });
     
-        this.productoService.Existencia(this.sucursalid).then(data => {
+        this.productoService.Existencia(this.prueba).then(data => {
             this.productos = data.data;
             console.log(this.productos);
             this.chartDoughnutChart();
         });
 
-        this.productoService.Ventas(this.sucursalid, formattedInicio, formattedFin).then(data => {
+        this.productoService.Ventas(this.prueba, formattedInicio, formattedFin).then(data => {
             this.productos = data.data;
             this.chartLineChart();
         });
@@ -158,17 +158,14 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.initCharts();
         this.sucursalService.getList().then(data => {
-            // Obtener la lista de sucursales y asignarla a la variable sucursales
             this.sucursales = data;
         
-            // Agregar un nuevo campo llamado sucursal_Titulo a cada objeto en el arreglo
             this.sucursales = this.sucursales.map((sucursal: any) => ({
                 sucur_Id: sucursal.sucur_Id,
                 sucur_Descripcion: sucursal.sucur_Descripcion,
-                sucursal_Titulo: `${sucursal.sucur_Id} - ${sucursal.sucur_Descripcion}` // Puedes personalizar el título según tus necesidades
+                sucursal_Titulo: `${sucursal.sucur_Id} - ${sucursal.sucur_Descripcion}`
             }));
         
-            // Agregar la opción "Mostrar todas" al inicio del arreglo
             this.sucursales.unshift({ sucur_Id: 0, sucur_Descripcion: 'Mostrar todas' });
         });
         
