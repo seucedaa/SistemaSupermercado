@@ -1,15 +1,13 @@
 <div class="card">
     <h3>Ventas</h3>
+    <div class="col-2">
+        
+    </div>
     <div class="grid p-fluid">
-        <div class="field col-12 md:col-2">
-            <button pButton type="button" label="Mostrar todas" (click)="todas()" icon="pi pi-chart-bar" class="p-element p-ripple p-button-raised p-button-success p-button p-component"></button>
-    
-        </div>
+        
         <div class="field col-12 md:col-4">
                 <span class="p-float-label">
                     <p-dropdown
-                    inputId="dropdown"
-                    [autoDisplayFirst]="false"
                     [options]="sucursales"
                     [(ngModel)]="sucursalid"
                     optionLabel="sucur_Descripcion"
@@ -18,7 +16,7 @@
                 <label for="dropdown">Sucursal</label>
             </span>
         </div>
-        <div class="field col-12 md:col-3">
+        <div class="field col-12 md:col-4">
             <span class="p-float-label">
                 <p-calendar
                     inputId="calendar"
@@ -28,7 +26,7 @@
                 <label for="calendar">Fecha Inicio</label>
             </span>
         </div>
-        <div class="field col-12 md:col-3">
+        <div class="field col-12 md:col-4">
             <span class="p-float-label">
                 <p-calendar
                     inputId="calendar"

@@ -14,8 +14,13 @@ export class ReporteService {
 
   getStock(Sucur_Id: number) {
     return this.http.get<any>(this.endpoint.Stock(Sucur_Id))
-      .toPromise()
-  }
+        .toPromise()
+        .then(response => response)
+        .catch(error => {
+            console.error('Error en getStock:', error);
+            throw error;
+        });
+}
 
   getTodasStock() {
     return this.http.get<any>(this.endpoint.TodasStock())
