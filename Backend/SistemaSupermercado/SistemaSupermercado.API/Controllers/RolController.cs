@@ -37,15 +37,15 @@ namespace SistemaSupermercado.Controllers
         //    return Ok(list);
         //}
 
-        //[HttpGet("Detalle/{id}")]
-        //public IActionResult Detalle(int id)
-        //{
-        //    var details = _serviciosAcceso.Detalles(id);
+       [HttpGet("Detalle/{id}")]
+       public IActionResult Detalle(int id)
+       {
+           var details = _serviciosAcceso.Detalles(id);
 
-        //    var detail = details.First();
-        //    return Ok(detail);
+           var detail = details.First();
+           return Ok(detail);
 
-        //}
+       }
 
 
 
