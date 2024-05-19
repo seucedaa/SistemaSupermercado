@@ -135,12 +135,26 @@ export class CartService {
       })
   }
 
-  getProdcutos(){
+  getProdcutos(): Promise<Cart[]> {
     return this.http
     .get<any>(this.URL_API + '/Cart/ListarLotes')
     .toPromise()
     .then((res) => res.data as Cart[])
-    .then((data) => data)
+    .then((data) => {
+      const product: Cart[] = []
+      data.forEach((element) => {
+        if(element.lotes_Cantidad == 0){
+          product.push({ ...element, status: 'outofstock', status_label: 'Agotado' ,contador: 1 });
+        }else if(element.lotes_Cantidad > 0 && element.lotes_Cantidad <= 10){
+          product.push({ ...element, status: 'lowstock', status_label: 'Casi agotado' ,contador: 1 });
+        }else if(element.lotes_Cantidad > 10){
+          product.push({ ...element, status: 'instock', status_label: 'Disponible' ,contador: 1 });
+        }else{
+          product.push({ ...element, contador: 1 });
+        }
+      })
+      return product
+    })
   }
 
   CrearFacturaEncabezado(model: Cart) {

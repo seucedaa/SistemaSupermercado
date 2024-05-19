@@ -21,4 +21,7 @@ export class Cart {
   nombre?: string
   tipos_Id?: number
   img?: string
+  status?: string
+  status_label?: string
+  contador?: number
 }
