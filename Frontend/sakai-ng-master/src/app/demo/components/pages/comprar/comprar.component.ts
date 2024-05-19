@@ -22,14 +22,15 @@ export class ComprarComponent {
   ) {}
   //? PROPIEDADES
   productos: Cart[] = []
+  filteredProductos: Cart[] = []
 
   alimentos: any[] = []
   limpieza: any[] = []
   bebidas: any[] = []
 
   sortOptions = [
-    { label: 'Producto ', value: 'produ_Descripcion' },
-    { label: 'Categoría ', value: 'categ_Descripcion' },
+    { label: 'Ordernar por Producto ', value: 'produ_Descripcion' },
+    { label: 'Ordenar por Categoría ', value: 'categ_Descripcion' },
   ];
   sortField: string = '';
   sortOrder: number = 0;
@@ -37,19 +38,31 @@ export class ComprarComponent {
   //?METODOS
   ngOnInit() {
     this.cartService.getProdcutos().then((data) => {
-      this.productos = data
-    })
+      this.productos = data;
+      this.filteredProductos = data; 
+    });
   }
 
-  agreagar(producto: Cart) {
-    this.cartService.agregarProducto(producto)
-    this.messageService.add({
-      severity: 'info',
-      summary: 'Info',
-      detail: 'se agrego al carrito .',
-      
-    })
+  agregar(producto: Cart) {
+    const cantidadActualEnCarrito = this.cartService.getCantidadProductoEnCarrito(producto.produ_Id);
+    const cantidadAAgregar = producto.contador;
+  
+    if (cantidadActualEnCarrito + cantidadAAgregar <= producto.lotes_Cantidad) {
+      this.cartService.agregarProducto(producto);
+      this.messageService.add({
+        severity: 'info',
+        summary: 'Info',
+        detail: 'Se agregó al carrito.',
+      });
+    } else {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Stock insuficiente',
+        detail: `No se pueden agregar más de ${producto.lotes_Cantidad} unidades en total.`,
+      });
+    }
   }
+  
 
   onSortChange(event: any) {
     const value = event.value;
@@ -63,32 +76,44 @@ export class ComprarComponent {
     this.sortProducts();
   }
 
-sortProducts() {
-  this.productos.sort((a, b) => {
-    let result = 0;
-    if (a[this.sortField] < b[this.sortField]) {
-      result = -1;
-    } else if (a[this.sortField] > b[this.sortField]) {
-      result = 1;
-    }
-    return result * this.sortOrder;
-  });
-}
+  sortProducts() {
+    this.filteredProductos.sort((a, b) => {
+      let result = 0;
+      if (a[this.sortField] < b[this.sortField]) {
+        result = -1;
+      } else if (a[this.sortField] > b[this.sortField]) {
+        result = 1;
+      }
+      return result * this.sortOrder;
+    });
+  }
 
-  aumentarContador( producto: Cart, index: number ) {
-    if(producto.lotes_Cantidad > producto.contador){
-      this.productos[index].contador += 1
+  aumentarContador(producto: Cart, index: number) {
+    const cantidadActualEnCarrito = this.cartService.getCantidadProductoEnCarrito(producto.produ_Id);
+  
+    if (producto.contador + cantidadActualEnCarrito < producto.lotes_Cantidad) {
+      this.filteredProductos[index].contador += 1;
+    } else {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Stock insuficiente',
+        detail: `Solo hay ${producto.lotes_Cantidad} unidades en stock.`,
+      });
+    }
+  }
+  
+
+  disminuirContador(producto: Cart, index: number) {
+    if (producto.contador > 0) {
+      this.filteredProductos[index].contador -= 1;
     }
   }
 
-  disminuirContador( producto: Cart, index: number ) {
-    
-    if(producto.contador > 0){
-      this.productos[index].contador -= 1}
+  onFilter(event: Event) {
+    const query = (event.target as HTMLInputElement).value.toLowerCase();
+    this.filteredProductos = this.productos.filter(product =>
+      product.produ_Descripcion.toLowerCase().includes(query) ||
+      String(product.produ_Id).includes(query)
+    );
   }
-
-
-  onFilter(dv: DataView, event: Event) {
-    dv.filter((event.target as HTMLInputElement).value);
-}
 }

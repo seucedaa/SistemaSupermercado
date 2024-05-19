@@ -12,28 +12,46 @@ export class CartService {
   constructor(private http: HttpClient) {}
   //? PROPIEDADES
   URL_API = 'http://www.proyectosupermercado.somee.com/API'
-  carrito: Cart[] = []
+  // carrito: Cart[] = []
 
   productos: Cart[] = []
   subtotal: number = 0
   total: number = 0
   //? METODOS
   agregarProducto(producto: Cart) {
-    console.log(producto)
-    this.productos.push(producto)
-    this.subtotal += producto.produ_PrecioVenta
-    this.total +=
-      producto.produ_PrecioVenta +
-      producto.produ_PrecioVenta * Number(producto.impue_Descripcion)
+    const existingProductIndex = this.productos.findIndex(p => p.produ_Id === producto.produ_Id);
+
+    if (existingProductIndex !== -1) {
+      this.productos[existingProductIndex].contador += producto.contador;
+    } else {
+      this.productos.push({ ...producto });
+    }
+
+    this.calcularTotales();
   }
 
-  eliminarProducto(producto: Producto, index: number) {
-    this.subtotal -= this.productos[index].produ_PrecioVenta
-    this.total -=
-      Number(this.productos[index].produ_PrecioVenta) +
-      this.productos[index].produ_PrecioVenta *
-        Number(this.productos[index].impue_Descripcion)
-    this.productos.splice(index, 1)
+  eliminarProducto(producto: Cart) {
+    const index = this.productos.findIndex(p => p.produ_Id === producto.produ_Id);
+    if (index !== -1) {
+      this.productos.splice(index, 1);
+    }
+    this.calcularTotales();
+  }
+
+  calcularTotales() {
+    this.subtotal = 0;
+    this.total = 0;
+    this.productos.forEach(producto => {
+      const productTotal = producto.produ_PrecioVenta * producto.contador;
+      const productTax = productTotal * Number(producto.impue_Descripcion);
+      this.subtotal += productTotal;
+      this.total += productTotal + productTax;
+    });
+  }
+  
+  getCantidadProductoEnCarrito(produ_Id: number): number {
+    const producto = this.productos.find(p => p.produ_Id === produ_Id);
+    return producto ? producto.contador : 0;
   }
 
   pagarProductos(): boolean {
@@ -49,10 +67,10 @@ export class CartService {
           produ_Descripcion: producto.produ_Descripcion,
           produ_PrecioVenta: producto.produ_PrecioVenta,
           categ_Id: producto.categ_Id,
-          vende_Cantidad: 1,//cantoidad
-          clien_Id: 2, //cliente
+          vende_Cantidad: 1,
+          clien_Id: 2, 
           sucur_Id: producto.sucur_Id,
-          tipos_Id: 5, //forma de pago
+          tipos_Id: 5, 
           lotes_Id: producto.lotes_Id,
         });
       } else {
@@ -143,14 +161,15 @@ export class CartService {
     .then((data) => {
       const product: Cart[] = []
       data.forEach((element) => {
+        const url = `assets/demo/images/product/${element.produ_Descripcion}.jpg`;
         if(element.lotes_Cantidad == 0){
-          product.push({ ...element, status: 'outofstock', status_label: 'Agotado' ,contador: 1 });
+          product.push({ ...element, status: 'outofstock', status_label: 'Agotado' ,contador: 1, img: url });
         }else if(element.lotes_Cantidad > 0 && element.lotes_Cantidad <= 10){
-          product.push({ ...element, status: 'lowstock', status_label: 'Casi agotado' ,contador: 1 });
+          product.push({ ...element, status: 'lowstock', status_label: 'Casi agotado' ,contador: 1, img: url });
         }else if(element.lotes_Cantidad > 10){
-          product.push({ ...element, status: 'instock', status_label: 'Disponible' ,contador: 1 });
+          product.push({ ...element, status: 'instock', status_label: 'Disponible' ,contador: 1, img: url });
         }else{
-          product.push({ ...element, contador: 1 });
+          product.push({ ...element, contador: 1, img: url });
         }
       })
       return product
