@@ -17,6 +17,9 @@ export class StockComponent implements OnInit {
     sucursales: Sucursal[] = [];
     sucursalid: any;
     sucursa: any;
+    sucursall:any;
+    prueba:any;
+
     @ViewChild('pdfViewer', { static: false }) pdfViewer!: ElementRef;
 
     constructor(
@@ -25,28 +28,50 @@ export class StockComponent implements OnInit {
         private messageService: MessageService
     ) { }
 
-    onSucursalChange(sucur_Id: any) {
-        this.sucursalid = sucur_Id.sucur_Id;
-        if(this.sucursalid == 0){
+    onSucursalChange(sucur: any) {
+        this.prueba = sucur.sucur_Id;
+        this.sucursall = sucur.sucur_Descripcion;
+        if (this.prueba == 0) {
             this.todas();
-        }else{
+        } else {
             this.cambio();
-        }   
+        }
     }
+    
 
     todas() {
-        this.reporteService.getTodasStock().then(data => {
-            this.productos = data;
-            this.generatePDF();
+        this.sucursall = 'Todas las sucursales';
+        this.reporteService.getTodasStock().then(response => {
+            if (response && response.success) {
+                this.productos = response.data;
+    
+                if (this.productos && this.productos.length > 0) {
+                    console.log('Productos:', this.productos);
+                    this.generatePDF();
+                } else {
+                    console.error('No hay productos disponibles para generar el PDF');
+                }
+            } else {
+                console.error('Error en la respuesta de la API:', response.message);
+            }
+        }).catch(error => {
+            console.error('Error al obtener todos los productos:', error);
         });
     }
 
     cambio() {
-        this.reporteService.getStock(this.sucursalid).then(data => {
-            this.productos = data;
-            console.log(this.sucursalid,this.productos);
-            this.generatePDF();
-        });
+        this.reporteService.getStock(this.prueba).then(response => {
+            if (response && response.success) {
+                this.productos = response.data;
+    
+                if (this.productos && this.productos.length > 0) {
+                    console.log('Productos:', this.productos);
+                    this.generatePDF();
+                } else {
+                    this.generatePDF();
+                }
+            } 
+        })
     }
 
     ngOnInit() {
@@ -60,18 +85,33 @@ export class StockComponent implements OnInit {
             }));
         
             this.sucursales.unshift({ sucur_Id: 0, sucur_Descripcion: 'Mostrar todas' });
-        });
-        
-        const usuarioJson = sessionStorage.getItem('usuario');
-        const usuario = JSON.parse(usuarioJson);
-        this.sucursa = usuario.sucur_Id;
+    
+            const usuarioJson = sessionStorage.getItem('usuario');
+            const usuario = JSON.parse(usuarioJson);
+            this.sucursa = usuario.sucur_Id;
 
-        this.reporteService.getStock(this.sucursa).then(data => {
-            this.productos = data;
-            this.generatePDF();
+            const sucursalUsuario = this.sucursales.find(s => s.sucur_Id === this.sucursa);
+            if (sucursalUsuario) {
+                this.sucursall = sucursalUsuario.sucur_Descripcion;
+            } 
+    
+            this.reporteService.getStock(this.sucursa).then(response => {
+                if (response && response.success) {
+                    this.productos = response.data;
+    
+                    if (this.productos && this.productos.length > 0) {
+                        console.log('Productos:', this.productos);
+                        this.generatePDF();
+                    } else {
+                        this.generatePDF();
+                    }
+                } 
+            });
+        }).catch(error => {
+            console.error('Error al obtener la lista de sucursales:', error);
         });
     }
-
+    
     generatePDF() {
         const doc = new jsPDF({
             orientation: 'portrait',
@@ -83,6 +123,11 @@ export class StockComponent implements OnInit {
         const imgWidth = 80;  
         const imgHeight = 80; 
         const totalProductos = this.productos.length;
+        const productosExistentes = this.productos.reduce((total, producto) => total + parseInt(producto.produ_Existencia), 0);
+
+        const usuarioJson = sessionStorage.getItem('usuario');
+        const usuario = JSON.parse(usuarioJson);
+        const persona = usuario.perso_NombreCompleto;
 
         const pageWidth = doc.internal.pageSize.getWidth();
         const pageHeight = doc.internal.pageSize.getHeight();
@@ -121,6 +166,16 @@ export class StockComponent implements OnInit {
         doc.setFont(undefined, 'bold');
         doc.text('Inventario de Productos',centerX, 100, { align: 'center' });
 
+        doc.setFontSize(11);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(64, 167, 46);
+        doc.text('Sucursal: ', 30, 180);
+        
+        doc.setFontSize(11);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        doc.text(`${this.sucursall}`, 70, 180);
+
         doc.setFontSize(12);
         doc.setFont(undefined, 'bold');
         doc.setTextColor(64, 167, 46);
@@ -129,6 +184,15 @@ export class StockComponent implements OnInit {
         doc.setFont(undefined, 'normal');
         doc.setTextColor(0, 0, 0);
         doc.text(totalProductos.toString(), pageWidth - 40, 130);
+
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(64, 167, 46);
+        doc.text('Productos Existentes', pageWidth - 120, 150);
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        doc.text(productosExistentes.toString(), pageWidth - 40, 160);
 
         autoTable(doc, {
             head: [['Código', 'Descripción', 'Existencia', 'Precio Compra', 'Precio Venta', 'Categoría', 'Sub-Categoría']],
@@ -141,7 +205,7 @@ export class StockComponent implements OnInit {
                 producto.categ_Descripcion,
                 producto.subca_Descripcion
             ]),
-            startY: 180,
+            startY: 190,
             styles: {
                 font: 'helvetica',
                 fontSize: 10,
@@ -160,7 +224,7 @@ export class StockComponent implements OnInit {
                 const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')} ${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}`;
 
                 doc.setFontSize(10);
-                doc.text(`Emitido por: `,data.settings.margin.left, pageHeight - 40);
+                doc.text(`Emitido por: ${persona}`,data.settings.margin.left, pageHeight - 40);
                 doc.text(`Fecha emitida: ${formattedDate}`, data.settings.margin.left, pageHeight - 30);
                 doc.text(`Página ${data.pageNumber}`, data.settings.margin.left, pageHeight - 20);
             }

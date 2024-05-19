@@ -1,11 +1,12 @@
 <p-toast ></p-toast>
 <div class="main-card mb-3 card"> 
     <div class="card-header">
-        <h3 class="card-title">Administracion de Roles</h3>
+        <h2 class="card-title"> Roles</h2>
     </div>
     <div class="card-body">
         <p-toolbar styleClass="mb-4">
-            <button (click)="collapse()" pButton pRipple class="p-button-success mr-2" icon="pi pi-plus" style="margin-bottom: 10px ;" [class.hidden]="!Agregar">Agregar</button>
+            <button (click)="collapse()" pButton pRipple class="p-button-success mr-2" icon="pi pi-plus" style="margin-bottom: 10px ;" [class.hidden]="!Agregar">Nuevo</button>
+        
         </p-toolbar>
 
         <div [class.hidden]="!Collapse" style="margin-top: 20px;">
@@ -47,12 +48,6 @@
                 <tr>
                     <th style="min-width: 12rem">
                         <div class="flex justify-content-between align-items-center">
-                            ID
-                            <p-columnFilter type="text" field="roles_Id" display="menu" placeholder="Search by name"></p-columnFilter>
-                        </div>
-                    </th>
-                    <th style="min-width: 12rem">
-                        <div class="flex justify-content-between align-items-center">
                             Rol
                             <p-columnFilter type="text" field="roles_Descripcion" display="menu" placeholder="Search by country"></p-columnFilter>
                         </div>
@@ -68,9 +63,6 @@
             </ng-template>
             <ng-template pTemplate="body" let-rol>
                 <tr>
-                    <td>
-                        {{rol.roles_Id}}
-                    </td>
                     <td>
                         {{rol.roles_Descripcion}}
                     </td>

@@ -28,6 +28,11 @@ export class PvendidosComponent implements OnInit {
     inicio:any;
     fin:any;
     sucursa:any;
+    prueba:any;
+
+    sucursall:any;
+    formattedInicio:any;
+    formattedFin:any;
 
     @ViewChild('pdfViewer', { static: false }) pdfViewer!: ElementRef;
 
@@ -45,8 +50,11 @@ export class PvendidosComponent implements OnInit {
      this.fin = today;}
 
      onSucursalChange(sucur_Id: any) {
-      this.sucursalid = sucur_Id.sucur_Id;
-      if(this.sucursalid == 0){
+      this.prueba = sucur_Id.sucur_Id;
+      this.sucursall = sucur_Id.sucur_Descripcion;
+      console.log(this.sucursalid);
+
+      if(this.prueba == 0){
           this.todas();
       }else{
           this.cambio();
@@ -54,30 +62,47 @@ export class PvendidosComponent implements OnInit {
   }
 
     todas(){
-      let formattedInicio = null;
-      let formattedFin = null;
+        this.sucursall = 'Todas las sucursales';
 
-      formattedInicio = this.formatDate(this.inicio);
-      formattedFin = this.formatDate(this.fin);
+      this.formattedInicio = this.formatDate(this.inicio);
+      this.formattedFin = this.formatDate(this.fin);
   
-      this.reporteService.getTodasProductos(formattedInicio, formattedFin).then(data => {
-        this.productos = data;
-        this.generatePDF();
-      });
+      this.reporteService.getTodasProductos(this.formattedInicio,this.formattedFin).then(response => {
+        if (response && response.success) {
+            this.productos = response.data;
+
+            if (this.productos && this.productos.length > 0) {
+                console.log('Productos:', this.productos);
+                this.generatePDF();
+            } else {
+              this.generatePDF();
+            }
+        } else {
+            console.error('Error en la respuesta de la API:', response.message);
+        }
+    }).catch(error => {
+        console.error('Error al obtener todos los productos:', error);
+    });
     }
 
     cambio(){
-      let formattedInicio = null;
-      let formattedFin = null;
 
-      formattedInicio = this.formatDate(this.inicio);
-      formattedFin = this.formatDate(this.fin);
+        this.formattedInicio = this.formatDate(this.inicio);
+        this.formattedFin = this.formatDate(this.fin);
 
       
-      this.reporteService.getProductos(this.sucursalid,formattedInicio, formattedFin).then(data => {
-        this.productos = data;
-        this.generatePDF();
-      });
+      this.reporteService.getProductos(this.prueba,this.formattedInicio,this.formattedFin).then(response => {
+        if (response && response.success) {
+            this.productos = response.data;
+
+            if (this.productos && this.productos.length > 0) {
+                console.log('Productos:', this.productos);
+                this.generatePDF();
+            } else {
+              this.generatePDF();
+            }
+        } 
+    })
    }
 
     formatDate(date: Date): string {
@@ -97,32 +122,45 @@ export class PvendidosComponent implements OnInit {
   }
 
      ngOnInit(){
-      let formattedInicio = null;
-      let formattedFin = null;
-
-      formattedInicio = this.formatDate(this.inicio);
-      formattedFin = this.formatDate(this.fin);
+        this.formattedInicio = this.formatDate(this.inicio);
+        this.formattedFin = this.formatDate(this.fin);
 
       this.sucursalService.getList().then(data => {
         this.sucursales = data;
-    
+        
         this.sucursales = this.sucursales.map((sucursal: any) => ({
             sucur_Id: sucursal.sucur_Id,
             sucur_Descripcion: sucursal.sucur_Descripcion,
-            sucursal_Titulo: `${sucursal.sucur_Id} - ${sucursal.sucur_Descripcion}` // Puedes personalizar el título según tus necesidades
+            sucursal_Titulo: `${sucursal.sucur_Id} - ${sucursal.sucur_Descripcion}` 
         }));
     
         this.sucursales.unshift({ sucur_Id: 0, sucur_Descripcion: 'Mostrar todas' });
-    });
 
-    const usuarioJson = sessionStorage.getItem('usuario');
+        const usuarioJson = sessionStorage.getItem('usuario');
         const usuario = JSON.parse(usuarioJson);
         this.sucursa = usuario.sucur_Id;
 
-        this.reporteService.getProductos(this.sucursa, formattedInicio, formattedFin).then(data => {
-          this.productos = data;
-          this.generatePDF();
-        });
+        const sucursalUsuario = this.sucursales.find(s => s.sucur_Id === this.sucursa);
+        if (sucursalUsuario) {
+            this.sucursall = sucursalUsuario.sucur_Descripcion;
+        } 
+
+        this.reporteService.getProductos(this.sucursa,this.formattedInicio,this.formattedFin).then(response => {
+          if (response && response.success) {
+              this.productos = response.data;
+  
+              if (this.productos && this.productos.length > 0) {
+                  console.log('Productos:', this.productos);
+                  this.generatePDF();
+              } else {
+                this.generatePDF();
+
+              }
+          } 
+      })
+    });
+
+   
     }
 
     generatePDF() {
@@ -135,7 +173,10 @@ export class PvendidosComponent implements OnInit {
       const logoURL = 'assets/layout/images/lacolonia/manzana.png';  
       const imgWidth = 80;  
       const imgHeight = 80; 
-      const ProductosSuma = this.productos.length;
+      const productosVendidos = this.productos.reduce((total, producto) => total + parseInt(producto.cantidad), 0);
+      const usuarioJson = sessionStorage.getItem('usuario');
+      const usuario = JSON.parse(usuarioJson);
+      const persona = usuario.perso_NombreCompleto;
 
       const pageWidth = doc.internal.pageSize.getWidth();
       const pageHeight = doc.internal.pageSize.getHeight();
@@ -174,14 +215,54 @@ export class PvendidosComponent implements OnInit {
       doc.setFont(undefined, 'bold');
       doc.text('Ventas de Productos',centerX, 100, { align: 'center' });
 
-      doc.setFontSize(12);
-      doc.setFont(undefined, 'bold');
-      doc.setTextColor(64, 167, 46);
-      doc.text('Total Productos Vendidos', pageWidth - 100, 120);
-      doc.setFontSize(12);
-      doc.setFont(undefined, 'normal');
-      doc.setTextColor(0, 0, 0);
-      doc.text(ProductosSuma.toString(), pageWidth - 40, 130);
+      doc.setFontSize(11);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(64, 167, 46);
+        doc.text('Sucursal: ', 30, 170);
+        
+        doc.setFontSize(11);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        doc.text(`${this.sucursall}`, 70, 170);
+
+        doc.setFontSize(11);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(64, 167, 46);
+        doc.text('Fechas: ', 30, 180);
+        
+        doc.setFontSize(11);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        doc.text(`${this.formattedInicio} - ${this.formattedFin}`, 70, 180);
+
+
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(64, 167, 46);
+        doc.text('Productos Vendidos', pageWidth - 120, 120);
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        doc.text(productosVendidos.toString(), pageWidth - 40, 130);
+
+      let proveedor = 'No hay productos';
+    if (this.productos.length > 0) {
+        const proveedorCount = this.productos.reduce((acc, producto) => {
+            acc[producto.prove_Marca] = (acc[producto.prove_Marca] || 0) + 1;
+            return acc;
+        }, {});
+
+        proveedor = Object.keys(proveedorCount).reduce((a, b) => proveedorCount[a] > proveedorCount[b] ? a : b);
+    }
+
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(64, 167, 46);
+        doc.text('Proveedor mas Vendido', pageWidth - 133, 150);
+        doc.setFontSize(12);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        doc.text(proveedor.toString(), pageWidth - 100, 160);
 
       autoTable(doc, {
           head: [['Código', 'Descripción', 'Precio Venta', 'Cantidad', 'Proveedor', 'Categoría', 'Sub-Categoría']],
@@ -194,7 +275,7 @@ export class PvendidosComponent implements OnInit {
               producto.categ_Descripcion,
               producto.subca_Descripcion
           ]),
-          startY: 180,
+          startY: 190,
           styles: {
               font: 'helvetica',
               fontSize: 10,
@@ -213,7 +294,7 @@ export class PvendidosComponent implements OnInit {
               const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')} ${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}`;
 
               doc.setFontSize(10);
-              doc.text(`Emitido por: `,data.settings.margin.left, pageHeight - 40);
+              doc.text(`Emitido por: ${persona}`,data.settings.margin.left, pageHeight - 40);
               doc.text(`Fecha emitida: ${formattedDate}`, data.settings.margin.left, pageHeight - 30);
               doc.text(`Página ${data.pageNumber}`, data.settings.margin.left, pageHeight - 20);
           }

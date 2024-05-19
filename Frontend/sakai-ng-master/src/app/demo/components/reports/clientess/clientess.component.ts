@@ -19,6 +19,10 @@ export class ClientessComponent implements OnInit {
     subscription: Subscription;
     inicio:any;
     fin:any;
+    sucursall:any;
+    formattedInicio:any;
+    formattedFin:any;
+    prueba:any;
 
 
     @ViewChild('pdfViewer', { static: false }) pdfViewer!: ElementRef;
@@ -39,17 +43,19 @@ export class ClientessComponent implements OnInit {
       
 
     cambio(){
-      let formattedInicio = null;
-      let formattedFin = null;
-
-      formattedInicio = this.formatDate(this.inicio);
-      formattedFin = this.formatDate(this.fin);
+      this.formattedInicio = this.formatDate(this.inicio);
+      this.formattedFin = this.formatDate(this.fin);
 
       
-      this.reporteService.getClientes(formattedInicio, formattedFin).then(data => {
-        this.clientes = data;
-        this.generatePDF();
-      });
+      this.reporteService.getClientes(this.formattedInicio, this.formattedFin).then(response => {
+        if (response && response.success) {
+            this.clientes = response.data;
+
+            if (this.clientes && this.clientes.length > 0) {
+                this.generatePDF();
+            } 
+        } 
+    })
    }
 
     formatDate(date: Date): string {
@@ -69,25 +75,21 @@ export class ClientessComponent implements OnInit {
   }
 
      ngOnInit(){
-      let formattedInicio = null;
-      let formattedFin = null;
-      // const usuarioJson = sessionStorage.getItem('usuario');
-          // const usuario = JSON.parse(usuarioJson);
-          // const sucursalid = usuario.sucur_Id;
+      this.formattedInicio = this.formatDate(this.inicio);
+      this.formattedFin = this.formatDate(this.fin);
 
-      formattedInicio = this.formatDate(this.inicio);
-      formattedFin = this.formatDate(this.fin);
-
-        this.reporteService.getClientes(formattedInicio, formattedFin).then(data => {
-          this.clientes = data;
-          this.generatePDF();
-        });
+         this.reporteService.getClientes(this.formattedInicio, this.formattedFin).then(response => {
+            if (response && response.success) {
+                this.clientes = response.data;
+    
+                if (this.clientes && this.clientes.length > 0) {
+                    this.generatePDF();
+                } 
+            } 
+        })
     }
 
     todas(){
-      let formattedInicio = null;
-      let formattedFin = null;
-
       this.subscription = this.layoutService.configUpdate$
       .pipe(debounceTime(25))
       .subscribe((config) => {
@@ -99,13 +101,18 @@ export class ClientessComponent implements OnInit {
    this.inicio = firstDayOfMonth;
    this.fin = today;
 
-      formattedInicio = this.formatDate(this.inicio);
-      formattedFin = this.formatDate(this.fin);
+   this.formattedInicio = this.formatDate(this.inicio);
+   this.formattedFin = this.formatDate(this.fin);
   
-      this.reporteService.getClientes(formattedInicio, formattedFin).then(data => {
-        this.clientes = data;
-        this.generatePDF();
-      });
+      this.reporteService.getClientes(this.formattedInicio,this.formattedFin).then(response => {
+        if (response && response.success) {
+            this.clientes = response.data;
+
+            if (this.clientes && this.clientes.length > 0) {
+                this.generatePDF();
+            }
+        } 
+    })
     }
 
     generatePDF() {
@@ -119,6 +126,10 @@ export class ClientessComponent implements OnInit {
       const imgWidth = 80;  
       const imgHeight = 80; 
       const totalclientes = this.clientes.length;
+
+      const usuarioJson = sessionStorage.getItem('usuario');
+      const usuario = JSON.parse(usuarioJson);
+      const persona = usuario.perso_NombreCompleto;
 
       const pageWidth = doc.internal.pageSize.getWidth();
       const pageHeight = doc.internal.pageSize.getHeight();
@@ -157,6 +168,16 @@ export class ClientessComponent implements OnInit {
       doc.setFont(undefined, 'bold');
       doc.text('Clientes',centerX, 100, { align: 'center' });
 
+      doc.setFontSize(11);
+        doc.setFont(undefined, 'bold');
+        doc.setTextColor(64, 167, 46);
+        doc.text('Fechas: ', 30, 170);
+        
+        doc.setFontSize(11);
+        doc.setFont(undefined, 'normal');
+        doc.setTextColor(0, 0, 0);
+        doc.text(`${this.formattedInicio} - ${this.formattedFin}`, 70, 170);
+
       doc.setFontSize(12);
       doc.setFont(undefined, 'bold');
       doc.setTextColor(64, 167, 46);
@@ -167,14 +188,13 @@ export class ClientessComponent implements OnInit {
       doc.text(totalclientes.toString(), pageWidth - 40, 130);
 
       autoTable(doc, {
-          head: [['Código', 'Descripción', 'Existencia', 'Precio Compra', 'Precio Venta', 'Categoría', 'Sub-Categoría']],
+          head: [['Identidad', 'Cliente', 'Telefono', 'Estado Civil', 'Sexo', 'Direccion']],
           body: this.clientes.map(cliente => [
               cliente.clien_Dni,
               cliente.clien_NombreCompleto,
               cliente.clien_Telefono,
               cliente.estad_Descripcion,
               cliente.clien_Sexo,
-              cliente.estad_Descripcion,
               cliente.clien_Direccion
           ]),
           startY: 180,
@@ -196,7 +216,7 @@ export class ClientessComponent implements OnInit {
               const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')} ${currentDate.getHours().toString().padStart(2, '0')}:${currentDate.getMinutes().toString().padStart(2, '0')}`;
 
               doc.setFontSize(10);
-              doc.text(`Emitido por: `,data.settings.margin.left, pageHeight - 40);
+              doc.text(`Emitido por: ${persona}`,data.settings.margin.left, pageHeight - 40);
               doc.text(`Fecha emitida: ${formattedDate}`, data.settings.margin.left, pageHeight - 30);
               doc.text(`Página ${data.pageNumber}`, data.settings.margin.left, pageHeight - 20);
           }

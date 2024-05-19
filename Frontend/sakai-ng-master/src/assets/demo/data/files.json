@@ -9,29 +9,29 @@
                 "key": "100",
                 "label": "Acceso",
                 "data": "Work Folder",
-                "icon": "pi pi-fw pi-cog",
-                "children": [{ "key": "4", "label": "Usuarios", "icon": "pi pi-fw pi-file" }, { "key": "3", "label": "Roles", "icon": "pi pi-fw pi-file"}]
+                "icon": "pi pi-fw pi-user",
+                "children": [{ "key": "4", "label": "Usuarios", "icon": "pi pi-fw pi-user" }, { "key": "3", "label": "Roles", "icon": "pi pi-fw pi-cog"}]
             },
             {
                 "key": "101",
                 "label": "General",
                 "data": "Work Folder",
-                "icon": "pi pi-fw pi-cog",
-                "children": [{ "key": "5", "label": "Cargos", "icon": "pi pi-fw pi-file" }, { "key": "6", "label": "Categorias", "icon": "pi pi-fw pi-file" },{ "key": "7", "label": "Departamentos", "icon": "pi pi-fw pi-file" },{ "key": "8", "label": "Estados Civiles", "icon": "pi pi-fw pi-file" },{ "key": "9", "label": "Impuestos", "icon": "pi pi-fw pi-file" },{ "key": "10", "label": "Municipios", "icon": "pi pi-fw pi-file" },{ "key": "11", "label": "Subcategorias", "icon": "pi pi-fw pi-file" }]
+                "icon": "pi pi-fw pi-globe",
+                "children": [{ "key": "5", "label": "Cargos", "icon": "pi pi-fw pi-briefcase" }, { "key": "6", "label": "Categorias", "icon": "pi pi-fw pi-sitemap" },{ "key": "7", "label": "Departamentos", "icon": "pi pi-fw pi-map-marker" },{ "key": "8", "label": "Estados Civiles", "icon": "pi pi-fw pi-heart" },{ "key": "9", "label": "Impuestos", "icon": "pi pi-fw pi-money-bill" },{ "key": "10", "label": "Municipios", "icon": "pi pi-fw pi-building" },{ "key": "11", "label": "Subcategorias", "icon": "pi pi-fw pi-th-large" }]
             },
             {
                 "key": "102",
                 "label": "Supermercado",
                 "data": "Work Folder",
-                "icon": "pi pi-fw pi-cog",
-                "children": [{ "key": "12", "label": "Empleados", "icon": "pi pi-fw pi-file" }, { "key": "13", "label": "Lotes", "icon": "pi pi-fw pi-file" }, { "key": "14", "label": "Productos", "icon": "pi pi-fw pi-file" }, { "key": "15", "label": "Promociones", "icon": "pi pi-fw pi-file" },{ "key": "16", "label": "Proveedores", "icon": "pi pi-fw pi-file" }, { "key": "17", "label": "Sucursales", "icon": "pi pi-fw pi-file" }]
+                "icon": "pi pi-fw pi-shopping-cart",
+                "children": [{ "key": "12", "label": "Empleados", "icon": "pi pi-fw pi-users" }, { "key": "13", "label": "Lotes", "icon": "pi pi-fw pi-inbox" }, { "key": "14", "label": "Productos", "icon": "pi pi-fw pi-shopping-bag" }, { "key": "15", "label": "Promociones", "icon": "pi pi-fw pi-percentage" },{ "key": "16", "label": "Proveedores", "icon": "pi pi-fw pi-truck" }, { "key": "17", "label": "Sucursales", "icon": "pi pi-fw pi-home" }]
             },
             {
                 "key": "103",
                 "label": "Ventas",
                 "data": "Work Folder",
-                "icon": "pi pi-fw pi-cog",
-                "children": [{ "key": "18", "label": "Ventas", "icon": "pi pi-fw pi-file" },{"key":"19", "label":"Clientes","icon":"pi pi-fw pi-cog"}]
+                "icon": "pi pi-fw pi-dollar",
+                "children": [{ "key": "18", "label": "Ventas", "icon": "pi pi-fw pi-dollar" },{"key":"19", "label":"Clientes","icon":"pi pi-fw pi-user-plus"}]
             }
         ]
         }

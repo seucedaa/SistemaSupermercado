@@ -25,8 +25,12 @@ export class VentasComponent implements OnInit {
     sucursa: any;
     sucursales: Sucursal[] = [];
     sucursalid: any;
+    sucursall:any;
+    formattedInicio:any;
+    formattedFin:any;
     inicio:any;
     fin:any;
+    prueba:any;
 
 
     @ViewChild('pdfViewer', { static: false }) pdfViewer!: ElementRef;
@@ -45,8 +49,10 @@ export class VentasComponent implements OnInit {
      this.fin = today;}
 
       onSucursalChange(sucur_Id: any) {
-        this.sucursalid = sucur_Id.sucur_Id;
-        if(this.sucursalid == 0){
+        this.prueba = sucur_Id.sucur_Id;
+        this.sucursall = sucur_Id.sucur_Descripcion;
+
+        if(this.prueba == 0){
             this.todas();
         }else{
             this.cambio();
@@ -55,14 +61,21 @@ export class VentasComponent implements OnInit {
 
     cambio(){
 
-      let formattedInicio = this.formatDate(this.inicio);
-      let formattedFin = this.formatDate(this.fin);
+        this.formattedInicio = this.formatDate(this.inicio);
+        this.formattedFin = this.formatDate(this.fin);
 
       
-      this.reporteService.getVentas(this.sucursalid,formattedInicio, formattedFin).then(data => {
-        this.ventas = data;
-        this.generatePDF();
-      });
+      this.reporteService.getVentas(this.prueba,this.formattedInicio,this.formattedFin).then(response => {
+        if (response && response.success) {
+            this.ventas = response.data;
+
+            if (this.ventas && this.ventas.length > 0) {
+                this.generatePDF();
+            } else {
+                this.generatePDF();
+            }
+        } 
+    })
    }
 
     formatDate(date: Date): string {
@@ -82,11 +95,8 @@ export class VentasComponent implements OnInit {
   }
 
      ngOnInit(){
-      let formattedInicio = null;
-      let formattedFin = null;
-
-      formattedInicio = this.formatDate(this.inicio);
-      formattedFin = this.formatDate(this.fin);
+        this.formattedInicio = this.formatDate(this.inicio);
+        this.formattedFin = this.formatDate(this.fin);
 
       this.sucursalService.getList().then(data => {
         this.sucursales = data;
@@ -98,28 +108,54 @@ export class VentasComponent implements OnInit {
         }));
     
         this.sucursales.unshift({ sucur_Id: 0, sucur_Descripcion: 'Mostrar todas' });
-    });
 
-    const usuarioJson = sessionStorage.getItem('usuario');
+        const usuarioJson = sessionStorage.getItem('usuario');
         const usuario = JSON.parse(usuarioJson);
         this.sucursa = usuario.sucur_Id;
 
-        this.reporteService.getVentas(this.sucursa, formattedInicio, formattedFin).then(data => {
-          this.ventas = data;
-          this.generatePDF();
-        });
+        const sucursalUsuario = this.sucursales.find(s => s.sucur_Id === this.sucursa);
+        if (sucursalUsuario) {
+            this.sucursall = sucursalUsuario.sucur_Descripcion;
+        } 
+
+        this.reporteService.getVentas(this.sucursa,this.formattedInicio,this.formattedFin).then(response => {
+            if (response && response.success) {
+                this.ventas = response.data;
+    
+                if (this.ventas && this.ventas.length > 0) {
+                    this.generatePDF();
+                } else {
+                    this.generatePDF();
+                }
+            } 
+        })
+    });
+
     }
 
-    todas(){
-      let formattedInicio = null;
-      let formattedFin = null;
+    
 
-      formattedInicio = this.formatDate(this.inicio);
-      formattedFin = this.formatDate(this.fin);
+    todas(){
+
+        this.sucursall = 'Todas las sucursales';
+
+        this.formattedInicio = this.formatDate(this.inicio);
+        this.formattedFin = this.formatDate(this.fin);
   
-      this.reporteService.getTodasVentas(formattedInicio,formattedFin).then(data => {
-        this.ventas = data;
-        this.generatePDF();
+      this.reporteService.getTodasVentas(this.formattedInicio,this.formattedFin).then(response => {
+        if (response && response.success) {
+            this.ventas = response.data;
+
+            if (this.ventas && this.ventas.length > 0) {
+                this.generatePDF();
+            } else {
+                this.generatePDF();
+            }
+        } else {
+            console.error('Error en la respuesta de la API:', response.message);
+        }
+    }).catch(error => {
+        console.error('Error al obtener todos los productos:', error);
     });
      
     }
@@ -177,24 +213,44 @@ export class VentasComponent implements OnInit {
       doc.setFont(undefined, 'bold');
       doc.text('Ventas',centerX, 100, { align: 'center' });
 
+      doc.setFontSize(11);
+      doc.setFont(undefined, 'bold');
+      doc.setTextColor(64, 167, 46);
+      doc.text('Sucursal: ', 30, 170);
+      
+      doc.setFontSize(11);
+      doc.setFont(undefined, 'normal');
+      doc.setTextColor(0, 0, 0);
+      doc.text(`${this.sucursall}`, 70, 170);
+
+      doc.setFontSize(11);
+      doc.setFont(undefined, 'bold');
+      doc.setTextColor(64, 167, 46);
+      doc.text('Fechas: ', 30, 180);
+      
+      doc.setFontSize(11);
+      doc.setFont(undefined, 'normal');
+      doc.setTextColor(0, 0, 0);
+      doc.text(`${this.formattedInicio} - ${this.formattedFin}`, 70, 180);
+
       doc.setFontSize(12);
       doc.setFont(undefined, 'bold');
       doc.setTextColor(64, 167, 46);
-      doc.text('Total Ventas', pageWidth - 100, 120);
+      doc.text('Total Ventas', pageWidth -84, 120);
       doc.setFontSize(12);
       doc.setFont(undefined, 'normal');
       doc.setTextColor(0, 0, 0);
       doc.text(totalVentas.toString(), pageWidth - 40, 130);
 
       autoTable(doc, {
-          head: [['Código', 'Persona', 'Tipo', 'Venta Fecha']],
+          head: [['No.', 'Persona', 'Tipo', 'Venta Fecha']],
           body: this.ventas.map(venta => [
               venta.venen_Id,
               venta.persona,
               venta.tipo,
               venta.venen_FechaCreacion
           ]),
-          startY: 180,
+          startY: 190,
           styles: {
               font: 'helvetica',
               fontSize: 10,
