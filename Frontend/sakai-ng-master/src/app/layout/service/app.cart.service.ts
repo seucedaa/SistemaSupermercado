@@ -12,13 +12,12 @@ export class CartService {
   constructor(private http: HttpClient) {}
   //? PROPIEDADES
   URL_API = 'http://www.proyectosupermercado.somee.com/API'
-  // carrito: Cart[] = []
-
   productos: Cart[] = []
   subtotal: number = 0
   total: number = 0
   clienteID: number;
   metodoPago: number;
+  vedenID: number;
   //? METODOS
   agregarProducto(producto: Cart) {
     const existingProductIndex = this.productos.findIndex(p => p.produ_Id === producto.produ_Id);
@@ -55,60 +54,53 @@ export class CartService {
     const producto = this.productos.find(p => p.produ_Id === produ_Id);
     return producto ? producto.contador : 0;
   }
-  pagarProductos(): boolean {
+  async pagarProductos(): Promise<boolean> {
     let estado = true;
   
     console.log(this.productos[0]);
   
-    this.CrearFacturaEncabezado({
-      clien_Id: this.clienteID,
-      tipos_Id: this.metodoPago,
-      sucur_Id: this.productos[0].sucur_Id,
-    })
-    .then((encabezadoResponse) => {
+    try {
+      const encabezadoResponse = await this.CrearFacturaEncabezado({
+        clien_Id: this.clienteID,
+        tipos_Id: this.metodoPago,
+        sucur_Id: this.productos[0].sucur_Id,
+      });
+  
       console.log(encabezadoResponse, 'encabezadoResponse');
   
       if (encabezadoResponse.codeStatus > 0) {
-        const venen_Id = encabezadoResponse.codeStatus; 
+        const venen_Id = encabezadoResponse.codeStatus;
+        this.vedenID = venen_Id;
   
-        const detallesPromises = this.productos.map((producto) => {
-          return this.CrearFacturaDetalle({
+        for (const producto of this.productos) {
+          const detalleResponse = await this.CrearFacturaDetalle({
             venen_Id: venen_Id,
             lotes_Id: producto.lotes_Id,
             vende_Cantidad: producto.contador,
-          })
-          .then((detalleResponse) => {
-            if (detalleResponse.codeStatus <= 0) estado = false;
-          })
-          .catch((error) => {
-            console.error('Error en la transacción:', error);
-            estado = false;
           });
-        });
   
-        return Promise.all(detallesPromises).then(() => {
-          if (estado) {
-            this.productos = [];
-            this.subtotal = 0;
-            this.total = 0;
-            this.metodoPago = null;
-            this.clienteID = null;
+          if (detalleResponse.codeStatus <= 0) {
+            estado = false;
           }
-          return estado;
-        });
+        }
       } else {
         estado = false;
-        return Promise.resolve(estado);
       }
-    })
-    .catch((error) => {
+    } catch (error) {
       console.error('Error en la transacción:', error);
       estado = false;
-      return Promise.resolve(estado);
-    });
+    }
+  
+    if (estado) {
+      this.subtotal = 0;
+      this.total = 0;
+      this.metodoPago = null;
+      this.clienteID = null;
+    }
   
     return estado;
   }
+  
   
   
 
@@ -205,7 +197,7 @@ export class CartService {
 
   getFacturas(id: number): Promise<Cart[]> {
     return this.http
-      .get<any>(this.URL_API + '/Cart/ListarFacturas?id=' + id)
+      .get<any>(this.URL_API + '/Cart/BuscarFactura?id=' + id)
       .toPromise()
       .then((res) => res.data as Cart[])
       .then((data) => {

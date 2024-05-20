@@ -6,6 +6,8 @@ import { MessageService } from 'primeng/api'
 import { Cart } from '../demo/models/CartViewModel'
 import { Cliente } from '../demo/models/ClienteViewModel'
 import { ClienteService } from '../demo/service/cliente.service'
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-cart',
@@ -25,6 +27,8 @@ export class AppCartComponent {
 
   clientes: Cliente[] = [];
   filtrarClientes: Cliente[] = [];
+  facturaCart: Cart[] = []
+
 
 
   dni: string;
@@ -57,27 +61,85 @@ export class AppCartComponent {
         console.log(error);
       });
   }
-  pagar() {
-    this.isLoading = true
-
-    setTimeout(() => {
-      if (this.cartService.pagarProductos()) {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Exito',
-          detail: 'Transacción exitosa.',
-        })
-        this.visible = false
+  async pagar() {
+    this.isLoading = true;
+  
+    setTimeout(async () => {
+      const estado = await this.cartService.pagarProductos();
+  
+      if (estado) {
+        this.visible = false;
+        const facturas = await this.cartService.getFacturas(this.cartService.vedenID);
+        this.facturaCart = facturas;
+        this.generarFacturaPDF();
+        this.cartService.productos = [];
       } else {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
           detail: 'Transacción fallida.',
-        })
+        });
       }
-      this.isLoading = false
-    }, 3000)
+  
+      this.isLoading = false;
+    }, 2000);
   }
+  
+
+  generarFacturaPDF() {
+    const pdf = new jsPDF('p', 'mm', [100, 297]);
+    let yPos = 10; 
+  
+    pdf.setFontSize(8); 
+    pdf.text('Factura', 50, yPos, { align: 'center' }); 
+  
+    if (this.facturaCart.length > 0) {
+      const encabezado = this.facturaCart[0];
+      yPos += 10;
+      pdf.text(`Cliente: ${encabezado.nombre || 'N/A'}`, 5, yPos); 
+      yPos += 5;
+      pdf.text(`Sucursal: ${encabezado.sucur_Descripcion}`, 5, yPos); 
+      yPos += 5;
+      pdf.text(`Fecha: ${new Date(encabezado.venen_FechaCreacion).toLocaleDateString()}`, 5, yPos); 
+      yPos += 10;
+  
+      pdf.text('Producto', 5, yPos);
+      pdf.text('Cant.', 60, yPos);
+      pdf.text('Precio', 75, yPos);
+      pdf.text('Total', 90, yPos);
+      yPos += 5;
+  
+      this.facturaCart.forEach(item => {
+        pdf.text(item.produ_Descripcion, 5, yPos); 
+        pdf.text(item.vende_Cantidad.toString(), 60, yPos);
+        pdf.text(item.vende_Precio.toFixed(2), 75, yPos);
+        pdf.text((item.vende_Cantidad * item.vende_Precio).toFixed(2), 90, yPos);
+        yPos += 5;
+      });
+  
+      yPos += 10;
+      pdf.text(`Subtotal: ${this.facturaCart[0].subtotal.toFixed(2)}`, 5, yPos); 
+      yPos += 5;
+      pdf.text(`Impuesto: ${this.facturaCart[0].impuesto_Total.toFixed(2)}`, 5, yPos); 
+      yPos += 5;
+      pdf.text(`Descuento: ${this.facturaCart[0].descuento_Total.toFixed(2)}`, 5, yPos);
+      yPos += 5;
+      pdf.text(`Total: ${this.facturaCart[0].total.toFixed(2)}`, 5, yPos); 
+    }
+  
+    const pdfBlob = pdf.output('blob');
+    const pdfURL = URL.createObjectURL(pdfBlob);
+    const printWindow = window.open(pdfURL, '_blank');
+  
+    if (printWindow) {
+      printWindow.onload = () => {
+        printWindow.focus();
+        printWindow.print();
+      };
+    }
+  }
+   
+    
 
   aumentarContador(producto: Cart, index: number) {
     const cantidadActualEnCarrito = this.cartService.getCantidadProductoEnCarrito(producto.produ_Id);
