@@ -24,6 +24,8 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DialogModule } from 'primeng/dialog'
 import { DropdownModule } from 'primeng/dropdown';
 
+import { AutoCompleteModule } from 'primeng/autocomplete';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { DropdownModule } from 'primeng/dropdown';
     ToastModule,
     ConfirmPopupModule,
     DialogModule,
-    DropdownModule
+    DropdownModule,
+    AutoCompleteModule
   ],
   exports: [AppLayoutComponent],
 })

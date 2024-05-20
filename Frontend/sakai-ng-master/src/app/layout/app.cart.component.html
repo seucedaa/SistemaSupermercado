@@ -115,22 +115,42 @@
   </div>
 </p-sidebar>
 <p-toast />
-<p-dialog header="Confirmar Pago" [(visible)]="displayModal" [modal]="true" [closable]="true" minWidth="300" minHeight="200" contentStyleClass="custom-dialog">
-  <div class="p-field">
-    <label for="dni">DNI</label>
-    <p-autoComplete [(ngModel)]="dni" (completeMethod)="buscarCliente($event)" field="dni"></p-autoComplete>
+<!-- modal -->
+<p-dialog header="Confirmar Pago" [(visible)]="displayModal" [modal]="true" [closable]="false" [style]="{ width: '30rem' }">
+  <div class="p-fluid">
+    <div class="p-field" style="margin-bottom: 1rem;">
+      <label for="dni">DNI</label>
+      <p-autoComplete 
+        [(ngModel)]="dni" 
+        (completeMethod)="buscarCliente($event)" 
+        field="clien_Dni" 
+        [suggestions]="filtrarClientes" 
+        (onSelect)="onClienteSelect($event)" 
+        placeholder="Ingrese el DNI"
+        appendTo="body" 
+        required>
+      </p-autoComplete>
+    </div>
+    <div class="p-field" style="margin-bottom: 1rem;">
+      <label for="nombre">Nombre</label>
+      <input type="text" [(ngModel)]="nombre" id="nombre" readonly class="p-inputtext" required>
+    </div>
+    <div class="p-field" style="margin-bottom: 1rem;">
+      <label for="metodoPago">Método de Pago</label>
+      <p-dropdown 
+        [options]="metodosPago" 
+        [(ngModel)]="cartService.metodoPago" 
+        placeholder="Selecciona un método" 
+        appendTo="body" 
+        required>
+      </p-dropdown>
+    </div>
   </div>
-  <div class="p-field">
-    <label for="nombre">Nombre</label>
-    <p-inputText [(ngModel)]="nombre" id="nombre" disabled></p-inputText>
-  </div>
-  <div class="p-field">
-    <label for="metodoPago">Método de Pago</label>
-    <p-dropdown [options]="metodosPago" [(ngModel)]="metodoPago" placeholder="Selecciona un método"></p-dropdown>
-  </div>
-  <p-footer>
-    <p-button label="Sí" icon="pi pi-check" (click)="confirmarPago()"></p-button>
-    <p-button label="No" icon="pi pi-times" (click)="displayModal=false" class="ui-button-secondary"></p-button>
+  <p-footer style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+    <p-button label="Sí" icon="pi pi-check" (click)="confirmarPago()" [disabled]="!formCompleto()"></p-button>
+    <p-button label="No" icon="pi pi-times" (click)="displayModal=false" severity="secondary"></p-button>
   </p-footer>
 </p-dialog>
+
+
 

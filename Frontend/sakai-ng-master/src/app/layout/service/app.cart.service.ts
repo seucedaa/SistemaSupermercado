@@ -17,6 +17,8 @@ export class CartService {
   productos: Cart[] = []
   subtotal: number = 0
   total: number = 0
+  clienteID: number;
+  metodoPago: number;
   //? METODOS
   agregarProducto(producto: Cart) {
     const existingProductIndex = this.productos.findIndex(p => p.produ_Id === producto.produ_Id);
@@ -53,53 +55,62 @@ export class CartService {
     const producto = this.productos.find(p => p.produ_Id === produ_Id);
     return producto ? producto.contador : 0;
   }
-
   pagarProductos(): boolean {
-    const carritoFiltrado: Cart[] = [];
     let estado = true;
   
-    this.productos.forEach((producto) => {
-      const productoEnCarrito = carritoFiltrado.find((p) => p.produ_Id === producto.produ_Id);
+    console.log(this.productos[0]);
   
-      if (!productoEnCarrito) {
-        carritoFiltrado.push({
-          produ_Id: producto.produ_Id,
-          produ_Descripcion: producto.produ_Descripcion,
-          produ_PrecioVenta: producto.produ_PrecioVenta,
-          categ_Id: producto.categ_Id,
-          vende_Cantidad: 1,
-          clien_Id: 2, 
-          sucur_Id: producto.sucur_Id,
-          tipos_Id: 5, 
-          lotes_Id: producto.lotes_Id,
+    this.CrearFacturaEncabezado({
+      clien_Id: this.clienteID,
+      tipos_Id: this.metodoPago,
+      sucur_Id: this.productos[0].sucur_Id,
+    })
+    .then((encabezadoResponse) => {
+      console.log(encabezadoResponse, 'encabezadoResponse');
+  
+      if (encabezadoResponse.codeStatus > 0) {
+        const venen_Id = encabezadoResponse.codeStatus; 
+  
+        const detallesPromises = this.productos.map((producto) => {
+          return this.CrearFacturaDetalle({
+            venen_Id: venen_Id,
+            lotes_Id: producto.lotes_Id,
+            vende_Cantidad: producto.contador,
+          })
+          .then((detalleResponse) => {
+            if (detalleResponse.codeStatus <= 0) estado = false;
+          })
+          .catch((error) => {
+            console.error('Error en la transacción:', error);
+            estado = false;
+          });
+        });
+  
+        return Promise.all(detallesPromises).then(() => {
+          if (estado) {
+            this.productos = [];
+            this.subtotal = 0;
+            this.total = 0;
+            this.metodoPago = null;
+            this.clienteID = null;
+          }
+          return estado;
         });
       } else {
-        productoEnCarrito.vende_Cantidad += 1;
+        estado = false;
+        return Promise.resolve(estado);
       }
-    });
-    this.CrearFacturaEncabezado(carritoFiltrado[0])
-    .then((response) => {
-      carritoFiltrado.forEach((element) => {
-        element.venen_Id = response.codeStatus
-        console.log(element.venen_Id, 'venen_Id')
-        if (element.venen_Id <= 0) estado = false
-        this.CrearFacturaDetalle(element).then((response) => {
-          console.log(response, 'del detalle')
-          if(response.codeStatus <= 0 ) estado = false
-        })
-      })
     })
     .catch((error) => {
       console.error('Error en la transacción:', error);
-      estado = false
+      estado = false;
+      return Promise.resolve(estado);
     });
-
-    
-    this.productos = []
-    this.subtotal = 0
-    this.total = 0
-    return estado
+  
+    return estado;
   }
+  
+  
 
 
   getLimpieza(): Promise<Cart[]> {

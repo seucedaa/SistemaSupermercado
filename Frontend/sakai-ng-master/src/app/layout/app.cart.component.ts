@@ -4,6 +4,8 @@ import { CartService } from './service/app.cart.service'
 import { Producto } from '../demo/models/ProductoViewModel'
 import { MessageService } from 'primeng/api'
 import { Cart } from '../demo/models/CartViewModel'
+import { Cliente } from '../demo/models/ClienteViewModel'
+import { ClienteService } from '../demo/service/cliente.service'
 
 @Component({
   selector: 'app-cart',
@@ -14,20 +16,26 @@ export class AppCartComponent {
   constructor(
     public layoutService: LayoutService,
     public cartService: CartService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private clienteService: ClienteService
   ) {}
   //? PROPIEDADES
   isLoading: boolean = false
   displayModal: boolean = false;
 
+  clientes: Cliente[] = [];
+  filtrarClientes: Cliente[] = [];
+
 
   dni: string;
   nombre: string;
-  metodoPago: any;
+
   metodosPago: any[] = [
-    { label: 'Efectivo', value: 'EF' },
-    { label: 'Tarjeta de Crédito', value: 'TC' },
-    { label: 'Tarjeta de Débito', value: 'TD' }
+    { label: 'Tarjeta Bancaria', value: 1 },
+    { label: 'PayPal', value: 2 },
+    { label: 'Transferencia Bancaria', value: 3 },
+    { label: 'Efectivo', value: 5 },
+
   ];
   //? METODOS
   get visible(): boolean {
@@ -39,6 +47,15 @@ export class AppCartComponent {
 
   ngOnInit() {
     this.cartService.calcularTotales();
+
+    this.clienteService
+      .getList()
+      .then((data) => {
+        this.clientes = data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   pagar() {
     this.isLoading = true
@@ -96,10 +113,29 @@ export class AppCartComponent {
   }
 
   confirmarPago() {
-    this.isLoading = true;
-    this.displayModal = false;
-    this.isLoading = false;
+    if(this.formCompleto()) {
+      this.pagar();
+      this.displayModal = false;
+    }
   }
 
-  buscarCliente(event: Event): void {}
+  formCompleto(): boolean {
+    return this.cartService.metodoPago != null;
+  }
+
+  buscarCliente(event) {
+    const query = event.query.toLowerCase();
+    this.filtrarClientes = this.clientes.filter(cliente =>
+      cliente.clien_Dni.toLowerCase().includes(query)
+    );
+  }
+
+  onClienteSelect(event: any) {
+    const cliente = event.value;
+
+    this.dni = cliente.clien_Dni;
+    this.nombre = cliente.clien_NombreCompleto;
+    this.cartService.clienteID = cliente.clien_Id;
+  }
+  
 }
