@@ -2,34 +2,28 @@
     <div class="col-12">
         <div class="card px-6 py-6">
             <p-toast></p-toast>
+            <h2>Categorias</h2>
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="my-2">
                         <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()" ></button>
-                        <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger" ></button>
+                        <button pButton pRipple label="Exportar Excel" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
                     </div>
-                </ng-template>
-
-                <ng-template pTemplate="right">
-                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
-                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="categorias" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['categ_Descripcion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedCategorias" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="categorias" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['categ_Descripcion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando { first} a {last} de {totalRecords} registros" [(selection)]="selectedCategorias" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Administrar Categorias</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."  class="w-full sm:w-auto"/>
                         </span>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
                         <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
                         <th pSortableColumn="categ_Descripcion">Categoria <p-sortIcon field="categ_Descripcion"></p-sortIcon></th>
                         
@@ -38,9 +32,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-categoria>
                     <tr>
-                        <td>
-                            <p-tableCheckbox [value]="categoria.categ_Id"></p-tableCheckbox>
-                        </td>
+
                         <td style="width:14%; min-width:20rem;">
                             <span class="p-column-title">Categoria</span>
                             {{categoria.categ_Descripcion}}

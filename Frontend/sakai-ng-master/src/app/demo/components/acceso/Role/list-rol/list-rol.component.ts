@@ -26,6 +26,8 @@ export class ListRolComponent implements OnInit{
   fill: any[] = [];
   viewModel: RolEnviar = new RolEnviar();
   rolForm: FormGroup;
+  rols: Rol[] = [];
+
 
  
   @ViewChild('filter') filter!: ElementRef;
@@ -112,6 +114,7 @@ detalles(codigo){
          this.FechaModificacion = data[0].fechaModificacion
       }
     });
+
 }
 cancelar(){
   this.Collapse= false;
