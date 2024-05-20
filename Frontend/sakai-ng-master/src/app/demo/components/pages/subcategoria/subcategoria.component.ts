@@ -5,6 +5,7 @@ import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { SubcategoriaService } from 'src/app/demo/service/subcategoria.service';
 import { Subcategoria } from 'src/app/demo/models/SubcategoriaViewModel';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './subcategoria.component.html',
@@ -32,9 +33,17 @@ export class SubcategoriaComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private subcategoriaService: SubcategoriaService, private messageService: MessageService) { }
+    constructor(private subcategoriaService: SubcategoriaService,    private router: Router,
+        private messageService: MessageService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.subcategoriaService.getList().then(data => this.subcategorias = data);
 
         this.cols = [

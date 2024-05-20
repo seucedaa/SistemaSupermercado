@@ -3,6 +3,8 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { EmpleadoService } from 'src/app/demo/service/empleado.service';
 import { Empleado } from 'src/app/demo/models/EmpleadoViewModel';
+import { Router } from '@angular/router';
+
 
 @Component({
     templateUrl: './empleado.component.html',
@@ -27,9 +29,17 @@ export class EmpleadoComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private empleadoService: EmpleadoService, private messageService: MessageService) { }
+    constructor(private empleadoService: EmpleadoService,    private router: Router,
+        private messageService: MessageService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.empleadoService.getList().then(data => this.empleados = data);
 
         this.cols = [

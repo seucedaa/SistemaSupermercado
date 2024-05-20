@@ -10,6 +10,8 @@ import { VentaEncabezadoService } from 'src/app/demo/service/ventaencabezado.ser
 import { VentaEncabezado } from 'src/app/demo/models/VentasEncabezadoViewModel';
 import { ProductoService } from 'src/app/demo/service/producto.service';
 import { Producto } from 'src/app/demo/models/ProductoViewModel';
+import { Router } from '@angular/router';
+
 @Component({
     templateUrl: './dashboard.component.html',
 })
@@ -32,7 +34,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
 
-    constructor(private productService: ProductService, private productoService: ProductoService,private clienteService: ClienteService,private ventaencabezadoService: VentaEncabezadoService, public layoutService: LayoutService) {
+    constructor(private productService: ProductService, private productoService: ProductoService,    private router: Router,
+        private clienteService: ClienteService,private ventaencabezadoService: VentaEncabezadoService, public layoutService: LayoutService) {
         this.subscription = this.layoutService.configUpdate$
         .pipe(debounceTime(25))
         .subscribe((config) => {
@@ -40,6 +43,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
+
         this.clienteService.getTotal().then(data => {
             this.clientes = data;
         });
@@ -58,20 +69,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
                     this.productoss = data.data;
                     this.chartLineChart();
                 }).catch(error => {
-                    console.error('Error fetching Principal products:', error);
                 });
 
                 this.productoService.Top(sucursalid).then(data => {
                     this.productos = data.data;
                     console.log(this.productos);
                 }).catch(error => {
-                    console.error('Error fetching Top products:', error);
                 });
-            } else {
-                console.error('Sucursal ID is undefined');
-            }
+            } 
         } else {
-            console.error('Usuario not found in sessionStorage');
+            console.error('No hay sesion');
         }
     }
 

@@ -34,7 +34,7 @@
 
 
         </div>
-        <p-table #dt1 [value]="Rol" dataKey="roles_Id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [class.hidden]="!DataTable" [paginator]="true" [globalFilterFields]="['roles_Descripcion']" responsiveLayout="scroll">
+        <p-table #dt1 [value]="Rol" dataKey="roles_Id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [class.hidden]="!DataTable"  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" [paginator]="true" [globalFilterFields]="['roles_Descripcion']" responsiveLayout="scroll">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-input-icon-left mb-2">

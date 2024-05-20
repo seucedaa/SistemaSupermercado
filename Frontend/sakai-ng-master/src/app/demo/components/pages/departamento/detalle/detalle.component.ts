@@ -4,7 +4,7 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { DepartamentoService } from 'src/app/demo/service/departamento.service';
 import { Departamento } from 'src/app/demo/models/DepartamentoViewModel';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 @Component({
     templateUrl: './detalle.component.html',
@@ -26,9 +26,18 @@ export class DetalleComponent implements OnInit {
 
 
 
-    constructor(private route: ActivatedRoute, private departamentoService: DepartamentoService) { }
+    constructor(private route: ActivatedRoute,    private router: Router,
+        private departamentoService: DepartamentoService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
+
         const id = this.route.snapshot.paramMap.get('id');
         this.departamentoService.Details(id).then(data => {
             this.departamento = data;

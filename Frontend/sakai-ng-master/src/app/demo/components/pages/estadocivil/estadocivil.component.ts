@@ -34,6 +34,13 @@ export class EstadoCivilComponent implements OnInit {
     constructor(private router: Router,private estadocivilService: EstadoCivilService, private messageService: MessageService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.estadocivilService.getList().then(data => this.estadosciviles = data);
 
         this.cols = [

@@ -4,7 +4,7 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { MunicipioService } from 'src/app/demo/service/municipio.service';
 import { Municipio } from 'src/app/demo/models/MunicipioViewModel';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 @Component({
     templateUrl: './detalle.component.html',
@@ -26,9 +26,17 @@ export class DetalleComponent implements OnInit {
 
 
 
-    constructor(private route: ActivatedRoute, private municipioService: MunicipioService) { }
+    constructor(private route: ActivatedRoute,     private router: Router,
+        private municipioService: MunicipioService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         const id = this.route.snapshot.paramMap.get('id');
         this.municipioService.Details(id).then(data => {
             this.municipio = data;

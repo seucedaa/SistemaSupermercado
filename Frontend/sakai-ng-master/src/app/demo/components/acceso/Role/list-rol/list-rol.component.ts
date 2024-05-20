@@ -65,8 +65,13 @@ export class ListRolComponent implements OnInit{
       Rol_Rol: new FormControl("",Validators.required),
     });
 
+    const usuariolog = sessionStorage.getItem('usuario');
+    const logueado = JSON.parse(usuariolog);
+    if(!logueado)
+        {
+            this.router.navigate(['/login']);
 
-
+        }
 
       this.service.getRol().subscribe((data: any)=>{
           console.log(data);

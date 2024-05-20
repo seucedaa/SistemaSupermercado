@@ -8,6 +8,8 @@ import { Subscription, debounceTime } from 'rxjs';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { Router } from '@angular/router';
+
 
 interface expandedRows {
     [key: string]: boolean;
@@ -36,7 +38,8 @@ export class PvendidosComponent implements OnInit {
 
     @ViewChild('pdfViewer', { static: false }) pdfViewer!: ElementRef;
 
-    constructor(private layoutService: LayoutService,private reporteService: ReporteService,
+    constructor(private layoutService: LayoutService,    private router: Router,
+        private reporteService: ReporteService,
       private sucursalService: SucursalService, private messageService: MessageService) { 
         this.subscription = this.layoutService.configUpdate$
         .pipe(debounceTime(25))
@@ -122,6 +125,13 @@ export class PvendidosComponent implements OnInit {
   }
 
      ngOnInit(){
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.formattedInicio = this.formatDate(this.inicio);
         this.formattedFin = this.formatDate(this.fin);
 
@@ -169,6 +179,14 @@ export class PvendidosComponent implements OnInit {
           unit: 'px',
           format: 'letter'
       });
+
+      doc.setProperties({
+        title: 'Ventas de Productos',
+        subject: 'Reporte de ventas de productos',
+        author: 'Supermercado La Colonia',
+        keywords: 'ventas, productos, supermercado',
+        creator: 'Supermercado La Colonia'
+    });
 
       const logoURL = 'assets/layout/images/lacolonia/manzana.png';  
       const imgWidth = 80;  

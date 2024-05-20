@@ -7,6 +7,7 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { dA } from '@fullcalendar/core/internal-common';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './clientess.component.html',
@@ -27,7 +28,8 @@ export class ClientessComponent implements OnInit {
 
     @ViewChild('pdfViewer', { static: false }) pdfViewer!: ElementRef;
 
-    constructor(private layoutService: LayoutService,private reporteService: ReporteService,
+    constructor(private layoutService: LayoutService,    private router: Router,
+        private reporteService: ReporteService,
     private messageService: MessageService) { 
         this.subscription = this.layoutService.configUpdate$
         .pipe(debounceTime(25))
@@ -75,6 +77,13 @@ export class ClientessComponent implements OnInit {
   }
 
      ngOnInit(){
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
       this.formattedInicio = this.formatDate(this.inicio);
       this.formattedFin = this.formatDate(this.fin);
 
@@ -121,6 +130,14 @@ export class ClientessComponent implements OnInit {
           unit: 'px',
           format: 'letter'
       });
+
+      doc.setProperties({
+        title: 'Clientes',
+        subject: 'Reporte de Clientes',
+        author: 'Supermercado La Colonia',
+        keywords: 'clientes, la colonia',
+        creator: 'Supermercado La Colonia'
+    });
 
       const logoURL = 'assets/layout/images/lacolonia/manzana.png';  
       const imgWidth = 80;  

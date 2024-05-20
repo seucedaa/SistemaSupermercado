@@ -22,6 +22,7 @@ export class EditarComponent implements OnInit {
     clientes: Cliente[] = [];
 
     cliente: Cliente = {};
+    municipio: Municipio = {};
 
     selectedClientes: Cliente[] = [];
 
@@ -50,9 +51,8 @@ export class EditarComponent implements OnInit {
         
     }
 
-    onDeparIdChange(value: any){
-        const depar = value?.depar_Id;
-        this.municipioService.ListporDept(depar).then(data => this.municipios = data);
+    onDeparIdChange(codig: any){
+        this.municipioService.ListporDept(codig).then(data => this.municipios = data);
 
     }
     
@@ -61,17 +61,57 @@ export class EditarComponent implements OnInit {
     }
     
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
+
         this.estadocivilService.getList().then(data => this.estadosciviles = data);
         this.departamentoService.getList().then(data => this.departamentos = data);
+        this.municipioService.getList().then(data => this.municipios = data);
     
         const id = this.route.snapshot.paramMap.get('id');
         this.clienteService.Details(Number(id)).then(data => {
             this.cliente = data;
-            this.estadoid = this.cliente.estad_Id;
-            this.municipioid = this.cliente.munic_Id;
 
-        
+            let prueba: any;
+            prueba = this.estadosciviles.find(est => est.estad_Id === this.cliente.estad_Id);
+            this.estadoid = prueba.estad_Id;
+            
+            const que = this.cliente.munic_Id;
+            this.municipioService.Details(que.toString()).then(data => {
+                this.municipio = data;
+                console.log(this.municipio);
+
+                let ola: any;
+                this.departamentoService.getList().then(data => {
+                    let dept: any;
+                    dept = this.departamentos.find(dep => dep.depar_Id === this.municipio.depar_Id);
+                    this.departid = dept.depar_Id;
+                    ola = dept.depar_Id;
+                })
+
+                this.municipioService.ListporDept(ola).then(data => {
+                    console.log(this.municipios);
+
+                    let aver: any;
+                    aver = this.municipios.find(munic => munic.munic_Id === this.cliente.munic_Id);
+                    console.log('municipios',this.cliente.munic_Id);
+                    this.municipioid = aver.munic_Id;
+                
+            });
+
+            
         });
+
+        });
+        
+
+       
+
     }
     
     
@@ -79,18 +119,13 @@ export class EditarComponent implements OnInit {
     
     guardar() {
         this.submitted = true;
-        this.cliente.clien_UsuarioModificacion = 1,
-        console.log("entra al guarda");
+        this.cliente.clien_UsuarioModificacion = 1;
 
 
         if (this.cliente.clien_Dni?.trim() && this.cliente.clien_Telefono?.trim() && this.cliente.clien_PrimerNombre?.trim() && this.cliente.clien_SegundoNombre?.trim() && this.cliente.clien_PrimerApellido?.trim() && this.cliente.clien_SegundoApellido?.trim() && this.cliente.estad_Id.toString()?.trim() && this.cliente.clien_Sexo?.trim() && this.cliente.clien_Direccion?.trim() && this.cliente.munic_Id.trim()) {
-            console.log(this.cliente);
-            console.log("intenta guardar");
 
             this.clienteService.Update(this.cliente).then((response => {
-                console.log(response)
                 if(response.success){
-                    console.log(response.data.codeStatus)
                         this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Cliente actualizado.', life: 3000 });
                         this.cliente = {};
                         this.ngOnInit();

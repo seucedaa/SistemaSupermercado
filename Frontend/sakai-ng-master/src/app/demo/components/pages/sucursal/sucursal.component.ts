@@ -5,6 +5,8 @@ import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { SucursalService } from 'src/app/demo/service/sucursal.service';
 import { Sucursal } from 'src/app/demo/models/SucursalViewModel';
+import { Router } from '@angular/router';
+
 
 @Component({
     templateUrl: './sucursal.component.html',
@@ -32,9 +34,17 @@ export class SucursalComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private sucursalService: SucursalService, private messageService: MessageService) { }
+    constructor(private sucursalService: SucursalService,     private router: Router
+        ,private messageService: MessageService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.sucursalService.getList().then(data => this.sucursales = data);
 
         this.cols = [

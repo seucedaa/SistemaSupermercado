@@ -5,6 +5,8 @@ import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { UsuarioService } from 'src/app/demo/service/usuario.service';
 import { Usuario } from 'src/app/demo/models/UsuarioViewModel';
+import { Router } from '@angular/router';
+
 
 @Component({
     templateUrl: './usuario.component.html',
@@ -32,9 +34,17 @@ export class UsuarioComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private usuarioService: UsuarioService, private messageService: MessageService) { }
+    constructor(private usuarioService: UsuarioService,    private router: Router,
+        private messageService: MessageService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.usuarioService.getList().then(data => this.usuarios = data);
 
         this.cols = [

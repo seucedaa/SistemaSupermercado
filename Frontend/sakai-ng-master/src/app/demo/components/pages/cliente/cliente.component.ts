@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ClienteService } from 'src/app/demo/service/cliente.service';
 import { Cliente } from 'src/app/demo/models/ClienteViewModel';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -31,10 +32,18 @@ export class ClienteComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private clienteService: ClienteService, private messageService: MessageService) { 
+    constructor(private clienteService: ClienteService,    private router: Router,
+        private messageService: MessageService) { 
     }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.clienteService.getList().then(data => {
             this.clientes = data;
             console.log(this.clientes); 

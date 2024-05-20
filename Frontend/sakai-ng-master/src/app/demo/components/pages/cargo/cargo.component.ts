@@ -3,6 +3,7 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { CargoService } from 'src/app/demo/service/cargo.service';
 import { Cargo } from 'src/app/demo/models/CargoViewModel';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './cargo.component.html',
@@ -30,9 +31,17 @@ export class CargoComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private cargoService: CargoService, private messageService: MessageService) { }
+    constructor(private cargoService: CargoService,    private router: Router,
+        private messageService: MessageService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.cargoService.getList().then(data => this.cargos = data);
 
         this.cols = [

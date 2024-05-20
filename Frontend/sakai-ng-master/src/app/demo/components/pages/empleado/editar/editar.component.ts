@@ -82,6 +82,13 @@ export class EditarComponent implements OnInit {
     }
     
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.estadocivilService.getList().then(data => this.estadosciviles = data);
         this.cargoService.getList().then(data => this.cargos = data);
         this.sucursalService.getList().then(data => this.sucursales = data);

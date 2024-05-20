@@ -34,6 +34,13 @@ export class CategoriaComponent implements OnInit {
     constructor(private router: Router,private categoriaService: CategoriaService, private messageService: MessageService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.categoriaService.getList().then(data => this.categorias = data);
 
         this.cols = [

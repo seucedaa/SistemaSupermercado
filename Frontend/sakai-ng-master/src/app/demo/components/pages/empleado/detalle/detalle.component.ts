@@ -4,7 +4,7 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { EmpleadoService } from 'src/app/demo/service/empleado.service';
 import { Empleado } from 'src/app/demo/models/EmpleadoViewModel';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 @Component({
     templateUrl: './detalle.component.html',
@@ -29,9 +29,17 @@ export class DetalleComponent implements OnInit {
 
 
 
-    constructor(private route: ActivatedRoute, private empleadoService: EmpleadoService) { }
+    constructor(private route: ActivatedRoute,    private router: Router,
+        private empleadoService: EmpleadoService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         const id = this.route.snapshot.paramMap.get('id');
         this.empleadoService.Details(Number(id)).then(data => {
             console.log(data);
