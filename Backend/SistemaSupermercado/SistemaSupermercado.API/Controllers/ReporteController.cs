@@ -74,6 +74,18 @@ namespace SistemaSupermercado.API.Controllers
             return Ok(list);
         }
 
+        [HttpGet("Promocion/{sucursal}/{inicio}/{fin}")]
+        public IActionResult Promocion(int sucursal, string inicio, string fin)
+        {
+            var list = _reporteServices.Promocion(sucursal, inicio, fin);
+            return Ok(list);
+        }
 
+        [HttpGet("TodasPromocion/{inicio}/{fin}")]
+        public IActionResult TodasPromocion(string inicio, string fin)
+        {
+            var list = _reporteServices.TodasPromocion(inicio, fin);
+            return Ok(list);
+        }
     }
 }

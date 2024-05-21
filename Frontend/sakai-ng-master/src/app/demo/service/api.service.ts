@@ -62,6 +62,14 @@ export class ReporteEndPoints{
   public TodasVentas(inicio:string,fin:string):string{
     return `${this.api.baseUrl}/Reporte/TodasVentas/${inicio}/${fin}`; 
   }
+
+  public Promocion(Sucur_Id: number,inicio:string,fin:string):string{
+    return `${this.api.baseUrl}/Reporte/Promocion/${Sucur_Id}/${inicio}/${fin}`; 
+  }
+
+  public TodasPromocion(inicio:string,fin:string):string{
+    return `${this.api.baseUrl}/Reporte/TodasPromocion/${inicio}/${fin}`; 
+  }
 }
 
 export class RolEndPoints{

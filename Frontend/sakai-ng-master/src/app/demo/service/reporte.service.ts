@@ -42,11 +42,20 @@ export class ReporteService {
       .toPromise()
   }
 
-  getTodasVentas(inicio: string, fin: string) {
-    return this.http.get<any>(this.endpoint.TodasVentas(inicio,fin))
+  getPromocion(Sucur_Id: number, inicio: string, fin: string) {
+    return this.http.get<any>(this.endpoint.Promocion(Sucur_Id, inicio, fin))
       .toPromise()
   }
 
+  getTodasVentas(inicio: string, fin: string) {
+   return this.http.get<any>(this.endpoint.TodasVentas(inicio,fin))
+      .toPromise()
+  } 
+
+  getTodasPromocion(inicio: string, fin: string) {
+    return this.http.get<any>(this.endpoint.TodasPromocion(inicio,fin))
+       .toPromise()
+   } 
   
   getClientes(inicio: string, fin: string) {
     return this.http.get<any>(this.endpoint.Clientes(inicio,fin))

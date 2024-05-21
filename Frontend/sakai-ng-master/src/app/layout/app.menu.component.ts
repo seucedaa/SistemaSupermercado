@@ -67,7 +67,7 @@ export class AppMenuComponent implements OnInit {
                                 { label: 'Inventario', icon: 'pi pi-truck', routerLink: ['/home/reports/stock'] },
                                 { label: 'Productos Vendidos', icon: 'pi pi-shopping-cart', routerLink: ['/home/reports/pvendidos'] },
                                 { label: 'Clientes', icon: 'pi pi-user', routerLink: ['/home/reports/clientess'] },
-                                { label: 'Clientes con Promocion', icon: 'pi pi-percentage', routerLink: ['/home/reports/cpromocion'] },
+                                { label: 'Clientes con Promocion', icon: 'pi pi-percentage', routerLink: ['/home/reports/promocion'] },
                                 { label: 'Ventas', icon: 'pi pi-shopping-cart', routerLink: ['/home/reports/ventas'] }
                             ]
                         //},

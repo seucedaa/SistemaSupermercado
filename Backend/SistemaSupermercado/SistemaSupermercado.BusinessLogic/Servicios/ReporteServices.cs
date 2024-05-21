@@ -129,5 +129,38 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
             }
         }
 
+
+        public ServiceResult Promocion(int sucursal, string inicio, string fin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _reporteRepository.Promocion(sucursal, inicio, fin);
+
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult TodasPromocion(string inicio, string fin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _reporteRepository.TodasPromocion(inicio, fin);
+
+
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
     }
 }
