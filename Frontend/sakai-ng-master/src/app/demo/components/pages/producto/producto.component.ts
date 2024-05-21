@@ -13,11 +13,8 @@ import { Router } from '@angular/router';
 })
 export class ProductoComponent implements OnInit {
 
-    productDialog: boolean = false;
+    deleteproductoDialog: boolean = false;
 
-    deleteProductDialog: boolean = false;
-
-    deleteProductsDialog: boolean = false;
 
     productos: Producto[] = [];
 
@@ -58,6 +55,28 @@ export class ProductoComponent implements OnInit {
         ];
     }
 
+    deleteProducto(producto: Producto) {
+        this.deleteproductoDialog = true;
+        this.producto = { ...producto };
+    }
+
+    confirmDelete() {
+        this.deleteproductoDialog = false;
+    
+        this.productoService.Delete(this.producto.produ_Id).then((response) => {
+            console.log(response);
+            if(response.success){
+                this.productos = this.productos.filter(val => val.produ_Id!== this.producto.produ_Id);
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Producto eliminado.', life: 3000 });
+            this.producto = {};
+            } else{
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El producto esta siendo utilizado.', life: 3000 });
+            }
+            
+        }).catch(error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar la categoría.', life: 3000 });
+        });
+    }
     
 
     onGlobalFilter(table: Table, event: Event) {

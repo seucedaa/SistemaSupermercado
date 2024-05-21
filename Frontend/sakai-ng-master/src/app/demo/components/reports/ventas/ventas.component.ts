@@ -126,6 +126,7 @@ export class VentasComponent implements OnInit {
         const sucursalUsuario = this.sucursales.find(s => s.sucur_Id === this.sucursa);
         if (sucursalUsuario) {
             this.sucursall = sucursalUsuario.sucur_Descripcion;
+            this.sucursalid = sucursalUsuario.sucur_Id;
         } 
 
         this.reporteService.getVentas(this.sucursa,this.formattedInicio,this.formattedFin).then(response => {

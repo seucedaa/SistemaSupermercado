@@ -14,6 +14,10 @@ namespace SistemaSupermercado.Common.Models
         public string Munic_Id { get; set; }
         [NotMapped]
         public string Munic_Descripcion { get; set; }
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
         public string Sucur_Direccion { get; set; }
         public string Sucur_Telefono { get; set; }
         public int Sucur_UsuarioCreacion { get; set; }

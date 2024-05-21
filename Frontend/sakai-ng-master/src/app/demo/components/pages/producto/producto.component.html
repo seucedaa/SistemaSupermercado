@@ -6,7 +6,7 @@
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="my-2">
-                        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
+                        <button routerLink="insertar" pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
                         <button pButton pRipple label="Exportar Excel" icon="pi pi-warning" class="p-button-help" (click)="dt.exportCSV()"></button>
                     </div>
                 </ng-template>
@@ -60,15 +60,24 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" label="Editar"></button>
-                                <button pButton pRipple icon="pi pi-ellipsis-h"  class="p-element p-ripple p-button-rounded p-button-info p-button p-component mr-2" label="Detalles" routerLink="detalle/{{producto.produ_Id}}"> </button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" label="Eliminar"></button>
+                                <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-success mr-2" label="Editar" routerLink="editar/{{producto.produ_Id}}"></button>
+                                <button pButton pRipple icon="pi pi-ellipsis-h"  class="p-element p-ripple p-button-rounded p-button-info p-button p-component mr-2" label="Detalles" routerLink="detalle/{{producto.produ_Id}}"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" label="Eliminar" (click)="deleteProducto(producto)"></button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
-
+        <p-dialog [(visible)]="deleteproductoDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="producto">¿Estas seguro que deseas eliminar <b>{{producto.produ_Descripcion}}</b>?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteempleadoDialog = false" ></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
     </div>
 </div>

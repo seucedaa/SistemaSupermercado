@@ -137,6 +137,10 @@ export class CargoEndPoints{
     return `${this.api.baseUrl}/Cargo/Insertar`; 
   }
 
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Cargo/Detalle/${id}`; 
+  }
+
   public Update():string{
     return `${this.api.baseUrl}/Cargo/Actualizar`; 
   }
@@ -185,6 +189,7 @@ export class CategoriaEndPoints{
     return `${this.api.baseUrl}/Categoria/List`;
   }
 
+ 
   public CategoriaTotal(sucursal: number, inicio: string , fin: string):string{
     return `${this.api.baseUrl}/Categoria/Total/${sucursal}/${inicio}/${fin}`; 
   }
@@ -383,6 +388,22 @@ export class ProductoEndPoints{
   public Principal(sucursal: number):string{
     return `${this.api.baseUrl}/Producto/Principal/${sucursal}`; 
   }
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Producto/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Producto/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Producto/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Producto/Eliminar/${id}`; 
+  }
 }
 
 export class SubCategoriaEndPoints{
@@ -397,6 +418,27 @@ export class SubCategoriaEndPoints{
   }
   public Todas(inicio: string , fin: string):string{
     return `${this.api.baseUrl}/SubCategoria/Todas/${inicio}/${fin}`; 
+  }
+
+  public ListporCat(id: string):string{
+    return `${this.api.baseUrl}/SubCategoria/DropDownList/${id}`;
+  }
+
+  
+  public Insert():string{
+    return `${this.api.baseUrl}/SubCategoria/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/SubCategoria/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/SubCategoria/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/SubCategoria/Eliminar/${id}`; 
   }
 }
 

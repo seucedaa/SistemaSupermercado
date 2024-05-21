@@ -1,0 +1,107 @@
+<div class="grid">
+	<div class="col-12 md:col-12">
+		<div class="card p-fluid">
+            <div class="flex justify-content-between align-items-center mb-5">
+                <h5>Detalles</h5>
+                <div>
+                    <button routerLink="producto" pButton type="button" label="Regresar" icon="pi pi-arrow-left" class="p-element p-ripple p-button-outlined p-button-success p-button p-component"></button>
+                </div>
+            </div>
+            
+            <div *ngIf="producto">
+                <div class="p-formgrid grid">
+
+                    <div class="field col">
+                        <label><b>Producto</b></label>
+                        <p>{{producto.produ_Descripcion}}</p>
+                    </div>
+                    <div class="field col">
+                        <label><b>Existencia</b></label>
+                        <p>{{producto.produ_Existencia}}</p>
+                    </div>
+                    <div class="field col">
+                        <label><b>Precio Compra</b></label>
+                        <p>{{producto.produ_PrecioCompra}}</p>
+                    </div>
+                </div>
+				<div class="p-formgrid grid">
+                    <div class="field col">
+                        <label><b>Precio Venta</b></label>
+                        <p>{{producto.produ_PrecioVenta}}</p>
+                    </div>
+                    <div class="field col">
+                        <label><b>Sub-Categoria</b></label>
+                        <p>{{producto.subca_Descripcion}}</p>
+                    </div>
+                    <div class="field col">
+                        <label><b>Proveedor</b></label>
+                        <p>{{producto.prove_Marca}}</p>
+                    </div>
+                    
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label><b>Impuesto</b></label>
+                        <p>{{producto.impue_Descripcion}}</p>
+                    </div>
+                    
+                </div>
+				
+            </div>
+           
+            <div class="card p-fluid">
+                <h5>Auditoria</h5>
+    
+                <p-table #dt [value]="productoss" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['usuarioCreacion','usuarioModificacion', 'produ_FechaCreacion', 'produ_FechaModificacion']"  [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowHover]="true" dataKey="id">
+                    
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem">
+                              Accion
+                            </th>
+                            <th style="width: 3rem">
+                                Usuario
+                            </th>
+                              <th style="width: 3rem">
+                                Fecha
+                              </th>
+                            
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-producto>
+                        <tr>
+                            <td style="width:14%; min-width:20rem;">
+                                Creador
+                            </td>
+                            <td style="width:14%; min-width:20rem;">
+                                {{ producto.usuarioCreacion }}
+                            </td>
+                            <td style="width:14%; min-width:20rem;">
+                                {{ producto.produ_FechaCreacion }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:14%; min-width:20rem;">
+                                Modificador
+                            </td>
+                            <td style="width:14%; min-width:20rem;">
+                                {{ producto.usuarioModificacion }}
+                            </td>
+                            <td style="width:14%; min-width:20rem;">
+                                {{ producto.produ_FechaModificacion }}
+                            </td>
+                        </tr>
+                    </ng-template>
+                    
+                    
+                </p-table>
+            
+        </div>
+        </div>
+        
+    </div>
+    <div class="col-12 md:col-12">
+		
+</div> 
+
+<!--  -->

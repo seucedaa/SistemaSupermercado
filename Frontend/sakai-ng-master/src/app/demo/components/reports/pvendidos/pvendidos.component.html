@@ -6,14 +6,12 @@
     <div class="grid p-fluid">
         <div class="field col-12 md:col-4">
                 <span class="p-float-label">
-                    <p-dropdown
-                    inputId="dropdown"
-                    [autoDisplayFirst]="false"
-                    [options]="sucursales"
-                    [(ngModel)]="sucursalid"
-                    optionLabel="sucur_Descripcion"
-                    (onChange)="onSucursalChange($event.value)"
-                ></p-dropdown>
+                    <p-dropdown [options]="sucursales" 
+                        optionLabel="sucur_Descripcion" 
+                        optionValue="sucur_Id"
+                        (onChange)="onSucursalChange($event.value)" 
+                        [(ngModel)]="sucursalid">
+                        </p-dropdown>   
                 <label for="dropdown">Sucursal</label>
             </span>
         </div>

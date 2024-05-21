@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Categoria } from '../models/CategoriaViewModel';
 import { HttpClient } from '@angular/common/http';
 import { CategoriaEndPoints } from './api.service';
+import { Subcategoria } from '../models/SubcategoriaViewModel';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,8 @@ export class CategoriaService {
     .then(res => res.data as Categoria[])
     .then(data => data);
   }
+
+ 
 
   CategoriaTotal(sucursal: number, inicio: string, fin: string){
     return this.http.get<any>(this.endpoint.CategoriaTotal(sucursal, inicio,fin))

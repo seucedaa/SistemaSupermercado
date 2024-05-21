@@ -52,21 +52,11 @@ export class CategoriaComponent implements OnInit {
         this.categoria = { ...categoria };
         this.categoriaDialog = true;
     }
-
-    detalleCategoria(categoria: Categoria) {
-    }    
     
 
     deleteCategoria(categoria: Categoria) {
         this.deletecategoriaDialog = true;
         this.categoria = { ...categoria };
-    }
-
-    confirmDeleteSelected() {
-        this.deletecategoriasDialog = false;
-        this.categorias = this.categorias.filter(val => !this.selectedCategorias.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Categorias eliminadas.', life: 3000 });
-        this.selectedCategorias = [];
     }
 
     confirmDelete() {
@@ -86,12 +76,6 @@ export class CategoriaComponent implements OnInit {
         });
     }
     
-    detalles(){
-        this.categoriaService.Details(this.categoria.categ_Id).then(() => {
-        }).catch(error => {
-        });
-    }
-    
     saveCategoria() {
         this.submitted = true;
         this.categoria.categ_UsuarioCreacion = 1;
@@ -100,7 +84,6 @@ export class CategoriaComponent implements OnInit {
         if (this.categoria.categ_Descripcion?.trim()) {
             if (this.categoria.categ_Id) {
                 console.log("entra if")
-                // @ts-ignore
                 this.categoriaService.Update(this.categoria).then((response => {
                     console.log(response)
                     if(response.success){
@@ -135,18 +118,6 @@ export class CategoriaComponent implements OnInit {
     }
 
 
-    findIndexById(id: number): number {
-        let index = -1;
-        for (let i = 0; i < this.categorias.length; i++) {
-            if (this.categorias[i].categ_Id === id) {
-                index = i;
-                break;
-            }
-        }
-
-        return index;
-    }
-    //open-hide modal
     openNew() {
         this.categoria = {};
         this.submitted = false;

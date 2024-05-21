@@ -18,6 +18,10 @@ namespace SistemaSupermercado.Entities.Entities
 
         public int Sucur_Id { get; set; }
         public string Sucur_Descripcion { get; set; }
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
         public string Munic_Id { get; set; }
         [NotMapped]
         public string Munic_Descripcion { get; set; }

@@ -61,7 +61,7 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Subcategoria_Lista = "Gral.SP_Subcategoria_Lista";
         public static string Subcategoria_Insertar = "Gral.SP_Subcategoria_Insertar";
         public static string Subcategoria_Modificar = "Gral.SP_Subcategoria_Modificar";
-        public static string Subcategoria_Eliminar = "Gral.SP_Subcategoria_Eliminar";
+        public static string Subcategoria_Eliminar = "[Gral].[SP_Subcategoria_Eliminar]";
         public static string Subcategoria_Buscar = "Gral.SP_Subcategoria_Buscar";
         public static string Subcategoria_DropDownList = "Gral.SP_Subcategoria_DropDownList";
         public static string Subcategoria_Total = "Venta.SP_Subcategoria_Total";

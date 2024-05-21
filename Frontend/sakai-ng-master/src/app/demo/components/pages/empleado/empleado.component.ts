@@ -58,13 +58,6 @@ export class EmpleadoComponent implements OnInit {
         this.empleado = { ...empleado };
     }
 
-    confirmDeleteSelected() {
-        this.deleteempleadosDialog = false;
-        this.empleados = this.empleados.filter(val => !this.selectedEmpleados.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Empleados eliminados.', life: 3000 });
-        this.selectedEmpleados = [];
-    }
-
     confirmDelete() {
         this.deleteempleadoDialog = false;
     
@@ -84,17 +77,6 @@ export class EmpleadoComponent implements OnInit {
     }
     
 
-    findIndexById(id: number): number {
-        let index = -1;
-        for (let i = 0; i < this.empleados.length; i++) {
-            if (this.empleados[i].emple_Id === id) {
-                index = i;
-                break;
-            }
-        }
-
-        return index;
-    }
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');

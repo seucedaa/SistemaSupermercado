@@ -54,44 +54,35 @@ export class CargoComponent implements OnInit {
         this.cargoDialog = true;
     }
 
-    deleteProduct(cargo: Cargo) {
+    deleteCargo(cargo: Cargo) {
         this.deletecargoDialog = true;
         this.cargo = { ...cargo };
     }
 
-    confirmDeleteSelected() {
-        this.deletecargosDialog = false;
-        this.cargos = this.cargos.filter(val => !this.selectedCargos.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-        this.selectedCargos = [];
-    }
-
     confirmDelete() {
-        this.cargoService.Delete(this.cargo.cargo_Id).then((response => {
-            console.log(response)
+        this.deletecargoDialog = false;
+    
+        this.cargoService.Delete(this.cargo.cargo_Id).then((response) => {
             if(response.success){
-                console.log(response.data.codeStatus);
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Cargo desactivado', life: 3000 });
-                this.deletecargoDialog = false;
-                this.cargo = {};
-                this.ngOnInit();
-            }else{
-                this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
+                this.cargos = this.cargos.filter(val => val.cargo_Id!== this.cargo.cargo_Id);
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Cargo eliminado.', life: 3000 });
+            this.cargo = {};
+            } else{
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El cargo esta siendo utilizado.', life: 3000 });
             }
-        }));
-        
+            
+        }).catch(error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar el cargo.', life: 3000 });
+        });
     }
     
     saveCargo() {
         this.submitted = true;
+        this.cargo.cargo_UsuarioCreacion = 1;
+        this.cargo.cargo_UsuarioModificacion = 1;
 
         if (this.cargo.cargo_Descripcion?.trim()) {
             if (this.cargo.cargo_Id) {
-                console.log("entra if")
-                // @ts-ignore
-                // this.cargo.inventoryStatus = this.cargo.inventoryStatus.value ? this.cargo.inventoryStatus.value : this.cargo.inventoryStatus;
-                // this.cargos[this.findIndexById(this.cargo.cargo_Id)] = this.cargo;
-                // this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'cargo Updated', life: 3000 });
                 this.cargoService.Update(this.cargo).then((response => {
                     console.log(response)
                     if(response.success){
@@ -106,13 +97,6 @@ export class CargoComponent implements OnInit {
                 }));
             } else {
                 console.log("entra else")
-                // this.cargo.id = this.createId();
-                // this.cargo.code = this.createId();
-                // this.cargo.image = 'cargo-placeholder.svg';
-                // @ts-ignore
-                // this.cargo.inventoryStatus = this.cargo.inventoryStatus ? this.cargo.inventoryStatus.value : 'INSTOCK';
-                
-                // this.cargos.push(this.cargo);
 
                 this.cargoService.Insert(this.cargo).then((response => {
                     console.log(response)

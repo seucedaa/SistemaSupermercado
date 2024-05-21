@@ -48,6 +48,8 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     prueba:any;
     inicio:any;
     fin:any;
+    sucursa: any;
+
 
     constructor(private layoutService: LayoutService,
             private sucursalService: SucursalService,
@@ -179,6 +181,16 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
             }));
         
             this.sucursales.unshift({ sucur_Id: 0, sucur_Descripcion: 'Mostrar todas' });
+
+            const usuarioJson = sessionStorage.getItem('usuario');
+        const usuario = JSON.parse(usuarioJson);
+        this.sucursa = usuario.sucur_Id;
+
+        const sucursalUsuario = this.sucursales.find(s => s.sucur_Id === this.sucursa);
+        if (sucursalUsuario) {
+            this.sucursalid = sucursalUsuario.sucur_Id;
+            console.log(sucursalUsuario,this.sucursales,this.sucursalid)
+        } 
         });
         
 

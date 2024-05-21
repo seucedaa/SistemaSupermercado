@@ -24,6 +24,10 @@ export class CargoService {
       .toPromise()  
   }
 
+  Details(id: number){
+    return this.http.get<any>(this.endpoint.Details(id.toString())) 
+      .toPromise()  
+  }
   Update(model: Cargo){
     return this.http.put<any>(this.endpoint.Update(), model) 
       .toPromise()  

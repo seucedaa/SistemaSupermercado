@@ -10,7 +10,10 @@ namespace SistemaSupermercado.Common.Models
 {
     public class UsuarioViewModel
     {
-
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
         public int Usuar_Id { get; set; }
         [Display(Name = "Correo")]
         public string Usuar_Correo { get; set; }

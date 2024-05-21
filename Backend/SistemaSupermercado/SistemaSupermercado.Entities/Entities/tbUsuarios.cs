@@ -77,6 +77,10 @@ namespace SistemaSupermercado.Entities.Entities
         public bool? Usuar_Estado { get; set; }
         [NotMapped]
         public string Panta_Descripcion { get; set; }
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
 
         public virtual ICollection<tbCargos> tbCargosCargo_UsuarioCreacionNavigation { get; set; }
         public virtual ICollection<tbCargos> tbCargosCargo_UsuarioModificacionNavigation { get; set; }

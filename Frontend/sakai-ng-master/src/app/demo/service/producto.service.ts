@@ -46,4 +46,24 @@ export class ProductoService {
     return this.http.get<any>(this.endpoint.Principal(sucursal))
         .toPromise()
   }
+
+  Insert(model: Producto){
+    return this.http.post<any>(this.endpoint.Insert(), model) 
+      .toPromise()  
+  }
+
+  Update(model: Producto){
+    return this.http.put<any>(this.endpoint.Update(), model) 
+      .toPromise()  
+  }
+
+  Details(id: number){
+    return this.http.get<any>(this.endpoint.Details(id.toString())) 
+      .toPromise()  
+  }
+
+  Delete(id: number){
+    return this.http.delete<any>(this.endpoint.Delete(id.toString())) 
+      .toPromise()  
+  }
 }

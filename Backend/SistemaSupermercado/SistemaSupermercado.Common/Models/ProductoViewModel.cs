@@ -36,6 +36,10 @@ namespace SistemaSupermercado.Common.Models
         [NotMapped]
         public string PorcentajeCambio { get; set; }
         [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
+        [NotMapped]
         public string Categoriaa { get; set; }
         [NotMapped]
         public string Productoo { get; set; }

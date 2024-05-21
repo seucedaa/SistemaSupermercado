@@ -5,4 +5,6 @@ export interface Cargo{
     cargo_FechaCreacion?:string;
     cargo_UsuarioModificacion?:1;
     cargo_FechaModificacion?:string;
+    usuarioCreacion?:string;
+    usuarioModificacion?:string;
 }

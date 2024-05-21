@@ -17,6 +17,10 @@ namespace SistemaSupermercado.Entities.Entities
         public int Subca_Id { get; set; }
         public string Subca_Descripcion { get; set; }
         public int Categ_Id { get; set; }
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
 
         [NotMapped]
         public string Subcategoria { get; set; }

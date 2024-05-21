@@ -21,6 +21,10 @@ namespace SistemaSupermercado.Entities.Entities
         public string Prove_ContactoPrimerApellido { get; set; }
         public string Prove_ContactoSegundoApellido { get; set; }
         [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
+        [NotMapped]
 
         public string Contacto { get; set; }
         public string Munic_Id { get; set; }
