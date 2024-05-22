@@ -48,7 +48,7 @@ export class RoleGuard implements CanActivate {
           const url = state.url.toLowerCase().trim();
           console.log('Current URL:', url);
 
-          const urlWithoutBase = url.replace(/^\/app\/(uikit|generales|acceso)\//, '').toLowerCase().trim();
+          const urlWithoutBase = url.replace(/^\/home\/(reports|pages|acceso)\//, '').toLowerCase().trim();
           console.log('URL without base:', urlWithoutBase);
 
           const isAllowed = this.permisosPermitidos.has(urlWithoutBase);
