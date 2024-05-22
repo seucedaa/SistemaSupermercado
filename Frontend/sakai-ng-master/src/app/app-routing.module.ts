@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from "./layout/app.layout.component";
 import { LoginComponent } from './demo/components/auth/login/login.component';
-import { AuthGuard } from 'src/app/guards/auth.guard'; // Ajusta la ruta según sea necesario
-import { RoleGuard } from 'src/app/guards/role.guard'; // Ajusta la ruta según sea necesario
+import { AuthGuard } from 'src/app/guards/auth.guard'; 
+import { RoleGuard } from 'src/app/guards/role.guard'; 
 
 const routes: Routes =[
     { 

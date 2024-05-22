@@ -352,6 +352,26 @@ export class LoteEndPoints{
   }
 }
 
+export class PromocionEndPoints{
+  public api = new ApiService();
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Promocion/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Promocion/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Promocion/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Promocion/Eliminar/${id}`; 
+  }
+}
+
 export class MunicipioEndPoints{
   public api = new ApiService();
 

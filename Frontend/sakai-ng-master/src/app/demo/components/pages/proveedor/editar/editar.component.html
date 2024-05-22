@@ -1,0 +1,99 @@
+<div class="grid">
+	<div class="col-12 md:col-12">
+        <div class="card p-fluid">
+             <p-toast></p-toast>
+			<h5>Editar proveedor</h5>
+            <div class="p-formgrid grid">
+                <div class="field col">
+                    <label for="prove_Marca">Proveedor</label>
+                    <input type="text" pInputText id="prove_Marca" [(ngModel)]="proveedor.prove_Marca" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !proveedor.prove_Marca}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !proveedor.prove_Marca">El proveedor es requerida.</small>
+                </div>
+                <div class="field col">
+                    <label for="prove_ContactoPrimerNombre">Contacto primer nombre</label>
+                    <input type="text" pInputText id="prove_ContactoPrimerNombre" [(ngModel)]="proveedor.prove_ContactoPrimerNombre" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !proveedor.prove_ContactoPrimerNombre}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !proveedor.prove_ContactoPrimerNombre">El primer nombre es requerido.</small>
+                </div>
+            </div>
+            <div class="p-formgrid grid">
+                <div class="field col">
+                    <label for="prove_ContactoSegundoNombre">Contacto segundo nombre</label>
+                    <input type="text" pInputText id="prove_ContactoSegundoNombre" [(ngModel)]="proveedor.prove_ContactoSegundoNombre" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !proveedor.prove_ContactoSegundoNombre}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !proveedor.prove_ContactoSegundoNombre">El primer nombre es requerido.</small>
+                </div>
+                <div class="field col">
+                    <label htmlFor="prove_ContactoPrimerApellido">Contacto primer apellido</label>
+                    <input type="text" pInputText id="prove_ContactoPrimerApellido" [(ngModel)]="proveedor.prove_ContactoPrimerApellido" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !proveedor.prove_ContactoPrimerApellido}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !proveedor.prove_ContactoPrimerApellido">El segundo nombre es requerido.</small>				
+                </div>
+            </div>
+            <div class="p-formgrid grid">
+                <div class="field col">
+                    <label htmlFor="prove_ContactoSegundoApellido">Contacto segundo apellido</label>
+                    <input type="text" pInputText id="prove_ContactoSegundoApellido" [(ngModel)]="proveedor.prove_ContactoSegundoApellido" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !proveedor.prove_ContactoSegundoApellido}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !proveedor.prove_ContactoSegundoApellido">El primer apellido es requerido.</small>				
+                </div>
+                <div class="field col">
+                    <label htmlFor="prove_Correo">Correo</label>
+                    <input type="text" pInputText id="prove_Correo" [(ngModel)]="proveedor.prove_Correo" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !proveedor.prove_Correo}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !proveedor.prove_Correo">El segundo apellido es requerido.</small>				
+                </div>
+            </div>
+            <div class="p-formgrid grid">
+                <div class="field col">
+                    <label for="prove_Telefono">Telefono</label>
+                    <input type="text" pInputText id="prove_Telefono" [(ngModel)]="proveedor.prove_Telefono" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !proveedor.prove_Telefono}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !proveedor.prove_Telefono">El telefono es requerido.</small>
+                </div>
+                <div class="field col">
+                    <label for="prove_Direccion">Direccion</label>
+                    <input type="text" pInputText id="prove_Direccion" [(ngModel)]="proveedor.prove_Direccion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !proveedor.prove_Direccion}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !proveedor.prove_Direccion">El telefono es requerido.</small>
+                </div>
+               
+            </div>
+                
+               
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="name2">Departamento</label>
+                        <p-dropdown [options]="departamentos" 
+                        optionLabel="depar_Descripcion" 
+                        optionValue="depar_Id" 
+                        (onChange)="onDeparIdChange($event.value)" 
+                        [(ngModel)]="departid">
+                        </p-dropdown>                    
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="proveedor.munic_Id">Municipio</label>
+                        <p-dropdown [options]="municipios" 
+                        optionLabel="munic_Descripcion" 
+                        optionValue="munic_Id" 
+                        (onChange)="onMunicIdChange($event.value)" 
+                        [(ngModel)]="municipioid">
+                        </p-dropdown>                  
+                 </div>
+                </div>
+			
+            <div class="flex flex-wrap gap-2">   
+                <div class="field col">
+                </div>
+                <div class="field col">
+                               
+                </div>
+                <div class="field col">
+                </div>  
+                <div class="field col">
+                   <button pButton pRipple label="Guardar" icon="pi pi-plus" class="p-button-success mr-2" (click)="guardar()"></button>
+
+                </div>  
+               
+               <div class="field col">
+                   <button routerLink="proveedor" pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-secondary mr-2" ></button>
+               
+               </div>
+            </div>
+	    </div>
+        
+    </div>
+</div>
