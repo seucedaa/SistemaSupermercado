@@ -62,7 +62,7 @@ namespace SistemaSupermercado.API.Controllers
             var modelo = new tbSubcategorias()
             {
                 Subca_Descripcion = item.Subca_Descripcion,
-                Categ_Descripcion = item.Categ_Descripcion,
+                Categ_Id = item.Categ_Id,
                 Subca_UsuarioCreacion = item.Subca_UsuarioCreacion
             };
 
@@ -90,15 +90,14 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpPut("Actualizar/{id}")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(SubCategoriaViewModel item)
         {
-            var model = _mapper.Map<tbSubcategorias>(item);
             var modelo = new tbSubcategorias()
             {
                 Subca_Id = item.Subca_Id,
                 Subca_Descripcion = item.Subca_Descripcion,
-                Categ_Descripcion = item.Categ_Descripcion,
+                Categ_Id = item.Categ_Id,
                 Subca_UsuarioModificacion = item.Subca_UsuarioModificacion
             };
 

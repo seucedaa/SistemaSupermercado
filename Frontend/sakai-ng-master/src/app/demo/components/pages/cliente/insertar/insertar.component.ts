@@ -59,6 +59,13 @@ export class InsertarComponent implements OnInit {
     
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.cliente.clien_Sexo = 'f'; 
         this.estadocivilService.getList().then(data => this.estadosciviles = data);
 

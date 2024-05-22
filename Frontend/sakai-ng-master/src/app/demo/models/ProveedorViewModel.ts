@@ -1,6 +1,10 @@
 export class Proveedor{
     prove_Id?:number;
     prove_Marca?:String;
+    prove_ContactoSegundoNombre?:string;
+    prove_ContactoSegundoApellido?:string;
+    prove_ContactoPrimerNombre?:string;
+    prove_ContactoPrimerApellido?:string;
     contacto?:String;
     munic_Id?: string;
     munic_Descripcion?: string;
@@ -11,7 +15,7 @@ export class Proveedor{
     usuarioCreacion?: string;
     usuarioModificacion?: string;
     prove_UsuarioCreacion?: number;
-    prove_UsuarioModificacion?: string;
+    prove_UsuarioModificacion?: number;
     prove_FechaCreacion?: number;
     prove_FechaModificacion?: string;
 }

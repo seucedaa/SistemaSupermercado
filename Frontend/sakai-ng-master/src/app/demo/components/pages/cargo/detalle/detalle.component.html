@@ -1,0 +1,81 @@
+<div class="grid">
+	<div class="col-12 md:col-12">
+		<div class="card p-fluid">
+            <div class="flex justify-content-between align-items-center mb-5">
+                <h5>Detalles</h5>
+                <div>
+                    <button routerLink="cargo" pButton type="button" label="Regresar" icon="pi pi-arrow-left" class="p-element p-ripple p-button-outlined p-button-success p-button p-component"></button>
+                </div>
+            </div>
+            
+            <div *ngIf="cargo">
+                <div class="p-formgrid grid">
+
+                    <div class="field col">
+                        <label><b>ID</b></label>
+                        <p>{{cargo.cargo_Id}}</p>
+                    </div>
+                    <div class="field col">
+                        <label><b>Cargo</b></label>
+                        <p>{{cargo.cargo_Descripcion}}</p>
+                    </div>
+                </div>
+				
+            </div>
+            
+            <div class="card p-fluid">
+                <h5>Auditoria</h5>
+    
+                <p-table #dt [value]="cargoss" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['usuarioCreacion','usuarioModificacion', 'cargo_FechaCreacion', 'cargo_FechaModificacion']" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowHover]="true" dataKey="id">
+                    
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem">
+                              Accion
+                            </th>
+                            <th style="width: 3rem">
+                                Usuario
+                            </th>
+                              <th style="width: 3rem">
+                                Fecha
+                              </th>
+                            
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-cargo>
+                        <tr>
+                            <td style="width:14%; min-width:20rem;">
+                                Creador
+                            </td>
+                            <td style="width:14%; min-width:20rem;">
+                                {{ cargo.usuarioCreacion }}
+                            </td>
+                            <td style="width:14%; min-width:20rem;">
+                                {{ cargo.cargo_FechaCreacion }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:14%; min-width:20rem;">
+                                Modificador
+                            </td>
+                            <td style="width:14%; min-width:20rem;">
+                                {{ cargo.usuarioModificacion }}
+                            </td>
+                            <td style="width:14%; min-width:20rem;">
+                                {{ cargo.cargo_FechaModificacion }}
+                            </td>
+                        </tr>
+                    </ng-template>
+                    
+                    
+                </p-table>
+            
+        </div>
+        </div>
+        
+        
+    </div>
+    <div class="col-12 md:col-12">
+		
+</div> 
+

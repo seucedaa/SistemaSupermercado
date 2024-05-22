@@ -33,14 +33,13 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Prove_Id", item.Prove_Id);
                 parametro.Add("Prove_Marca", item.Prove_Marca);
                 parametro.Add("Prove_ContactoPrimerNombre", item.Prove_ContactoPrimerNombre);
-                parametro.Add("Prove_ContactoSegundoApellido", item.Prove_ContactoSegundoApellido);
+                parametro.Add("Prove_ContactoSegundoNombre", item.Prove_ContactoSegundoNombre);
                 parametro.Add("Prove_ContactoPrimerApellido", item.Prove_ContactoPrimerApellido);
                 parametro.Add("Prove_ContactoSegundoApellido", item.Prove_ContactoSegundoApellido);
                 parametro.Add("Munic_Id", item.Munic_Id);
                 parametro.Add("Prove_Direccion", item.Prove_Direccion);
                 parametro.Add("Prove_Telefono", item.Prove_Telefono);
                 parametro.Add("Prove_Correo", item.Prove_Correo);
-                parametro.Add("Prove_Notas", item.Prove_Notas);
                 parametro.Add("Prove_UsuarioModificacion", item.Prove_UsuarioModificacion);
                 parametro.Add("Prove_FechaModificacion", DateTime.Now);
 
@@ -86,14 +85,13 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Prove_Marca", item.Prove_Marca);
                 parametro.Add("Prove_ContactoPrimerNombre", item.Prove_ContactoPrimerNombre);
-                parametro.Add("Prove_ContactoSegundoApellido", item.Prove_ContactoSegundoApellido);
+                parametro.Add("Prove_ContactoSegundoNombre", item.Prove_ContactoSegundoNombre);
                 parametro.Add("Prove_ContactoPrimerApellido", item.Prove_ContactoPrimerApellido);
                 parametro.Add("Prove_ContactoSegundoApellido", item.Prove_ContactoSegundoApellido);
                 parametro.Add("Munic_Id", item.Munic_Id);
                 parametro.Add("Prove_Direccion", item.Prove_Direccion);
                 parametro.Add("Prove_Telefono", item.Prove_Telefono);
                 parametro.Add("Prove_Correo", item.Prove_Correo);
-                parametro.Add("Prove_Notas", item.Prove_Notas);
                 parametro.Add("Prove_UsuarioCreacion", item.Prove_UsuarioCreacion);
                 parametro.Add("Prove_FechaCreacion", DateTime.Now);
 

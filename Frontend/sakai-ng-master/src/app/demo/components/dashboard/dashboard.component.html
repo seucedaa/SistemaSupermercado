@@ -43,7 +43,7 @@
                 <h5>Top 5 productos mas vendidos</h5>
                 
             </div>
-            <ul class="list-none p-0 m-0">
+            <ul class="list-none p-0 m-0" >
                 <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
                     <div>
                         <span class="text-900 font-medium mr-2 mb-1 md:mb-0">{{ productos[0]?.producto }}</span>
@@ -52,16 +52,11 @@
                     </div>
                     <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
                         <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                            <div class="bg-cyan-500 h-full" [ngStyle]="{width: '63%'}"></div>
+                            <div class="bg-cyan-500 h-full" [ngStyle]="{width: productos[0]?.porcentajeCambio + '%'}"></div>
                         </div>
-                        <span class="text-cyan-500 ml-3 font-medium">%63</span>
+                        <span class="text-cyan-500 ml-3 font-medium">{{ productos[0]?.porcentajeCambio }}%</span>
                     </div>
-                    <!-- <div class="mt-2 md:mt-0 flex align-items-center">
-                        <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                            <div class="bg-orange-500 h-full" [ngStyle]="{width: `${productos[0]?.porcentajeCambio}%`}"></div>
-                        </div>
-                        <span class="text-orange-500 ml-3 font-medium">{{productos[0]?.porcentajeCambio}}%</span>
-                    </div> -->
+                    
                 </li>
                 <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
                     <div>
@@ -71,9 +66,9 @@
                     </div>
                     <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
                         <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                            <div class="bg-cyan-500 h-full" [ngStyle]="{width: '54%'}"></div>
+                            <div class="bg-cyan-500 h-full" [ngStyle]="{width: productos[1]?.porcentajeCambio + '%'}"></div>
                         </div>
-                        <span class="text-cyan-500 ml-3 font-medium">%54</span>
+                        <span class="text-cyan-500 ml-3 font-medium">{{ productos[1]?.porcentajeCambio }}%</span>
                     </div>
                 </li>
                 <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
@@ -84,9 +79,9 @@
                     </div>
                     <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
                         <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                            <div class="bg-pink-500 h-full" [ngStyle]="{width: '0%'}"></div>
+                            <div class="bg-cyan-500 h-full" [ngStyle]="{width: productos[2]?.porcentajeCambio + '%'}"></div>
                         </div>
-                        <span class="text-pink-500 ml-3 font-medium">%0</span>
+                        <span class="text-cyan-500 ml-3 font-medium">{{ productos[2]?.porcentajeCambio }}%</span>
                     </div>
                 </li>
                 <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
@@ -97,9 +92,9 @@
                     </div>
                     <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
                         <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                            <div class="bg-green-500 h-full" [ngStyle]="{width: '0%'}"></div>
+                            <div class="bg-cyan-500 h-full" [ngStyle]="{width: productos[3]?.porcentajeCambio + '%'}"></div>
                         </div>
-                        <span class="text-green-500 ml-3 font-medium">%0</span>
+                        <span class="text-cyan-500 ml-3 font-medium">{{ productos[3]?.porcentajeCambio }}%</span>
                     </div>
                 </li>
                 <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
@@ -110,9 +105,9 @@
                     </div>
                     <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
                         <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                            <div class="bg-purple-500 h-full" [ngStyle]="{width: '0%'}"></div>
+                            <div class="bg-cyan-500 h-full" [ngStyle]="{width: productos[4]?.porcentajeCambio + '%'}"></div>
                         </div>
-                        <span class="text-purple-500 ml-3 font-medium">%0</span>
+                        <span class="text-cyan-500 ml-3 font-medium">{{ productos[4]?.porcentajeCambio }}%</span>
                     </div>
                 </li>
             </ul>
@@ -120,9 +115,9 @@
     </div>
 
     <div class="col-12 xl:col-6">
-        <div class="card">
+        <div class="card" style="height: 494px;">
             <h5>Ventas del mes</h5>
-            <p-chart type="line" [data]="lineData" [options]="lineOptions"></p-chart>
+            <p-chart type="line" style="height: 494px;" [data]="lineData" [options]="lineOptions"></p-chart>
         </div>
 
 </div>

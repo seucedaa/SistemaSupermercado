@@ -17,6 +17,10 @@ namespace SistemaSupermercado.Entities.Entities
 
         public int Produ_Id { get; set; }
         public string Produ_Descripcion { get; set; }
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
         public int Produ_Existencia { get; set; }
         public decimal Produ_PrecioCompra { get; set; }
         public decimal Produ_PrecioVenta { get; set; }
@@ -52,6 +56,7 @@ namespace SistemaSupermercado.Entities.Entities
         public int? Produ_UsuarioModificacion { get; set; }
         public DateTime? Produ_FechaModificacion { get; set; }
         public bool? Produ_Estado { get; set; }
+        public string? img { get; set; }
 
         public virtual tbImpuestos Impue { get; set; }
         public virtual tbUsuarios Produ_UsuarioCreacionNavigation { get; set; }

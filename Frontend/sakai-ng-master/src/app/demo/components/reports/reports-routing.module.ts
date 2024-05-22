@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/guards/auth.guard'; // Ajusta la ruta según sea necesario
+import { RoleGuard } from 'src/app/guards/role.guard'; // Ajusta la ruta según sea necesario
+
+const routes: Routes = [
+    { path: 'stock', data: { breadcrumb: 'stock' }, loadChildren: () => import('./stock/stock.module').then(m => m.StockModule), canActivate: [AuthGuard, RoleGuard] },
+    { path: 'pvendidos', data: { breadcrumb: 'pvendidos' }, loadChildren: () => import('./pvendidos/pvendidos.module').then(m => m.PvendidosModule), canActivate: [AuthGuard, RoleGuard] },
+    { path: 'clientess', data: { breadcrumb: 'clientess' }, loadChildren: () => import('./clientess/clientess.module').then(m => m.ClientessModule), canActivate: [AuthGuard, RoleGuard] },
+    { path: 'ventas', data: { breadcrumb: 'ventas' }, loadChildren: () => import('./ventas/ventas.module').then(m => m.VentasModule), canActivate: [AuthGuard, RoleGuard] },
+    { path: 'promocion', data: { breadcrumb: 'promocion' }, loadChildren: () => import('./promocion/promocion.module').then(m => m.PromocionModule), canActivate: [AuthGuard, RoleGuard] },
+    { path: '**', redirectTo: '/notfound' }
+];
+
 
 @NgModule({
-    imports: [RouterModule.forChild([
-        { path: 'stock', loadChildren: () => import('./stock/stock.module').then(m => m.StockModule) },
-        { path: 'pvendidos', loadChildren: () => import('./pvendidos/pvendidos.module').then(m => m.PvendidosModule) },
-        { path: 'clientess', loadChildren: () => import('./clientess/clientess.module').then(m => m.ClientessModule) },
-        { path: 'ventas', loadChildren: () => import('./ventas/ventas.module').then(m => m.VentasModule) },
-        { path: '**', redirectTo: '/notfound' }
-    ])],
+    imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
 export class ReportsRoutingModule { }

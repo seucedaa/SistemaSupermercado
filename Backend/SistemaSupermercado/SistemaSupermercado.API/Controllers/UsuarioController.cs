@@ -50,8 +50,6 @@ namespace SistemaSupermercado.API.Controllers
                 Usuar_Correo = item.Usuar_Correo,
                 Usuar_Contrasena = item.Usuar_Contrasena,
                 Usuar_Admin = item.Usuar_Admin,
-                Usuar_UltimaSesion = item.Usuar_UltimaSesion,
-                Usuar_SuperPuntos = item.Usuar_SuperPuntos,
                 Roles_Id = item.Roles_Id,
                 Perso_Id = item.Perso_Id,
                 Usuar_UsuarioCreacion = item.Usuar_UsuarioCreacion
@@ -69,15 +67,13 @@ namespace SistemaSupermercado.API.Controllers
             return Ok(camp);
         }
 
-        [HttpGet("Login/{usuario}/{contrasena}")]
-        public IActionResult loginUsuario(string usuario, string contrasena)
+        [HttpGet("Login/{usuario},{contraseña}")]
+        public IActionResult loginUsuario(string usuario, string contraseña)
         {
-            var estado = _accesoservicios.LoginUsuario(usuario, contrasena);
-            return Ok(estado);
+            var estado = _accesoservicios.LoginUsuario(usuario, contraseña);
+            return Ok(estado.Data);
 
         }
-
-        
 
         [HttpGet("Detalle/{id}")]
         public IActionResult Detalle(int id)
@@ -90,7 +86,7 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpPut("Actualizar/{id}")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(UsuarioViewModel item)
         {
             var model = _mapper.Map<tbUsuarios>(item);
@@ -102,7 +98,6 @@ namespace SistemaSupermercado.API.Controllers
                 Perso_Id = item.Perso_Id,
                 Roles_Id = item.Roles_Id,
                 Usuar_Admin = item.Usuar_Admin,
-                Usuar_SuperPuntos = item.Usuar_SuperPuntos,
                 Usuar_UsuarioModificacion = item.Usuar_UsuarioModificacion
             };
 
@@ -121,7 +116,40 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        
+
+        [HttpPut("Reestablecer/{codigo},{contrasena}")]
+        public IActionResult Reestablecer(string codigo, string contrasena)
+        {
+            var list = _accesoservicios.Reestablecer(codigo, contrasena);
+            return Ok(list);
+        }
+
+        [HttpGet("StartRecovery/{usuario}")]
+        public IActionResult StartRecovery(string usuario)
+        {
+            Random random = new Random();
+
+            string codigo = random.Next(10000, 100000).ToString();
+
+            var details = _accesoservicios.obtenerCorreo(usuario);
+
+            var detail = details.First();
+
+            string correo = detail.Usuar_Correo;
+
+            if (!string.IsNullOrEmpty(correo))
+            {
+                _accesoservicios.InsertarCodigo(usuario, codigo);
+                MailData mailData = new MailData();
+                mailData.EmailToId = correo;
+                mailData.EmailToName = "Correo de Reestablecimiento";
+                mailData.EmailSubject = "Codigo para reestablecer contraseña";
+                mailData.EmailBody = "Codigo " + codigo;
+                _mailService.SendMail(mailData);
+            }
+
+            return Ok(detail);
+        }
 
 
     }

@@ -11,14 +11,17 @@ import { EventService } from './demo/service/event.service';
 import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
+import { TokenInterceptorService } from './demo/service/token-interceptor.service';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
-    imports: [AppRoutingModule, AppLayoutModule],
+    imports: [AppRoutingModule, AppLayoutModule, HttpClientModule, DialogModule],
     providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService
+        PhotoService, ProductService, {provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}
     ],
     bootstrap: [AppComponent],
 })

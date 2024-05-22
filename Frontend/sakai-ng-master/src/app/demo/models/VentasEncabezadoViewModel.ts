@@ -8,6 +8,9 @@ export class VentaEncabezado{
     usuarioModificacion?: string;
     venen_UsuarioCreacion?: number;
     venen_UsuarioModificacion?: string;
-    venen_FechaCreacion?: number;
+    venen_FechaCreacion?: string;
     venen_FechaModificacion?: string;
+    persona?:string;
+    tipo?:string;
+    venen_Descuento?:string;
 }

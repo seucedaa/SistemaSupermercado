@@ -10,6 +10,8 @@ import { VentaEncabezadoService } from 'src/app/demo/service/ventaencabezado.ser
 import { VentaEncabezado } from 'src/app/demo/models/VentasEncabezadoViewModel';
 import { ProductoService } from 'src/app/demo/service/producto.service';
 import { Producto } from 'src/app/demo/models/ProductoViewModel';
+import { Router } from '@angular/router';
+
 @Component({
     templateUrl: './dashboard.component.html',
 })
@@ -28,10 +30,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     clientes: Cliente[] = [];
     ventas: VentaEncabezado[] = [];
     productos: Producto[] = [];
+    productoss:Producto[]=[];
 
 
 
-    constructor(private productService: ProductService, private productoService: ProductoService,private clienteService: ClienteService,private ventaencabezadoService: VentaEncabezadoService, public layoutService: LayoutService) {
+    constructor(private productService: ProductService, private productoService: ProductoService,    private router: Router,
+        private clienteService: ClienteService,private ventaencabezadoService: VentaEncabezadoService, public layoutService: LayoutService) {
         this.subscription = this.layoutService.configUpdate$
         .pipe(debounceTime(25))
         .subscribe((config) => {
@@ -39,36 +43,43 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.productService.getProductsSmall().then(data => this.products = data);
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
 
-        this.items = [
-            { label: 'Add New', icon: 'pi pi-fw pi-plus' },
-            { label: 'Remove', icon: 'pi pi-fw pi-minus' }
-        ];
+            }
 
         this.clienteService.getTotal().then(data => {
             this.clientes = data;
-            console.log(this.clientes);
         });
 
         this.ventaencabezadoService.getTotal().then(data => {
             this.ventas = data;
-            console.log(this.ventas);
         });
 
-        const sucursalid = 2;
+        const usuarioJson = sessionStorage.getItem('usuario');
+        if (usuarioJson) {
+            const usuario = JSON.parse(usuarioJson);
+            const sucursalid = usuario.sucur_Id;
 
-        this.productoService.Principal(sucursalid).then(data => {
-            this.productos = data.data;
-            console.log(this.productos);
-            this.chartLineChart();
-        });
+            if (sucursalid) {
+                this.productoService.Principal(sucursalid).then(data => {
+                    this.productoss = data.data;
+                    this.chartLineChart();
+                }).catch(error => {
+                });
 
-        this.productoService.Top(sucursalid).then(data => {
-            this.productos = data.data;
-            console.log(this.productos);
-
-        });
+                this.productoService.Top(sucursalid).then(data => {
+                    this.productos = data.data;
+                    console.log(this.productos);
+                }).catch(error => {
+                });
+            } 
+        } else {
+            console.error('No hay sesion');
+        }
     }
 
     chartLineChart() {
@@ -77,13 +88,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
         const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
         
-        if (Array.isArray(this.productos)) {
+        if (Array.isArray(this.productoss)) {
             this.lineData = {
-                labels: this.productos.map(producto => producto.semana || 'No hay'),
+                labels: this.productoss.map(producto => producto.semana || 'No hay'),
                 datasets: [
                     {
                         label: 'Ventas',
-                        data: this.productos.map(producto => parseInt(producto.totalVentas)),
+                        data: this.productoss.map(producto => parseInt(producto.totalVentas)),
                         fill: false,
                         backgroundColor: documentStyle.getPropertyValue('--primary-500'),
                         borderColor: documentStyle.getPropertyValue('--primary-500'),

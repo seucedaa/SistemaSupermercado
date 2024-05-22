@@ -1,0 +1,69 @@
+<div class="grid">
+	<div class="col-12 md:col-12">
+        <div class="card p-fluid">
+             <p-toast></p-toast>
+			<h5>Editar usuario</h5>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label for="usuar_Usuario">Usuario</label>
+                        <input type="text" pInputText id="usuar_Usuario" [(ngModel)]="usuario.usuar_Usuario" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !usuario.usuar_Usuario}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !usuario.usuar_Usuario">El usuario es requerida.</small>
+                    </div>
+                    <div class="field col">
+                        <label for="usuar_Correo">Correo</label>
+                        <input type="text" pInputText id="usuar_Correo" [(ngModel)]="usuario.usuar_Correo" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !usuario.usuar_Correo}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !usuario.usuar_Correo">El correo es requerido.</small>
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    
+                    <div class="field col">
+                        <label htmlFor="usuar_Admin">Administrador</label>
+                        <br>
+                        <p-inputSwitch [(ngModel)]="usuario.usuar_Admin"></p-inputSwitch>
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="usuario.perso_Id">Empleado</label>
+                        <p-dropdown [options]="empleados" 
+                        optionLabel="emple_NombreCompleto" 
+                        optionValue="emple_Id" 
+                        (onChange)="onEmpleIdChange($event.value)" 
+                        [(ngModel)]="empleid">
+                        </p-dropdown>                      
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="usuario.roles_Id">Rol</label>
+                        <p-dropdown [options]="roles" 
+                        optionLabel="roles_Descripcion" 
+                        optionValue="roles_Id" 
+                        (onChange)="onRolIdChange($event.value)" 
+                        [(ngModel)]="rolid">
+                        </p-dropdown>                      
+                    </div>
+                </div>
+               
+			
+            <div class="flex flex-wrap gap-2">   
+                <div class="field col">
+                </div>
+                <div class="field col">
+                               
+                </div>
+                <div class="field col">
+                </div>  
+                <div class="field col">
+                   <button pButton pRipple label="Guardar" icon="pi pi-plus" class="p-button-success mr-2" (click)="guardar()"></button>
+
+                </div>  
+               
+               <div class="field col">
+                   <button routerLink="usuario" pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-secondary mr-2" ></button>
+               
+               </div>
+            </div>
+	    </div>
+        
+    </div>
+</div>

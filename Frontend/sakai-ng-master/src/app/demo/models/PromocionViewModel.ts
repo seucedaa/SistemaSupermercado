@@ -1,7 +1,7 @@
 export class Promocion{
     promo_Id?:number;
-    prom_Descripcion?:String;
-    promo_TipoDisminucion?:number;
+    promo_Descripcion?:string;
+    promo_Porcentaje?:string;
     promo_Disminucion?:String;
     promo_PuntosRequeridos?:String;
     produ_Id?: number;
@@ -9,7 +9,7 @@ export class Promocion{
     usuarioCreacion?: string;
     usuarioModificacion?: string;
     promo_UsuarioCreacion?: number;
-    promo_UsuarioModificacion?: string;
+    promo_UsuarioModificacion?: number;
     promo_FechaCreacion?: number;
     promo_FechaModificacion?: string;
 }

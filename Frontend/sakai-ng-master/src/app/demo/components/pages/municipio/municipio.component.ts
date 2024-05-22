@@ -7,6 +7,7 @@ import { MunicipioService } from 'src/app/demo/service/municipio.service';
 import { Municipio } from 'src/app/demo/models/MunicipioViewModel';
 import { DepartamentoService } from 'src/app/demo/service/departamento.service';
 import { Departamento } from 'src/app/demo/models/DepartamentoViewModel';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './municipio.component.html',
@@ -39,13 +40,21 @@ export class MunicipioComponent implements OnInit {
     nuevomuni: boolean = true; 
     deparid: any;
 
-    constructor(private departamentoService:DepartamentoService,private municipioService: MunicipioService, private messageService: MessageService) { }
+    constructor(private departamentoService:DepartamentoService,    private router: Router,
+        private municipioService: MunicipioService, private messageService: MessageService) { }
 
     onDeparIdChange(value: any) {
         this.municipio.depar_Id = value?.depar_Id; 
     }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.municipioService.getList().then(data => this.municipios = data);
         this.departamentoService.getList().then(data => this.departamentos = data);
         
@@ -74,7 +83,7 @@ export class MunicipioComponent implements OnInit {
     confirmDeleteSelected() {
         this.deletemunicipiosDialog = false;
         this.municipios = this.municipios.filter(val => !this.selectedMunicipios.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Municipios eliminados.', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Municipios eliminados.', life: 3000 });
         this.selectedMunicipios = [];
     }
 
@@ -84,7 +93,7 @@ export class MunicipioComponent implements OnInit {
         this.municipioService.Delete(this.municipio.munic_Id).then((response) => {
             if(response.success){
                 this.municipios = this.municipios.filter(val => val.munic_Id!== this.municipio.munic_Id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Municipio eliminado.', life: 3000 });
+            this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Municipio eliminado.', life: 3000 });
             this.municipio = {};
             } else{
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El Municipio esta siendo utilizado.', life: 3000 });

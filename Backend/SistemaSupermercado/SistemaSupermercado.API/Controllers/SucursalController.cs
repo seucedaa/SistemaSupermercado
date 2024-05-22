@@ -70,7 +70,7 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpPut("Actualizar/{id}")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(SucursalViewModel item)
         {
             var model = _mapper.Map<tbSucursales>(item);

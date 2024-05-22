@@ -5,6 +5,7 @@ import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { ProveedorService } from 'src/app/demo/service/proveedor.service';
 import { Proveedor } from 'src/app/demo/models/ProveedorViewModel';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './proveedor.component.html',
@@ -32,9 +33,17 @@ export class ProveedorComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private proveedorService: ProveedorService, private messageService: MessageService) { }
+    constructor(private proveedorService: ProveedorService,    private router: Router,
+        private messageService: MessageService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.proveedorService.getList().then(data => this.proveedores = data);
 
         this.cols = [

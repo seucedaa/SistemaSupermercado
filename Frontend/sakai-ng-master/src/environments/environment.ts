@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiBaseUrl: 'http://www.proyectosupermercado.somee.com/Api'
+  //apiBaseUrl: 'https://localhost:44346/Api'
 };
 
 /*

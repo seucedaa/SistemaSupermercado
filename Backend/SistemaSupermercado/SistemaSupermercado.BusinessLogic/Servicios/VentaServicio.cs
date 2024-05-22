@@ -1,4 +1,5 @@
-﻿using SistemaSupermercado.DataAccess.Repository;
+﻿using SistemaSupermercado.Common.Models;
+using SistemaSupermercado.DataAccess.Repository;
 using SistemaSupermercado.Entities.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,16 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         //private readonly VentaDetalleRepository _ventaDetalleRepository;
         private readonly UsuarioRepository _usuarioRepository;
         private readonly AccesoServicios _accesoServicios;
+        private readonly CartRepository _cartRepository;
 
-        public VentaServicio(UsuarioRepository usuarioRepository, AccesoServicios accesoServicios,ClienteRepository clienteRepository, VentaEncabezadoRepository ventaEncabezadoRepository/*, VentaDetalleRepository ventaDetalleRepository*/)
+        public VentaServicio(UsuarioRepository usuarioRepository, AccesoServicios accesoServicios,ClienteRepository clienteRepository, VentaEncabezadoRepository ventaEncabezadoRepository, CartRepository cartRepository/*, VentaDetalleRepository ventaDetalleRepository*/)
         {
             _clienteRepository = clienteRepository;
             _ventaEncabezadoRepository = ventaEncabezadoRepository;
             //_ventaDetalleRepository = ventaDetalleRepository;
             _usuarioRepository = usuarioRepository;
             _accesoServicios = accesoServicios;
+            _cartRepository = cartRepository;
         }
 
         #region Clientes
@@ -315,5 +318,67 @@ namespace SistemaSupermercado.BusinessLogic.Servicios
         //    }
         //}
         //#endregion
+
+        #region cart
+        public ServiceResult ListarLotes()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _cartRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult CrearFacturaEncabezado(CartViewModel item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _cartRepository.CrearFacturaEncabezado(item);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult CrearFacturaDetalle(CartViewModel item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _cartRepository.CrearFacturaDetalle(item);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult BuscarFactura(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _cartRepository.BuscarFactura(id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        #endregion
     }
 }

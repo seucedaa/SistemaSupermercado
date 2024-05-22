@@ -1,0 +1,89 @@
+<div class="grid">
+  <div class="col-12">
+    <div class="card">
+      <h4 class="font-text-xl ml-3 mb-4">Articulos</h4>
+
+      <!-- LIST VIEW -->
+      <p-dataView
+        #dv
+        [value]="productos"[paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+        <ng-template pTemplate="header">
+          <div
+            class="flex flex-column md:flex-row md:justify-content-between gap-2">
+            <div class="flex justify-content-between gap-2">
+              <p-dropdown
+              [options]="sucursalesOpciones"
+              [(ngModel)]="sucursalSelecionada"
+              placeholder="Seleccionar sucursal"
+              (onChange)="onSucursalChange($event)"
+            ></p-dropdown>
+
+            <p-dropdown
+              [options]="sortOptions" 
+              placeholder="Ordenar por estado" 
+              (onChange)="onSortChange($event)"></p-dropdown>
+            </div>
+
+            <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input
+                type="search"
+                pInputText
+                placeholder="Buscar por nombre o codigo"
+                (input)="onFilter($event)" />
+            </span>
+          </div>
+        </ng-template>
+
+        
+
+        <ng-template let-productos pTemplate="gridItem">
+          <div class="grid grid-nogutter">
+            <div class="col-12 md:col-4" *ngFor="let product of filteredProductos; let i = index">
+              <div class="card m-3 border-1 surface-border p-3">
+                <div
+                  class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
+                  <div class="flex align-items-center">
+                    <i class="pi pi-tag mr-2"></i>
+                    <span class="font-semibold">{{
+                      product.categ_Descripcion
+                    }}</span>
+                  </div>
+                  <span
+                    [class]="'product-badge status-' + product.status"
+                    >{{product.status_label}}</span
+                  >
+                </div>
+                <div
+                  class="flex flex-column align-items-center text-center mb-3">
+                  <div
+                class="relative mx-auto border-round m-4"
+                style="width: 145px; height: 90px; border-radius: 10px">
+                  <img
+                  [src]="product.img ? product.img : 'assets/demo/images/product/' + product.produ_Descripcion + '.jpg'"
+                    [alt]="product.produ_Descripcion"
+                    class="w-full h-full border-round"
+                  style="object-fit: cover" />
+                  </div>
+                  <div class="text-2xl font-bold">
+                    {{ product.produ_Descripcion }}
+                  </div>
+                </div>
+                <div  style=" display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+                  <span class=" font-semibold" style="white-space: nowrap">Lps. {{product.produ_PrecioVenta}}</span>
+                  <div class="flex items-center justify-content-center gap-2" style="margin: 0; padding: 0">
+                    <p-button icon="pi pi-minus" size="small"  [text]="true" severity="secondary" (click)="disminuirContador(product, i)"/>
+                    <input  type="text" value="{{product.contador}}" class="text-center w-2 mx-1" style="border: none; width: 35px;" readonly/>
+                    <p-button icon="pi pi-plus" size="small"  [text]="true" severity="secondary" (click)="aumentarContador(product, i)"/>
+                  </div>
+                  <p-button label="Agr." icon="pi pi-shopping-cart" [disabled]="product.lotes_cantidad === 0" size="small" (click)="agregar(product)" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-dataView>
+    </div>
+  </div>
+</div>
+<p-toast position="bottom-right" />

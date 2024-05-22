@@ -1,0 +1,144 @@
+<p-toast ></p-toast>
+<div class="main-card mb-3 card"> 
+    <div class="card-body">
+        <h2>Roles</h2>
+                
+                <p-toolbar [class.hidden]="!DataTable"  styleClass="mb-4">
+                    <ng-template pTemplate="left">
+                        <div class="my-2">
+                            <button (click)="collapse()" pButton pRipple class="p-button-success mr-2" icon="pi pi-plus" style="margin-bottom: 10px ;" [class.hidden]="!Agregar">Nuevo</button>
+                            <!-- <button pButton pRipple label="Exportar Excel" icon="pi pi-upload" class="p-button-warning" (click)="dt1.exportCSV()"></button> -->
+                        </div>
+                    </ng-template>
+                </p-toolbar>
+    
+        <div [class.hidden]="!Collapse" style="margin-top: 20px;">
+            <form [formGroup]="rolForm">
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="Rol">Rol</label>
+                        <input pInputText id="Rol" formControlName="Rol_Rol" type="text" required autofocus 
+                               [ngClass]="{'ng-invalid ng-dirty': submitted && rolForm.controls['Rol_Rol'].invalid}"
+                               (keydown)="validarTexto($event)" />
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && rolForm.controls['Rol_Rol'].invalid" style="color: red !important;">Rol Requerido</small>
+                    </div>
+                </div>
+            </form>  
+            <p-tree [value]="files1" selectionMode="checkbox" [(selection)]="selectedFiles1"
+            (onNodeSelect)="onNodeSelect($event)" (onNodeUnselect)="onNodeUnselect($event)">
+    </p-tree>
+       
+              <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
+                <button pButton type="button" (click)="onSubmit()" label="Agregar"  icon="pi pi-check" size="small" class="p-button-success"></button>
+                <button pButton icon="pi pi-times" type="button" (click)="cancelar()" label="Cancelar" class="p-button-danger"></button>
+              </div>
+
+       
+
+
+        </div>
+        <p-table #dt1 [value]="Rol" dataKey="roles_Id" [showCurrentPageReport]="true" [rows]="10" [rowsPerPageOptions]="[10,20,30]"  [loading]="loading" [rowHover]="true"  [class.hidden]="!DataTable"  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" [paginator]="true" [globalFilterFields]="['roles_Descripcion']" responsiveLayout="scroll">
+            <ng-template pTemplate="caption">
+                <div class="flex justify-content-between flex-column sm:flex-row">
+                    <span class="p-input-icon-left mb-2">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Buscar..." class="w-full"/>
+                    </span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="roles_Descripcion">Rol <p-sortIcon field="roles_Descripcion"></p-sortIcon></th>
+
+                    <th>
+                            Acciones
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rol>
+                <tr>
+                    <td>
+                        {{rol.roles_Descripcion}}
+                    </td>
+                    <td style="display: flex;">
+                        <button pButton pRipple  label="Editar"   class="p-button-rounded p-button-success mr-2"  icon="pi pi-pencil" size="small" (click)="llenar(rol.roles_Id)"  [raised]="true" [plain]="true"></button>
+                        <button pButton pRipple  label="Detalles"  class="p-element p-ripple p-button-rounded p-button-info p-button p-component mr-2" icon="pi pi-ellipsis-h" size="small" (click)="detalles(rol.roles_Id)" severity="secondary" [raised]="true" [plain]="true"></button>
+                        <button pButton pRipple  label="Eliminar" class="p-button-rounded p-button-warning" icon="pi pi-trash" size="small" (click)="deleteSelectedProducts(rol.roles_Id)"  [raised]="true" [plain]="true"></button>
+                    </td>
+                </tr>
+            </ng-template>
+          
+        </p-table>
+
+        <div class="card-body" [class.hidden]="!Detalles">
+            <div class="flex justify-content-between align-items-center mb-5">
+
+            <div>
+                <button pButton icon="pi pi-arrow-left" type="button" (click)="cancelar()" label="Regresar" class="p-element p-ripple p-button-outlined p-button-success p-button p-component"></button>
+
+            </div>
+            </div>
+            <div class="p-fluid p-formgrid grid">
+
+                <div class="field col-12 md:col-4">
+                    <div class="field rows">
+                        <label for="Codigo" style="font-weight: 800;">Codigo:</label>
+                    </div>
+                    <div class="field rows">
+                        <label for="Codigo">{{ ID }}</label>
+                    </div>
+                </div>
+                
+                <div class="field col-12 md:col-4">
+                    <div class="field rows">
+                        <label for="Municipio" style="font-weight: 800;">Rol:</label>
+                    </div>
+                    <div class="field rows">
+                        <label for="Municipio">{{ Detalle_Rol }}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                       <h3>Auditoria</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p-table [value]="staticData">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width:200px">Accion</th>
+                                <th style="width:200px">Usuario</th>
+                                <th style="width:200px">Fecha</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-transaction>
+                            <tr>
+                                <td style="width:200px;">Creador</td>
+                                <td style="width:200px">{{ UsuarioCreacion }}</td>
+                                <td style="width:200px">{{ FechaCreacion }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width:200px;">Modificador</td>
+                                <td style="width:200px">{{ UsuarioModificacion }}</td>
+                                <td style="width:200px">{{ FechaModificacion }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+            
+        </div>
+        <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span>Esta seguro de eliminarlo?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>

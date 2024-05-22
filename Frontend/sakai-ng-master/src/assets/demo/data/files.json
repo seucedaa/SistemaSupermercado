@@ -2,53 +2,38 @@
     "data": [
         {
             "key": "0",
-            "label": "Documents",
+            "label": "Supermercado La Colonia",
             "data": "Documents Folder",
             "icon": "pi pi-fw pi-inbox",
             "children": [{
-                "key": "0-0",
-                "label": "Work",
+                "key": "100",
+                "label": "Acceso",
                 "data": "Work Folder",
-                "icon": "pi pi-fw pi-cog",
-                "children": [{ "key": "0-0-0", "label": "Expenses.doc", "icon": "pi pi-fw pi-file", "data": "Expenses Document" }, { "key": "0-0-1", "label": "Resume.doc", "icon": "pi pi-fw pi-file", "data": "Resume Document" }]
+                "icon": "pi pi-fw pi-user",
+                "children": [{ "key": "4", "label": "Usuarios", "icon": "pi pi-fw pi-user" }, { "key": "3", "label": "Roles", "icon": "pi pi-fw pi-cog"}]
             },
             {
-                "key": "0-1",
-                "label": "Home",
-                "data": "Home Folder",
-                "icon": "pi pi-fw pi-home",
-                "children": [{ "key": "0-1-0", "label": "Invoices.txt", "icon": "pi pi-fw pi-file", "data": "Invoices for this month" }]
-            }]
-        },
-        {
-            "key": "1",
-            "label": "Events",
-            "data": "Events Folder",
-            "icon": "pi pi-fw pi-calendar",
-            "children": [
-                { "key": "1-0", "label": "Meeting", "icon": "pi pi-fw pi-calendar-plus", "data": "Meeting" },
-                { "key": "1-1", "label": "Product Launch", "icon": "pi pi-fw pi-calendar-plus", "data": "Product Launch" },
-                { "key": "1-2", "label": "Report Review", "icon": "pi pi-fw pi-calendar-plus", "data": "Report Review" }]
-        },
-        {
-            "key": "2",
-            "label": "Movies",
-            "data": "Movies Folder",
-            "icon": "pi pi-fw pi-star",
-            "children": [{
-                "key": "2-0",
-                "icon": "pi pi-fw pi-star",
-                "label": "Al Pacino",
-                "data": "Pacino Movies",
-                "children": [{ "key": "2-0-0", "label": "Scarface", "icon": "pi pi-fw pi-video", "data": "Scarface Movie" }, { "key": "2-0-1", "label": "Serpico", "icon": "pi pi-fw pi-video", "data": "Serpico Movie" }]
+                "key": "101",
+                "label": "General",
+                "data": "Work Folder",
+                "icon": "pi pi-fw pi-globe",
+                "children": [{ "key": "5", "label": "Cargos", "icon": "pi pi-fw pi-briefcase" }, { "key": "6", "label": "Categorias", "icon": "pi pi-fw pi-sitemap" },{ "key": "7", "label": "Departamentos", "icon": "pi pi-fw pi-map-marker" },{ "key": "8", "label": "Estados Civiles", "icon": "pi pi-fw pi-heart" },{ "key": "9", "label": "Impuestos", "icon": "pi pi-fw pi-money-bill" },{ "key": "10", "label": "Municipios", "icon": "pi pi-fw pi-building" },{ "key": "11", "label": "Subcategorias", "icon": "pi pi-fw pi-th-large" }]
             },
             {
-                "key": "2-1",
-                "label": "Robert De Niro",
-                "icon": "pi pi-fw pi-star",
-                "data": "De Niro Movies",
-                "children": [{ "key": "2-1-0", "label": "Goodfellas", "icon": "pi pi-fw pi-video", "data": "Goodfellas Movie" }, { "key": "2-1-1", "label": "Untouchables", "icon": "pi pi-fw pi-video", "data": "Untouchables Movie" }]
-            }]
+                "key": "102",
+                "label": "Supermercado",
+                "data": "Work Folder",
+                "icon": "pi pi-fw pi-shopping-cart",
+                "children": [{ "key": "12", "label": "Empleados", "icon": "pi pi-fw pi-users" }, { "key": "13", "label": "Lotes", "icon": "pi pi-fw pi-inbox" }, { "key": "14", "label": "Productos", "icon": "pi pi-fw pi-shopping-bag" }, { "key": "15", "label": "Promociones", "icon": "pi pi-fw pi-percentage" },{ "key": "16", "label": "Proveedores", "icon": "pi pi-fw pi-truck" }, { "key": "17", "label": "Sucursales", "icon": "pi pi-fw pi-home" }]
+            },
+            {
+                "key": "103",
+                "label": "Ventas",
+                "data": "Work Folder",
+                "icon": "pi pi-fw pi-dollar",
+                "children": [{ "key": "18", "label": "Ventas", "icon": "pi pi-fw pi-dollar" },{"key":"19", "label":"Clientes","icon":"pi pi-fw pi-user-plus"}]
+            }
+        ]
         }
     ]
 }

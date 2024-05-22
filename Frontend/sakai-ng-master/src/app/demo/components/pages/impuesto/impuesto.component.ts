@@ -34,6 +34,13 @@ export class ImpuestoComponent implements OnInit {
     constructor(private router: Router,private impuestoService: ImpuestoService, private messageService: MessageService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.impuestoService.getList().then(data => this.impuestos = data);
 
         this.cols = [
@@ -58,7 +65,7 @@ export class ImpuestoComponent implements OnInit {
     confirmDeleteSelected() {
         this.deleteimpuestosDialog = false;
         this.impuestos = this.impuestos.filter(val => !this.selectedImpuestos.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Impuestos eliminadas.', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Impuestos eliminadas.', life: 3000 });
         this.selectedImpuestos = [];
     }
 
@@ -68,7 +75,7 @@ export class ImpuestoComponent implements OnInit {
         this.impuestoService.Delete(this.impuesto.impue_Id).then((response) => {
             if(response.success){
                 this.impuestos = this.impuestos.filter(val => val.impue_Id!== this.impuesto.impue_Id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Impuesto eliminado.', life: 3000 });
+            this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Impuesto eliminado.', life: 3000 });
             this.impuesto = {};
             } else{
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El impuesto esta siendo utilizada.', life: 3000 });

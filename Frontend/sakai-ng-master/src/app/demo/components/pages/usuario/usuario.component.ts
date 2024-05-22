@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/demo/api/product';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
-import { ProductService } from 'src/app/demo/service/product.service';
 import { UsuarioService } from 'src/app/demo/service/usuario.service';
 import { Usuario } from 'src/app/demo/models/UsuarioViewModel';
+import { Router } from '@angular/router';
+
 
 @Component({
     templateUrl: './usuario.component.html',
@@ -14,9 +15,8 @@ export class UsuarioComponent implements OnInit {
 
     productDialog: boolean = false;
 
-    deleteProductDialog: boolean = false;
+    deleteusuarioDialog: boolean = false;
 
-    deleteProductsDialog: boolean = false;
 
     usuarios: Usuario[] = [];
 
@@ -32,9 +32,17 @@ export class UsuarioComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private usuarioService: UsuarioService, private messageService: MessageService) { }
+    constructor(private usuarioService: UsuarioService,    private router: Router,
+        private messageService: MessageService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.usuarioService.getList().then(data => this.usuarios = data);
 
         this.cols = [
@@ -46,90 +54,28 @@ export class UsuarioComponent implements OnInit {
         ];
     }
 
-    // openNew() {
-    //     this.rol = {};
-    //     this.submitted = false;
-    //     this.productDialog = true;
-    // }
+    deleteUsuario(usuario: Usuario) {
+        this.deleteusuarioDialog = true;
+        this.usuario = { ...usuario };
+    }
 
-    // deleteSelectedProducts() {
-    //     this.deleteProductsDialog = true;
-    // }
-
-    // editProduct(rol: Rol) {
-    //     this.rol = { ...rol };
-    //     this.productDialog = true;
-    // }
-
-    // deleteProduct(rol: Rol) {
-    //     this.deleteProductDialog = true;
-    //     this.rol = { ...rol };
-    // }
-
-    // confirmDeleteSelected() {
-    //     this.deleteProductsDialog = false;
-    //     this.rol = this.rol.filter(val => !this.rol.includes(val));
-    //     this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-    //     this.selectedProducts = [];
-    // }
-
-    // confirmDelete() {
-    //     this.deleteProductDialog = false;
-    //     this.products = this.products.filter(val => val.id !== this.product.id);
-    //     this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-    //     this.product = {};
-    // }
-
-    // hideDialog() {
-    //     this.productDialog = false;
-    //     this.submitted = false;
-    // }
-
-    // saveProduct() {
-    //     this.submitted = true;
-
-    //     if (this.product.name?.trim()) {
-    //         if (this.product.id) {
-    //             // @ts-ignore
-    //             this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-    //             this.products[this.findIndexById(this.product.id)] = this.product;
-    //             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-    //         } else {
-    //             this.product.id = this.createId();
-    //             this.product.code = this.createId();
-    //             this.product.image = 'product-placeholder.svg';
-    //             // @ts-ignore
-    //             this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-    //             this.products.push(this.product);
-    //             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-    //         }
-
-    //         this.products = [...this.products];
-    //         this.productDialog = false;
-    //         this.product = {};
-    //     }
-    // }
-
-    // findIndexById(id: string): number {
-    //     let index = -1;
-    //     for (let i = 0; i < this.products.length; i++) {
-    //         if (this.products[i].id === id) {
-    //             index = i;
-    //             break;
-    //         }
-    //     }
-
-    //     return index;
-    // }
-
-    // createId(): string {
-    //     let id = '';
-    //     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    //     for (let i = 0; i < 5; i++) {
-    //         id += chars.charAt(Math.floor(Math.random() * chars.length));
-    //     }
-    //     return id;
-    // }
+    confirmDelete() {
+        this.deleteusuarioDialog = false;
+    
+        this.usuarioService.Delete(this.usuario.usuar_Id).then((response) => {
+            console.log(response);
+            if(response.success){
+                this.usuarios = this.usuarios.filter(val => val.usuar_Id!== this.usuario.usuar_Id);
+            this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'usuario eliminado.', life: 3000 });
+            this.usuario = {};
+            } else{
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El usuario esta siendo utilizado.', life: 3000 });
+            }
+            
+        }).catch(error => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudo eliminar el usuario.', life: 3000 });
+        });
+    }
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');

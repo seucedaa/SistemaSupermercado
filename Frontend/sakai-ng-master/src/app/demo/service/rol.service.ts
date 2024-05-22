@@ -1,56 +1,68 @@
 import { Injectable } from '@angular/core';
-import { Rol } from '../models/RolViewModel';
-import { RolEndPoints } from './api.service';
+
 import { HttpClient } from '@angular/common/http';
+import { BASE_URL } from './ulrsettings';
+import { Rol,Fill } from '../models/RolViewModel';
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs';
+//import { Pantalla } from '../models/PantallaViewModel';
+import { RolEndPoints } from './api.service';
+
+
+interface ApiResponse {
+  code: number;
+  success: boolean;
+  message: string;
+  data: Pantalla[];
+}
+
+interface Pantalla {
+  panta_Id: number;
+  panta_Descripcion: string;
+  // Incluye otras propiedades según necesites
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class RolService {
-  constructor(private http:HttpClient) { }
+export class ServiceService {
 
+  constructor(private http:HttpClient) { }
   public endpoint = new RolEndPoints();
 
-  getList(){
-    return this.http.get<any>(this.endpoint.List()) 
-    .toPromise()  
-    .then(res => res.data as Rol[])
-    .then(data => data);
+
+  url = BASE_URL + 'Api/Rol/List'
+
+  getRol(){
+    return this.http.get<Rol[]>(this.url)
   }
 
-  Insert(model: Rol){
-    return this.http.post<any>(this.endpoint.Insert(), model) 
+  Details(id: string){
+    return this.http.get<any>(this.endpoint.Details(id)) 
       .toPromise()  
   }
 
-  Elimparo(model: Rol){
-    return this.http.post<any>(this.endpoint.Elimparo(), model) 
-      .toPromise()  
+  EnviarRol(formData: any): Observable<any> {
+    return this.http.post<any>(BASE_URL + 'Api/Rol/Create/', formData).pipe(
+      map(response => {
+        return response;
+      }),
+    );
   }
-
-  Elimparol(model: Rol){
-    return this.http.post<any>(this.endpoint.Elimparol(), model) 
-      .toPromise()  
+  getPantallasDeRol(idRoll: number): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(`${BASE_URL + 'Api/PantallaporRol/PantdelRol/' + idRoll}`);
   }
-
-  Update(model: Rol){
-    return this.http.post<any>(this.endpoint.Update(), model) 
-      .toPromise()  
+  getFill(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`${BASE_URL + 'Api/Rol/Fill/' + codigo}`);
   }
-
-  Details(id: number){
-    return this.http.get<any>(this.endpoint.Details(id.toString())) 
-      .toPromise()  
+  getDetalles(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`${BASE_URL + 'Api/Rol/FillDetalles/' + codigo}`);
   }
-
-  Delete(id: number){
-    return this.http.delete<any>(this.endpoint.Delete(id.toString())) 
-      .toPromise()  
+  EliminarRol(ID): Observable<any>{
+    return this.http.delete<any>(`${BASE_URL + 'Api/Rol/Delete/' + ID}`)
   }
-  PantdelRol(id: string){
-    return this.http.get<any>(this.endpoint.PantdelRol(id)) 
-    .toPromise()  
-    .then(res => res.data as Rol[])
-    .then(data => data);
+  ActualizarRol(formData){
+    return this.http.put(BASE_URL + 'Api/Rol/Edit/', formData)
   }
 }

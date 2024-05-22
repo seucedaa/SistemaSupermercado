@@ -17,36 +17,74 @@ export class UsuarioEndPoints{
     return `${this.api.baseUrl}/Usuario/List`;
   }
 
-  public Login(usuario: string, contrasena: string):string{
-    return `${this.api.baseUrl}/Usuario/Login/${usuario}/${contrasena}`; 
+  public Insert():string{
+    return `${this.api.baseUrl}/Usuario/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Usuario/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Usuario/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Usuario/Eliminar/${id}`; 
+  }
+
+  public Login(usuario: string, contrasena: string): string{
+    return `${this.api.baseUrl}/Usuario/Login/${usuario},${contrasena}`; 
+  }
+
+  // public getLoginUrl(usuario: string, contrasena: string): string {
+  //   return `${this.api.baseUrl}/Usuario/Login/${usuario}/${contrasena}`;
+  // }
+  
+  public Recuperacion(usuario: string):string{
+    return `${this.api.baseUrl}/Usuario/StartRecovery/${usuario}`; 
+  }
+
+  public Reestablecer(codigo:string, contrasena:string):string{
+    return `${this.api.baseUrl}/Usuario/Reestablecer/${codigo},${contrasena}`; 
   }
 }
 export class ReporteEndPoints{
   public api = new ApiService();
 
-  public Generarpdf(Sucur_Id: number):string{
-    return `${this.api.baseUrl}/Reporte/Generarpdf/${Sucur_Id}`;
-  }
-  public Generarpdf2():string{
-    return `${this.api.baseUrl}/Reporte/Generarpdf2`;
+  public Stock(Sucur_Id: number): string {
+    return `${this.api.baseUrl}/Reporte/Stock/${Sucur_Id}`;
+}
+  
+
+  public TodasStock():string{
+    return `${this.api.baseUrl}/Reporte/TodasStock`; 
   }
 
-  public PDFProductos(Sucur_Id: number, inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFProductos/${Sucur_Id}/${inicio}/${fin}`;
-  }
-  public PDFProductos2(inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFProductos2/${inicio}/${fin}`;
+  public Productos(Sucur_Id: number,inicio:string,fin:string):string{
+    return `${this.api.baseUrl}/Reporte/Productos/${Sucur_Id}/${inicio}/${fin}`; 
   }
 
-  public PDFClientes(inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFClientes/${inicio}/${fin}`;
+  public TodasProductos(inicio:string,fin:string):string{
+    return `${this.api.baseUrl}/Reporte/TodasProductos/${inicio}/${fin}`; 
+  }
+  public Clientes(inicio:string,fin:string):string{
+    return `${this.api.baseUrl}/Reporte/Clientes/${inicio}/${fin}`; 
+  }
+  public Ventas(Sucur_Id: number,inicio:string,fin:string):string{
+    return `${this.api.baseUrl}/Reporte/Ventas/${Sucur_Id}/${inicio}/${fin}`; 
   }
 
-  public PDFVentas(Sucur_Id: number, inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFVentas/${Sucur_Id}/${inicio}/${fin}`;
+  public TodasVentas(inicio:string,fin:string):string{
+    return `${this.api.baseUrl}/Reporte/TodasVentas/${inicio}/${fin}`; 
   }
-  public PDFVentas2(inicio:string, fin:string):string{
-    return `${this.api.baseUrl}/Reporte/PDFVentas2/${inicio}/${fin}`;
+
+  public Promocion(Sucur_Id: number,inicio:string,fin:string):string{
+    return `${this.api.baseUrl}/Reporte/Promocion/${Sucur_Id}/${inicio}/${fin}`; 
+  }
+
+  public TodasPromocion(inicio:string,fin:string):string{
+    return `${this.api.baseUrl}/Reporte/TodasPromocion/${inicio}/${fin}`; 
   }
 }
 
@@ -115,6 +153,10 @@ export class CargoEndPoints{
     return `${this.api.baseUrl}/Cargo/Insertar`; 
   }
 
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Cargo/Detalle/${id}`; 
+  }
+
   public Update():string{
     return `${this.api.baseUrl}/Cargo/Actualizar`; 
   }
@@ -163,6 +205,7 @@ export class CategoriaEndPoints{
     return `${this.api.baseUrl}/Categoria/List`;
   }
 
+ 
   public CategoriaTotal(sucursal: number, inicio: string , fin: string):string{
     return `${this.api.baseUrl}/Categoria/Total/${sucursal}/${inicio}/${fin}`; 
   }
@@ -236,6 +279,7 @@ export class EmpleadoEndPoints{
   }
 }
 
+
 export class EstadoCivilEndPoints{
   public api = new ApiService();
 
@@ -308,6 +352,46 @@ export class LoteEndPoints{
   }
 }
 
+export class PromocionEndPoints{
+  public api = new ApiService();
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Promocion/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Promocion/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Promocion/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Promocion/Eliminar/${id}`; 
+  }
+}
+
+export class SucursalEndPoints{
+  public api = new ApiService();
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Sucursal/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Sucursal/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Sucursal/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Sucursal/Eliminar/${id}`; 
+  }
+}
+
 export class MunicipioEndPoints{
   public api = new ApiService();
 
@@ -361,6 +445,26 @@ export class ProductoEndPoints{
   public Principal(sucursal: number):string{
     return `${this.api.baseUrl}/Producto/Principal/${sucursal}`; 
   }
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Producto/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Producto/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Producto/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Producto/Eliminar/${id}`; 
+  }
+
+  public Upload():string{
+    return `${this.api.baseUrl}/Producto/Subir`;
+  }
 }
 
 export class SubCategoriaEndPoints{
@@ -375,6 +479,27 @@ export class SubCategoriaEndPoints{
   }
   public Todas(inicio: string , fin: string):string{
     return `${this.api.baseUrl}/SubCategoria/Todas/${inicio}/${fin}`; 
+  }
+
+  public ListporCat(id: string):string{
+    return `${this.api.baseUrl}/SubCategoria/DropDownList/${id}`;
+  }
+
+  
+  public Insert():string{
+    return `${this.api.baseUrl}/SubCategoria/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/SubCategoria/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/SubCategoria/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/SubCategoria/Eliminar/${id}`; 
   }
 }
 

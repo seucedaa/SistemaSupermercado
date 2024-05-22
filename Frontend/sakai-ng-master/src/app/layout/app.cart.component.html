@@ -1,0 +1,158 @@
+<p-sidebar
+  [(visible)]="visible"
+  position="right"
+  [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'"
+  styleClass="layout-config-sidebar w-25rem">
+  <ng-template pTemplate="header">
+    <span class="font-semibold text-xl">
+      <i class="pi pi-shopping-cart font-semibold text-xl"></i> Carrito de
+      Compra</span
+    >
+  </ng-template>
+
+  <ng-container *ngIf="cartService.productos.length === 0">
+    <div
+      class="flex justify-content-center align-items-center"
+      style="height: calc(100% - 3.25rem)">
+      <div class="text-center">
+        <span class="text-secondary block mb-3"
+          >Agrega Productos a tu carrito</span
+        >
+        <button
+          pButton
+          pRipple
+          type="button"
+          label="Comprar"
+          icon="pi pi-shopping-cart"
+          [raised]="true"
+          [routerLink]="['/home/pages/comprar']"
+          class="p-button font-bold"
+          (click)="visible = false"></button>
+      </div>
+    </div>
+  </ng-container>
+  <div *ngIf="cartService.productos.length > 0" #listaProductos >
+    <!-- test list -->
+
+    <h5>Productos</h5>
+    <ul
+  class="list-none p-0 m-0"
+  style="max-width: 350px; height: 595px; overflow-y: auto">
+  <li
+    class="flex align-items-center justify-content-between p-4 border-bottom"
+    style="min-height: 96px"
+    *ngFor="let producto of cartService.productos; let i = index">
+    <div class="flex align-items-center">
+      <div
+            class="w-7rem h-5rem overflow-hidden border-circle mr-3"
+            style="
+              background-image: url('{{ producto.img }}');
+              background-size: cover;
+              background-position: center;
+            "></div>
+      
+      <div class="text-left pl-4">
+        <span class="text-bold">{{ producto.produ_Descripcion }}</span>
+        <div class="text-secondary">
+          Lps. {{ producto.produ_PrecioVenta }}
+        </div>
+        <div class="flex align-items-center mt-2">
+          <p-button
+            icon="pi pi-minus"
+            size="small"
+            [text]="true"
+            severity="secondary"
+            (click)="disminuirContador(producto, i)"></p-button>
+          <input
+            type="text"
+            value="{{ producto.contador }}"
+            class="text-center w-2 mx-1"
+            style="border: none; width: 35px;"
+            readonly />
+          <p-button
+            icon="pi pi-plus"
+            size="small"
+            [text]="true"
+            severity="secondary"
+            (click)="aumentarContador(producto, i)"></p-button>
+        </div>
+      </div>
+    </div>
+    <button
+      pButton
+      type="button"
+      pRipple
+      icon="pi pi-trash"
+      [loading]="isLoading"
+      (click)="eliminarProducto(producto)"
+      class="p-button-sm p-button-danger"></button>
+  </li>
+</ul>
+<!-- FOOTER -->
+    <div
+      class="p-sidebar-footer"
+      style="
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #8f8f8f;
+        color: white;
+      ">
+      <div class="flex justify-content-between">
+        <div class="text-left pl-4">
+          <span>SubTotal: Lps. {{ cartService.subtotal.toFixed(2) }}</span>
+          <div>Total: Lps. {{ cartService.total.toFixed(2) }}</div>
+        </div>
+        <p-button
+          label="Pagar"
+          [raised]="true"
+          icon="pi pi-credit-card"
+          [loading]="isLoading"
+          (click)="openModal()" />
+      </div>
+    </div>
+  </div>
+</p-sidebar>
+<p-toast />
+<!-- modal -->
+<p-dialog header="Confirmar Pago" [(visible)]="displayModal" [modal]="true" [closable]="false" [style]="{ width: '30rem' }">
+  <div class="p-fluid">
+    <div class="p-field" style="margin-bottom: 1rem;" *ngIf="!isCliente">
+      <label for="dni">DNI</label>
+      <p-autoComplete 
+        [(ngModel)]="dni" 
+        (completeMethod)="buscarCliente($event)" 
+        field="clien_Dni" 
+        [suggestions]="filtrarClientes" 
+        (onSelect)="onClienteSelect($event)" 
+        placeholder="Ingrese el DNI"
+        appendTo="body" 
+        required>
+      </p-autoComplete>
+    </div>
+    <div class="p-field" style="margin-bottom: 1rem;" *ngIf="!isCliente">
+      <label for="nombre">Nombre</label>
+      <input type="text" [(ngModel)]="nombre" id="nombre" readonly class="p-inputtext" required>
+    </div>
+    <div class="p-field" style="margin-bottom: 1rem;">
+      <label for="metodoPago">Método de Pago</label>
+      <p-dropdown 
+        [options]="metodosPago" 
+        [(ngModel)]="cartService.metodoPago" 
+        placeholder="Selecciona un método" 
+        appendTo="body" 
+        required>
+      </p-dropdown>
+    </div>
+  </div>
+  <p-footer style="display: flex; justify-content: flex-end; gap: 0.5rem;">
+    <p-button label="Sí" icon="pi pi-check" (click)="confirmarPago()" [disabled]="!formCompleto()"></p-button>
+    <p-button label="No" icon="pi pi-times" (click)="displayModal=false" severity="secondary"></p-button>
+  </p-footer>
+</p-dialog>
+
+<iframe [src]="pdfSRC" style="display: none" id="pdf"></iframe>
+
+
+

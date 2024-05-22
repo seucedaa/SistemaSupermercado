@@ -1,0 +1,99 @@
+<div class="grid">
+	<div class="col-12 md:col-12">
+        <div class="card p-fluid">
+             <p-toast></p-toast>
+			<h5>Editar producto</h5>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label for="produ_Descripcion">Descripcion</label>
+                        <input type="text" pInputText id="produ_Descripcion" [(ngModel)]="producto.produ_Descripcion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !producto.produ_Descripcion}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.produ_Descripcion">La descripcion es requerida.</small>
+                    </div>
+                    <div class="field col">
+                        <label for="produ_Existencia">Existencia</label>
+                        <input type="text" pInputText id="produ_Existencia" [(ngModel)]="producto.produ_Existencia" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !producto.produ_Existencia}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.produ_Existencia">La existencia es requerido.</small>
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label for="produ_PrecioCompra">Precio Compra</label>
+                        <input type="text" pInputText id="produ_PrecioCompra" [(ngModel)]="producto.produ_PrecioCompra" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !producto.produ_PrecioCompra}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.produ_PrecioCompra">El primer nombre es requerido.</small>
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="produ_PrecioVenta">Precio Venta</label>
+                        <input type="text" pInputText id="produ_PrecioVenta" [(ngModel)]="producto.produ_PrecioVenta" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !producto.produ_PrecioVenta}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.produ_PrecioVenta">El segundo nombre es requerido.</small>				
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="name2">Impuesto</label>
+                        <p-dropdown [options]="impuestos" 
+                        optionLabel="impue_Descripcion" 
+                        optionValue="impue_Id" 
+                        (onChange)="onImpuedChange($event.value)" 
+                        [(ngModel)]="impueid">
+                        </p-dropdown>                    
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="name2">Proveedor</label>
+                        <p-dropdown [options]="proveedores" 
+                        optionLabel="prove_Marca" 
+                        optionValue="prove_Id" 
+                        (onChange)="onProveIdChange($event.value)" 
+                        [(ngModel)]="proveid">
+                        </p-dropdown>                    
+                    </div>
+                </div>
+                
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="name2">Categoria</label>
+                        <p-dropdown [options]="categorias" 
+                        optionLabel="categ_Descripcion" 
+                        optionValue="categ_Id" 
+                        (onChange)="onCategIdChange($event.value)" 
+                        [(ngModel)]="categid">
+                        </p-dropdown>                    
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="producto.subca_Id">Sub-Categoria</label>
+                        <p-dropdown [options]="subcategorias" 
+                        optionLabel="subca_Descripcion" 
+                        optionValue="subca_Id" 
+                        (onChange)="onSubcaIdChange($event.value)" 
+                        [(ngModel)]="subcaid">
+                        </p-dropdown>                  
+                 </div>
+                </div>
+                <div class="p-formgrid grid">
+                  <div class="field col" style="display: flex; flex-direction: column;">
+                    <label htmlFor="name2">Imagen</label>
+                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block" severity="primary" (onSelect)="onUpload($event)" style="margin-top: 8px;"></p-fileUpload>
+                  </div>
+                </div>
+			
+            <div class="flex flex-wrap gap-2">   
+                <div class="field col">
+                </div>
+                <div class="field col">
+                               
+                </div>
+                <div class="field col">
+                </div>  
+                <div class="field col">
+                   <button pButton pRipple label="Guardar" icon="pi pi-plus" class="p-button-success mr-2" (click)="guardar()"></button>
+
+                </div>  
+               
+               <div class="field col">
+                   <button routerLink="producto" pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-secondary mr-2" ></button>
+               
+               </div>
+            </div>
+	    </div>
+        
+    </div>
+</div>

@@ -13,23 +13,14 @@ namespace SistemaSupermercado.DataAccess.Repository
 {
     public class UsuarioRepository : IRepository<tbUsuarios>
     {
-        public tbUsuarios Login(string usuario, string contra)
+        public IEnumerable<tbUsuarios> Login(string usuario, string contra)
         {
-
-
             List<tbUsuarios> result = new List<tbUsuarios>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
-                var parameters = new { Usuario = usuario, Contrasena = contra };
+                var parameters = new { Usuario = usuario, Contra = contra };
                 result = db.Query<tbUsuarios>(ScriptBaseDeDatos.Usuario_Login, parameters, commandType: CommandType.StoredProcedure).ToList();
-
-                var resul = new tbUsuarios();
-
-                if (result.Count > 0)
-                {
-                    resul = result.First();
-                }
-                return resul;
+                return result;
             }
         }
 
@@ -66,13 +57,66 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Usuar_Admin", item.Usuar_Admin);
                 parametro.Add("Roles_Id", item.Roles_Id);
                 parametro.Add("Perso_Id", item.Perso_Id);
-                parametro.Add("Perso_Tipo", item.Perso_Tipo);
-                parametro.Add("Usuar_UltimaSesion", item.Usuar_UltimaSesion);
-                parametro.Add("Usuar_SuperPuntos", item.Usuar_SuperPuntos);
                 parametro.Add("Usuar_UsuarioModificacion", item.Usuar_UsuarioModificacion);
                 parametro.Add("Usuar_FechaModificacion", DateTime.Now);
 
                 var result = db.Execute(ScriptBaseDeDatos.Usuario_Modificar,
+                    parametro,
+                     commandType: CommandType.StoredProcedure
+                    );
+
+                string mensaje = (result == 1) ? "Exito" : "Error";
+
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
+        }
+
+        public RequestStatus Reestablecer(string codigo, string contraseña)
+        {
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("Usua_VerificarCorreo", codigo);
+                parametro.Add("Usuar_Contrasena", contraseña);
+                parametro.Add("Usuar_UsuarioModificacion", 1);
+                parametro.Add("Usuar_FechaModificacion", DateTime.Now);
+
+                var result = db.Execute(ScriptBaseDeDatos.Usuario_ReestablecerContrasena,
+                    parametro,
+                     commandType: CommandType.StoredProcedure
+                    );
+
+                string mensaje = (result == 1) ? "Exito" : "Error";
+
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
+        }
+
+        public IEnumerable<tbUsuarios> obtenerCorreo(string? usuario)
+        {
+            string sql = ScriptBaseDeDatos.Usuario_ObtenerCorreo;
+            List<tbUsuarios> result = new List<tbUsuarios>();
+
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parameters = new { Usuar_Usuario = usuario };
+                result = db.Query<tbUsuarios>(sql, parameters, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+
+            }
+        }
+
+
+        public RequestStatus InsertarCodigo(string usuario, string codigo)
+        {
+            using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("Usuar_Usuario", usuario);
+                parametro.Add("Usua_ValidarCorreo", codigo);
+
+                var result = db.Execute(ScriptBaseDeDatos.Usuario_InsertarCodigo,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
@@ -114,9 +158,6 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Usuar_Admin", item.Usuar_Admin);
                 parametro.Add("Roles_Id", item.Roles_Id);
                 parametro.Add("Perso_Id", item.Perso_Id);
-                parametro.Add("Perso_Tipo", item.Perso_Tipo);
-                parametro.Add("Usuar_UltimaSesion", item.Usuar_UltimaSesion);
-                parametro.Add("Usuar_SuperPuntos", item.Usuar_SuperPuntos);
                 parametro.Add("Usuar_UsuarioCreacion", item.Usuar_UsuarioCreacion);
                 parametro.Add("Usuar_FechaCreacion", DateTime.Now);
 

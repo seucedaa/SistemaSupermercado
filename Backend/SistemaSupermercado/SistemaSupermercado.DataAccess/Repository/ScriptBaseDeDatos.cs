@@ -18,6 +18,8 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Usuario_Login = "Acce.SP_Usuario_Login";
         public static string Usuario_ReestablecerContrasena = "Acce.SP_Usuario_ReestablecerContrasena";
         public static string Usuario_CambiarContrasena = "Acce.SP_Usuario_CambiarContrasena";
+        public static string Usuario_ObtenerCorreo = "[Acce].[SP_Usuario_ObtenerCorreo]";
+        public static string Usuario_InsertarCodigo = "[Acce].[SP_Usuarios_InsertarValidar]";
         #endregion
 
         #region Roles
@@ -59,7 +61,7 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Subcategoria_Lista = "Gral.SP_Subcategoria_Lista";
         public static string Subcategoria_Insertar = "Gral.SP_Subcategoria_Insertar";
         public static string Subcategoria_Modificar = "Gral.SP_Subcategoria_Modificar";
-        public static string Subcategoria_Eliminar = "Gral.SP_Subcategoria_Eliminar";
+        public static string Subcategoria_Eliminar = "[Gral].[SP_Subcategoria_Eliminar]";
         public static string Subcategoria_Buscar = "Gral.SP_Subcategoria_Buscar";
         public static string Subcategoria_DropDownList = "Gral.SP_Subcategoria_DropDownList";
         public static string Subcategoria_Total = "Venta.SP_Subcategoria_Total";
@@ -180,6 +182,13 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string VentaDetalle_Desactivar = "Venta.SP_VentaDetalle_Desactivar";
         public static string VentaDetalle_Buscar = "Venta.SP_VentaDetalle_Buscar";
         #endregion
+
+        #region cart
+        public static string listarLotes = "Venta.sp_Lotes_list";
+        public static string CrearFacturaEncabezado = "Venta.sp_FacturaEncabezado_crear";
+        public static string CrearFacturaDetalle = "Venta.sp_FacturaDetalle_crear";
+        public static string FacturaBuscar = "Venta.sp_Factura_buscar";
+        #endregion
         #endregion
 
         #region Reporte
@@ -187,12 +196,28 @@ namespace SistemaSupermercado.DataAcceess.Repository
         public static string Reporte_Productos = "[Rptes].[SP_Reportes_Productos]";
         public static string Reporte_Cliente = "[Rptes].[SP_Reportes_Clientes]";
         public static string Reporte_Ventas = "Rptes.[SP_Reportes_Ventas]";
+        public static string Reporte_Promocion = "[Rptes].[SP_Reportes_ClientesconProm]";
 
         #endregion
 
 
 
+        #region roles
+        public static string RolesListar = "Acce.sp_Roles_listar";
+        public static string Rolesllenar = "Acce.sp_Roles_buscar";
+        public static string RolesActualizar = "Acce.sp_Roles_actualizar";
+        public static string RolesEliminar = "Acce.sp_Roles_eliminar";
+        #endregion
 
+        #region RolesPorPantalla
+
+        public static string PantallasRolesListar = "[Acce].[sp_PantallasRoles_listar]";
+        public static string PantallasRolesllenar2 = "[Acce].[sp_Roles_buscar]";
+        public static string PantallasRolesllenar = "[Acce].[sp_PantallasPorRol2_buscar]";
+        public static string PantallasRolesActualizar = "[Acce].[sp_PantallasPorRoles_actualizar]";
+        public static string PantallasRolesEliminar = "[Acce].[sp_PantallasPorRoles_eliminar]";
+
+        #endregion
 
 
 
