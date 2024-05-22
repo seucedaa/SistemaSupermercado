@@ -84,7 +84,7 @@ export class LoteComponent implements OnInit {
     confirmDeleteSelected() {
         this.deletelotesDialog = false;
         this.lotes = this.lotes.filter(val => !this.selectedLotes.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Lotes eliminados.', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Lotes eliminados.', life: 3000 });
         this.selectedLotes = [];
     }
 
@@ -94,7 +94,7 @@ export class LoteComponent implements OnInit {
         this.loteService.Delete(this.lote.lotes_Id).then((response) => {
             if(response.success){
                 this.lotes = this.lotes.filter(val => val.lotes_Id!== this.lote.lotes_Id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Lote eliminado.', life: 3000 });
+            this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Lote eliminado.', life: 3000 });
             this.lote = {};
             } else{
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El lote esta siendo utilizado.', life: 3000 });

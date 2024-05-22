@@ -69,7 +69,7 @@ export class ClienteComponent implements OnInit {
     confirmDeleteSelected() {
         this.deleteclientesDialog = false;
         this.clientes = this.clientes.filter(val => !this.selectedClientes.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Clientes eliminadas.', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Clientes eliminadas.', life: 3000 });
         this.selectedClientes = [];
     }
 
@@ -80,7 +80,7 @@ export class ClienteComponent implements OnInit {
             console.log(response);
             if(response.success){
                 this.clientes = this.clientes.filter(val => val.clien_Id!== this.cliente.clien_Id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Cliente eliminado.', life: 3000 });
+            this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Cliente eliminado.', life: 3000 });
             this.cliente = {};
             } else{
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El cliente esta siendo utilizado.', life: 3000 });

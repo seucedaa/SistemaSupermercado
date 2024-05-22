@@ -62,7 +62,7 @@ export class EstadoCivilComponent implements OnInit {
     confirmDeleteSelected() {
         this.deleteEstadosDialog = false;
         this.estadosciviles = this.estadosciviles.filter(val => !this.selectedEstadosCiviles.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Estados civiles eliminados.', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Estados civiles eliminados.', life: 3000 });
         this.selectedEstadosCiviles = [];
     }
 
@@ -72,7 +72,7 @@ export class EstadoCivilComponent implements OnInit {
         this.estadocivilService.Delete(this.estadocivil.estad_Id).then((response) => {
             if(response.success){
                 this.estadosciviles = this.estadosciviles.filter(val => val.estad_Id!== this.estadocivil.estad_Id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Estado civil eliminado.', life: 3000 });
+            this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Estado civil eliminado.', life: 3000 });
             this.estadocivil = {};
             } else{
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El estado civil esta siendo utilizado.', life: 3000 });

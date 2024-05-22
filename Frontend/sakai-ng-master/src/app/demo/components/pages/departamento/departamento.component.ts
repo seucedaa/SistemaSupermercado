@@ -73,7 +73,7 @@ export class DepartamentoComponent implements OnInit {
     confirmDeleteSelected() {
         this.deletedepartamentosDialog = false;
         this.departamentos = this.departamentos.filter(val => !this.selectedDepartamentos.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Departamentos eliminados.', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Departamentos eliminados.', life: 3000 });
         this.selectedDepartamentos = [];
     }
 
@@ -83,7 +83,7 @@ export class DepartamentoComponent implements OnInit {
         this.departamentoService.Delete(this.departamento.depar_Id).then((response) => {
             if(response.success){
                 this.departamentos = this.departamentos.filter(val => val.depar_Id!== this.departamento.depar_Id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Departamento eliminada.', life: 3000 });
+            this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Departamento eliminada.', life: 3000 });
             this.departamento = {};
             } else{
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El departamento esta siendo utilizado.', life: 3000 });

@@ -83,7 +83,7 @@ export class MunicipioComponent implements OnInit {
     confirmDeleteSelected() {
         this.deletemunicipiosDialog = false;
         this.municipios = this.municipios.filter(val => !this.selectedMunicipios.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Municipios eliminados.', life: 3000 });
+        this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Municipios eliminados.', life: 3000 });
         this.selectedMunicipios = [];
     }
 
@@ -93,7 +93,7 @@ export class MunicipioComponent implements OnInit {
         this.municipioService.Delete(this.municipio.munic_Id).then((response) => {
             if(response.success){
                 this.municipios = this.municipios.filter(val => val.munic_Id!== this.municipio.munic_Id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Municipio eliminado.', life: 3000 });
+            this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Municipio eliminado.', life: 3000 });
             this.municipio = {};
             } else{
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El Municipio esta siendo utilizado.', life: 3000 });
