@@ -49,8 +49,8 @@ export class DetalleComponent implements OnInit {
         this.cols = [
             { field: 'UsuarioCreacion'},
             { field: 'UsuarioModificacion'},
-            { field: 'munic_FechaCreacion'},
-            { field: 'munic_FechaModificacion'}
+            { field: 'subca_FechaCreacion'},
+            { field: 'subca_FechaModificacion'}
         ];
     }
     

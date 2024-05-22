@@ -68,6 +68,8 @@ export class EditarComponent implements OnInit {
             this.municipioService.Details(que.toString()).then(data => {
                 this.municipio = data;
                 console.log(this.municipio);
+                
+                this.municipioid = this.municipio.munic_Id;
 
                 let ola: any;
                 this.departamentoService.getList().then(data => {
@@ -76,16 +78,6 @@ export class EditarComponent implements OnInit {
                     this.departid = dept.depar_Id;
                     ola = dept.depar_Id;
                 })
-
-                this.municipioService.ListporDept(ola).then(data => {
-                    console.log(this.municipios);
-
-                    let aver: any;
-                    aver = this.municipios.find(munic => munic.munic_Id === this.proveedor.munic_Id);
-                    console.log('municipios',this.proveedor.munic_Id);
-                    this.municipioid = aver.munic_Id;
-                
-                });
             
             });
         });

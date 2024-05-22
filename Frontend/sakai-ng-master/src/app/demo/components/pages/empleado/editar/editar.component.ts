@@ -98,22 +98,16 @@ export class EditarComponent implements OnInit {
         this.empleadoService.Details(Number(id)).then(data => {
             this.empleado = data;
 
-             let prueba: any;
-            prueba = this.estadosciviles.find(est => est.estad_Id === this.empleado.estad_Id);
-            this.estadoid = prueba.estad_Id;
-
-            let prueba1: any;
-            prueba1 = this.sucursales.find(suc => suc.sucur_Id === this.empleado.sucur_Id);
-            this.sucurid = prueba1.sucur_Id;
-
-            let prueba2: any;
-            prueba2 = this.cargos.find(car => car.cargo_Id === this.empleado.cargo_Id);
-            this.cargoid = prueba2.cargo_Id;
+            this.estadoid = this.empleado.cargo_Id;
+            this.sucurid = this.empleado.sucur_Id;
+            this.cargoid = this.empleado.cargo_Id
             
             const que = this.empleado.munic_Id;
             this.municipioService.Details(que.toString()).then(data => {
                 this.municipio = data;
                 console.log(this.municipio);
+
+                this.municipioid = this.municipio.munic_Id;
 
                 let ola: any;
                 this.departamentoService.getList().then(data => {
@@ -123,15 +117,6 @@ export class EditarComponent implements OnInit {
                     ola = dept.depar_Id;
                 })
 
-                this.municipioService.ListporDept(ola).then(data => {
-                    console.log(this.municipios);
-
-                    let aver: any;
-                    aver = this.municipios.find(munic => munic.munic_Id === this.empleado.munic_Id);
-                    console.log('municipios',this.empleado.munic_Id);
-                    this.municipioid = aver.munic_Id;
-                
-                });
             
             });
         });

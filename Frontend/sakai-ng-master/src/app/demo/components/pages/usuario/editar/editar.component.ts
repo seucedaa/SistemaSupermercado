@@ -58,14 +58,9 @@ export class EditarComponent implements OnInit {
         this.usuarioService.Details(Number(id)).then(data => {
             this.usuario = data;
 
-             let prueba: any;
-            prueba = this.empleados.find(est => est.emple_Id === this.usuario.perso_Id);
-            console.log(prueba);
-            this.empleid = prueba.emple_Id;
+            this.rolid = this.usuario.roles_Id;
+            this.empleid = this.usuario.perso_Id;
 
-            let prueba1: any;
-            prueba1 = this.roles.find(suc => Number(suc.roles_Id) === this.usuario.roles_Id);
-            this.rolid = prueba1.roles_Id;
             
         });
     }

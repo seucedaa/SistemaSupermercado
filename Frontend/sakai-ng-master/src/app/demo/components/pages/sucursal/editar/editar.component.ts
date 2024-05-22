@@ -70,24 +70,17 @@ export class EditarComponent implements OnInit {
                 this.municipio = data;
                 console.log(this.municipio);
 
+                this.municipioid = this.municipio.munic_Id;
+
                 let ola: any;
                 this.departamentoService.getList().then(data => {
                     let dept: any;
                     dept = this.departamentos.find(dep => dep.depar_Id === this.municipio.depar_Id);
                     this.departid = dept.depar_Id;
-                    
+                    //this.municipioid = dept.
+                    console.log()
                     ola = dept.depar_Id;
                 })
-
-                this.municipioService.ListporDept(ola).then(data => {
-                    console.log(this.municipios);
-
-                    let aver: any;
-                    aver = this.municipios.find(munic => munic.munic_Id === this.sucursal.munic_Id);
-                    console.log('municipios',this.sucursal.munic_Id);
-                    this.municipioid = aver.munic_Id;
-                
-                });
             
             });
         });
