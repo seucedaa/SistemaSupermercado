@@ -66,7 +66,7 @@ export class UsuarioComponent implements OnInit {
             console.log(response);
             if(response.success){
                 this.usuarios = this.usuarios.filter(val => val.usuar_Id!== this.usuario.usuar_Id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'usuario eliminado.', life: 3000 });
+            this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'usuario eliminado.', life: 3000 });
             this.usuario = {};
             } else{
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El usuario esta siendo utilizado.', life: 3000 });

@@ -65,7 +65,7 @@ export class CategoriaComponent implements OnInit {
         this.categoriaService.Delete(this.categoria.categ_Id).then((response) => {
             if(response.success){
                 this.categorias = this.categorias.filter(val => val.categ_Id!== this.categoria.categ_Id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Categoria eliminada.', life: 3000 });
+            this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Categoria eliminada.', life: 3000 });
             this.categoria = {};
             } else{
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'La categoria esta siendo utilizada.', life: 3000 });

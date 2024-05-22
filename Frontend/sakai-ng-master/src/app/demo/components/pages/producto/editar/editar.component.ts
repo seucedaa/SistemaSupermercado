@@ -86,6 +86,7 @@ export class EditarComponent implements OnInit {
         this.productoService.Details(Number(id)).then(data => {
             this.producto = data;
 
+            this.subcaid = this.producto.subca_Id;
              let prueba: any;
             prueba = this.impuestos.find(imp => imp.impue_Id === this.producto.impue_Id);
             this.impueid = prueba.impue_Id;
@@ -113,7 +114,6 @@ export class EditarComponent implements OnInit {
                     let aver: any;
                     aver = this.subcategorias.find(munic => munic.subca_Id === this.producto.subca_Id);
                     console.log('subcategorias',this.producto.subca_Id);
-                    this.subcaid = aver.subca_Id;
                 
                 });
             

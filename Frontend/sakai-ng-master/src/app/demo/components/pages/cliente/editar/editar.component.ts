@@ -76,6 +76,8 @@ export class EditarComponent implements OnInit {
         const id = this.route.snapshot.paramMap.get('id');
         this.clienteService.Details(Number(id)).then(data => {
             this.cliente = data;
+            this.municipioid = this.cliente.munic_Id;
+
 
             let prueba: any;
             prueba = this.estadosciviles.find(est => est.estad_Id === this.cliente.estad_Id);
@@ -100,9 +102,8 @@ export class EditarComponent implements OnInit {
                     let aver: any;
                     aver = this.municipios.find(munic => munic.munic_Id === this.cliente.munic_Id);
                     console.log('municipios',this.cliente.munic_Id);
-                    this.municipioid = aver.munic_Id;
                 
-            });
+                });
 
             
         });

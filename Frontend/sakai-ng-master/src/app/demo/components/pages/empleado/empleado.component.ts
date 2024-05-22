@@ -65,7 +65,7 @@ export class EmpleadoComponent implements OnInit {
             console.log(response);
             if(response.success){
                 this.empleados = this.empleados.filter(val => val.emple_Id!== this.empleado.emple_Id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Empleado eliminado.', life: 3000 });
+            this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Empleado eliminado.', life: 3000 });
             this.empleado = {};
             } else{
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El empleado esta siendo utilizado.', life: 3000 });

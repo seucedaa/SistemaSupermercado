@@ -65,7 +65,7 @@ export class CargoComponent implements OnInit {
         this.cargoService.Delete(this.cargo.cargo_Id).then((response) => {
             if(response.success){
                 this.cargos = this.cargos.filter(val => val.cargo_Id!== this.cargo.cargo_Id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Cargo eliminado.', life: 3000 });
+            this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Cargo eliminado.', life: 3000 });
             this.cargo = {};
             } else{
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El cargo esta siendo utilizado.', life: 3000 });

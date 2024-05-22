@@ -67,7 +67,7 @@ export class ProductoComponent implements OnInit {
             console.log(response);
             if(response.success){
                 this.productos = this.productos.filter(val => val.produ_Id!== this.producto.produ_Id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Producto eliminado.', life: 3000 });
+            this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Producto eliminado.', life: 3000 });
             this.producto = {};
             } else{
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'El producto esta siendo utilizado.', life: 3000 });
