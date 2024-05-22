@@ -147,12 +147,7 @@ export class AppMenuComponent implements OnInit {
                     ]
                 },
 
-                    {
-                        label: 'Comprar',
-                        icon: 'pi pi-fw pi-shopping-cart',
-                        routerLink: ['/home/pages/comprar'],
-                        command: (event) => this.onMenuItemClick('/home/pages/comprar')
-                    },
+                
                     {
                         label: 'Acceso',
                         icon: 'pi pi-fw pi-user',
@@ -171,8 +166,9 @@ export class AppMenuComponent implements OnInit {
                             { label: 'Estados Civiles', icon: 'pi pi-fw pi-heart', routerLink: '/home/pages/estadocivil', command: (event) => this.onMenuItemClick('/home/pages/estadocivil') },
                             { label: 'Impuestos', icon: 'pi pi-fw pi-money-bill', routerLink: '/home/pages/impuestos', command: (event) => this.onMenuItemClick('/home/pages/impuestos') },
                             { label: 'Municipios', icon: 'pi pi-fw pi-building', routerLink: '/home/pages/municipio', command: (event) => this.onMenuItemClick('/home/pages/municipio') },
-                            { label: 'Sub Categorias', icon: 'pi pi-fw pi-th-large', routerLink: '/home/pages/subcategoria', command: (event) => this.onMenuItemClick('/home/pages/subcategoria') }
-                        ]
+                            { label: 'Sub Categorias', icon: 'pi pi-fw pi-th-large', routerLink: '/home/pages/subcategoria', command: (event) => this.onMenuItemClick('/home/pages/subcategoria') },
+                            
+                          ]
                     },
                     {
                         label: 'Supermercado',
@@ -190,6 +186,12 @@ export class AppMenuComponent implements OnInit {
                         label: 'Ventas',
                         icon: 'pi pi-fw pi-dollar',
                         items: [
+                          {
+                            label: 'Comprar',
+                            icon: 'pi pi-fw pi-shopping-cart',
+                            routerLink: '/home/pages/Comprar',
+                            command: (event) => this.onMenuItemClick('/home/pages/Comprar')
+                        },
                             { label: 'Clientes', icon: 'pi pi-fw pi-user-plus', routerLink: '/home/pages/clientes', command: (event) => this.onMenuItemClick('/home/pages/clientes') }
                         ]
                     },
