@@ -15,7 +15,7 @@ export class Proveedor{
     usuarioCreacion?: string;
     usuarioModificacion?: string;
     prove_UsuarioCreacion?: number;
-    prove_UsuarioModificacion?: string;
+    prove_UsuarioModificacion?: number;
     prove_FechaCreacion?: number;
     prove_FechaModificacion?: string;
 }

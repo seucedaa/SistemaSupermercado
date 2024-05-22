@@ -33,7 +33,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Prove_Id", item.Prove_Id);
                 parametro.Add("Prove_Marca", item.Prove_Marca);
                 parametro.Add("Prove_ContactoPrimerNombre", item.Prove_ContactoPrimerNombre);
-                parametro.Add("Prove_ContactoSegundoApellido", item.Prove_ContactoSegundoApellido);
+                parametro.Add("Prove_ContactoSegundoNombre", item.Prove_ContactoSegundoNombre);
                 parametro.Add("Prove_ContactoPrimerApellido", item.Prove_ContactoPrimerApellido);
                 parametro.Add("Prove_ContactoSegundoApellido", item.Prove_ContactoSegundoApellido);
                 parametro.Add("Munic_Id", item.Munic_Id);
@@ -85,7 +85,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("Prove_Marca", item.Prove_Marca);
                 parametro.Add("Prove_ContactoPrimerNombre", item.Prove_ContactoPrimerNombre);
-                parametro.Add("Prove_ContactoSegundoApellido", item.Prove_ContactoSegundoApellido);
+                parametro.Add("Prove_ContactoSegundoNombre", item.Prove_ContactoSegundoNombre);
                 parametro.Add("Prove_ContactoPrimerApellido", item.Prove_ContactoPrimerApellido);
                 parametro.Add("Prove_ContactoSegundoApellido", item.Prove_ContactoSegundoApellido);
                 parametro.Add("Munic_Id", item.Munic_Id);

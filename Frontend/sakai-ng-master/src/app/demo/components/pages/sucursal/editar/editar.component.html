@@ -1,0 +1,69 @@
+<div class="grid">
+	<div class="col-12 md:col-12">
+        <div class="card p-fluid">
+             <p-toast></p-toast>
+			<h5>Editar Sucursal</h5>
+            <div class="p-formgrid grid">
+                <div class="field col">
+                    <label for="sucur_Descripcion">Sucursal</label>
+                    <input type="text" pInputText id="sucur_Descripcion" [(ngModel)]="sucursal.sucur_Descripcion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !sucursal.sucur_Descripcion}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !sucursal.sucur_Descripcion">La sucursal es requerida.</small>
+                </div>
+                <div class="field col">
+                    <label for="sucur_Telefono">Telefono</label>
+                    <input type="text" pInputText id="sucur_Telefono" [(ngModel)]="sucursal.sucur_Telefono" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !sucursal.sucur_Telefono}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !sucursal.sucur_Telefono">El telefono es requerido.</small>
+                </div>
+            </div>
+            <div class="p-formgrid grid">
+                <div class="field col">
+                    <label htmlFor="sucur_Direccion">Direccion</label>
+                    <input type="text" pInputText id="sucur_Direccion" [(ngModel)]="sucursal.sucur_Direccion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !sucursal.sucur_Direccion}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !sucursal.sucur_Direccion">La direccion es requerida.</small>				
+                </div>
+            </div>
+                
+               
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="name2">Departamento</label>
+                        <p-dropdown [options]="departamentos" 
+                        optionLabel="depar_Descripcion" 
+                        optionValue="depar_Id" 
+                        (onChange)="onDeparIdChange($event.value)" 
+                        [(ngModel)]="departid">
+                        </p-dropdown>                    
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="sucursal.munic_Id">Municipio</label>
+                        <p-dropdown [options]="municipios" 
+                        optionLabel="munic_Descripcion" 
+                        optionValue="munic_Id" 
+                        (onChange)="onMunicIdChange($event.value)" 
+                        [(ngModel)]="municipioid">
+                        </p-dropdown>                  
+                 </div>
+                </div>
+			
+            <div class="flex flex-wrap gap-2">   
+                <div class="field col">
+                </div>
+                <div class="field col">
+                               
+                </div>
+                <div class="field col">
+                </div>  
+                <div class="field col">
+                   <button pButton pRipple label="Guardar" icon="pi pi-plus" class="p-button-success mr-2" (click)="guardar()"></button>
+
+                </div>  
+               
+               <div class="field col">
+                   <button routerLink="sucursal" pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-secondary mr-2" ></button>
+               
+               </div>
+            </div>
+	    </div>
+        
+    </div>
+</div>

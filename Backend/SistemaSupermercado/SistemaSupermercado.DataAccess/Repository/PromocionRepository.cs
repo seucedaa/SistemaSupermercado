@@ -44,7 +44,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Promo_Descripcion", item.Promo_Descripcion);
                 parametro.Add("Promo_Porcentaje", item.Promo_Porcentaje);
                 parametro.Add("Produ_Id", item.Produ_Id);
-                parametro.Add("Promo_UsuarioModificacion", item.Promo_Disminucion);
+                parametro.Add("Promo_UsuarioModificacion", item.Promo_UsuarioModificacion);
                 parametro.Add("Promo_FechaModificacion", DateTime.Now);
 
                 var result = db.Execute(ScriptBaseDeDatos.Promocion_Modificar,

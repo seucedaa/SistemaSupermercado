@@ -41,8 +41,7 @@ namespace SistemaSupermercado.API.Controllers
             {
                 Produ_Descripcion = item.Produ_Descripcion,
                 Produ_Id = item.Produ_Id,
-                Promo_Disminucion = item.Promo_Disminucion,
-                Promo_PuntosRequeridos = item.Promo_PuntosRequeridos,
+                Promo_Porcentaje = item.Promo_Porcentaje,
                 Promo_UsuarioCreacion = item.Promo_UsuarioCreacion
             };
 
@@ -62,7 +61,7 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpPut("Actualizar/{id}")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(PromocionViewModel item)
         {
             var model = _mapper.Map<tbPromociones>(item);
@@ -71,8 +70,7 @@ namespace SistemaSupermercado.API.Controllers
                 Promo_Id = item.Promo_Id,
                 Produ_Descripcion = item.Produ_Descripcion,
                 Produ_Id = item.Produ_Id,
-                Promo_Disminucion = item.Promo_Disminucion,
-                Promo_PuntosRequeridos = item.Promo_PuntosRequeridos,
+                Promo_Porcentaje = item.Promo_Porcentaje,
                 Promo_UsuarioModificacion = item.Promo_UsuarioModificacion
             };
 

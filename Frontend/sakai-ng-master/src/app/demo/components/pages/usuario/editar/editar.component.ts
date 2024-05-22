@@ -58,14 +58,9 @@ export class EditarComponent implements OnInit {
         this.usuarioService.Details(Number(id)).then(data => {
             this.usuario = data;
 
-             let prueba: any;
-            prueba = this.empleados.find(est => est.emple_Id === this.usuario.perso_Id);
-            console.log(prueba);
-            this.empleid = prueba.emple_Id;
+            this.rolid = this.usuario.roles_Id;
+            this.empleid = this.usuario.perso_Id;
 
-            let prueba1: any;
-            prueba1 = this.roles.find(suc => Number(suc.roles_Id) === this.usuario.roles_Id);
-            this.rolid = prueba1.roles_Id;
             
         });
     }
@@ -91,7 +86,7 @@ export class EditarComponent implements OnInit {
                         this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Usuario actualizado.', life: 3000 });
                         this.usuario = {};
                         this.ngOnInit();
-                        this.router.navigate(['/home/pages/usuario']);
+                        this.router.navigate(['/home/pages/usuarios']);
                 }else{
                     this.messageService.add({ severity: 'error', summary: 'Error', detail: response.data.messageStatus, life: 3000 });
                 }

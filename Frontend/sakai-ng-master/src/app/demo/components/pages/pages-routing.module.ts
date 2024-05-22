@@ -102,9 +102,9 @@ const routes: Routes = [
     canActivate: [AuthGuard, RoleGuard]
   },
   {
-    path: 'comprar',
+    path: 'Comprar',
     loadChildren: () => import('./comprar/comprar.module').then(m => m.ComprarModule),
-    data: { breadcrumb: 'comprar' },
+    data: { breadcrumb: 'Comprar' },
     canActivate: [AuthGuard, RoleGuard]
   },
   { path: 'notfound', component: NotfoundComponent },

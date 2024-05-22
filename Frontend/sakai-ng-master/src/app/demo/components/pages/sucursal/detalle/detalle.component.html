@@ -4,24 +4,33 @@
             <div class="flex justify-content-between align-items-center mb-5">
                 <h5>Detalles</h5>
                 <div>
-                    <button routerLink="subcategoria" pButton type="button" label="Regresar" icon="pi pi-arrow-left" class="p-element p-ripple p-button-outlined p-button-success p-button p-component"></button>
+                    <button routerLink="sucursal" pButton type="button" label="Regresar" icon="pi pi-arrow-left" class="p-element p-ripple p-button-outlined p-button-success p-button p-component"></button>
                 </div>
-            </div>            
-            <div *ngIf="subcategoria">
+            </div>
+            
+            <div *ngIf="sucursal">
                 <div class="p-formgrid grid">
 
                     <div class="field col">
-                        <label><b>ID</b></label>
-                        <p>{{subcategoria.subca_Id}}</p>
+                        <label><b>Sucursal</b></label>
+                        <p>{{sucursal.sucur_Descripcion}}</p>
                     </div>
                     <div class="field col">
-                        <label><b>Sub-Categoria</b></label>
-                        <p>{{subcategoria.subca_Descripcion}}</p>
+                        <label><b>Telefono</b></label>
+                        <p>{{sucursal.sucur_Telefono}}</p>
                     </div>
                     <div class="field col">
-                        <label><b>Categoria</b></label>
-                        <p>{{subcategoria.categ_Descripcion}}</p>
+                        <label><b>Municipio</b></label>
+                        <p>{{sucursal.munic_Descripcion}}</p>
                     </div>
+                </div>
+                <div class="p-formgrid grid">
+                   
+                    <div class="field col">
+                        <label><b>Direccion</b></label>
+                        <p>{{sucursal.sucur_Direccion}}</p>
+                    </div>
+                    
                 </div>
 				
             </div>
@@ -29,15 +38,8 @@
             <div class="card p-fluid">
                 <h5>Auditoria</h5>
     
-                <p-table #dt [value]="subcategoriass" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['usuarioCreacion','usuarioModificacion', 'subca_FechaCreacion', 'subca_FechaModificacion']" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowHover]="true" dataKey="id">
-                    <ng-template pTemplate="caption">
-                        <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                            <span class="block mt-2 md:mt-0 p-input-icon-left">
-                                <i class="pi pi-search"></i>
-                                <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
-                            </span>
-                        </div>
-                    </ng-template>
+                <p-table #dt [value]="sucursalss" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['usuarioCreacion','usuarioModificacion', 'sucur_FechaCreacion', 'sucur_FechaModificacion']"  [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowHover]="true" dataKey="id">
+                    
                     <ng-template pTemplate="header">
                         <tr>
                             <th style="width: 3rem">
@@ -52,16 +54,16 @@
                             
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-subcategoria>
+                    <ng-template pTemplate="body" let-sucursal>
                         <tr>
                             <td style="width:14%; min-width:20rem;">
                                 Creador
                             </td>
                             <td style="width:14%; min-width:20rem;">
-                                {{ subcategoria.usuarioCreacion }}
+                                {{ sucursal.usuarioCreacion }}
                             </td>
                             <td style="width:14%; min-width:20rem;">
-                                {{ subcategoria.subca_FechaCreacion }}
+                                {{ sucursal.sucur_FechaCreacion }}
                             </td>
                         </tr>
                         <tr>
@@ -69,10 +71,10 @@
                                 Modificador
                             </td>
                             <td style="width:14%; min-width:20rem;">
-                                {{ subcategoria.usuarioModificacion }}
+                                {{ sucursal.usuarioModificacion }}
                             </td>
                             <td style="width:14%; min-width:20rem;">
-                                {{ subcategoria.subca_FechaModificacion }}
+                                {{ sucursal.sucur_FechaModificacion }}
                             </td>
                         </tr>
                     </ng-template>
@@ -88,3 +90,4 @@
 		
 </div> 
 
+<!--  -->

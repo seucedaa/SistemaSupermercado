@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
 import { Table } from 'primeng/table';
-import { SubcategoriaService } from 'src/app/demo/service/subcategoria.service';
-import { Subcategoria } from 'src/app/demo/models/SubcategoriaViewModel';
+import { PromocionService } from 'src/app/demo/service/promocion.service';
+import { Promocion } from 'src/app/demo/models/PromocionViewModel';
 import { ActivatedRoute,Router } from '@angular/router';
 
 @Component({
@@ -13,10 +13,10 @@ import { ActivatedRoute,Router } from '@angular/router';
 })
 export class DetalleComponent implements OnInit {
 
-    subcategorias: Subcategoria[] = [];
-    subcategoriass: Subcategoria[] = [];
+    promocions: Promocion[] = [];
+    promocionss: Promocion[] = [];
 
-    subcategoria: Subcategoria;
+    promocion: Promocion;
 
 
     cols: any[] = [];
@@ -27,7 +27,7 @@ export class DetalleComponent implements OnInit {
 
 
     constructor(private route: ActivatedRoute,     private router: Router,
-        private subcategoriaService: SubcategoriaService) { }
+        private promocionService: PromocionService) { }
 
     ngOnInit() {
         const usuariolog = sessionStorage.getItem('usuario');
@@ -38,19 +38,19 @@ export class DetalleComponent implements OnInit {
 
             }
         const id = this.route.snapshot.paramMap.get('id');
-        this.subcategoriaService.Details(Number(id)).then(data => {
-            this.subcategoria = data;
-            console.log(this.subcategoria);
+        this.promocionService.Details(Number(id)).then(data => {
+            this.promocion = data;
+            console.log(this.promocion);
         });
-        this.subcategoriaService.Details(Number(id)).then(data => {
-            this.subcategoriass.push(data);
+        this.promocionService.Details(Number(id)).then(data => {
+            this.promocionss.push(data);
         });
     
         this.cols = [
             { field: 'UsuarioCreacion'},
             { field: 'UsuarioModificacion'},
-            { field: 'subca_FechaCreacion'},
-            { field: 'subca_FechaModificacion'}
+            { field: 'promo_FechaCreacion'},
+            { field: 'promo_FechaModificacion'}
         ];
     }
     
