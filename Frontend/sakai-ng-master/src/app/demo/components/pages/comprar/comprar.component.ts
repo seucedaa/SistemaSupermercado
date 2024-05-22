@@ -7,6 +7,8 @@ import { dE } from '@fullcalendar/core/internal-common'
 import { Cart } from 'src/app/demo/models/CartViewModel'
 import { DataView } from 'primeng/dataview';
 import { SelectItem } from 'primeng/api';
+import { SucursalService } from 'src/app/demo/service/sucursal.service'
+import { Sucursal } from 'src/app/demo/models/SucursalViewModel'
 
 
 @Component({
@@ -19,14 +21,19 @@ export class ComprarComponent {
     private ProductoService: ProductoService,
     private cartService: CartService,
     private messageService: MessageService,
+    private sucursalService: SucursalService
   ) {}
   //? PROPIEDADES
+  allProductos: Cart[] = []
   productos: Cart[] = []
   filteredProductos: Cart[] = []
 
   alimentos: any[] = []
   limpieza: any[] = []
   bebidas: any[] = []
+
+  sucursalesOpciones = [];
+  sucursalSelecionada: any;
 
   sortOptions = [
     { label: 'Ordernar por Producto ', value: 'produ_Descripcion' },
@@ -37,10 +44,20 @@ export class ComprarComponent {
 
   //?METODOS
   ngOnInit() {
+    this.sucursalService.getList().then(data => {
+      data.map((suc) => {
+        this.sucursalesOpciones.push({label: suc.sucur_Descripcion, value: suc.sucur_Id})
+      })
+      this.sucursalSelecionada = this.sucursalesOpciones[0].value;
+    })
+
     this.cartService.getProdcutos().then((data) => {
-      this.productos = data;
-      this.filteredProductos = data; 
+      this.allProductos = data;
+      this.filterBySucursal();
     });
+
+
+    
   }
 
   agregar(producto: Cart) {
@@ -75,6 +92,7 @@ export class ComprarComponent {
     }
     this.sortProducts();
   }
+
 
   sortProducts() {
     this.filteredProductos.sort((a, b) => {
@@ -115,5 +133,16 @@ export class ComprarComponent {
       product.produ_Descripcion.toLowerCase().includes(query) ||
       String(product.produ_Id).includes(query)
     );
+  }
+
+  onSucursalChange(event: any) {
+    this.sucursalSelecionada = event.value;
+    this.filterBySucursal();
+  }
+
+  filterBySucursal() {
+    this.productos = this.allProductos.filter(product => product.sucur_Id === this.sucursalSelecionada);
+    this.filteredProductos = [...this.productos];
+    this.sortProducts();
   }
 }

@@ -51,8 +51,8 @@ export class LoginComponent {
 
                         this.cookieService.set('roleID', data[0].roles_Id);
                         this.cookieService.set('esAdmin', data[0].usuar_Admin);
-
-                        console.log('Usuario guardado:', data[0])
+                        this.cookieService.set('perso_Tipo', data[0].perso_Tipo);
+                        this.cookieService.set('perso_Id', data[0].perso_Id);
 
                         this.router.navigate(['/home']);
                     } else {

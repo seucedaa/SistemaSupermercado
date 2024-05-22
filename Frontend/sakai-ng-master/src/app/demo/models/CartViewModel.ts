@@ -16,10 +16,13 @@ export class Cart {
   categ_Descripcion?: string;
   venen_Id?: number;
   vende_Cantidad?: number;
+  vende_Impuesto?: number;
+  vende_Descuento?: number;
   vende_FechaCreacion?: Date;
   vende_Precio?: number;
   clien_Id?: number;
   clien_Dni?: string;
+  clien_Puntos?: number;
   nombre?: string; 
   tipos_Id?: number;
   tipos_Descripcion?: string;

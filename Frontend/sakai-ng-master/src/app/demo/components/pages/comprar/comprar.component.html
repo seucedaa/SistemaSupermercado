@@ -10,10 +10,20 @@
         <ng-template pTemplate="header">
           <div
             class="flex flex-column md:flex-row md:justify-content-between gap-2">
+            <div class="flex justify-content-between gap-2">
+              <p-dropdown
+              [options]="sucursalesOpciones"
+              [(ngModel)]="sucursalSelecionada"
+              placeholder="Seleccionar sucursal"
+              (onChange)="onSucursalChange($event)"
+            ></p-dropdown>
+
             <p-dropdown
-              [options]="sortOptions"
-              placeholder="Ordenar por categoria"
+              [options]="sortOptions" 
+              placeholder="Ordenar por estado" 
               (onChange)="onSortChange($event)"></p-dropdown>
+            </div>
+
             <span class="p-input-icon-left">
               <i class="pi pi-search"></i>
               <input
