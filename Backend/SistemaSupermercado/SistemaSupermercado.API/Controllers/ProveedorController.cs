@@ -46,7 +46,6 @@ namespace SistemaSupermercado.API.Controllers
                 Prove_Direccion = item.Prove_Direccion,
                 Prove_Telefono = item.Prove_Telefono,
                 Prove_Correo = item.Prove_Correo,
-                Prove_Notas = item.Prove_Notas,
                 Prove_UsuarioCreacion = item.Prove_UsuarioCreacion
             };
 
@@ -66,7 +65,7 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpPut("Actualizar/{id}")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(ProveedorViewModel item)
         {
             var model = _mapper.Map<tbProveedores>(item);
@@ -82,7 +81,6 @@ namespace SistemaSupermercado.API.Controllers
                 Prove_Direccion = item.Prove_Direccion,
                 Prove_Telefono = item.Prove_Telefono,
                 Prove_Correo = item.Prove_Correo,
-                Prove_Notas = item.Prove_Notas,
                 Prove_UsuarioModificacion = item.Prove_UsuarioModificacion
             };
 

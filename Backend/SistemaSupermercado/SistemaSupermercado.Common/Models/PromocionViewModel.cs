@@ -10,7 +10,8 @@ namespace SistemaSupermercado.Common.Models
     public class PromocionViewModel
     {
         public int Promo_Id { get; set; }
-        public string Prom_Descripcion { get; set; }
+        public string Promo_Descripcion { get; set; }
+        public string Promo_Porcentaje { get; set; }
         public int Produ_Id { get; set; }
         [NotMapped]
         public string Produ_Descripcion { get; set; }

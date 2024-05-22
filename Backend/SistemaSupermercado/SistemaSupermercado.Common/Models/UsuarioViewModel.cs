@@ -35,6 +35,18 @@ namespace SistemaSupermercado.Common.Models
         [NotMapped]
 
         public string Administrador { get; set; }
+        [NotMapped]
+        public int Emple_Id { get; set; }
+        [NotMapped]
+        public string Emple_PrimerNombre { get; set; }
+        [NotMapped]
+        public string Emple_SegundoNombre { get; set; }
+        [NotMapped]
+        public string Emple_PrimerApellido { get; set; }
+        [NotMapped]
+        public string Emple_SegundoApellido { get; set; }
+        [NotMapped]
+        public string Esadmin { get; set; }
         public DateTime? Usuar_UltimaSesion { get; set; }
         [Display(Name = "Super puntos")]
         public int? Usuar_SuperPuntos { get; set; }

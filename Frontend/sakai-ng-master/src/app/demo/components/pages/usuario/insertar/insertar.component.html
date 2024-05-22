@@ -1,0 +1,64 @@
+<div class="grid">
+	<div class="col-12 md:col-12">
+        <div class="card p-fluid">
+             <p-toast></p-toast>
+			<h5>Nuevo Usuario</h5>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label for="usuar_Usuario">Usuario</label>
+                        <input type="text" pInputText id="usuar_Usuario" [(ngModel)]="usuario.usuar_Usuario" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !usuario.usuar_Usuario}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !usuario.usuar_Usuario">El usuario es requerido.</small>
+                    </div>
+                    <div class="field col">
+                        <label for="usuar_Correo">Correo</label>
+                        <input type="text" pInputText id="usuar_Correo" [(ngModel)]="usuario.usuar_Correo" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !usuario.usuar_Correo}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !usuario.usuar_Correo">El correo es requerido.</small>
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label for="usuar_Contrasena">Contraseña</label>
+                        <input type="password" pInputText id="usuar_Contrasena" [(ngModel)]="usuario.usuar_Contrasena" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !usuario.usuar_Contrasena}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !usuario.usuar_Contrasena">La contrasena es requerido.</small>
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="usuar_Admin">Administrador</label>
+                        <br>
+                        <p-inputSwitch [(ngModel)]="usuario.usuar_Admin"></p-inputSwitch>
+                    </div>
+                </div>
+                <div class="p-formgrid grid">
+                    <div class="field col">
+                        <label htmlFor="usuario.perso_Id">Empleado</label>
+                        <p-dropdown [options]="empleados" placeholder="--Seleccione--" optionLabel="emple_NombreCompleto" (onChange)="onEmpleIdChange($event.value)" [(ngModel)]="empleid" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !usuario.perso_Id}"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !usuario.perso_Id">El empleado es requerido.</small>
+                    </div>
+                    <div class="field col">
+                        <label htmlFor="usuario.roles_Id">Rol</label>
+                        <p-dropdown [options]="roles" placeholder="--Seleccione--" optionLabel="roles_Descripcion" (onChange)="onRolIdChange($event.value)" [(ngModel)]="rolid" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !usuario.roles_Id}"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !usuario.roles_Id">El rol es requerido.</small>
+                    </div>
+                </div>
+			
+            <div class="flex flex-wrap gap-2">   
+                <div class="field col">
+                </div>
+                <div class="field col">
+                               
+                </div>
+                <div class="field col">
+                </div>  
+                <div class="field col">
+                   <button pButton pRipple label="Guardar" icon="pi pi-plus" class="p-button-success mr-2" (click)="guardar()"></button>
+
+                </div>  
+               
+               <div class="field col">
+                   <button routerLink="usuario" pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-secondary mr-2" ></button>
+               
+               </div>
+            </div>
+	    </div>
+        
+    </div>
+</div>

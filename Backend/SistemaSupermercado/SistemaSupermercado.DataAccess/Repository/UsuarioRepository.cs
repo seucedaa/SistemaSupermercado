@@ -57,9 +57,6 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Usuar_Admin", item.Usuar_Admin);
                 parametro.Add("Roles_Id", item.Roles_Id);
                 parametro.Add("Perso_Id", item.Perso_Id);
-                parametro.Add("Perso_Tipo", item.Perso_Tipo);
-                parametro.Add("Usuar_UltimaSesion", item.Usuar_UltimaSesion);
-                parametro.Add("Usuar_SuperPuntos", item.Usuar_SuperPuntos);
                 parametro.Add("Usuar_UsuarioModificacion", item.Usuar_UsuarioModificacion);
                 parametro.Add("Usuar_FechaModificacion", DateTime.Now);
 
@@ -161,9 +158,6 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Usuar_Admin", item.Usuar_Admin);
                 parametro.Add("Roles_Id", item.Roles_Id);
                 parametro.Add("Perso_Id", item.Perso_Id);
-                parametro.Add("Perso_Tipo", item.Perso_Tipo);
-                parametro.Add("Usuar_UltimaSesion", item.Usuar_UltimaSesion);
-                parametro.Add("Usuar_SuperPuntos", item.Usuar_SuperPuntos);
                 parametro.Add("Usuar_UsuarioCreacion", item.Usuar_UsuarioCreacion);
                 parametro.Add("Usuar_FechaCreacion", DateTime.Now);
 

@@ -17,6 +17,22 @@ export class UsuarioEndPoints{
     return `${this.api.baseUrl}/Usuario/List`;
   }
 
+  public Insert():string{
+    return `${this.api.baseUrl}/Usuario/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Usuario/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Usuario/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Usuario/Eliminar/${id}`; 
+  }
+
   public Login(usuario: string, contrasena: string): string{
     return `${this.api.baseUrl}/Usuario/Login/${usuario},${contrasena}`; 
   }
@@ -262,6 +278,7 @@ export class EmpleadoEndPoints{
     return `${this.api.baseUrl}/Empleado/Eliminar/${id}`; 
   }
 }
+
 
 export class EstadoCivilEndPoints{
   public api = new ApiService();

@@ -143,10 +143,11 @@ export class EditarComponent implements OnInit {
     guardar() {
         this.submitted = true;
         this.empleado.emple_UsuarioModificacion = 1,
+        this.empleado.munic_Id = this.municipioid;
         console.log("entra al guarda");
 
 
-        if (this.empleado.emple_Dni?.trim() && this.empleado.emple_Correo?.trim() && this.empleado.cargo_Id?.toString().trim() && this.empleado.sucur_Id?.toString().trim() && this.empleado.emple_Telefono?.trim() && this.empleado.emple_PrimerNombre?.trim() && this.empleado.emple_SegundoNombre?.trim() && this.empleado.emple_PrimerApellido?.trim() && this.empleado.emple_SegundoApellido?.trim() && this.empleado.estad_Id.toString()?.trim() && this.empleado.emple_Sexo?.trim() && this.empleado.emple_Direccion?.trim() && this.empleado.munic_Id.trim()) {
+        if (this.empleado.emple_Dni?.trim()) {
             console.log(this.empleado);
             console.log("intenta guardar");
 

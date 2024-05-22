@@ -13,7 +13,7 @@
 //}
 
 export class Rol{
-    roles_Id?:String;
+    roles_Id?:string;
     roles_Descripcion?:String;
 }
 

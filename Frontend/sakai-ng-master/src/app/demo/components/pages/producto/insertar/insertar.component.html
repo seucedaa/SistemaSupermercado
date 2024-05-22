@@ -2,71 +2,55 @@
 	<div class="col-12 md:col-12">
         <div class="card p-fluid">
              <p-toast></p-toast>
-			<h5>Editar producto</h5>
+			<h5>Nuevo Producto</h5>
                 <div class="p-formgrid grid">
                     <div class="field col">
-                        <label for="produ_Descripcion">Descripcion</label>
+                        <label for="produ_Descripcion">Producto</label>
                         <input type="text" pInputText id="produ_Descripcion" [(ngModel)]="producto.produ_Descripcion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !producto.produ_Descripcion}"/>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.produ_Descripcion">La descripcion es requerida.</small>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.produ_Descripcion">La identidad es requerida.</small>
                     </div>
                     <div class="field col">
                         <label for="produ_Existencia">Existencia</label>
                         <input type="text" pInputText id="produ_Existencia" [(ngModel)]="producto.produ_Existencia" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !producto.produ_Existencia}"/>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.produ_Existencia">La existencia es requerido.</small>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.produ_Existencia">El telefono es requerido.</small>
                     </div>
                 </div>
                 <div class="p-formgrid grid">
                     <div class="field col">
-                        <label for="produ_PrecioCompra">Precio Compra</label>
+                        <label for="produ_PrecioCompra">Precio de Compra</label>
                         <input type="text" pInputText id="produ_PrecioCompra" [(ngModel)]="producto.produ_PrecioCompra" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !producto.produ_PrecioCompra}"/>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.produ_PrecioCompra">El primer nombre es requerido.</small>
                     </div>
                     <div class="field col">
-                        <label htmlFor="produ_PrecioVenta">Precio Venta</label>
+                        <label htmlFor="produ_PrecioVenta">Precio de Venta</label>
                         <input type="text" pInputText id="produ_PrecioVenta" [(ngModel)]="producto.produ_PrecioVenta" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !producto.produ_PrecioVenta}"/>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.produ_PrecioVenta">El segundo nombre es requerido.</small>				
                     </div>
                 </div>
                 <div class="p-formgrid grid">
                     <div class="field col">
-                        <label htmlFor="name2">Impuesto</label>
-                        <p-dropdown [options]="impuestos" 
-                        optionLabel="impue_Descripcion" 
-                        optionValue="impue_Id" 
-                        (onChange)="onImpuedChange($event.value)" 
-                        [(ngModel)]="impueid">
-                        </p-dropdown>                    
+                        <label htmlFor="producto.prove_Id">Proveedor</label>
+                        <p-dropdown [options]="proveedores" placeholder="--Seleccione--" optionLabel="prove_Marca" (onChange)="onProveIdChange($event.value)" [(ngModel)]="provid" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !producto.prove_Id}"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.prove_Id">El proveedor es requerido.</small>
                     </div>
                     <div class="field col">
-                        <label htmlFor="name2">Proveedor</label>
-                        <p-dropdown [options]="proveedores" 
-                        optionLabel="prove_Marca" 
-                        optionValue="prove_Id" 
-                        (onChange)="onProveIdChange($event.value)" 
-                        [(ngModel)]="proveid">
-                        </p-dropdown>                    
+                        <label htmlFor="producto.impue_Id">Impuesto</label>
+                        <p-dropdown [options]="impuestos" placeholder="--Seleccione--" optionLabel="impue_Descripcion" (onChange)="onImpueIdChange($event.value)" [(ngModel)]="impueid" required [ngClass]="{'ng-invalid ng-dirty' : submitted && !producto.impue_Id}"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.impue_Id">El impuesto es requerido.</small>
                     </div>
                 </div>
-                
+              
                 <div class="p-formgrid grid">
                     <div class="field col">
                         <label htmlFor="name2">Categoria</label>
-                        <p-dropdown [options]="categorias" 
-                        optionLabel="categ_Descripcion" 
-                        optionValue="categ_Id" 
-                        (onChange)="onCategIdChange($event.value)" 
-                        [(ngModel)]="categid">
-                        </p-dropdown>                    
+                        <p-dropdown [options]="categorias" placeholder="--Seleccione--" optionLabel="categ_Descripcion" (onChange)="onCategIdChange($event.value)" [(ngModel)]="categid" required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !producto.subca_Id}"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.subca_Id">El departamento es requerido.</small>
                     </div>
                     <div class="field col">
                         <label htmlFor="producto.subca_Id">Sub-Categoria</label>
-                        <p-dropdown [options]="subcategorias" 
-                        optionLabel="subca_Descripcion" 
-                        optionValue="subca_Id" 
-                        (onChange)="onSubcaIdChange($event.value)" 
-                        [(ngModel)]="subcaid">
-                        </p-dropdown>                  
-                 </div>
+                        <p-dropdown [options]="subcategorias" placeholder="--Seleccione--" optionLabel="subca_Descripcion" (onChange)="onSubcaIdChange($event.value)" [(ngModel)]="subcaid" required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !producto.subca_Id}"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.subca_Id">La sub categoria es requerido.</small>
+                    </div>
                 </div>
 			
             <div class="flex flex-wrap gap-2">   

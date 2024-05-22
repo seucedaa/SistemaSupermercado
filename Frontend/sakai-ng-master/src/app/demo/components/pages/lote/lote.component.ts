@@ -114,8 +114,9 @@ export class LoteComponent implements OnInit {
 
     saveLote() {
         this.lote.lotes_FechaVencimiento = this.formatDate(this.fecha);
-        this.lote.produ_Id = this.produid.produ_Id;
-        this.lote.sucur_Id = this.sucurid.sucur_Id;
+        this.lote.produ_Id = this.produid;
+        this.lote.sucur_Id = this.sucurid;
+
 
         this.submitted = true;
         this.lote.lotes_UsuarioCreacion = 1;

@@ -69,14 +69,6 @@
                         <p-dropdown [(ngModel)]="produid" optionValue="produ_Id"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !lote.produ_Id}" [options]="productos" optionLabel="produ_Descripcion" placeholder="Seleccione"></p-dropdown>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !lote.produ_Id">El producto es requerido.</small>
                     </div>
-                    
-                    <div class="field col-6">
-                        <label for="lotes_Cantidad">Cantidad</label>
-                        <input type="number" pInputText id="lotes_Cantidad" [(ngModel)]="lote.lotes_Cantidad" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !lote.lotes_Cantidad}"/>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !lote.lotes_Cantidad">Cantidad es requerida.</small>
-                    </div>
-                </div>
-                <div class="p-formgrid grid">
                     <div class="field col-6">
                         <label for="lotes_FechaVencimiento">Fecha de vencimiento</label>
                         <span class="p-float-label">
@@ -87,6 +79,15 @@
                             ></p-calendar>
                             <small class="ng-dirty ng-invalid" *ngIf="submitted && !lote.lotes_FechaVencimiento">Fecha de vencimiento es requerida.</small>
                         </span>
+                    </div>
+                   
+                </div>
+                <div class="p-formgrid grid">
+                   
+                    <div class="field col-6">
+                        <label for="lotes_Cantidad">Cantidad</label>
+                        <input type="number" pInputText id="lotes_Cantidad" [(ngModel)]="lote.lotes_Cantidad" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !lote.lotes_Cantidad}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !lote.lotes_Cantidad">Cantidad es requerida.</small>
                     </div>
                     
                     <div class="field col-6">
