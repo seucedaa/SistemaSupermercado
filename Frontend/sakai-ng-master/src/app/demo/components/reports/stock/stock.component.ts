@@ -21,6 +21,8 @@ export class StockComponent implements OnInit {
     sucursa: any;
     sucursall:any;
     prueba:any;
+    sucursal: Sucursal;
+
 
     @ViewChild('pdfViewer', { static: false }) pdfViewer!: ElementRef;
 
@@ -32,9 +34,14 @@ export class StockComponent implements OnInit {
     ) { }
 
     onSucursalChange(sucur: any) {
-        this.prueba = sucur.sucur_Id;
-        this.sucursall = sucur.sucur_Descripcion;
-        if (this.prueba == 0) {
+        this.sucursalService.Details(Number(sucur)).then(data => {
+            console.log(data);
+            this.sucursal = data;
+
+            this.sucursall= this.sucursal.sucur_Descripcion;
+        });
+
+        if (this.sucursalid == 0) {
             this.todas();
         } else {
             this.cambio();
@@ -63,7 +70,8 @@ export class StockComponent implements OnInit {
     }
 
     cambio() {
-        this.reporteService.getStock(this.prueba).then(response => {
+        console.log(this.prueba,this.sucursalid);
+        this.reporteService.getStock(this.sucursalid).then(response => {
             if (response && response.success) {
                 this.productos = response.data;
     

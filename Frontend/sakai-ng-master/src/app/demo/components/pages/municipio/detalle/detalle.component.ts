@@ -44,6 +44,8 @@ export class DetalleComponent implements OnInit {
         });
         this.municipioService.Details(id).then(data => {
             this.municipioss.push(data);
+
+            
         });
     
         this.cols = [

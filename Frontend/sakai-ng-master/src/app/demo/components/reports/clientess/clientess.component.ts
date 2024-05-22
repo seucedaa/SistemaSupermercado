@@ -23,7 +23,6 @@ export class ClientessComponent implements OnInit {
     sucursall:any;
     formattedInicio:any;
     formattedFin:any;
-    prueba:any;
 
 
     @ViewChild('pdfViewer', { static: false }) pdfViewer!: ElementRef;
@@ -48,14 +47,19 @@ export class ClientessComponent implements OnInit {
       this.formattedInicio = this.formatDate(this.inicio);
       this.formattedFin = this.formatDate(this.fin);
 
-      
       this.reporteService.getClientes(this.formattedInicio, this.formattedFin).then(response => {
+      console.log(this.formattedInicio,this.formattedFin);
+
         if (response && response.success) {
             this.clientes = response.data;
 
             if (this.clientes && this.clientes.length > 0) {
                 this.generatePDF();
             } 
+            else {
+                this.generatePDF();
+                
+            }
         } 
     })
    }
