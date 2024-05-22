@@ -71,6 +71,7 @@ export class AppCartComponent {
     this.isCliente = this.cookieService.get('perso_Tipo') == 'true';
     if(this.isCliente){
       this.cartService.clienteID = parseInt(this.cookieService.get('perso_Id'));
+      this.clienteid = parseInt(this.cookieService.get('perso_Id'));
     }
 
   }
@@ -212,6 +213,11 @@ export class AppCartComponent {
 
   openModal() {
     this.displayModal = true;
+    this.isCliente = this.cookieService.get('perso_Tipo') == 'true';
+    if(this.isCliente){
+      this.cartService.clienteID = parseInt(this.cookieService.get('perso_Id'));
+      this.clienteid = parseInt(this.cookieService.get('perso_Id'));
+    }
   }
 
   confirmarPago() {
