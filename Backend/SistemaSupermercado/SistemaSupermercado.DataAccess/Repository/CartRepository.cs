@@ -69,13 +69,13 @@ namespace SistemaSupermercado.DataAccess.Repository
             }
         }
 
-        public CartViewModel BuscarFactura(int id)
+        public List<CartViewModel> BuscarFactura(int id)
         {
-            CartViewModel result = new CartViewModel();
+            List<CartViewModel> result = new List<CartViewModel>();
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parameters = new { Venen_Id = id };
-                result = db.QueryFirstOrDefault<CartViewModel>(ScriptBaseDeDatos.FacturaBuscar, parameters, commandType: CommandType.StoredProcedure);
+                result = db.Query<CartViewModel>(ScriptBaseDeDatos.FacturaBuscar, parameters, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
         }
