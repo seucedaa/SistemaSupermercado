@@ -46,7 +46,7 @@ export class AppMenuComponent implements OnInit {
                 }
             });
         } else {
-            this.model = this.menuCompleto; // Admin gets the full menu
+            this.model = this.menuCompleto;
         }
     }
     
