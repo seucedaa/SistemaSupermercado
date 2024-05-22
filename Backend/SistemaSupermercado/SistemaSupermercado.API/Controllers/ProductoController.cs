@@ -134,7 +134,8 @@ namespace SistemaSupermercado.API.Controllers
                 Impue_Id = item.Impue_Id,
                 Subca_Id = item.Subca_Id,
                 Prove_Id = item.Prove_Id,
-                Produ_UsuarioCreacion = item.Produ_UsuarioCreacion
+                Produ_UsuarioCreacion = item.Produ_UsuarioCreacion,
+                img= item.img
             };
 
             var list = _superServicio.InsertarProdu(modelo);

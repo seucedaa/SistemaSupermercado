@@ -52,5 +52,6 @@ namespace SistemaSupermercado.Common.Models
         public int? Produ_UsuarioModificacion { get; set; }
         public DateTime? Produ_FechaModificacion { get; set; }
         public bool? Produ_Estado { get; set; }
+        public string? img { get; set; }
     }
 }

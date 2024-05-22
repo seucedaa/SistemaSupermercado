@@ -81,12 +81,12 @@ namespace SistemaSupermercado.API
                 }
                 await next.Invoke();
             });
-        //    app.UseStaticFiles(new StaticFileOptions
-        //    {
-        //        FileProvider = new PhysicalFileProvider(
-        //Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads")),
-        //        RequestPath = "/uploads"
-        //    });
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads")),
+                RequestPath = "/uploads"
+            });
             app.UseCors("AllowAllOrigins");
 
             app.UseHttpsRedirection();

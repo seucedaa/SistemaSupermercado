@@ -48,6 +48,7 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Subca_Id", item.Subca_Id);
                 parametro.Add("Impue_Id", item.Impue_Id);
                 parametro.Add("Prove_Id", item.Prove_Id);
+                parametro.Add("img", item.img);
                 parametro.Add("Produ_UsuarioModificacion", item.Produ_UsuarioModificacion);
                 parametro.Add("Produ_FechaModificacion", DateTime.Now);
 
@@ -97,7 +98,8 @@ namespace SistemaSupermercado.DataAccess.Repository
                 parametro.Add("Produ_PrecioVenta", item.Produ_PrecioVenta);
                 parametro.Add("Impue_Id", item.Impue_Id);
                 parametro.Add("Subca_Id", item.Subca_Id);
-                parametro.Add("Prove_Id", item.Prove_Id); 
+                parametro.Add("Prove_Id", item.Prove_Id);
+                parametro.Add("img", item.img);
                 parametro.Add("Produ_UsuarioCreacion", item.Produ_UsuarioCreacion);
                 parametro.Add("Produ_FechaCreacion", DateTime.Now);
 
