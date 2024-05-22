@@ -40,7 +40,7 @@ export class LoteComponent implements OnInit {
 
     produid: any;
     sucurid: any;
-    fecha:any;
+    fecha:Date;
 
     constructor( private pService: ProductoService,     private router: Router,
         private sService: SucursalService,private loteService: LoteService, private messageService: MessageService) { }
@@ -54,7 +54,7 @@ export class LoteComponent implements OnInit {
                 this.router.navigate(['/login']);
 
             }
-        this.loteService.getList().then(data => this.lotes = data);
+        this.loteService.getList().then(data => {this.lotes = data});
         this.pService.getList().then(data => this.productos = data);
         this.sService.getList().then(data => this.sucursales = data);
 
@@ -70,7 +70,7 @@ export class LoteComponent implements OnInit {
         this.lote = {...lote };
         this.produid = lote.produ_Id; 
         this.sucurid = lote.sucur_Id; 
-        this.fecha = lote.lotes_FechaVencimiento;
+        this.fecha = new Date(Date.parse(lote.lotes_FechaVencimiento.toString()));
         this.loteDialog = true;
         console.log(lote);
     }

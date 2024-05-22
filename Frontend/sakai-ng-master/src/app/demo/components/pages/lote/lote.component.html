@@ -69,13 +69,14 @@
                         <p-dropdown [(ngModel)]="produid" optionValue="produ_Id"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !lote.produ_Id}" [options]="productos" optionLabel="produ_Descripcion" placeholder="Seleccione"></p-dropdown>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !lote.produ_Id">El producto es requerido.</small>
                     </div>
-                    <div class="field col-6">
+                    <div class="field col-6" >
                         <label for="lotes_FechaVencimiento">Fecha de vencimiento</label>
                         <span class="p-float-label">
                             <p-calendar
                                 inputId="calendar"
                                 [(ngModel)]="fecha"
                                 optionValue="lotes_FechaVencimiento"
+                                appendTo="body" 
                             ></p-calendar>
                             <small class="ng-dirty ng-invalid" *ngIf="submitted && !lote.lotes_FechaVencimiento">Fecha de vencimiento es requerida.</small>
                         </span>
