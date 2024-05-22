@@ -22,7 +22,7 @@ export class PromocionComponent implements OnInit {
 
     promocion: Promocion = {};
 
-    selectedPromociones: Promocion[] = [];
+    selectedpromocions: Promocion[] = [];
 
     submitted: boolean = false;
 
@@ -47,7 +47,8 @@ export class PromocionComponent implements OnInit {
                 this.router.navigate(['/login']);
 
             }
-        this.promocionService.getList().then(data => this.promociones = data);
+        this.promocionService.getList().then(data => this.promocions = data);
+        this.productoService.getList().then(data => this.productos = data);
 
         this.cols = [
             { field: 'promo_Descripcion', header: 'Promocion' },
@@ -89,18 +90,17 @@ export class PromocionComponent implements OnInit {
     
 
     savepromocion() {
-        this.promocion.promo_FechaVencimiento = this.formatDate(this.fecha);
         this.promocion.produ_Id = this.produid;
-        this.promocion.sucur_Id = this.sucurid;
 
 
         this.submitted = true;
         this.promocion.promo_UsuarioCreacion = 1;
         this.promocion.promo_UsuarioModificacion = 1;
         console.log(this.promocion);
-        if (this.promocion.promo_Cantidad?.toString().trim() && this.promocion.promo_FechaVencimiento?.trim() && this.promocion.produ_Id?.toString().trim() && this.promocion.sucur_Id?.toString().trim()) {
+        
+        if (this.promocion.promo_Descripcion?.trim() ) {
             if (this.promocion.promo_Id) {
-                console.log("entra if")
+                console.log("entra update")
                 // @ts-ignore
                 this.promocionService.Update(this.promocion).then((response => {
                     console.log(response)

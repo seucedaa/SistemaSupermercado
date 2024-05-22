@@ -9,7 +9,7 @@ export class Promocion{
     usuarioCreacion?: string;
     usuarioModificacion?: string;
     promo_UsuarioCreacion?: number;
-    promo_UsuarioModificacion?: string;
+    promo_UsuarioModificacion?: number;
     promo_FechaCreacion?: number;
     promo_FechaModificacion?: string;
 }

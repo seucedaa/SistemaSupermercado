@@ -12,7 +12,7 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="promociones" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['promo_Descripcion', 'promo_Porcentaje','promo_PuntosRequeridos','produ_Descripcion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" [(selection)]="selectedPromociones" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="promocions" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['promo_Descripcion', 'promo_Porcentaje','promo_PuntosRequeridos','produ_Descripcion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
@@ -64,53 +64,43 @@
 
         <p-dialog [(visible)]="promocionDialog" [style]="{width: '450px'}" header="Promocion" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content" class="col-12">
-               
                 <div class="p-formgrid grid">
+                   
+                    <div class="field col-6">
+                        <label for="promo_Descripcion">Descripcion</label>
+                        <input type="text" pInputText id="promo_Descripcion" [(ngModel)]="promocion.promo_Descripcion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !promocion.promo_Descripcion}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !promocion.promo_Descripcion">Descripcion es requerida.</small>
+                    </div>
                     <div class="field col-6">
                         <label for="produid">Producto</label>
                         <p-dropdown [(ngModel)]="produid" optionValue="produ_Id"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !promocion.produ_Id}" [options]="productos" optionLabel="produ_Descripcion" placeholder="Seleccione"></p-dropdown>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !promocion.produ_Id">El producto es requerido.</small>
                     </div>
-                    <div class="field col-6">
-                        <label for="promo_FechaVencimiento">Fecha de vencimiento</label>
-                        <span class="p-float-label">
-                            <p-calendar
-                                inputId="calendar"
-                                [(ngModel)]="fecha"
-                                optionValue="promo_FechaVencimiento"
-                            ></p-calendar>
-                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !promocion.promo_FechaVencimiento">Fecha de vencimiento es requerida.</small>
-                        </span>
-                    </div>
                    
                 </div>
                 <div class="p-formgrid grid">
+                    <div class="field col-6">
+                        <label for="promo_Porcentaje">Porcentaje</label>
+                        <input type="text" pInputText id="promo_Porcentaje" [(ngModel)]="promocion.promo_Porcentaje" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !promocion.promo_Porcentaje}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !promocion.promo_Porcentaje">Porcentaje es requerido.</small>
+                    </div>
                    
-                    <div class="field col-6">
-                        <label for="promo_Cantidad">Cantidad</label>
-                        <input type="number" pInputText id="promo_Cantidad" [(ngModel)]="promocion.promo_Cantidad" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !promocion.promo_Cantidad}"/>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !promocion.promo_Cantidad">Cantidad es requerida.</small>
-                    </div>
-                    
-                    <div class="field col-6">
-                        <label for="sucurid">Sucursal</label>
-                        <p-dropdown [(ngModel)]="sucurid" optionValue="sucur_Id"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !promocion.sucur_Id}" [options]="sucursales" optionLabel="sucur_Descripcion" placeholder="Seleccione"></p-dropdown>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !promocion.sucur_Id">La sucrusal es requerida.</small>
-                    </div>
                 </div>
+                
                 
             </ng-template>
 
             <ng-template pTemplate="footer">
                 <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="savePromocion()"></button>
+                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="savepromocion()"></button>
             </ng-template>
         </p-dialog>
         
         <p-dialog [(visible)]="deletepromocionDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
             <div class="flex align-items-center justify-content-center">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span *ngIf="promocion">¿Estas seguro que deseas eliminar el registro?</span>
+                <span *ngIf="promocion">¿Estas seguro que deseas eliminar <b>{{promocion.promo_Descripcion}}</b>?</span>
+
             </div>
             <ng-template pTemplate="footer">
                 <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deletepromocionDialog = false" ></button>

@@ -372,6 +372,26 @@ export class PromocionEndPoints{
   }
 }
 
+export class SucursalEndPoints{
+  public api = new ApiService();
+
+  public Insert():string{
+    return `${this.api.baseUrl}/Sucursal/Insertar`; 
+  }
+
+  public Update():string{
+    return `${this.api.baseUrl}/Sucursal/Actualizar`; 
+  }
+
+  public Details(id: string):string{
+    return `${this.api.baseUrl}/Sucursal/Detalle/${id}`; 
+  }
+
+  public Delete(id: string):string{
+    return `${this.api.baseUrl}/Sucursal/Eliminar/${id}`; 
+  }
+}
+
 export class MunicipioEndPoints{
   public api = new ApiService();
 
