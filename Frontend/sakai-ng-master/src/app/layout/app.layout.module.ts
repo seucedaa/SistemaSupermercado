@@ -21,6 +21,10 @@ import { AppLayoutComponent } from './app.layout.component'
 import { AppCartComponent } from './app.cart.component'
 import { ToastModule } from 'primeng/toast'
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { DialogModule } from 'primeng/dialog'
+import { DropdownModule } from 'primeng/dropdown';
+
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 
 @NgModule({
@@ -49,6 +53,9 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     ButtonModule,
     ToastModule,
     ConfirmPopupModule,
+    DialogModule,
+    DropdownModule,
+    AutoCompleteModule
   ],
   exports: [AppLayoutComponent],
 })

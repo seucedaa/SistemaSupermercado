@@ -13,10 +13,11 @@ import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 import { TokenInterceptorService } from './demo/service/token-interceptor.service';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
-    imports: [AppRoutingModule, AppLayoutModule, HttpClientModule],
+    imports: [AppRoutingModule, AppLayoutModule, HttpClientModule, DialogModule],
     providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
