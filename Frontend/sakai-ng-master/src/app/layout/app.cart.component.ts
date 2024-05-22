@@ -122,7 +122,7 @@ export class AppCartComponent {
     if (this.facturaCart.length > 0) {
       const encabezado = this.facturaCart[0];
       yPos += 10;
-      pdf.text(`Cliente: ${encabezado.nombre || 'N/A'}`, 5, yPos); 
+      pdf.text(`Cliente: ${encabezado.nombre || 'Consumidor Final'}`, 5, yPos); 
       yPos += 5;
       pdf.text(`Sucursal: ${encabezado.sucur_Descripcion}`, 5, yPos); 
       yPos += 5;
