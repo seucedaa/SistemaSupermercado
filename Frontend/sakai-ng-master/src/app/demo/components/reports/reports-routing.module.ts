@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from 'src/app/guards/auth.guard'; // Ajusta la ruta según sea necesario
-import { RoleGuard } from 'src/app/guards/role.guard'; // Ajusta la ruta según sea necesario
+import { AuthGuard } from 'src/app/guards/auth.guard'; 
+import { RoleGuard } from 'src/app/guards/role.guard'; 
 
 const routes: Routes = [
     { path: 'stock', data: { breadcrumb: 'stock' }, loadChildren: () => import('./stock/stock.module').then(m => m.StockModule), canActivate: [AuthGuard, RoleGuard] },

@@ -6,11 +6,13 @@
             optionLabel="sucur_Descripcion" 
             optionValue="sucur_Id"
             (onChange)="onSucursalChange($event.value)" 
-            [(ngModel)]="sucursalid">
+            [(ngModel)]="sucursalid"
+            [disabled]="!esadmin">
             </p-dropdown> 
              <label for="dropdown">Sucursal</label>
          </span>
-     </div> 
+     </div>
+    
     <div class="field col-12 md:col-4">
         <span class="p-float-label">
             <p-calendar

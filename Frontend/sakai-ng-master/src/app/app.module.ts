@@ -19,7 +19,7 @@ import { DialogModule } from 'primeng/dialog';
     declarations: [AppComponent, NotfoundComponent],
     imports: [AppRoutingModule, AppLayoutModule, HttpClientModule, DialogModule],
     providers: [
-        { provide: LocationStrategy, useClass: PathLocationStrategy },
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService, {provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}
     ],

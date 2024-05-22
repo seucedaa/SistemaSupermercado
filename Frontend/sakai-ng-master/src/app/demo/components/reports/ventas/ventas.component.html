@@ -11,7 +11,8 @@
                         optionLabel="sucur_Descripcion" 
                         optionValue="sucur_Id"
                         (onChange)="onSucursalChange($event.value)" 
-                        [(ngModel)]="sucursalid">
+                        [(ngModel)]="sucursalid"
+                        [disabled]="!esadmin">
                         </p-dropdown>   
                 <label for="dropdown">Sucursal</label>
             </span>

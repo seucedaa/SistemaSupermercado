@@ -32,7 +32,7 @@ export class VentasComponent implements OnInit {
     inicio:any;
     fin:any;
     sucursal: Sucursal;
-
+    esadmin:any;
 
     @ViewChild('pdfViewer', { static: false }) pdfViewer!: ElementRef;
 
@@ -103,13 +103,8 @@ export class VentasComponent implements OnInit {
   }
 
      ngOnInit(){
-        const usuariolog = sessionStorage.getItem('usuario');
-        const logueado = JSON.parse(usuariolog);
-        if(!logueado)
-            {
-                this.router.navigate(['/login']);
+        
 
-            }
         this.formattedInicio = this.formatDate(this.inicio);
         this.formattedFin = this.formatDate(this.fin);
 
@@ -146,6 +141,9 @@ export class VentasComponent implements OnInit {
             } 
         })
     });
+    const usuariolog = sessionStorage.getItem('usuario');
+        const usuario = JSON.parse(usuariolog);
+        this.esadmin = usuario.usuar_Admin;
 
     }
 

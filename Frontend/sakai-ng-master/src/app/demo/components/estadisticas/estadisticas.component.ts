@@ -49,7 +49,7 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     inicio:any;
     fin:any;
     sucursa: any;
-
+    esadmin:any;
 
     constructor(private layoutService: LayoutService,
             private sucursalService: SucursalService,
@@ -163,6 +163,9 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     
     ngOnInit() {
         const usuariolog = sessionStorage.getItem('usuario');
+        const usuario = JSON.parse(usuariolog);
+        this.esadmin = usuario.usuar_Admin;
+
         const logueado = JSON.parse(usuariolog);
         if(!logueado)
             {
