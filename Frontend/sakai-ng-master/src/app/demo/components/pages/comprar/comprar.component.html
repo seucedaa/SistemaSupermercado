@@ -60,9 +60,7 @@
                 class="relative mx-auto border-round m-4"
                 style="width: 145px; height: 90px; border-radius: 10px">
                   <img
-                    src="assets/demo/images/product/{{
-                      product.produ_Descripcion
-                    }}.jpg"
+                  [src]="product.img ? product.img : 'assets/demo/images/product/' + product.produ_Descripcion + '.jpg'"
                     [alt]="product.produ_Descripcion"
                     class="w-full h-full border-round"
                   style="object-fit: cover" />

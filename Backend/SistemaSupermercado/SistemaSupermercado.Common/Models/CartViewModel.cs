@@ -43,5 +43,6 @@ namespace SistemaSupermercado.Common.Models
         public int? Produ_Existencia { get; set; }
         public int? Impue_Id { get; set; }
         public decimal? Impue_Descripcion { get; set; }
+        public string? img { get; set; }
     }
 }

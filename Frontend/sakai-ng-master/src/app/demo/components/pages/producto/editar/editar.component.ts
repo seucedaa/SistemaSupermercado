@@ -156,4 +156,21 @@ export class EditarComponent implements OnInit {
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
     }
+
+    onUpload(event) {
+      const file: File = event.files[0];
+      if (file) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const uniqueFileName = uniqueSuffix + '-' + file.name;
+        console.log('http://www.proyectosupermercado.somee.com/uploads/' + uniqueFileName);
+        this.producto.img = 'http://www.proyectosupermercado.somee.com/uploads/' + uniqueFileName;
+        const formData: FormData = new FormData();
+  
+        formData.append('file', file, uniqueFileName);
+        this.productoService.upload(formData).then(data => {
+          console.log(data, 'data');
+        })
+        
+      }
+    }
 }

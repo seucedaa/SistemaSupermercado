@@ -26,4 +26,5 @@ export class Producto{
     categoriaa?: string;
     totalVentas?: string;
     semana?: string;
+    img?: string;
 }

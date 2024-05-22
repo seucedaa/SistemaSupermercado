@@ -421,6 +421,10 @@ export class ProductoEndPoints{
   public Delete(id: string):string{
     return `${this.api.baseUrl}/Producto/Eliminar/${id}`; 
   }
+
+  public Upload():string{
+    return `${this.api.baseUrl}/Producto/Subir`;
+  }
 }
 
 export class SubCategoriaEndPoints{

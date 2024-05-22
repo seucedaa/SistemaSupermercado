@@ -66,4 +66,11 @@ export class ProductoService {
     return this.http.delete<any>(this.endpoint.Delete(id.toString())) 
       .toPromise()  
   }
+
+  upload(formData: any) {
+    return this.http.post<any>(this.endpoint.Upload(), formData)
+      .toPromise()
+      .then(res => res)
+  }
+
 }

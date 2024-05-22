@@ -111,7 +111,7 @@ export class CartService {
       const product: Cart[] = []
       data.forEach((element) => {
         const url = `assets/demo/images/product/${element.produ_Descripcion}.jpg`;
-        if(!element.img){
+        if(element.img == null || element.img.length == 0){
           if(element.lotes_Cantidad == 0){
             product.push({ ...element, status: 'outofstock', status_label: 'Agotado' ,contador: 1, img: url });
           }else if(element.lotes_Cantidad > 0 && element.lotes_Cantidad <= 10){
@@ -132,7 +132,6 @@ export class CartService {
             product.push({ ...element, contador: 1, });
           }
         }
-        
       })
       return product
     })

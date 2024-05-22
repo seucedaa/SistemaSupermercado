@@ -37,6 +37,8 @@ export class AppCartComponent {
   dni: string;
   nombre: string;
 
+  clienteid: number;
+
   metodosPago: any[] = [
     { label: 'Tarjeta Bancaria', value: 1 },
     { label: 'PayPal', value: 2 },
@@ -86,7 +88,9 @@ export class AppCartComponent {
         this.cartService.productos = [];
         this.dni = '';
         this.nombre = '';
+        this.clienteid = null;
         this.cartService.metodoPago = null;
+        this.cartService.clienteID = null;
       } else {
         this.messageService.add({
           severity: 'error',
@@ -101,7 +105,6 @@ export class AppCartComponent {
   
 
   generarFacturaPDF() {
-    
     const pdf = new jsPDF('p', 'mm', [100, 300]);
     let yPos = 10; 
     const logo = 'assets/layout/images/lacolonia/La-Colonia-transformed-removebg.png';
@@ -123,8 +126,11 @@ export class AppCartComponent {
       pdf.text(`Sucursal: ${encabezado.sucur_Descripcion}`, 5, yPos); 
       yPos += 5;
       pdf.text(`Fecha: ${new Date(encabezado.venen_FechaCreacion).toLocaleDateString()}`, 5, yPos); 
-      yPos += 10;
-      if (this.cartService.clienteID) {
+      yPos += 5;
+
+      console.log('Cliente ID:', this.clienteid);
+    console.log('Cliente Puntos:', encabezado.clien_Puntos);
+      if (this.clienteid > 0) {
         pdf.text(`Puntos del Cliente: ${encabezado.clien_Puntos || 'N/A'}`, 5, yPos); 
         yPos += 10;
       } else {
@@ -232,6 +238,7 @@ export class AppCartComponent {
     this.dni = cliente.clien_Dni;
     this.nombre = cliente.clien_NombreCompleto;
     this.cartService.clienteID = cliente.clien_Id;
+    this.clienteid = cliente.clien_Id;
   }
   
 }

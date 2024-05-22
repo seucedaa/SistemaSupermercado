@@ -52,7 +52,13 @@
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !producto.subca_Id">La sub categoria es requerido.</small>
                     </div>
                 </div>
-			
+                <div class="p-formgrid grid">
+                  <div class="field col" style="display: flex; flex-direction: column;">
+                    <label htmlFor="name2">Imagen</label>
+                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block" severity="primary" (onSelect)="onUpload($event)" style="margin-top: 8px;"></p-fileUpload>
+                  </div>
+                </div>
+
             <div class="flex flex-wrap gap-2">   
                 <div class="field col">
                 </div>
