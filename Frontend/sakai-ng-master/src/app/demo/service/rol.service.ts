@@ -7,7 +7,6 @@ import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
 //import { Pantalla } from '../models/PantallaViewModel';
 import { RolEndPoints } from './api.service';
-import { RoleGuard } from '../components/auth/shared/role.guard';
 
 
 interface ApiResponse {
