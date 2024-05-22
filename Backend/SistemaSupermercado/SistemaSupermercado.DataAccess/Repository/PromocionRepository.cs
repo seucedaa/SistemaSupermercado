@@ -41,12 +41,10 @@ namespace SistemaSupermercado.DataAccess.Repository
             {
                 var parametro = new DynamicParameters();
                 parametro.Add("Promo_Id", item.Promo_Id);
-                parametro.Add("Prom_Descripcion", item.Prom_Descripcion);
+                parametro.Add("Promo_Descripcion", item.Promo_Descripcion);
+                parametro.Add("Promo_Porcentaje", item.Promo_Porcentaje);
                 parametro.Add("Produ_Id", item.Produ_Id);
-                parametro.Add("Promo_TipoDisminucion", item.Promo_TipoDisminucion);
-                parametro.Add("Promo_Disminucion", item.Promo_Disminucion);
-                parametro.Add("Promo_PuntosRequeridos", item.Promo_PuntosRequeridos);
-                parametro.Add("Promo_UsuarioModificacion", item.Promo_UsuarioModificacion);
+                parametro.Add("Promo_UsuarioModificacion", item.Promo_Disminucion);
                 parametro.Add("Promo_FechaModificacion", DateTime.Now);
 
                 var result = db.Execute(ScriptBaseDeDatos.Promocion_Modificar,
@@ -89,11 +87,9 @@ namespace SistemaSupermercado.DataAccess.Repository
             using (var db = new SqlConnection(SistemaSupermercadoContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("Prom_Descripcion", item.Prom_Descripcion);
+                parametro.Add("Promo_Descripcion", item.Promo_Descripcion);
                 parametro.Add("Produ_Id", item.Produ_Id);
-                parametro.Add("Promo_TipoDisminucion", item.Promo_TipoDisminucion);
-                parametro.Add("Promo_Disminucion", item.Promo_Disminucion);
-                parametro.Add("Promo_PuntosRequeridos", item.Promo_PuntosRequeridos);
+                parametro.Add("Promo_Porcentaje", item.Promo_Porcentaje);
                 parametro.Add("Promo_UsuarioCreacion", item.Promo_UsuarioCreacion);
                 parametro.Add("Promo_FechaCreacion", DateTime.Now);
 

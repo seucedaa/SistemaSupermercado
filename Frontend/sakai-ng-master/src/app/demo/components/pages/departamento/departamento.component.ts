@@ -38,6 +38,13 @@ export class DepartamentoComponent implements OnInit {
     constructor(private router: Router,private departamentoService: DepartamentoService, private messageService: MessageService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.departamentoService.getList().then(data => this.departamentos = data);
 
         this.cols = [

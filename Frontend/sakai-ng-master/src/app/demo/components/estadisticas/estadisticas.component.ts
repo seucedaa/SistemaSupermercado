@@ -10,6 +10,8 @@ import { Producto } from 'src/app/demo/models/ProductoViewModel';
 import { SucursalService } from 'src/app/demo/service/sucursal.service';
 import { Sucursal } from 'src/app/demo/models/SucursalViewModel';
 import * as chroma from 'chroma-js';
+import { Router } from '@angular/router';
+
 
 @Component({
     templateUrl: './estadisticas.component.html'
@@ -46,10 +48,14 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     prueba:any;
     inicio:any;
     fin:any;
+    sucursa: any;
+
 
     constructor(private layoutService: LayoutService,
             private sucursalService: SucursalService,
             private categoriaService: CategoriaService,
+            private router: Router,
+
             private subcategoriaService: SubcategoriaService,
             private productoService: ProductoService) {
              this.subscription = this.layoutService.configUpdate$
@@ -156,6 +162,14 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
     }
     
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
+
         this.initCharts();
         this.sucursalService.getList().then(data => {
             this.sucursales = data;
@@ -167,34 +181,56 @@ export class EstadisticasComponent implements OnInit, OnDestroy {
             }));
         
             this.sucursales.unshift({ sucur_Id: 0, sucur_Descripcion: 'Mostrar todas' });
+
+            const usuarioJson = sessionStorage.getItem('usuario');
+        const usuario = JSON.parse(usuarioJson);
+        this.sucursa = usuario.sucur_Id;
+
+        const sucursalUsuario = this.sucursales.find(s => s.sucur_Id === this.sucursa);
+        if (sucursalUsuario) {
+            this.sucursalid = sucursalUsuario.sucur_Id;
+            console.log(sucursalUsuario,this.sucursales,this.sucursalid)
+        } 
         });
         
+
         const usuarioJson = sessionStorage.getItem('usuario');
-        const usuario = JSON.parse(usuarioJson);
-        const sucursalid = usuario.sucur_Id;
+        if (usuarioJson) {
+            const usuario = JSON.parse(usuarioJson);
+            const sesionsucursal = usuario.sucur_Id;
+            console.log(sesionsucursal);
+            let iniciofecha = this.formatDate(this.inicio);
+            let finfecha = this.formatDate(this.fin)
+
+            if (sesionsucursal) {
+                this.categoriaService.CategoriaTotal(sesionsucursal,iniciofecha, finfecha).then(data => {
+                    this.categorias = data.data;
+                    this.chartPieChart();
+                });
+        
+                this.subcategoriaService.SubcategoriaTotal(sesionsucursal,iniciofecha, finfecha).then(data => {
+                    this.subcategorias = data.data;
+                    this.chartBarChart();
+                });
+                
+                this.productoService.Existencia(sesionsucursal).then(data => {
+                    this.productos = data.data;
+                    this.chartDoughnutChart();
+                });
+        
+                this.productoService.Ventas(sesionsucursal,iniciofecha, finfecha).then(data => {
+                    this.productos = data.data;
+                    this.chartLineChart();
+                });
+            } 
+        } else {
+            console.error('No hay sesion');
+        }
 
         let iniciofecha = this.formatDate(this.inicio);
         let finfecha = this.formatDate(this.fin)
 
-        this.categoriaService.CategoriaTotal(sucursalid,iniciofecha, finfecha).then(data => {
-            this.categorias = data.data;
-            this.chartPieChart();
-        });
-
-        this.subcategoriaService.SubcategoriaTotal(sucursalid,iniciofecha, finfecha).then(data => {
-            this.subcategorias = data.data;
-            this.chartBarChart();
-        });
-        
-        this.productoService.Existencia(sucursalid).then(data => {
-            this.productos = data.data;
-            this.chartDoughnutChart();
-        });
-
-        this.productoService.Ventas(sucursalid,iniciofecha, finfecha).then(data => {
-            this.productos = data.data;
-            this.chartLineChart();
-        });
+       
     }
 
     chartLineChart() {

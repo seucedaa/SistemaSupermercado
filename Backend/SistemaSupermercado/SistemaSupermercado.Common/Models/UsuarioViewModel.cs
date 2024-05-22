@@ -10,7 +10,10 @@ namespace SistemaSupermercado.Common.Models
 {
     public class UsuarioViewModel
     {
-
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
         public int Usuar_Id { get; set; }
         [Display(Name = "Correo")]
         public string Usuar_Correo { get; set; }
@@ -32,6 +35,18 @@ namespace SistemaSupermercado.Common.Models
         [NotMapped]
 
         public string Administrador { get; set; }
+        [NotMapped]
+        public int Emple_Id { get; set; }
+        [NotMapped]
+        public string Emple_PrimerNombre { get; set; }
+        [NotMapped]
+        public string Emple_SegundoNombre { get; set; }
+        [NotMapped]
+        public string Emple_PrimerApellido { get; set; }
+        [NotMapped]
+        public string Emple_SegundoApellido { get; set; }
+        [NotMapped]
+        public string Esadmin { get; set; }
         public DateTime? Usuar_UltimaSesion { get; set; }
         [Display(Name = "Super puntos")]
         public int? Usuar_SuperPuntos { get; set; }

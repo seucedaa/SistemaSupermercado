@@ -538,7 +538,7 @@ namespace SistemaSupermercado.DataAccess.Context
 
                 entity.ToTable("tbPromociones", "Supr");
 
-                entity.Property(e => e.Prom_Descripcion).IsRequired();
+                entity.Property(e => e.Promo_Descripcion).IsRequired();
 
                 entity.Property(e => e.Promo_Disminucion).HasColumnType("numeric(8, 2)");
 

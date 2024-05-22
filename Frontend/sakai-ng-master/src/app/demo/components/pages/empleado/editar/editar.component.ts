@@ -42,6 +42,8 @@ export class EditarComponent implements OnInit {
 
     municipios: Municipio[] = [];
     municipioid: any;
+    municipio: Municipio = {};
+
 
     departamentos: Departamento[] = [];
     departid: any;
@@ -53,7 +55,6 @@ export class EditarComponent implements OnInit {
     cargos: Cargo[] = [];
     cargoid: any;
 
-    departamento: any;
 
     constructor(private cargoService: CargoService, private sucursalService: SucursalService, private departamentoService: DepartamentoService,private router: Router, private route:ActivatedRoute, private messageService: MessageService, private estadocivilService: EstadoCivilService,private municipioService: MunicipioService, private empleadoService: EmpleadoService) { }
 
@@ -70,11 +71,9 @@ export class EditarComponent implements OnInit {
         this.empleado.sucur_Id = value?.sucur_Id; 
         
     }
+    onDeparIdChange(codig: any){
+        this.municipioService.ListporDept(codig).then(data => this.municipios = data);
 
-    onDeparIdChange(value: any){
-        const depar = value?.depar_Id;
-        this.municipioService.ListporDept(depar).then(data => this.municipios = data);
-        
     }
     
     onMunicIdChange(value: any) {
@@ -82,20 +81,59 @@ export class EditarComponent implements OnInit {
     }
     
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.estadocivilService.getList().then(data => this.estadosciviles = data);
         this.cargoService.getList().then(data => this.cargos = data);
         this.sucursalService.getList().then(data => this.sucursales = data);
         this.departamentoService.getList().then(data => this.departamentos = data);
-    
+        this.municipioService.getList().then(data => this.municipios = data);
+
         const id = this.route.snapshot.paramMap.get('id');
         this.empleadoService.Details(Number(id)).then(data => {
             this.empleado = data;
-            this.estadoid = this.empleado.estad_Id;
-            this.municipioid = this.empleado.munic_Id;
-            this.cargoid = this.empleado.cargo_Id;
-            this.sucurid = this.empleado.sucur_Descripcion;
-            console.log(this.empleado);
+
+             let prueba: any;
+            prueba = this.estadosciviles.find(est => est.estad_Id === this.empleado.estad_Id);
+            this.estadoid = prueba.estad_Id;
+
+            let prueba1: any;
+            prueba1 = this.sucursales.find(suc => suc.sucur_Id === this.empleado.sucur_Id);
+            this.sucurid = prueba1.sucur_Id;
+
+            let prueba2: any;
+            prueba2 = this.cargos.find(car => car.cargo_Id === this.empleado.cargo_Id);
+            this.cargoid = prueba2.cargo_Id;
             
+            const que = this.empleado.munic_Id;
+            this.municipioService.Details(que.toString()).then(data => {
+                this.municipio = data;
+                console.log(this.municipio);
+
+                let ola: any;
+                this.departamentoService.getList().then(data => {
+                    let dept: any;
+                    dept = this.departamentos.find(dep => dep.depar_Id === this.municipio.depar_Id);
+                    this.departid = dept.depar_Id;
+                    ola = dept.depar_Id;
+                })
+
+                this.municipioService.ListporDept(ola).then(data => {
+                    console.log(this.municipios);
+
+                    let aver: any;
+                    aver = this.municipios.find(munic => munic.munic_Id === this.empleado.munic_Id);
+                    console.log('municipios',this.empleado.munic_Id);
+                    this.municipioid = aver.munic_Id;
+                
+                });
+            
+            });
         });
     }
     
@@ -105,10 +143,11 @@ export class EditarComponent implements OnInit {
     guardar() {
         this.submitted = true;
         this.empleado.emple_UsuarioModificacion = 1,
+        this.empleado.munic_Id = this.municipioid;
         console.log("entra al guarda");
 
 
-        if (this.empleado.emple_Dni?.trim() && this.empleado.emple_Correo?.trim() && this.empleado.cargo_Id?.toString().trim() && this.empleado.sucur_Id?.toString().trim() && this.empleado.emple_Telefono?.trim() && this.empleado.emple_PrimerNombre?.trim() && this.empleado.emple_SegundoNombre?.trim() && this.empleado.emple_PrimerApellido?.trim() && this.empleado.emple_SegundoApellido?.trim() && this.empleado.estad_Id.toString()?.trim() && this.empleado.emple_Sexo?.trim() && this.empleado.emple_Direccion?.trim() && this.empleado.munic_Id.trim()) {
+        if (this.empleado.emple_Dni?.trim()) {
             console.log(this.empleado);
             console.log("intenta guardar");
 

@@ -4,7 +4,7 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ImpuestoService } from 'src/app/demo/service/impuesto.service';
 import { Impuesto } from 'src/app/demo/models/ImpuestoViewModel';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 @Component({
     templateUrl: './detalle.component.html',
@@ -26,9 +26,17 @@ export class DetalleComponent implements OnInit {
 
 
 
-    constructor(private route: ActivatedRoute, private impuestoService: ImpuestoService) { }
+    constructor(private route: ActivatedRoute,    private router: Router,
+        private impuestoService: ImpuestoService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         const id = this.route.snapshot.paramMap.get('id');
         this.impuestoService.Details(Number(id)).then(data => {
             this.impuesto = data;

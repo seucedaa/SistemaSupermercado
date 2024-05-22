@@ -59,8 +59,20 @@ namespace SistemaSupermercado.Entities.Entities
         public int Perso_Id { get; set; }
         [NotMapped]
         public string Perso_NombreCompleto { get; set; }
+        [NotMapped]
+        public int Emple_Id { get; set; }
+        [NotMapped]
+        public string Emple_PrimerNombre { get; set; }
+        [NotMapped]
+        public string Emple_SegundoNombre { get; set; }
+        [NotMapped]
+        public string Emple_PrimerApellido { get; set; }
+        [NotMapped]
+        public string Emple_SegundoApellido { get; set; }
         public bool Perso_Tipo { get; set; }
         public int Roles_Id { get; set; }
+        [NotMapped]
+        public string Esadmin { get; set; }
         [NotMapped]
         public string Roles_Descripcion { get; set; }
         public bool Usuar_Admin { get; set; }
@@ -77,6 +89,10 @@ namespace SistemaSupermercado.Entities.Entities
         public bool? Usuar_Estado { get; set; }
         [NotMapped]
         public string Panta_Descripcion { get; set; }
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
 
         public virtual ICollection<tbCargos> tbCargosCargo_UsuarioCreacionNavigation { get; set; }
         public virtual ICollection<tbCargos> tbCargosCargo_UsuarioModificacionNavigation { get; set; }

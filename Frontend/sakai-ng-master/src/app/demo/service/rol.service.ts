@@ -6,6 +6,8 @@ import { Rol,Fill } from '../models/RolViewModel';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
 //import { Pantalla } from '../models/PantallaViewModel';
+import { RolEndPoints } from './api.service';
+
 
 interface ApiResponse {
   code: number;
@@ -27,6 +29,7 @@ interface Pantalla {
 export class ServiceService {
 
   constructor(private http:HttpClient) { }
+  public endpoint = new RolEndPoints();
 
 
   url = BASE_URL + 'Api/Rol/List'
@@ -35,6 +38,10 @@ export class ServiceService {
     return this.http.get<Rol[]>(this.url)
   }
 
+  Details(id: string){
+    return this.http.get<any>(this.endpoint.Details(id)) 
+      .toPromise()  
+  }
 
   EnviarRol(formData: any): Observable<any> {
     return this.http.post<any>(BASE_URL + 'Api/Rol/Create/', formData).pipe(

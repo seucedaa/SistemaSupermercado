@@ -2,46 +2,36 @@
     <div class="col-12">
         <div class="card px-6 py-6">
             <p-toast></p-toast>
+            <h2>Sub-Categorias</h2>
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="my-2">
-                        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" ></button>
-                        <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger" ></button>
+                        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()" ></button>
+                        <button pButton pRipple label="Exportar Excel" icon="pi pi-upload" class="p-button-warning" (click)="dt.exportCSV()"></button>
                     </div>
-                </ng-template>
-
-                <ng-template pTemplate="right">
-                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
-                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="subcategorias" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['subca_Descripcion', 'categ_Descripcion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedSubcategorias" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="subcategorias" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['subca_Descripcion', 'categ_Descripcion']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Administrar Subcategorias</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."  class="w-full sm:w-auto"/>
                         </span>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
                         <th pSortableColumn="subca_Descripcion">Subcategoria <p-sortIcon field="subca_Descripcion"></p-sortIcon></th>
                         <th pSortableColumn="categ_Descripcion">Categoria <p-sortIcon field="categ_Descripcion"></p-sortIcon></th>
                         
-                        <th></th>
+                        <th>Acciones</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-subcategoria>
                     <tr>
-                        <td>
-                            <p-tableCheckbox [value]="subcategoria"></p-tableCheckbox>
-                        </td>
+
                         <td style="width:14%; min-width:15rem;">
                             <span class="p-column-title">Subcategoria</span>
                             {{subcategoria.subca_Descripcion}}
@@ -52,14 +42,51 @@
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                                <button pButton pRipple icon="pi pi-pencil"  class="p-button-rounded p-button-success mr-2" label="Editar" (click)="editSubcategoria(subcategoria)"> </button>
+                                <button pButton pRipple icon="pi pi-ellipsis-h"  class="p-element p-ripple p-button-rounded p-button-info p-button p-component mr-2" label="Detalles" routerLink="detalle/{{subcategoria.cubca_Id}}"> </button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"label=Eliminar (click)="deletesubcategoria(subcategoria)"> </button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
+        <p-dialog [(visible)]="subcategoriaDialog" [style]="{width: '450px'}" header="Sub-Categoria" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content" class="col-12">
+               
+                <div class="p-formgrid grid">
+                    
+                    
+                    <div class="field col-6">
+                        <label for="subca_Descripcion">Sub-Categoria</label>
+                        <input type="text" pInputText id="subca_Descripcion" [(ngModel)]="subcategoria.subca_Descripcion" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !subcategoria.subca_Descripcion}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !subcategoria.subca_Descripcion">La descripcion es requerida.</small>
+                    </div>
+                    <div class="field col-6">
+                        <label for="categid">Categoria</label>
+                        <p-dropdown [(ngModel)]="categid" optionValue="categ_Id"  required [ngClass]="{'ng-invalid ng-dirty' : submitted &&  !subcategoria.categ_Id}" [options]="categorias" optionLabel="categ_Descripcion" placeholder="Seleccione"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !subcategoria.categ_Id">La categoria es requerido.</small>
+                    </div>
+                </div>
+               
+                
+            </ng-template>
 
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveSubcategoria()"></button>
+            </ng-template>
+        </p-dialog>
+        
+        <p-dialog [(visible)]="deletesubcategoriaDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="subcategoria">¿Estas seguro que deseas eliminar <b>{{subcategoria.subca_Descripcion}}</b>?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deletesubcategoriaDialog = false" ></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
     </div>
 </div>

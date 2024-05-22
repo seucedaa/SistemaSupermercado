@@ -2,6 +2,7 @@ export interface Usuario{
     usuar_Id?:number;
     perso_NombreCompleto?:string;
     administrador?:string;
+    usuar_Contrasena?:string;
     usuar_Usuario?:String;
     usuar_Correo?:String;
     perso_Tipo?:boolean;

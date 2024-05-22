@@ -34,6 +34,13 @@ export class ImpuestoComponent implements OnInit {
     constructor(private router: Router,private impuestoService: ImpuestoService, private messageService: MessageService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.impuestoService.getList().then(data => this.impuestos = data);
 
         this.cols = [

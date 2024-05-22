@@ -43,8 +43,14 @@
                 <div class="p-formgrid grid">
                     <div class="field col">
                         <label htmlFor="cliente.estad_Id">Estado Civil</label>
-                        <p-dropdown [options]="estadosciviles" placeholder="{{cliente.estad_Descripcion}}" optionLabel="estad_Descripcion" (onChange)="onEstadIdChange($event.value)" [(ngModel)]="estadoid"></p-dropdown>
+                        <p-dropdown [options]="estadosciviles" 
+                                    optionLabel="estad_Descripcion" 
+                                    optionValue="estad_Id" 
+                                    (onChange)="onEstadIdChange($event.value)" 
+                                    [(ngModel)]="estadoid">
+                            </p-dropdown>
                     </div>
+                    
                     <div class="field col">
                         <label htmlFor="cliente.clien_Sexo">Sexo:</label>
                         <div class="grid formgrid">
@@ -72,12 +78,23 @@
                 </div>
                 <div class="p-formgrid grid">
                     <div class="field col">
-                        <label htmlFor="name2">Departamento</label>
-                        <p-dropdown [options]="departamentos"  optionLabel="depar_Descripcion" (onChange)="onDeparIdChange($event.value)" [(ngModel)]="departid"></p-dropdown>
+                        <label>Departamento</label>
+                        <p-dropdown [options]="departamentos" 
+                                    optionLabel="depar_Descripcion" 
+                                    optionValue="depar_Id" 
+                                    (onChange)="onDeparIdChange($event.value)" 
+                                    [(ngModel)]="departid">
+                        </p-dropdown>
+
                     </div>
                     <div class="field col">
-                        <label htmlFor="cliente.munic_Id">Municipio</label>
-                        <p-dropdown [options]="municipios" placeholder="{{cliente.munic_Descripcion}}"  optionLabel="munic_Descripcion" (onChange)="onMunicIdChange($event.value)" [(ngModel)]="municipioid"></p-dropdown>
+                        <label>Municipio</label>
+                        <p-dropdown [options]="municipios" 
+                        optionLabel="munic_Descripcion" 
+                        optionValue="munic_Id"
+                        (onChange)="onMunicIdChange($event.value)" 
+                        [(ngModel)]="municipioid">
+                        </p-dropdown>                    
                     </div>
                 </div>
 			

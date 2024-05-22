@@ -15,6 +15,9 @@ namespace SistemaSupermercado.Common.Models
         public string Sucur_Descripcion { get; set; }
         [NotMapped]
         public string Tipo_Descripcion { get; set; }
+
+        [NotMapped]
+        public string Vende_Descuento { get; set; }
         public int Usuar_Id { get; set; }
         [NotMapped]
         public string Usuar_Usuario { get; set; }

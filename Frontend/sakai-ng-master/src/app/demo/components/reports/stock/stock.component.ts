@@ -6,6 +6,8 @@ import { SucursalService } from 'src/app/demo/service/sucursal.service';
 import { Sucursal } from 'src/app/demo/models/SucursalViewModel';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { Router } from '@angular/router';
+
 
 @Component({
     templateUrl: './stock.component.html',
@@ -23,7 +25,8 @@ export class StockComponent implements OnInit {
     @ViewChild('pdfViewer', { static: false }) pdfViewer!: ElementRef;
 
     constructor(
-        private reporteService: ReporteService,
+        private reporteService: ReporteService,    private router: Router,
+
         private sucursalService: SucursalService,
         private messageService: MessageService
     ) { }
@@ -75,6 +78,14 @@ export class StockComponent implements OnInit {
     }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
+
         this.sucursalService.getList().then(data => {
             this.sucursales = data;
         
@@ -93,6 +104,7 @@ export class StockComponent implements OnInit {
             const sucursalUsuario = this.sucursales.find(s => s.sucur_Id === this.sucursa);
             if (sucursalUsuario) {
                 this.sucursall = sucursalUsuario.sucur_Descripcion;
+                this.sucursalid = sucursalUsuario.sucur_Id;
             } 
     
             this.reporteService.getStock(this.sucursa).then(response => {
@@ -117,6 +129,14 @@ export class StockComponent implements OnInit {
             orientation: 'portrait',
             unit: 'px',
             format: 'letter'
+        });
+
+        doc.setProperties({
+            title: 'Inventario de Productos',
+            subject: 'Reporte de inventario de productos',
+            author: 'Supermercado La Colonia',
+            keywords: 'inventario, productos, supermercado',
+            creator: 'Supermercado La Colonia'
         });
 
         const logoURL = 'assets/layout/images/lacolonia/manzana.png';  

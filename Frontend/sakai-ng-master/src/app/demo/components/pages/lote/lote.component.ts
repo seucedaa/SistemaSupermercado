@@ -8,6 +8,8 @@ import { ProductoService } from 'src/app/demo/service/producto.service';
 import { Producto } from 'src/app/demo/models/ProductoViewModel';
 import { SucursalService } from 'src/app/demo/service/sucursal.service';
 import { Sucursal } from 'src/app/demo/models/SucursalViewModel';
+import { Router } from '@angular/router';
+
 @Component({
     templateUrl: './lote.component.html',
     providers: [MessageService]
@@ -40,10 +42,18 @@ export class LoteComponent implements OnInit {
     sucurid: any;
     fecha:any;
 
-    constructor( private pService: ProductoService, private sService: SucursalService,private loteService: LoteService, private messageService: MessageService) { }
+    constructor( private pService: ProductoService,     private router: Router,
+        private sService: SucursalService,private loteService: LoteService, private messageService: MessageService) { }
 
     
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.loteService.getList().then(data => this.lotes = data);
         this.pService.getList().then(data => this.productos = data);
         this.sService.getList().then(data => this.sucursales = data);
@@ -104,8 +114,9 @@ export class LoteComponent implements OnInit {
 
     saveLote() {
         this.lote.lotes_FechaVencimiento = this.formatDate(this.fecha);
-        this.lote.produ_Id = this.produid.produ_Id;
-        this.lote.sucur_Id = this.sucurid.sucur_Id;
+        this.lote.produ_Id = this.produid;
+        this.lote.sucur_Id = this.sucurid;
+
 
         this.submitted = true;
         this.lote.lotes_UsuarioCreacion = 1;

@@ -20,7 +20,25 @@ export class UsuarioService {
       .then(data => data);
   }
 
+  Insert(model: Usuario){
+    return this.http.post<any>(this.endpoint.Insert(), model) 
+      .toPromise()  
+  }
 
+  Update(model: Usuario){
+    return this.http.put<any>(this.endpoint.Update(), model) 
+      .toPromise()  
+  }
+
+  Details(id: number){
+    return this.http.get<any>(this.endpoint.Details(id.toString())) 
+      .toPromise()  
+  }
+
+  Delete(id: number){
+    return this.http.delete<any>(this.endpoint.Delete(id.toString())) 
+      .toPromise()  
+  }
 
   Login(usuario: string, contrasena: string): Observable<any> {
     return this.http.get<any>(this.endpoint.Login(usuario, contrasena));

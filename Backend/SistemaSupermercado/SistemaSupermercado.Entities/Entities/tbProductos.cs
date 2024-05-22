@@ -17,6 +17,10 @@ namespace SistemaSupermercado.Entities.Entities
 
         public int Produ_Id { get; set; }
         public string Produ_Descripcion { get; set; }
+        [NotMapped]
+        public string UsuarioCreacion { get; set; }
+        [NotMapped]
+        public string UsuarioModificacion { get; set; }
         public int Produ_Existencia { get; set; }
         public decimal Produ_PrecioCompra { get; set; }
         public decimal Produ_PrecioVenta { get; set; }

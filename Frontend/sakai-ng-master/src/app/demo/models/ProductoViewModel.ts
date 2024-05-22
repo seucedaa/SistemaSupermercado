@@ -17,7 +17,7 @@ export class Producto{
     usuarioCreacion?: string;
     usuarioModificacion?: string;
     produ_UsuarioCreacion?: number;
-    produ_UsuarioModificacion?: string;
+    produ_UsuarioModificacion?: number;
     produ_FechaCreacion?: number;
     produ_FechaModificacion?: string;
     totalVendidoActual?: string;

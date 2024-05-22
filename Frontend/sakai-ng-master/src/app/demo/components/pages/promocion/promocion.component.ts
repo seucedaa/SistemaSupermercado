@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/demo/api/product';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
-import { ProductService } from 'src/app/demo/service/product.service';
 import { PromocionService } from 'src/app/demo/service/promocion.service';
 import { Promocion } from 'src/app/demo/models/PromocionViewModel';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './promocion.component.html',
@@ -32,14 +32,22 @@ export class PromocionComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private promocionService: PromocionService, private messageService: MessageService) { }
+    constructor(private promocionService: PromocionService,     private router: Router,
+        private messageService: MessageService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.promocionService.getList().then(data => this.promociones = data);
 
         this.cols = [
-            { field: 'prom_Descripcion', header: 'Promocion' },
-            { field: 'promo_Disminucion', header: 'Disminucion' },
+            { field: 'promo_Descripcion', header: 'Promocion' },
+            { field: 'promo_Porcentaje', header: 'Porcentaje' },
             { field: 'promo_PuntosRequeridos', header: 'Puntos requeridos' },
             { field: 'produ_Descripcion', header: 'Producto' },
         ];

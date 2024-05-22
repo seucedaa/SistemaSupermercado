@@ -26,6 +26,8 @@ export class ListRolComponent implements OnInit{
   fill: any[] = [];
   viewModel: RolEnviar = new RolEnviar();
   rolForm: FormGroup;
+  rols: Rol[] = [];
+
 
  
   @ViewChild('filter') filter!: ElementRef;
@@ -63,8 +65,13 @@ export class ListRolComponent implements OnInit{
       Rol_Rol: new FormControl("",Validators.required),
     });
 
+    const usuariolog = sessionStorage.getItem('usuario');
+    const logueado = JSON.parse(usuariolog);
+    if(!logueado)
+        {
+            this.router.navigate(['/login']);
 
-
+        }
 
       this.service.getRol().subscribe((data: any)=>{
           console.log(data);
@@ -112,6 +119,7 @@ detalles(codigo){
          this.FechaModificacion = data[0].fechaModificacion
       }
     });
+
 }
 cancelar(){
   this.Collapse= false;

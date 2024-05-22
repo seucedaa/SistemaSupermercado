@@ -3,6 +3,8 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { EmpleadoService } from 'src/app/demo/service/empleado.service';
 import { Empleado } from 'src/app/demo/models/EmpleadoViewModel';
+import { Router } from '@angular/router';
+
 
 @Component({
     templateUrl: './empleado.component.html',
@@ -27,9 +29,17 @@ export class EmpleadoComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private empleadoService: EmpleadoService, private messageService: MessageService) { }
+    constructor(private empleadoService: EmpleadoService,    private router: Router,
+        private messageService: MessageService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         this.empleadoService.getList().then(data => this.empleados = data);
 
         this.cols = [
@@ -46,13 +56,6 @@ export class EmpleadoComponent implements OnInit {
     deleteEmpleado(empleado: Empleado) {
         this.deleteempleadoDialog = true;
         this.empleado = { ...empleado };
-    }
-
-    confirmDeleteSelected() {
-        this.deleteempleadosDialog = false;
-        this.empleados = this.empleados.filter(val => !this.selectedEmpleados.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Empleados eliminados.', life: 3000 });
-        this.selectedEmpleados = [];
     }
 
     confirmDelete() {
@@ -74,17 +77,6 @@ export class EmpleadoComponent implements OnInit {
     }
     
 
-    findIndexById(id: number): number {
-        let index = -1;
-        for (let i = 0; i < this.empleados.length; i++) {
-            if (this.empleados[i].emple_Id === id) {
-                index = i;
-                break;
-            }
-        }
-
-        return index;
-    }
 
     onGlobalFilter(table: Table, event: Event) {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');

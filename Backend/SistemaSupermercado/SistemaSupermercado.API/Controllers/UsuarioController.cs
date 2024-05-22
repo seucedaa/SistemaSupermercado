@@ -50,8 +50,6 @@ namespace SistemaSupermercado.API.Controllers
                 Usuar_Correo = item.Usuar_Correo,
                 Usuar_Contrasena = item.Usuar_Contrasena,
                 Usuar_Admin = item.Usuar_Admin,
-                Usuar_UltimaSesion = item.Usuar_UltimaSesion,
-                Usuar_SuperPuntos = item.Usuar_SuperPuntos,
                 Roles_Id = item.Roles_Id,
                 Perso_Id = item.Perso_Id,
                 Usuar_UsuarioCreacion = item.Usuar_UsuarioCreacion
@@ -88,7 +86,7 @@ namespace SistemaSupermercado.API.Controllers
         }
 
 
-        [HttpPut("Actualizar/{id}")]
+        [HttpPut("Actualizar")]
         public IActionResult Actualizar(UsuarioViewModel item)
         {
             var model = _mapper.Map<tbUsuarios>(item);
@@ -100,7 +98,6 @@ namespace SistemaSupermercado.API.Controllers
                 Perso_Id = item.Perso_Id,
                 Roles_Id = item.Roles_Id,
                 Usuar_Admin = item.Usuar_Admin,
-                Usuar_SuperPuntos = item.Usuar_SuperPuntos,
                 Usuar_UsuarioModificacion = item.Usuar_UsuarioModificacion
             };
 

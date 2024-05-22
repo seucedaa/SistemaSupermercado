@@ -4,7 +4,7 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { CategoriaService } from 'src/app/demo/service/categoria.service';
 import { Categoria } from 'src/app/demo/models/CategoriaViewModel';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 
 @Component({
     templateUrl: './detalle.component.html',
@@ -26,9 +26,17 @@ export class DetalleComponent implements OnInit {
 
 
 
-    constructor(private route: ActivatedRoute, private categoriaService: CategoriaService) { }
+    constructor(private route: ActivatedRoute,    private router: Router,
+        private categoriaService: CategoriaService) { }
 
     ngOnInit() {
+        const usuariolog = sessionStorage.getItem('usuario');
+        const logueado = JSON.parse(usuariolog);
+        if(!logueado)
+            {
+                this.router.navigate(['/login']);
+
+            }
         const id = this.route.snapshot.paramMap.get('id');
         this.categoriaService.Details(Number(id)).then(data => {
             this.categoria = data;

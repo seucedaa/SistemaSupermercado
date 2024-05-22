@@ -4,7 +4,9 @@ import { SubcategoriaComponent } from './subcategoria.component';
 
 @NgModule({
 	imports: [RouterModule.forChild([
-		{ path: '', component: SubcategoriaComponent }
+		{ path: '', component: SubcategoriaComponent },
+		{ path: 'detalle/:id', loadChildren: () => import('./detalle/detalle.module').then(m => m.DetalleModule) },
+
 	])],
 	exports: [RouterModule]
 })
