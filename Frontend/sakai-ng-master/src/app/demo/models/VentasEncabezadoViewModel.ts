@@ -12,5 +12,5 @@ export class VentaEncabezado{
     venen_FechaModificacion?: string;
     persona?:string;
     tipo?:string;
-    venen_Descuento?:string;
+    vende_Descuento?:string;
 }

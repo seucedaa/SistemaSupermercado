@@ -30,11 +30,12 @@ export class PvendidosComponent implements OnInit {
     inicio:any;
     fin:any;
     sucursa:any;
-    prueba:any;
 
     sucursall:any;
     formattedInicio:any;
     formattedFin:any;
+    sucursal: Sucursal;
+
 
     @ViewChild('pdfViewer', { static: false }) pdfViewer!: ElementRef;
 
@@ -53,11 +54,18 @@ export class PvendidosComponent implements OnInit {
      this.fin = today;}
 
      onSucursalChange(sucur_Id: any) {
-      this.prueba = sucur_Id.sucur_Id;
-      this.sucursall = sucur_Id.sucur_Descripcion;
+
+        this.sucursalService.Details(Number(sucur_Id)).then(data => {
+            console.log(data);
+            this.sucursal = data;
+
+            this.sucursall= this.sucursal.sucur_Descripcion;
+        });
+      
+      console.log(this.sucursall);
       console.log(this.sucursalid);
 
-      if(this.prueba == 0){
+      if(this.sucursalid == 0){
           this.todas();
       }else{
           this.cambio();
@@ -94,7 +102,7 @@ export class PvendidosComponent implements OnInit {
         this.formattedFin = this.formatDate(this.fin);
 
       
-      this.reporteService.getProductos(this.prueba,this.formattedInicio,this.formattedFin).then(response => {
+      this.reporteService.getProductos(this.sucursalid,this.formattedInicio,this.formattedFin).then(response => {
         if (response && response.success) {
             this.productos = response.data;
 

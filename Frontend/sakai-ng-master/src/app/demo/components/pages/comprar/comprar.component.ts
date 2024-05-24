@@ -43,18 +43,21 @@ export class ComprarComponent {
   sortOrder: number = 0;
 
   //?METODOS
-  ngOnInit() {
-    this.sucursalService.getList().then(data => {
+  async ngOnInit() {
+    await this.sucursalService.getList().then(data => {
       data.map((suc) => {
         this.sucursalesOpciones.push({label: suc.sucur_Descripcion, value: suc.sucur_Id})
       })
       this.sucursalSelecionada = this.sucursalesOpciones[0].value;
     })
-
-    this.cartService.getProdcutos().then((data) => {
+    await this.cartService.getProdcutos().then((data) => {
       this.allProductos = data;
       this.filterBySucursal();
+      console.log(this.filteredProductos)
+      console.log(this.sucursalSelecionada)
     });
+
+
 
 
     

@@ -71,6 +71,7 @@ export class AppCartComponent {
     this.isCliente = this.cookieService.get('perso_Tipo') == 'true';
     if(this.isCliente){
       this.cartService.clienteID = parseInt(this.cookieService.get('perso_Id'));
+      this.clienteid = parseInt(this.cookieService.get('perso_Id'));
     }
 
   }
@@ -121,7 +122,7 @@ export class AppCartComponent {
     if (this.facturaCart.length > 0) {
       const encabezado = this.facturaCart[0];
       yPos += 10;
-      pdf.text(`Cliente: ${encabezado.nombre || 'N/A'}`, 5, yPos); 
+      pdf.text(`Cliente: ${encabezado.nombre || 'Consumidor Final'}`, 5, yPos); 
       yPos += 5;
       pdf.text(`Sucursal: ${encabezado.sucur_Descripcion}`, 5, yPos); 
       yPos += 5;
@@ -212,6 +213,11 @@ export class AppCartComponent {
 
   openModal() {
     this.displayModal = true;
+    this.isCliente = this.cookieService.get('perso_Tipo') == 'true';
+    if(this.isCliente){
+      this.cartService.clienteID = parseInt(this.cookieService.get('perso_Id'));
+      this.clienteid = parseInt(this.cookieService.get('perso_Id'));
+    }
   }
 
   confirmarPago() {
